@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <!-- ══════════════════════════════ AUTH ══════════════════════════════ -->
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.ecommerce.app.ui.auth.LoginFragment"
+        android:label="Sign In"
+        tools:layout="@layout/fragment_login">
+        <action android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+        <action android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
+            app:destination="@id/forgotPasswordFragment" />
+        <action android:id="@+id/action_loginFragment_to_admin_nav_graph"
+            app:destination="@id/admin_nav_graph"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.ecommerce.app.ui.auth.RegisterFragment"
+        android:label="Create Account"
+        tools:layout="@layout/fragment_register">
+        <action android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/forgotPasswordFragment"
+        android:name="com.ecommerce.app.ui.auth.ForgotPasswordFragment"
+        android:label="Forgot Password"
+        tools:layout="@layout/fragment_forgot_password">
+        <action android:id="@+id/action_forgotPasswordFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- ══════════════════════════ CUSTOMER ══════════════════════════════ -->
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.ecommerce.app.ui.customer.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+        <action android:id="@+id/action_homeFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.ecommerce.app.ui.customer.products.ProductDetailFragment"
+        android:label="Product"
+        tools:layout="@layout/fragment_product_detail">
+        <argument
+            android:name="productId"
+            app:argType="long" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.ecommerce.app.ui.customer.cart.CartFragment"
+        android:label="Cart"
+        tools:layout="@layout/fragment_cart">
+        <action android:id="@+id/action_cartFragment_to_checkoutFragment"
+            app:destination="@id/checkoutFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="com.ecommerce.app.ui.customer.cart.CheckoutFragment"
+        android:label="Checkout"
+        tools:layout="@layout/fragment_checkout" />
+
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="com.ecommerce.app.ui.customer.orders.OrdersFragment"
+        android:label="My Orders"
+        tools:layout="@layout/fragment_orders">
+        <action android:id="@+id/action_ordersFragment_to_orderDetailFragment"
+            app:destination="@id/orderDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/orderDetailFragment"
+        android:name="com.ecommerce.app.ui.customer.orders.OrderDetailFragment"
+        android:label="Order Details"
+        tools:layout="@layout/fragment_order_detail">
+        <argument
+            android:name="orderId"
+            app:argType="long" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.ecommerce.app.ui.customer.profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile">
+        <action android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+        <action android:id="@+id/action_profileFragment_to_addressListFragment"
+            app:destination="@id/addressListFragment" />
+        <action android:id="@+id/action_profileFragment_to_securityFragment"
+            app:destination="@id/securityFragment" />
+        <action android:id="@+id/action_profileFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.ecommerce.app.ui.customer.profile.EditProfileFragment"
+        android:label="Edit Profile"
+        tools:layout="@layout/fragment_edit_profile" />
+
+    <fragment
+        android:id="@+id/addressListFragment"
+        android:name="com.ecommerce.app.ui.customer.address.AddressListFragment"
+        android:label="My Addresses"
+        tools:layout="@layout/fragment_address_list">
+        <action android:id="@+id/action_addressListFragment_to_addAddressFragment"
+            app:destination="@id/addAddressFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addAddressFragment"
+        android:name="com.ecommerce.app.ui.customer.address.AddAddressFragment"
+        android:label="Add Address"
+        tools:layout="@layout/fragment_add_address" />
+
+    <fragment
+        android:id="@+id/securityFragment"
+        android:name="com.ecommerce.app.ui.customer.profile.SecurityFragment"
+        android:label="Security"
+        tools:layout="@layout/fragment_security" />
+
+    <!-- ════════════════════════════ ADMIN ═══════════════════════════════ -->
+
+    <navigation android:id="@+id/admin_nav_graph"
+        app:startDestination="@id/adminDashboardFragment">
+
+        <fragment
+            android:id="@+id/adminDashboardFragment"
+            android:name="com.ecommerce.app.ui.admin.dashboard.AdminDashboardFragment"
+            android:label="Dashboard"
+            tools:layout="@layout/fragment_admin_dashboard">
+            <action android:id="@+id/action_adminDashboardFragment_to_adminProductsFragment"
+                app:destination="@id/adminProductsFragment" />
+            <action android:id="@+id/action_adminDashboardFragment_to_adminOrdersFragment"
+                app:destination="@id/adminOrdersFragment" />
+            <action android:id="@+id/action_adminDashboardFragment_to_adminUsersFragment"
+                app:destination="@id/adminUsersFragment" />
+            <action android:id="@+id/action_adminDashboardFragment_to_adminCategoriesFragment"
+                app:destination="@id/adminCategoriesFragment" />
+        </fragment>
+
+        <fragment
+            android:id="@+id/adminProductsFragment"
+            android:name="com.ecommerce.app.ui.admin.products.AdminProductsFragment"
+            android:label="Products"
+            tools:layout="@layout/fragment_admin_products">
+            <action android:id="@+id/action_adminProductsFragment_to_adminEditProductFragment"
+                app:destination="@id/adminEditProductFragment" />
+        </fragment>
+
+        <fragment
+            android:id="@+id/adminEditProductFragment"
+            android:name="com.ecommerce.app.ui.admin.products.AdminEditProductFragment"
+            android:label="Edit Product"
+            tools:layout="@layout/fragment_admin_edit_product">
+            <argument
+                android:name="productId"
+                app:argType="long" />
+        </fragment>
+
+        <fragment
+            android:id="@+id/adminOrdersFragment"
+            android:name="com.ecommerce.app.ui.admin.orders.AdminOrdersFragment"
+            android:label="Orders"
+            tools:layout="@layout/fragment_admin_orders" />
+
+        <fragment
+            android:id="@+id/adminUsersFragment"
+            android:name="com.ecommerce.app.ui.admin.users.AdminUsersFragment"
+            android:label="Users"
+            tools:layout="@layout/fragment_admin_users" />
+
+        <fragment
+            android:id="@+id/adminCategoriesFragment"
+            android:name="com.ecommerce.app.ui.admin.categories.AdminCategoriesFragment"
+            android:label="Categories"
+            tools:layout="@layout/fragment_admin_categories" />
+    </navigation>
+
+</navigation>

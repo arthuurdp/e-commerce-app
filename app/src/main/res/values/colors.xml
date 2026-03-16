@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#1976D2</color>
+    <color name="primary_dark">#0D47A1</color>
+    <color name="secondary">#FF6F00</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="gray_light">#F5F5F5</color>
+    <color name="gray">#9E9E9E</color>
+    <color name="nav_item_color">#1976D2</color>
+
+    <!-- Status colors -->
+    <color name="status_paid">#388E3C</color>
+    <color name="status_pending">#F57C00</color>
+    <color name="status_canceled">#D32F2F</color>
+    <color name="status_shipped">#1565C0</color>
+    <color name="status_delivered">#2E7D32</color>
+</resources>
