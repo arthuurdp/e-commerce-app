@@ -1,9 +1,12 @@
 package com.ecommerce.app.ui.auth
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -12,12 +15,11 @@ import com.ecommerce.app.databinding.FragmentLoginBinding
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hide
 import com.ecommerce.app.util.show
-import com.ecommerce.app.util.showToast
+import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
-
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
@@ -34,10 +36,15 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Attempt login when the Login button is clicked
+        binding.etCredential.doAfterTextChanged {
+            setFieldError(binding.tilEmail, null)
+        }
+        binding.etPassword.doAfterTextChanged {
+            setFieldError(binding.tilPassword, null)
+        }
+
         binding.btnLogin.setOnClickListener { attemptLogin() }
 
-        // Navigate to Register screen when "Sign Up" is clicked
         binding.tvRegister.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
@@ -53,12 +60,15 @@ class LoginFragment : Fragment() {
         val credential = binding.etCredential.text.toString().trim()
         val password = binding.etPassword.text.toString()
 
+        setFieldError(binding.tilEmail, null)
+        setFieldError(binding.tilPassword, null)
+
         if (credential.isEmpty()) {
-            binding.etCredential.error = "Enter your email or CPF"
+            setFieldError(binding.tilEmail, "Enter your email or CPF")
             return
         }
         if (password.isEmpty()) {
-            binding.etPassword.error = "Enter your password"
+            setFieldError(binding.tilPassword, "Enter your password")
             return
         }
         viewModel.login(credential, password)
@@ -74,7 +84,7 @@ class LoginFragment : Fragment() {
                 is NetworkResult.Success -> {
                     binding.progressBar.hide()
                     binding.btnLogin.isEnabled = true
-                    // Navigate based on role stored after login
+
                     val destination = if (viewModel.isAdmin) {
                         R.id.action_loginFragment_to_admin_nav_graph
                     } else {
@@ -85,10 +95,31 @@ class LoginFragment : Fragment() {
                 is NetworkResult.Error -> {
                     binding.progressBar.hide()
                     binding.btnLogin.isEnabled = true
-                    showToast(result.message)
+                    setFieldError(binding.tilEmail, result.message)
+                    setFieldError(binding.tilPassword, result.message)
                 }
             }
         }
+    }
+
+    private fun setFieldError(layout: TextInputLayout, message: String?) {
+        val hasError = message != null
+
+        if (hasError) {
+            layout.isErrorEnabled = true
+            layout.error = message
+        } else {
+            layout.error = null
+            layout.isErrorEnabled = false
+        }
+
+        val color = if (hasError) {
+            ContextCompat.getColor(requireContext(), R.color.red)
+        } else {
+            ContextCompat.getColor(requireContext(), R.color.purple)
+        }
+
+        layout.setStartIconTintList(ColorStateList.valueOf(color))
     }
 
     override fun onDestroyView() {

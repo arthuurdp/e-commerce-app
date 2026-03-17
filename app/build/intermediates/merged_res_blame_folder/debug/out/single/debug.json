@@ -20,6 +20,14 @@
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\item_address.xml"
     },
     {
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\color_text_input_icon_tint.xml.flat",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\color\\text_input_icon_tint.xml"
+    },
+    {
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\drawable_ic_password.xml.flat",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\drawable\\ic_password.xml"
+    },
+    {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\layout_fragment_admin_dashboard.xml.flat",
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_admin_dashboard.xml"
     },
@@ -92,6 +100,10 @@
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_order_detail.xml"
     },
     {
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\drawable_ic_lock_outline.xml.flat",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\drawable\\ic_lock_outline.xml"
+    },
+    {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\layout_fragment_product_detail.xml.flat",
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_product_detail.xml"
     },
@@ -108,12 +120,20 @@
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_admin_categories.xml"
     },
     {
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\drawable_ic_email.xml.flat",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\drawable\\ic_email.xml"
+    },
+    {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\layout_fragment_edit_profile.xml.flat",
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_edit_profile.xml"
     },
     {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\layout_fragment_cart.xml.flat",
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_cart.xml"
+    },
+    {
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\drawable_ic_email_outline.xml.flat",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\drawable\\ic_email_outline.xml"
     },
     {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\layout_fragment_orders.xml.flat",

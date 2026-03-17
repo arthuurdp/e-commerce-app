@@ -9,6 +9,7 @@ color nav_item_color
 color primary
 color primary_dark
 color purple
+color red
 color secondary
 color social_button_bg
 color status_canceled
@@ -18,10 +19,13 @@ color status_pending
 color status_shipped
 color text_hint
 color text_input_hint_color
+color text_input_icon_tint
 color text_input_stroke_color
 color white
 drawable bg_social_button
+drawable ic_email
 drawable ic_image_placeholder
+drawable ic_password
 drawable login_image
 drawable spinner_background
 font poppins

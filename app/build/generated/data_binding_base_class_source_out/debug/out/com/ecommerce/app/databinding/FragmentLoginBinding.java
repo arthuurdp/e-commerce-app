@@ -6,10 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.ecommerce.app.R;
@@ -22,7 +22,7 @@ import java.lang.String;
 
 public final class FragmentLoginBinding implements ViewBinding {
   @NonNull
-  private final ScrollView rootView;
+  private final ConstraintLayout rootView;
 
   @NonNull
   public final MaterialButton btnLogin;
@@ -57,7 +57,7 @@ public final class FragmentLoginBinding implements ViewBinding {
   @NonNull
   public final TextView tvTitle;
 
-  private FragmentLoginBinding(@NonNull ScrollView rootView, @NonNull MaterialButton btnLogin,
+  private FragmentLoginBinding(@NonNull ConstraintLayout rootView, @NonNull MaterialButton btnLogin,
       @NonNull TextInputEditText etCredential, @NonNull TextInputEditText etPassword,
       @NonNull ImageView ivIllustration, @NonNull ProgressBar progressBar,
       @NonNull TextInputLayout tilEmail, @NonNull TextInputLayout tilPassword,
@@ -79,7 +79,7 @@ public final class FragmentLoginBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public ScrollView getRoot() {
+  public ConstraintLayout getRoot() {
     return rootView;
   }
 
@@ -170,9 +170,9 @@ public final class FragmentLoginBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentLoginBinding((ScrollView) rootView, btnLogin, etCredential, etPassword,
-          ivIllustration, progressBar, tilEmail, tilPassword, tvForgotPassword, tvRegister,
-          tvSubtitle, tvTitle);
+      return new FragmentLoginBinding((ConstraintLayout) rootView, btnLogin, etCredential,
+          etPassword, ivIllustration, progressBar, tilEmail, tilPassword, tvForgotPassword,
+          tvRegister, tvSubtitle, tvTitle);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

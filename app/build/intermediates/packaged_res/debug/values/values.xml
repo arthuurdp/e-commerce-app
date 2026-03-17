@@ -9,6 +9,7 @@
     <color name="primary">#2196F3</color>
     <color name="primary_dark">#1976D2</color>
     <color name="purple">#6c63ff</color>
+    <color name="red">#B00020</color>
     <color name="secondary">#FF6F00</color>
     <color name="social_button_bg">#FFFFFF</color>
     <color name="status_canceled">#D32F2F</color>
