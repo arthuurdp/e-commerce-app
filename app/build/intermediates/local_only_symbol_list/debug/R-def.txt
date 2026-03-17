@@ -1,20 +1,30 @@
 R_DEF: Internal format may change without notice
 local
 color black
+color blue_button
 color gray
 color gray_light
+color gray_medium
 color nav_item_color
 color primary
 color primary_dark
+color purple
 color secondary
+color social_button_bg
 color status_canceled
 color status_delivered
 color status_paid
 color status_pending
 color status_shipped
+color text_hint
+color text_input_hint_color
+color text_input_stroke_color
 color white
+drawable bg_social_button
 drawable ic_image_placeholder
+drawable login_image
 drawable spinner_background
+font poppins
 id action_addressListFragment_to_addAddressFragment
 id action_adminDashboardFragment_to_adminCategoriesFragment
 id action_adminDashboardFragment_to_adminOrdersFragment
@@ -100,6 +110,7 @@ id fab_add_category
 id fab_add_product
 id forgotPasswordFragment
 id homeFragment
+id iv_illustration
 id iv_product
 id layout_cart_footer
 id layout_confirm
@@ -126,6 +137,8 @@ id spinner_address
 id spinner_gender
 id spinner_payment
 id swipe_refresh
+id til_email
+id til_password
 id toolbar
 id tv_address_city
 id tv_address_name
@@ -152,7 +165,9 @@ id tv_quantity
 id tv_register
 id tv_role
 id tv_status
+id tv_subtitle
 id tv_subtotal
+id tv_title
 id tv_total
 id tv_total_orders
 id tv_total_products

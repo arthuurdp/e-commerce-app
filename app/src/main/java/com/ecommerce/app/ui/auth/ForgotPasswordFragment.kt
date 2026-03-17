@@ -75,7 +75,7 @@ class ForgotPasswordFragment : Fragment() {
                 is NetworkResult.Loading -> binding.progressBar.show()
                 is NetworkResult.Success -> {
                     binding.progressBar.hide()
-                    showToast("Password reset successfully!")
+                    showToast("Password changed successfully!")
                     findNavController().navigate(R.id.action_forgotPasswordFragment_to_loginFragment)
                 }
                 is NetworkResult.Error -> {

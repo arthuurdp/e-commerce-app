@@ -812,7 +812,7 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
     }
 
     @Override
-    public void injectECommerceApp(ECommerceApp arg0) {
+    public void injectECommerceApp(ECommerceApp eCommerceApp) {
     }
 
     @Override

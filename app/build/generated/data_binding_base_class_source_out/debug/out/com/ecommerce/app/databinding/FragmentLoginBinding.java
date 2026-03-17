@@ -4,6 +4,7 @@ package com.ecommerce.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -14,6 +15,7 @@ import androidx.viewbinding.ViewBindings;
 import com.ecommerce.app.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -32,7 +34,16 @@ public final class FragmentLoginBinding implements ViewBinding {
   public final TextInputEditText etPassword;
 
   @NonNull
+  public final ImageView ivIllustration;
+
+  @NonNull
   public final ProgressBar progressBar;
+
+  @NonNull
+  public final TextInputLayout tilEmail;
+
+  @NonNull
+  public final TextInputLayout tilPassword;
 
   @NonNull
   public final TextView tvForgotPassword;
@@ -40,17 +51,30 @@ public final class FragmentLoginBinding implements ViewBinding {
   @NonNull
   public final TextView tvRegister;
 
+  @NonNull
+  public final TextView tvSubtitle;
+
+  @NonNull
+  public final TextView tvTitle;
+
   private FragmentLoginBinding(@NonNull ScrollView rootView, @NonNull MaterialButton btnLogin,
       @NonNull TextInputEditText etCredential, @NonNull TextInputEditText etPassword,
-      @NonNull ProgressBar progressBar, @NonNull TextView tvForgotPassword,
-      @NonNull TextView tvRegister) {
+      @NonNull ImageView ivIllustration, @NonNull ProgressBar progressBar,
+      @NonNull TextInputLayout tilEmail, @NonNull TextInputLayout tilPassword,
+      @NonNull TextView tvForgotPassword, @NonNull TextView tvRegister,
+      @NonNull TextView tvSubtitle, @NonNull TextView tvTitle) {
     this.rootView = rootView;
     this.btnLogin = btnLogin;
     this.etCredential = etCredential;
     this.etPassword = etPassword;
+    this.ivIllustration = ivIllustration;
     this.progressBar = progressBar;
+    this.tilEmail = tilEmail;
+    this.tilPassword = tilPassword;
     this.tvForgotPassword = tvForgotPassword;
     this.tvRegister = tvRegister;
+    this.tvSubtitle = tvSubtitle;
+    this.tvTitle = tvTitle;
   }
 
   @Override
@@ -98,9 +122,27 @@ public final class FragmentLoginBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.iv_illustration;
+      ImageView ivIllustration = ViewBindings.findChildViewById(rootView, id);
+      if (ivIllustration == null) {
+        break missingId;
+      }
+
       id = R.id.progress_bar;
       ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
       if (progressBar == null) {
+        break missingId;
+      }
+
+      id = R.id.til_email;
+      TextInputLayout tilEmail = ViewBindings.findChildViewById(rootView, id);
+      if (tilEmail == null) {
+        break missingId;
+      }
+
+      id = R.id.til_password;
+      TextInputLayout tilPassword = ViewBindings.findChildViewById(rootView, id);
+      if (tilPassword == null) {
         break missingId;
       }
 
@@ -116,8 +158,21 @@ public final class FragmentLoginBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tv_subtitle;
+      TextView tvSubtitle = ViewBindings.findChildViewById(rootView, id);
+      if (tvSubtitle == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_title;
+      TextView tvTitle = ViewBindings.findChildViewById(rootView, id);
+      if (tvTitle == null) {
+        break missingId;
+      }
+
       return new FragmentLoginBinding((ScrollView) rootView, btnLogin, etCredential, etPassword,
-          progressBar, tvForgotPassword, tvRegister);
+          ivIllustration, progressBar, tilEmail, tilPassword, tvForgotPassword, tvRegister,
+          tvSubtitle, tvTitle);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
