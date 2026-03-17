@@ -15,6 +15,7 @@ import androidx.viewbinding.ViewBindings;
 import com.ecommerce.app.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -54,6 +55,27 @@ public final class FragmentRegisterBinding implements ViewBinding {
   public final Spinner spinnerGender;
 
   @NonNull
+  public final TextInputLayout tilBirthDate;
+
+  @NonNull
+  public final TextInputLayout tilCpf;
+
+  @NonNull
+  public final TextInputLayout tilEmail;
+
+  @NonNull
+  public final TextInputLayout tilFirstName;
+
+  @NonNull
+  public final TextInputLayout tilLastName;
+
+  @NonNull
+  public final TextInputLayout tilPassword;
+
+  @NonNull
+  public final TextInputLayout tilPhone;
+
+  @NonNull
   public final TextView tvLogin;
 
   private FragmentRegisterBinding(@NonNull ScrollView rootView, @NonNull MaterialButton btnRegister,
@@ -61,7 +83,11 @@ public final class FragmentRegisterBinding implements ViewBinding {
       @NonNull TextInputEditText etEmail, @NonNull TextInputEditText etFirstName,
       @NonNull TextInputEditText etLastName, @NonNull TextInputEditText etPassword,
       @NonNull TextInputEditText etPhone, @NonNull ProgressBar progressBar,
-      @NonNull Spinner spinnerGender, @NonNull TextView tvLogin) {
+      @NonNull Spinner spinnerGender, @NonNull TextInputLayout tilBirthDate,
+      @NonNull TextInputLayout tilCpf, @NonNull TextInputLayout tilEmail,
+      @NonNull TextInputLayout tilFirstName, @NonNull TextInputLayout tilLastName,
+      @NonNull TextInputLayout tilPassword, @NonNull TextInputLayout tilPhone,
+      @NonNull TextView tvLogin) {
     this.rootView = rootView;
     this.btnRegister = btnRegister;
     this.etBirthDate = etBirthDate;
@@ -73,6 +99,13 @@ public final class FragmentRegisterBinding implements ViewBinding {
     this.etPhone = etPhone;
     this.progressBar = progressBar;
     this.spinnerGender = spinnerGender;
+    this.tilBirthDate = tilBirthDate;
+    this.tilCpf = tilCpf;
+    this.tilEmail = tilEmail;
+    this.tilFirstName = tilFirstName;
+    this.tilLastName = tilLastName;
+    this.tilPassword = tilPassword;
+    this.tilPhone = tilPhone;
     this.tvLogin = tvLogin;
   }
 
@@ -163,6 +196,48 @@ public final class FragmentRegisterBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tilBirthDate;
+      TextInputLayout tilBirthDate = ViewBindings.findChildViewById(rootView, id);
+      if (tilBirthDate == null) {
+        break missingId;
+      }
+
+      id = R.id.tilCpf;
+      TextInputLayout tilCpf = ViewBindings.findChildViewById(rootView, id);
+      if (tilCpf == null) {
+        break missingId;
+      }
+
+      id = R.id.tilEmail;
+      TextInputLayout tilEmail = ViewBindings.findChildViewById(rootView, id);
+      if (tilEmail == null) {
+        break missingId;
+      }
+
+      id = R.id.tilFirstName;
+      TextInputLayout tilFirstName = ViewBindings.findChildViewById(rootView, id);
+      if (tilFirstName == null) {
+        break missingId;
+      }
+
+      id = R.id.tilLastName;
+      TextInputLayout tilLastName = ViewBindings.findChildViewById(rootView, id);
+      if (tilLastName == null) {
+        break missingId;
+      }
+
+      id = R.id.tilPassword;
+      TextInputLayout tilPassword = ViewBindings.findChildViewById(rootView, id);
+      if (tilPassword == null) {
+        break missingId;
+      }
+
+      id = R.id.tilPhone;
+      TextInputLayout tilPhone = ViewBindings.findChildViewById(rootView, id);
+      if (tilPhone == null) {
+        break missingId;
+      }
+
       id = R.id.tv_login;
       TextView tvLogin = ViewBindings.findChildViewById(rootView, id);
       if (tvLogin == null) {
@@ -171,6 +246,7 @@ public final class FragmentRegisterBinding implements ViewBinding {
 
       return new FragmentRegisterBinding((ScrollView) rootView, btnRegister, etBirthDate, etCpf,
           etEmail, etFirstName, etLastName, etPassword, etPhone, progressBar, spinnerGender,
+          tilBirthDate, tilCpf, tilEmail, tilFirstName, tilLastName, tilPassword, tilPhone,
           tvLogin);
     }
     String missingId = rootView.getResources().getResourceName(id);

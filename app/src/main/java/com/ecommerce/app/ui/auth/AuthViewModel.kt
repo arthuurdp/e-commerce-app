@@ -44,10 +44,6 @@ class AuthViewModel @Inject constructor(
                     val token = result.data.token
                     tokenManager.saveToken(token)
 
-                    // Decode role from JWT — our API embeds the email (sub) but not role.
-                    // We call /users/me after login to know if the user is admin.
-                    // For now we store the token and flag admin based on role saved later.
-                    // Role is determined by UserRepository.getCurrentUser() in HomeFragment.
                     isAdmin = false
                     _loginState.value = NetworkResult.Success(Unit)
                 }

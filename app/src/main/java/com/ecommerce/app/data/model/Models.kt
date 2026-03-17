@@ -35,6 +35,13 @@ data class RegisterResponse(
     val email: String
 )
 
+data class ValidationError(
+    val timestamp: String,
+    val status: Int,
+    val error: String,
+    val message: Map<String, String>
+)
+
 // ─────────────────────────────────────────────
 // USER
 // ─────────────────────────────────────────────

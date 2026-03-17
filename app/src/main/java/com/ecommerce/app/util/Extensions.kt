@@ -1,12 +1,18 @@
 package com.ecommerce.app.util
 
+import android.content.Context
+import android.content.res.ColorStateList
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.ecommerce.app.R
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.launch
 
 // ─── Visibility helpers ────────────────────────────────────────────────────
@@ -50,4 +56,24 @@ fun Fragment.launchOnStarted(block: suspend () -> Unit) {
             block()
         }
     }
+}
+
+fun setFieldError(context: Context, layout: TextInputLayout, message: String?) {
+    val hasError = message != null
+
+    if (hasError) {
+        layout.isErrorEnabled = true
+        layout.error = message
+    } else {
+        layout.error = null
+        layout.isErrorEnabled = false
+    }
+
+    val color = if (hasError) {
+        ContextCompat.getColor(context, R.color.red)
+    } else {
+        ContextCompat.getColor(context, R.color.purple)
+    }
+
+    layout.setStartIconTintList(ColorStateList.valueOf(color))
 }

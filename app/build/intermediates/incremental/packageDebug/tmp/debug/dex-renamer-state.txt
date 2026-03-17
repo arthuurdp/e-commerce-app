@@ -1,4 +1,4 @@
-#Tue Mar 17 15:02:37 BRT 2026
+#Tue Mar 17 17:18:43 BRT 2026
 base.0=C\:\\Users\\arthur.dall\\Desktop\\ecommerce-android\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\arthur.dall\\Desktop\\ecommerce-android\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 base.10=C\:\\Users\\arthur.dall\\Desktop\\ecommerce-android\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\4\\classes.dex

@@ -3729,6 +3729,13 @@ int id textinput_helper_text 0x7f090240
 int id textinput_placeholder 0x7f090241
 int id textinput_prefix_text 0x7f090242
 int id textinput_suffix_text 0x7f090243
+int id tilBirthDate 0x7f09028f
+int id tilCpf 0x7f090290
+int id tilEmail 0x7f090291
+int id tilFirstName 0x7f090292
+int id tilLastName 0x7f090293
+int id tilPassword 0x7f090294
+int id tilPhone 0x7f090295
 int id til_email 0x7f090244
 int id til_password 0x7f090245
 int id time 0x7f090246

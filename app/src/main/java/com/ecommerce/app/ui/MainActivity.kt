@@ -38,7 +38,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupBottomNav() {
-        // Top-level destinations (no back arrow)
         val customerTopLevel = setOf(
             R.id.homeFragment,
             R.id.cartFragment,

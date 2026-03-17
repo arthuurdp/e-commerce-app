@@ -141,6 +141,13 @@ id spinner_address
 id spinner_gender
 id spinner_payment
 id swipe_refresh
+id tilBirthDate
+id tilCpf
+id tilEmail
+id tilFirstName
+id tilLastName
+id tilPassword
+id tilPhone
 id til_email
 id til_password
 id toolbar

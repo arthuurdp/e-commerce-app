@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -55,14 +56,14 @@ public final class FragmentLoginBinding implements ViewBinding {
   public final TextView tvSubtitle;
 
   @NonNull
-  public final TextView tvTitle;
+  public final LinearLayout tvTitle;
 
   private FragmentLoginBinding(@NonNull ConstraintLayout rootView, @NonNull MaterialButton btnLogin,
       @NonNull TextInputEditText etCredential, @NonNull TextInputEditText etPassword,
       @NonNull ImageView ivIllustration, @NonNull ProgressBar progressBar,
       @NonNull TextInputLayout tilEmail, @NonNull TextInputLayout tilPassword,
       @NonNull TextView tvForgotPassword, @NonNull TextView tvRegister,
-      @NonNull TextView tvSubtitle, @NonNull TextView tvTitle) {
+      @NonNull TextView tvSubtitle, @NonNull LinearLayout tvTitle) {
     this.rootView = rootView;
     this.btnLogin = btnLogin;
     this.etCredential = etCredential;
@@ -165,7 +166,7 @@ public final class FragmentLoginBinding implements ViewBinding {
       }
 
       id = R.id.tv_title;
-      TextView tvTitle = ViewBindings.findChildViewById(rootView, id);
+      LinearLayout tvTitle = ViewBindings.findChildViewById(rootView, id);
       if (tvTitle == null) {
         break missingId;
       }

@@ -33,14 +33,12 @@ class ForgotPasswordFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Step 1: request code
         binding.btnSendCode.setOnClickListener {
             val email = binding.etEmail.text.toString().trim()
             if (email.isEmpty()) { showToast("Enter your email"); return@setOnClickListener }
             viewModel.forgotPassword(email)
         }
 
-        // Step 2: reset with code
         binding.btnResetPassword.setOnClickListener {
             val code = binding.etCode.text.toString().trim()
             val newPassword = binding.etNewPassword.text.toString()
@@ -60,7 +58,6 @@ class ForgotPasswordFragment : Fragment() {
                 is NetworkResult.Success -> {
                     binding.progressBar.hide()
                     showToast(result.data)
-                    // Show reset section
                     binding.layoutReset.show()
                 }
                 is NetworkResult.Error -> {

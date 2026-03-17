@@ -3730,6 +3730,13 @@ id textinput_helper_text
 id textinput_placeholder
 id textinput_prefix_text
 id textinput_suffix_text
+id tilBirthDate
+id tilCpf
+id tilEmail
+id tilFirstName
+id tilLastName
+id tilPassword
+id tilPhone
 id til_email
 id til_password
 id time

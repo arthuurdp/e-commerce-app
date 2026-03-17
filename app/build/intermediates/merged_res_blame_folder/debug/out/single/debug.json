@@ -64,6 +64,10 @@
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\drawable\\bg_social_button.xml"
     },
     {
+        "merged": "com.ecommerce.app-merged_res-53:/layout_fragment_register.xml.flat",
+        "source": "com.ecommerce.app-main-55:/layout/fragment_register.xml"
+    },
+    {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\layout_fragment_home.xml.flat",
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_home.xml"
     },
@@ -150,10 +154,6 @@
     {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\layout_fragment_admin_orders.xml.flat",
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_admin_orders.xml"
-    },
-    {
-        "merged": "com.ecommerce.app-merged_res-53:/layout_fragment_login.xml.flat",
-        "source": "com.ecommerce.app-main-55:/layout/fragment_login.xml"
     },
     {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\layout_item_cart.xml.flat",

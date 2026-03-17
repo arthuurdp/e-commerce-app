@@ -6,26 +6,32 @@ import okhttp3.Interceptor
 import okhttp3.Response
 import javax.inject.Inject
 
-/**
- * OkHttp interceptor that reads the stored JWT token from DataStore
- * and attaches it as a Bearer header to every outgoing request.
- *
- * Endpoints that don't need auth (login, register, forgot-password…)
- * will simply get an empty Authorization header, which the server ignores.
- */
 class AuthInterceptor @Inject constructor(
     private val tokenManager: TokenManager
 ) : Interceptor {
 
+    private val publicEndpoints = listOf(
+        "auth/login",
+        "auth/register",
+        "password/forgot",
+        "password/reset"
+    )
+
     override fun intercept(chain: Interceptor.Chain): Response {
+        val request = chain.request()
+
+        if (publicEndpoints.any { request.url.encodedPath.contains(it) }) {
+            return chain.proceed(request)
+        }
+
         val token = runBlocking { tokenManager.getToken() }
 
-        val request = chain.request().newBuilder().apply {
+        val authenticatedRequest = request.newBuilder().apply {
             if (!token.isNullOrBlank()) {
                 addHeader("Authorization", "Bearer $token")
             }
         }.build()
 
-        return chain.proceed(request)
+        return chain.proceed(authenticatedRequest)
     }
 }
