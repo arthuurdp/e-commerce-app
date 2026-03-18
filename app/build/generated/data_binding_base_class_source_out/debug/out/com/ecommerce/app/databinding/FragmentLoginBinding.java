@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.widget.NestedScrollView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.ecommerce.app.R;
@@ -23,7 +24,7 @@ import java.lang.String;
 
 public final class FragmentLoginBinding implements ViewBinding {
   @NonNull
-  private final ConstraintLayout rootView;
+  private final NestedScrollView rootView;
 
   @NonNull
   public final MaterialButton btnLogin;
@@ -36,6 +37,12 @@ public final class FragmentLoginBinding implements ViewBinding {
 
   @NonNull
   public final ImageView ivIllustration;
+
+  @NonNull
+  public final LinearLayout llRegister;
+
+  @NonNull
+  public final ConstraintLayout mainContainer;
 
   @NonNull
   public final ProgressBar progressBar;
@@ -58,9 +65,10 @@ public final class FragmentLoginBinding implements ViewBinding {
   @NonNull
   public final LinearLayout tvTitle;
 
-  private FragmentLoginBinding(@NonNull ConstraintLayout rootView, @NonNull MaterialButton btnLogin,
+  private FragmentLoginBinding(@NonNull NestedScrollView rootView, @NonNull MaterialButton btnLogin,
       @NonNull TextInputEditText etCredential, @NonNull TextInputEditText etPassword,
-      @NonNull ImageView ivIllustration, @NonNull ProgressBar progressBar,
+      @NonNull ImageView ivIllustration, @NonNull LinearLayout llRegister,
+      @NonNull ConstraintLayout mainContainer, @NonNull ProgressBar progressBar,
       @NonNull TextInputLayout tilEmail, @NonNull TextInputLayout tilPassword,
       @NonNull TextView tvForgotPassword, @NonNull TextView tvRegister,
       @NonNull TextView tvSubtitle, @NonNull LinearLayout tvTitle) {
@@ -69,6 +77,8 @@ public final class FragmentLoginBinding implements ViewBinding {
     this.etCredential = etCredential;
     this.etPassword = etPassword;
     this.ivIllustration = ivIllustration;
+    this.llRegister = llRegister;
+    this.mainContainer = mainContainer;
     this.progressBar = progressBar;
     this.tilEmail = tilEmail;
     this.tilPassword = tilPassword;
@@ -80,7 +90,7 @@ public final class FragmentLoginBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public ConstraintLayout getRoot() {
+  public NestedScrollView getRoot() {
     return rootView;
   }
 
@@ -129,6 +139,18 @@ public final class FragmentLoginBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.ll_register;
+      LinearLayout llRegister = ViewBindings.findChildViewById(rootView, id);
+      if (llRegister == null) {
+        break missingId;
+      }
+
+      id = R.id.main_container;
+      ConstraintLayout mainContainer = ViewBindings.findChildViewById(rootView, id);
+      if (mainContainer == null) {
+        break missingId;
+      }
+
       id = R.id.progress_bar;
       ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
       if (progressBar == null) {
@@ -171,9 +193,9 @@ public final class FragmentLoginBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentLoginBinding((ConstraintLayout) rootView, btnLogin, etCredential,
-          etPassword, ivIllustration, progressBar, tilEmail, tilPassword, tvForgotPassword,
-          tvRegister, tvSubtitle, tvTitle);
+      return new FragmentLoginBinding((NestedScrollView) rootView, btnLogin, etCredential,
+          etPassword, ivIllustration, llRegister, mainContainer, progressBar, tilEmail, tilPassword,
+          tvForgotPassword, tvRegister, tvSubtitle, tvTitle);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -1,10 +1,11 @@
 package com.ecommerce.app.util
 
+import android.app.Activity
 import android.content.Context
 import android.content.res.ColorStateList
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
@@ -43,6 +44,15 @@ fun View.showSnackbarWithAction(
 ) = Snackbar.make(this, message, Snackbar.LENGTH_INDEFINITE)
     .setAction(actionText) { action() }
     .show()
+
+// ─── Keyboard helpers ─────────────────────────────────────────────────────
+
+fun Fragment.hideKeyboard() {
+    val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    val view = activity?.currentFocus ?: view
+    imm.hideSoftInputFromWindow(view?.windowToken, 0)
+    view?.clearFocus()
+}
 
 // ─── Currency formatting ──────────────────────────────────────────────────
 

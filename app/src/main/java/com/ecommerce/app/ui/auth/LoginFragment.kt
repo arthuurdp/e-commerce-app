@@ -12,6 +12,7 @@ import com.ecommerce.app.R
 import com.ecommerce.app.databinding.FragmentLoginBinding
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hide
+import com.ecommerce.app.util.hideKeyboard
 import com.ecommerce.app.util.setFieldError
 import com.ecommerce.app.util.show
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,14 +34,18 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.etCredential.doAfterTextChanged {
-            setFieldError(requireContext(), binding.tilEmail, null)
-        }
-        binding.etPassword.doAfterTextChanged {
-            setFieldError(requireContext(), binding.tilPassword, null)
-        }
+        setupClickListeners()
+        setupTextWatchers()
+        observeLogin()
+    }
 
-        binding.btnLogin.setOnClickListener { attemptLogin() }
+    private fun setupClickListeners() {
+        binding.mainContainer.setOnClickListener { hideKeyboard() }
+
+        binding.btnLogin.setOnClickListener {
+            hideKeyboard()
+            attemptLogin()
+        }
 
         binding.tvRegister.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
@@ -49,8 +54,15 @@ class LoginFragment : Fragment() {
         binding.tvForgotPassword.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
         }
+    }
 
-        observeLogin()
+    private fun setupTextWatchers() {
+        binding.etCredential.doAfterTextChanged {
+            setFieldError(requireContext(), binding.tilEmail, null)
+        }
+        binding.etPassword.doAfterTextChanged {
+            setFieldError(requireContext(), binding.tilPassword, null)
+        }
     }
 
     private fun attemptLogin() {

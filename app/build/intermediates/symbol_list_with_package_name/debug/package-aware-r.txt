@@ -3051,6 +3051,7 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable ic_arrow_back
 drawable ic_arrow_back_black_24
 drawable ic_call_answer
 drawable ic_call_answer_low
@@ -3281,6 +3282,7 @@ id bounceEnd
 id bounceStart
 id btn_add_to_cart
 id btn_addresses
+id btn_back
 id btn_checkout
 id btn_clear_cart
 id btn_confirm
@@ -3483,10 +3485,12 @@ id line3
 id linear
 id listMode
 id list_item
+id ll_register
 id locale
 id loginFragment
 id ltr
 id m3_side_sheet
+id main_container
 id marquee
 id masked
 id match_constraint

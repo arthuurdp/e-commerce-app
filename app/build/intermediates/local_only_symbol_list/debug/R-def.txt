@@ -23,6 +23,7 @@ color text_input_icon_tint
 color text_input_stroke_color
 color white
 drawable bg_social_button
+drawable ic_arrow_back
 drawable ic_email
 drawable ic_image_placeholder
 drawable ic_password
@@ -61,6 +62,7 @@ id bottom_nav_admin
 id bottom_nav_customer
 id btn_add_to_cart
 id btn_addresses
+id btn_back
 id btn_checkout
 id btn_clear_cart
 id btn_confirm
@@ -119,7 +121,9 @@ id iv_product
 id layout_cart_footer
 id layout_confirm
 id layout_reset
+id ll_register
 id loginFragment
+id main_container
 id nav_graph
 id nav_host_fragment
 id orderDetailFragment

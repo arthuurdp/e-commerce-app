@@ -14,6 +14,7 @@ import com.ecommerce.app.data.model.RegisterRequest
 import com.ecommerce.app.databinding.FragmentRegisterBinding
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hide
+import com.ecommerce.app.util.hideKeyboard
 import com.ecommerce.app.util.setFieldError
 import com.ecommerce.app.util.show
 import com.ecommerce.app.util.showToast
@@ -36,6 +37,9 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.mainContainer.setOnClickListener { hideKeyboard() }
+        binding.btnBack.setOnClickListener { findNavController().popBackStack() }
 
         binding.etFirstName.doAfterTextChanged {
             setFieldError(requireContext(), binding.tilFirstName, null)
