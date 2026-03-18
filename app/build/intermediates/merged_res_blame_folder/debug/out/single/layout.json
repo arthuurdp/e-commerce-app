@@ -24,10 +24,6 @@
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_product_detail.xml"
     },
     {
-        "merged": "com.ecommerce.app-mergeDebugResources-52:/layout/fragment_register.xml",
-        "source": "com.ecommerce.app-main-55:/layout/fragment_register.xml"
-    },
-    {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-52:\\layout\\fragment_register.xml",
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_register.xml"
     },
@@ -56,10 +52,6 @@
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_admin_orders.xml"
     },
     {
-        "merged": "com.ecommerce.app-mergeDebugResources-52:/layout/fragment_login.xml",
-        "source": "com.ecommerce.app-main-55:/layout/fragment_login.xml"
-    },
-    {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-52:\\layout\\fragment_forgot_password.xml",
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_forgot_password.xml"
     },
@@ -86,6 +78,10 @@
     {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-52:\\layout\\fragment_security.xml",
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_security.xml"
+    },
+    {
+        "merged": "com.ecommerce.app-mergeDebugResources-52:/layout/fragment_forgot_password.xml",
+        "source": "com.ecommerce.app-main-55:/layout/fragment_forgot_password.xml"
     },
     {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-52:\\layout\\fragment_login.xml",

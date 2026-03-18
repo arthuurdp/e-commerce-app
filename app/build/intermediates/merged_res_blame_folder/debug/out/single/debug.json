@@ -12,6 +12,10 @@
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_checkout.xml"
     },
     {
+        "merged": "com.ecommerce.app-merged_res-53:/layout_fragment_forgot_password.xml.flat",
+        "source": "com.ecommerce.app-main-55:/layout/fragment_forgot_password.xml"
+    },
+    {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\layout_fragment_address_list.xml.flat",
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_address_list.xml"
     },
@@ -72,10 +76,6 @@
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\drawable\\bg_social_button.xml"
     },
     {
-        "merged": "com.ecommerce.app-merged_res-53:/layout_fragment_register.xml.flat",
-        "source": "com.ecommerce.app-main-55:/layout/fragment_register.xml"
-    },
-    {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\drawable_login_image.xml.flat",
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\drawable\\login_image.xml"
     },
@@ -98,6 +98,10 @@
     {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\layout_item_category.xml.flat",
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\item_category.xml"
+    },
+    {
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\drawable_img_forgot_password.xml.flat",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\drawable\\img_forgot_password.xml"
     },
     {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\layout_item_order_line.xml.flat",
@@ -154,10 +158,6 @@
     {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\layout_fragment_admin_orders.xml.flat",
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_admin_orders.xml"
-    },
-    {
-        "merged": "com.ecommerce.app-merged_res-53:/layout_fragment_login.xml.flat",
-        "source": "com.ecommerce.app-main-55:/layout/fragment_login.xml"
     },
     {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\layout_item_cart.xml.flat",

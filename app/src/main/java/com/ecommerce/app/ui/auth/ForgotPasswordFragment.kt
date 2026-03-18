@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -11,6 +12,7 @@ import com.ecommerce.app.R
 import com.ecommerce.app.databinding.FragmentForgotPasswordBinding
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hide
+import com.ecommerce.app.util.setFieldError
 import com.ecommerce.app.util.show
 import com.ecommerce.app.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,22 +35,49 @@ class ForgotPasswordFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        // Clear error as user types — only after they've tried submitting
+        binding.etEmail.doAfterTextChanged {
+            setFieldError(requireContext(), binding.tilEmail, null)
+        }
+
         binding.btnSendCode.setOnClickListener {
-            val email = binding.etEmail.text.toString().trim()
-            if (email.isEmpty()) { showToast("Enter your email"); return@setOnClickListener }
-            viewModel.forgotPassword(email)
+            binding.btnSendCode.setOnClickListener {
+                attemptSendCode()
+            }
         }
 
         binding.btnResetPassword.setOnClickListener {
-            val code = binding.etCode.text.toString().trim()
-            val newPassword = binding.etNewPassword.text.toString()
-            if (code.isEmpty() || newPassword.isEmpty()) {
-                showToast("Fill in both fields"); return@setOnClickListener
-            }
-            viewModel.resetPassword(code, newPassword)
+            attemptResetPassword()
         }
 
         observeStates()
+    }
+
+    private fun attemptSendCode() {
+        val email = binding.etEmail.text.toString().trim()
+
+        setFieldError(requireContext(), binding.tilEmail, null)
+
+        if (email.isEmpty()) {
+            setFieldError(requireContext(), binding.tilEmail, "Enter your e-mail")
+            return
+        }
+
+        viewModel.forgotPassword(email)
+    }
+
+    private fun attemptResetPassword() {
+        val code = binding.etCode.text.toString().trim()
+        val newPassword = binding.etNewPassword.text.toString()
+        if (code.isEmpty() || newPassword.isEmpty()) {
+            showToast("Fill in both fields")
+            return
+        }
+        viewModel.resetPassword(code, newPassword)
     }
 
     private fun observeStates() {

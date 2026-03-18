@@ -27,6 +27,7 @@ drawable ic_arrow_back
 drawable ic_email
 drawable ic_image_placeholder
 drawable ic_password
+drawable img_forgot_password
 drawable login_image
 drawable spinner_background
 font poppins

@@ -4,9 +4,12 @@ package com.ecommerce.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
@@ -14,6 +17,7 @@ import androidx.viewbinding.ViewBindings;
 import com.ecommerce.app.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -21,6 +25,9 @@ import java.lang.String;
 public final class FragmentForgotPasswordBinding implements ViewBinding {
   @NonNull
   private final ScrollView rootView;
+
+  @NonNull
+  public final ImageButton btnBack;
 
   @NonNull
   public final MaterialButton btnResetPassword;
@@ -38,24 +45,43 @@ public final class FragmentForgotPasswordBinding implements ViewBinding {
   public final TextInputEditText etNewPassword;
 
   @NonNull
+  public final ImageView ivIllustration;
+
+  @NonNull
   public final LinearLayout layoutReset;
 
   @NonNull
   public final ProgressBar progressBar;
 
-  private FragmentForgotPasswordBinding(@NonNull ScrollView rootView,
+  @NonNull
+  public final TextInputLayout tilEmail;
+
+  @NonNull
+  public final TextView tvSubtitle;
+
+  @NonNull
+  public final LinearLayout tvTitle;
+
+  private FragmentForgotPasswordBinding(@NonNull ScrollView rootView, @NonNull ImageButton btnBack,
       @NonNull MaterialButton btnResetPassword, @NonNull MaterialButton btnSendCode,
       @NonNull TextInputEditText etCode, @NonNull TextInputEditText etEmail,
-      @NonNull TextInputEditText etNewPassword, @NonNull LinearLayout layoutReset,
-      @NonNull ProgressBar progressBar) {
+      @NonNull TextInputEditText etNewPassword, @NonNull ImageView ivIllustration,
+      @NonNull LinearLayout layoutReset, @NonNull ProgressBar progressBar,
+      @NonNull TextInputLayout tilEmail, @NonNull TextView tvSubtitle,
+      @NonNull LinearLayout tvTitle) {
     this.rootView = rootView;
+    this.btnBack = btnBack;
     this.btnResetPassword = btnResetPassword;
     this.btnSendCode = btnSendCode;
     this.etCode = etCode;
     this.etEmail = etEmail;
     this.etNewPassword = etNewPassword;
+    this.ivIllustration = ivIllustration;
     this.layoutReset = layoutReset;
     this.progressBar = progressBar;
+    this.tilEmail = tilEmail;
+    this.tvSubtitle = tvSubtitle;
+    this.tvTitle = tvTitle;
   }
 
   @Override
@@ -85,6 +111,12 @@ public final class FragmentForgotPasswordBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btn_back;
+      ImageButton btnBack = ViewBindings.findChildViewById(rootView, id);
+      if (btnBack == null) {
+        break missingId;
+      }
+
       id = R.id.btn_reset_password;
       MaterialButton btnResetPassword = ViewBindings.findChildViewById(rootView, id);
       if (btnResetPassword == null) {
@@ -115,6 +147,12 @@ public final class FragmentForgotPasswordBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.iv_illustration;
+      ImageView ivIllustration = ViewBindings.findChildViewById(rootView, id);
+      if (ivIllustration == null) {
+        break missingId;
+      }
+
       id = R.id.layout_reset;
       LinearLayout layoutReset = ViewBindings.findChildViewById(rootView, id);
       if (layoutReset == null) {
@@ -127,8 +165,27 @@ public final class FragmentForgotPasswordBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentForgotPasswordBinding((ScrollView) rootView, btnResetPassword, btnSendCode,
-          etCode, etEmail, etNewPassword, layoutReset, progressBar);
+      id = R.id.til_email;
+      TextInputLayout tilEmail = ViewBindings.findChildViewById(rootView, id);
+      if (tilEmail == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_subtitle;
+      TextView tvSubtitle = ViewBindings.findChildViewById(rootView, id);
+      if (tvSubtitle == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_title;
+      LinearLayout tvTitle = ViewBindings.findChildViewById(rootView, id);
+      if (tvTitle == null) {
+        break missingId;
+      }
+
+      return new FragmentForgotPasswordBinding((ScrollView) rootView, btnBack, btnResetPassword,
+          btnSendCode, etCode, etEmail, etNewPassword, ivIllustration, layoutReset, progressBar,
+          tilEmail, tvSubtitle, tvTitle);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

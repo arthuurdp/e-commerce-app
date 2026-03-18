@@ -80,6 +80,7 @@ class LoginFragment : Fragment() {
             setFieldError(requireContext(), binding.tilPassword, "Enter your password")
             return
         }
+
         viewModel.login(credential, password)
     }
 

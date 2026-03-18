@@ -3072,6 +3072,7 @@ int drawable ic_mtrl_chip_checked_circle 0x7f070098
 int drawable ic_mtrl_chip_close_circle 0x7f070099
 int drawable ic_password 0x7f07009a
 int drawable ic_search_black_24 0x7f07009b
+int drawable img_forgot_password 0x7f0700ea
 int drawable login_image 0x7f07009c
 int drawable m3_avd_hide_password 0x7f07009d
 int drawable m3_avd_show_password 0x7f07009e
