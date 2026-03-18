@@ -71,7 +71,6 @@ class RegisterFragment : Fragment() {
     }
 
     private fun attemptRegister() {
-        // Clear previous errors
         binding.tilFirstName.error = null
         binding.tilLastName.error = null
         binding.tilEmail.error = null
@@ -87,7 +86,7 @@ class RegisterFragment : Fragment() {
         val cpf = binding.etCpf.text.toString().trim()
         val phone = binding.etPhone.text.toString().trim()
         val birthDate = binding.etBirthDate.text.toString().trim()
-        val gender = binding.spinnerGender.selectedItem.toString()
+        val gender = binding.spinnerGender.selectedItem.toString().uppercase()
 
         var hasError = false
 

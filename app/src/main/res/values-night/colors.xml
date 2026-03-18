@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Cores de Fundo e Superfície -->
+    <color name="white">#121212</color> <!-- Fundo principal agora é escuro -->
+    <color name="black">#FFFFFF</color> <!-- Texto principal agora é branco -->
+
+    <color name="gray_light">#1E1E1E</color>
+    <color name="gray_medium">#2C2C2C</color>
+    <color name="gray">#BDBDBD</color> <!-- Cinza mais claro para contraste no escuro -->
+
+    <color name="primary">#64B5F6</color> <!-- Um azul um pouco mais suave para o modo escuro -->
+    <color name="primary_dark">#0D47A1</color>
+    <color name="social_button_bg">#2C2C2C</color>
+
+    <!-- Manteremos o roxo, mas você pode ajustar se quiser um tom mais pastel -->
+    <color name="purple">#9B95FF</color>
+</resources>

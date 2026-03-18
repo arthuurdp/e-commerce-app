@@ -12,7 +12,7 @@
         <item name="colorOnSecondary">@color/white</item>
 
         <!-- Status bar color -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
 
         <!-- Typography -->
         <item name="android:fontFamily">@font/poppins</item>

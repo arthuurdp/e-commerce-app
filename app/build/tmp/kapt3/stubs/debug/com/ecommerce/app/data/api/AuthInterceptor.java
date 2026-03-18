@@ -1,6 +1,5 @@
 package com.ecommerce.app.data.api;
 
-import android.util.Log;
 import com.ecommerce.app.util.TokenManager;
 import okhttp3.Interceptor;
 import okhttp3.Response;

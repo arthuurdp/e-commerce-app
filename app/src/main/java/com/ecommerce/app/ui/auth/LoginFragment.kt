@@ -1,4 +1,5 @@
 package com.ecommerce.app.ui.auth
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -77,11 +78,9 @@ class LoginFragment : Fragment() {
                     binding.progressBar.show()
                     binding.btnLogin.isEnabled = false
                 }
-
                 is NetworkResult.Success -> {
                     binding.progressBar.hide()
                     binding.btnLogin.isEnabled = true
-
                     val destination = if (viewModel.isAdmin) {
                         R.id.action_loginFragment_to_admin_nav_graph
                     } else {
@@ -89,7 +88,6 @@ class LoginFragment : Fragment() {
                     }
                     findNavController().navigate(destination)
                 }
-
                 is NetworkResult.Error -> {
                     binding.progressBar.hide()
                     binding.btnLogin.isEnabled = true
