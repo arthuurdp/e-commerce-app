@@ -112,7 +112,6 @@ class AddAddressFragment : Fragment() {
                 is NetworkResult.Error -> {
                     binding.progressBar.hide()
                     binding.btnSave.isEnabled = true
-                    showToast((result as NetworkResult.Error).message)
                 }
             }
         }

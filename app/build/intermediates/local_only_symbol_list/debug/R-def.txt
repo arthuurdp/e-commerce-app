@@ -28,8 +28,10 @@ drawable ic_email
 drawable ic_image_placeholder
 drawable ic_password
 drawable img_forgot_password
+drawable img_forgot_password_enter_code
 drawable login_image
 drawable spinner_background
+drawable undraw_leave_a_review_uj9v
 font poppins
 id action_addressListFragment_to_addAddressFragment
 id action_adminDashboardFragment_to_adminCategoriesFragment
@@ -38,7 +40,8 @@ id action_adminDashboardFragment_to_adminProductsFragment
 id action_adminDashboardFragment_to_adminUsersFragment
 id action_adminProductsFragment_to_adminEditProductFragment
 id action_cartFragment_to_checkoutFragment
-id action_forgotPasswordFragment_to_loginFragment
+id action_enterCodeFragment_to_resetPasswordFragment
+id action_forgotPasswordFragment_to_enterCodeFragment
 id action_homeFragment_to_productDetailFragment
 id action_loginFragment_to_admin_nav_graph
 id action_loginFragment_to_forgotPasswordFragment
@@ -50,6 +53,7 @@ id action_profileFragment_to_editProfileFragment
 id action_profileFragment_to_loginFragment
 id action_profileFragment_to_securityFragment
 id action_registerFragment_to_loginFragment
+id action_resetPasswordFragment_to_loginFragment
 id addAddressFragment
 id addressListFragment
 id adminCategoriesFragment
@@ -87,6 +91,7 @@ id card_users
 id cartFragment
 id checkoutFragment
 id editProfileFragment
+id enterCodeFragment
 id et_birth_date
 id et_category_ids
 id et_code
@@ -95,6 +100,7 @@ id et_cpf
 id et_credential
 id et_description
 id et_email
+id et_enter_code
 id et_first_name
 id et_height
 id et_image_url
@@ -133,6 +139,7 @@ id productDetailFragment
 id profileFragment
 id progress_bar
 id registerFragment
+id resetPasswordFragment
 id rv_addresses
 id rv_cart_items
 id rv_categories
@@ -154,6 +161,7 @@ id tilLastName
 id tilPassword
 id tilPhone
 id til_email
+id til_new_password
 id til_password
 id toolbar
 id tv_address_city
@@ -202,6 +210,8 @@ layout fragment_cart
 layout fragment_checkout
 layout fragment_edit_profile
 layout fragment_forgot_password
+layout fragment_forgot_password_enter_code
+layout fragment_forgot_password_reset_password
 layout fragment_home
 layout fragment_login
 layout fragment_order_detail
@@ -231,6 +241,8 @@ string email
 string error_fill_all_fields
 string error_network
 string forgot_password
+string forgot_password_subtitle
+string hello_blank_fragment
 string no_account
 string no_orders
 string no_products

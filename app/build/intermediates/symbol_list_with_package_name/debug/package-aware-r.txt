@@ -3074,6 +3074,7 @@ drawable ic_mtrl_chip_close_circle
 drawable ic_password
 drawable ic_search_black_24
 drawable img_forgot_password
+drawable img_forgot_password_enter_code
 drawable login_image
 drawable m3_avd_hide_password
 drawable m3_avd_show_password
@@ -3151,6 +3152,7 @@ drawable spinner_background
 drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+drawable undraw_leave_a_review_uj9v
 font poppins
 id ALT
 id BOTTOM_END
@@ -3220,7 +3222,8 @@ id action_cartFragment_to_checkoutFragment
 id action_container
 id action_context_bar
 id action_divider
-id action_forgotPasswordFragment_to_loginFragment
+id action_enterCodeFragment_to_resetPasswordFragment
+id action_forgotPasswordFragment_to_enterCodeFragment
 id action_homeFragment_to_productDetailFragment
 id action_image
 id action_loginFragment_to_admin_nav_graph
@@ -3238,6 +3241,7 @@ id action_profileFragment_to_editProfileFragment
 id action_profileFragment_to_loginFragment
 id action_profileFragment_to_securityFragment
 id action_registerFragment_to_loginFragment
+id action_resetPasswordFragment_to_loginFragment
 id action_text
 id actions
 id activity_chooser_view_content
@@ -3388,6 +3392,7 @@ id end
 id endToStart
 id enterAlways
 id enterAlwaysCollapsed
+id enterCodeFragment
 id et_birth_date
 id et_category_ids
 id et_code
@@ -3396,6 +3401,7 @@ id et_cpf
 id et_credential
 id et_description
 id et_email
+id et_enter_code
 id et_first_name
 id et_height
 id et_image_url
@@ -3621,6 +3627,7 @@ id ratio
 id rectangles
 id registerFragment
 id report_drawn
+id resetPasswordFragment
 id reverseSawtooth
 id right
 id rightToLeft
@@ -3743,6 +3750,7 @@ id tilLastName
 id tilPassword
 id tilPhone
 id til_email
+id til_new_password
 id til_password
 id time
 id title
@@ -3961,6 +3969,8 @@ layout fragment_cart
 layout fragment_checkout
 layout fragment_edit_profile
 layout fragment_forgot_password
+layout fragment_forgot_password_enter_code
+layout fragment_forgot_password_reset_password
 layout fragment_home
 layout fragment_login
 layout fragment_order_detail
@@ -4106,6 +4116,8 @@ string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
 string forgot_password
+string forgot_password_subtitle
+string hello_blank_fragment
 string hide_bottom_view_on_scroll_behavior
 string icon_content_description
 string item_view_role_description
