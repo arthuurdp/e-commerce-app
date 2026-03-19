@@ -318,4 +318,5 @@ data class VerifyCodeRequest(val code: String)
 data class ChangeEmailRequest(val email: String)
 data class ChangePasswordRequest(val password: String)
 data class ForgotPasswordRequest(val email: String)
-data class ResetPasswordRequest(val code: String, val newPassword: String)
+
+data class SetPasswordRequest(val newPassword: String)

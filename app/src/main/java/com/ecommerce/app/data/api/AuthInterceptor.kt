@@ -13,21 +13,33 @@ class AuthInterceptor @Inject constructor(
     private val publicEndpoints = listOf(
         "auth/login",
         "auth/register",
+        "auth/register/admin",
         "password/forgot",
-        "password/reset"
+        "password/reset",
+        "password/set",
+        "products",
+        "categories",
+        "cities",
+        "states",
+        "freights"
     )
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
+        val path = request.url.encodedPath
 
-        if (publicEndpoints.any { request.url.encodedPath.contains(it) }) {
+        // If the endpoint is public, don't add the token
+        val isPublic = publicEndpoints.any { path.contains(it) }
+
+        if (isPublic) {
             return chain.proceed(request)
         }
 
         val token = runBlocking { tokenManager.getToken() }
 
         val authenticatedRequest = request.newBuilder().apply {
-            if (!token.isNullOrBlank()) {
+            // Ensure token is not null, blank, or the literal string "null"
+            if (!token.isNullOrBlank() && token != "null") {
                 addHeader("Authorization", "Bearer $token")
             }
         }.build()

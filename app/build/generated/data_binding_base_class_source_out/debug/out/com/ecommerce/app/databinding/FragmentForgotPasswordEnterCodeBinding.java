@@ -42,7 +42,7 @@ public final class FragmentForgotPasswordEnterCodeBinding implements ViewBinding
   public final ProgressBar progressBar;
 
   @NonNull
-  public final TextInputLayout tilEmail;
+  public final TextInputLayout tilEnterCode;
 
   @NonNull
   public final TextView tvSubtitle;
@@ -53,7 +53,7 @@ public final class FragmentForgotPasswordEnterCodeBinding implements ViewBinding
   private FragmentForgotPasswordEnterCodeBinding(@NonNull ScrollView rootView,
       @NonNull ImageButton btnBack, @NonNull MaterialButton btnSendCode,
       @NonNull TextInputEditText etEnterCode, @NonNull ImageView ivIllustration,
-      @NonNull ProgressBar progressBar, @NonNull TextInputLayout tilEmail,
+      @NonNull ProgressBar progressBar, @NonNull TextInputLayout tilEnterCode,
       @NonNull TextView tvSubtitle, @NonNull LinearLayout tvTitle) {
     this.rootView = rootView;
     this.btnBack = btnBack;
@@ -61,7 +61,7 @@ public final class FragmentForgotPasswordEnterCodeBinding implements ViewBinding
     this.etEnterCode = etEnterCode;
     this.ivIllustration = ivIllustration;
     this.progressBar = progressBar;
-    this.tilEmail = tilEmail;
+    this.tilEnterCode = tilEnterCode;
     this.tvSubtitle = tvSubtitle;
     this.tvTitle = tvTitle;
   }
@@ -123,9 +123,9 @@ public final class FragmentForgotPasswordEnterCodeBinding implements ViewBinding
         break missingId;
       }
 
-      id = R.id.til_email;
-      TextInputLayout tilEmail = ViewBindings.findChildViewById(rootView, id);
-      if (tilEmail == null) {
+      id = R.id.til_enter_code;
+      TextInputLayout tilEnterCode = ViewBindings.findChildViewById(rootView, id);
+      if (tilEnterCode == null) {
         break missingId;
       }
 
@@ -142,7 +142,7 @@ public final class FragmentForgotPasswordEnterCodeBinding implements ViewBinding
       }
 
       return new FragmentForgotPasswordEnterCodeBinding((ScrollView) rootView, btnBack, btnSendCode,
-          etEnterCode, ivIllustration, progressBar, tilEmail, tvSubtitle, tvTitle);
+          etEnterCode, ivIllustration, progressBar, tilEnterCode, tvSubtitle, tvTitle);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

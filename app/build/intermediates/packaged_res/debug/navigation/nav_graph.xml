@@ -39,7 +39,7 @@
 
     <fragment
         android:id="@+id/forgotPasswordFragment"
-        android:name="com.ecommerce.app.ui.auth.ForgotPasswordEnterEmailFragment"
+        android:name="com.ecommerce.app.ui.auth.forgot_password.ForgotPasswordEnterEmailFragment"
         android:label="Forgot Password"
         tools:layout="@layout/fragment_forgot_password">
         <action android:id="@+id/action_forgotPasswordFragment_to_enterCodeFragment"
@@ -48,7 +48,7 @@
 
     <fragment
         android:id="@+id/enterCodeFragment"
-        android:name="com.ecommerce.app.ui.auth.ForgotPasswordEnterCodeFragment"
+        android:name="com.ecommerce.app.ui.auth.forgot_password.ForgotPasswordEnterCodeFragment"
         android:label="Enter Code"
         tools:layout="@layout/fragment_forgot_password_enter_code">
         <argument
@@ -60,7 +60,7 @@
 
     <fragment
         android:id="@+id/resetPasswordFragment"
-        android:name="com.ecommerce.app.ui.auth.ForgotPasswordResetPasswordFragment"
+        android:name="com.ecommerce.app.ui.auth.forgot_password.ForgotPasswordResetPasswordFragment"
         android:label="Reset Password"
         tools:layout="@layout/fragment_forgot_password_reset_password">
         <argument

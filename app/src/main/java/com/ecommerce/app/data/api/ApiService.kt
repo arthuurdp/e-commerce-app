@@ -217,5 +217,8 @@ interface ApiService {
     suspend fun forgotPassword(@Body request: ForgotPasswordRequest): Response<Map<String, String>>
 
     @POST("password/reset")
-    suspend fun resetPassword(@Body request: ResetPasswordRequest): Response<Map<String, String>>
+    suspend fun verifyResetCode(@Body request: VerifyCodeRequest): Response<Map<String, String>>
+
+    @POST("password/set")
+    suspend fun resetPassword(@Body request: SetPasswordRequest): Response<Map<String, String>>
 }

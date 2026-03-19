@@ -19,44 +19,61 @@ abstract class BaseRepository {
                     NetworkResult.Success(Unit as T)
                 }
             } else {
-                val errorMessage = parseErrorBody(response)
-                val fieldErrors = parseFieldErrors(response)
-                NetworkResult.Error(errorMessage, response.code(), fieldErrors)
+                val errorBodyString = response.errorBody()?.string()
+                val errorMap = parseErrorJson(errorBodyString)
+                
+                val code = response.code()
+                val fieldErrors = extractFieldErrors(errorMap)
+                val errorMessage = extractGeneralMessage(errorMap, code)
+                
+                NetworkResult.Error(errorMessage, code, fieldErrors)
             }
         } catch (e: Exception) {
             NetworkResult.Error(e.localizedMessage ?: "Unknown error occurred")
         }
     }
 
-    private fun <T> parseFieldErrors(response: Response<T>): Map<String, String> {
+    private fun parseErrorJson(json: String?): Map<String, Any>? {
+        if (json.isNullOrBlank()) return null
         return try {
-            val errorJson = response.errorBody()?.string()
-            if (!errorJson.isNullOrBlank()) {
-                val type = object : TypeToken<Map<String, Any>>() {}.type
-                val map: Map<String, Any> = Gson().fromJson(errorJson, type)
-                val fieldsRaw = map["fields"]
-                if (fieldsRaw is Map<*, *>) {
-                    @Suppress("UNCHECKED_CAST")
-                    fieldsRaw as Map<String, String>
-                } else emptyMap()
-            } else emptyMap()
+            val type = object : TypeToken<Map<String, Any>>() {}.type
+            Gson().fromJson(json, type)
         } catch (e: Exception) {
-            emptyMap()
+            null
         }
     }
 
-    private fun <T> parseErrorBody(response: Response<T>): String {
-        return try {
-            val errorJson = response.errorBody()?.string()
-            if (!errorJson.isNullOrBlank()) {
-                val type = object : TypeToken<Map<String, Any>>() {}.type
-                val map: Map<String, Any> = Gson().fromJson(errorJson, type)
-                map["message"]?.toString() ?: "Error ${response.code()}"
-            } else {
-                "Error ${response.code()}"
-            }
-        } catch (e: Exception) {
-            "Error ${response.code()}"
+    private fun extractFieldErrors(map: Map<String, Any>?): Map<String, String> {
+        if (map == null) return emptyMap()
+        
+        // 1. Try "fields" key
+        val fields = map["fields"]
+        if (fields is Map<*, *>) {
+            return fields.filterKeys { it is String }.mapValues { it.value.toString() } as Map<String, String>
         }
+        
+        // 2. Try "message" key if it's a map (common in some Spring configurations)
+        val message = map["message"]
+        if (message is Map<*, *>) {
+            return message.filterKeys { it is String }.mapValues { it.value.toString() } as Map<String, String>
+        }
+        
+        return emptyMap()
+    }
+
+    private fun extractGeneralMessage(map: Map<String, Any>?, code: Int): String {
+        if (map == null) return "Error $code"
+        
+        val message = map["message"]
+        if (message is String && message.isNotBlank()) {
+            return message
+        }
+        
+        val error = map["error"]
+        if (error is String && error.isNotBlank()) {
+            return error
+        }
+        
+        return "Error $code"
     }
 }

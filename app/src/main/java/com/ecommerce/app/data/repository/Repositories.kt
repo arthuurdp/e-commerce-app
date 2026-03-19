@@ -25,8 +25,11 @@ class AuthRepository @Inject constructor(private val api: ApiService) : BaseRepo
     suspend fun forgotPassword(email: String): NetworkResult<Map<String, String>> =
         safeApiCall { api.forgotPassword(ForgotPasswordRequest(email)) }
 
-    suspend fun resetPassword(code: String, newPassword: String): NetworkResult<Map<String, String>> =
-        safeApiCall { api.resetPassword(ResetPasswordRequest(code, newPassword)) }
+    suspend fun verifyResetCode(code: String): NetworkResult<Map<String, String>> =
+        safeApiCall { api.verifyResetCode(VerifyCodeRequest(code)) }
+
+    suspend fun setPassword(newPassword: String): NetworkResult<Map<String, String>> =
+        safeApiCall { api.resetPassword(SetPasswordRequest(newPassword)) }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

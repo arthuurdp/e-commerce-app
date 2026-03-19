@@ -1,15 +1,7 @@
 package com.ecommerce.app.ui;
 
 import android.os.Bundle;
-import android.transition.ChangeBounds;
-import android.transition.TransitionManager;
-import android.view.View;
-import android.view.animation.DecelerateInterpolator;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import com.ecommerce.app.R;

@@ -14,7 +14,6 @@ import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hide
 import com.ecommerce.app.util.setFieldError
 import com.ecommerce.app.util.show
-import com.ecommerce.app.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -74,7 +73,9 @@ class ForgotPasswordEnterEmailFragment : Fragment() {
                 }
                 is NetworkResult.Error -> {
                     binding.progressBar.hide()
-                    showToast(result.message)
+
+                    val errorMessage = result.fieldErrors?.get("email") ?: result.message
+                    setFieldError(requireContext(), binding.tilEmail, errorMessage)
                 }
             }
         }

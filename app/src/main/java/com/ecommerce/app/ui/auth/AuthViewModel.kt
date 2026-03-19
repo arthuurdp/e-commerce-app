@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.ecommerce.app.data.model.LoginRequest
 import com.ecommerce.app.data.model.RegisterRequest
 import com.ecommerce.app.data.repository.AuthRepository
-import com.ecommerce.app.util.JwtDecoder
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.TokenManager
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -28,6 +27,9 @@ class AuthViewModel @Inject constructor(
 
     private val _forgotPasswordState = MutableLiveData<NetworkResult<String>>()
     val forgotPasswordState: LiveData<NetworkResult<String>> = _forgotPasswordState
+
+    private val _verifyResetCodeState = MutableLiveData<NetworkResult<String>>()
+    val verifyResetCodeState: LiveData<NetworkResult<String>> = _verifyResetCodeState
 
     private val _resetPasswordState = MutableLiveData<NetworkResult<String>>()
     val resetPasswordState: LiveData<NetworkResult<String>> = _resetPasswordState
@@ -78,14 +80,27 @@ class AuthViewModel @Inject constructor(
         }
     }
 
-    fun resetPassword(code: String, newPassword: String) {
+    fun verifyResetCode(code: String) {
+        viewModelScope.launch {
+            _verifyResetCodeState.value = NetworkResult.Loading
+            val result = authRepository.verifyResetCode(code)
+            when (result) {
+                is NetworkResult.Success -> _verifyResetCodeState.value =
+                    NetworkResult.Success(result.data["message"] ?: "Code verified!")
+                is NetworkResult.Error   -> _verifyResetCodeState.value = result
+                is NetworkResult.Loading -> Unit
+            }
+        }
+    }
+
+    fun setPassword(newPassword: String) {
         viewModelScope.launch {
             _resetPasswordState.value = NetworkResult.Loading
-            val result = authRepository.resetPassword(code, newPassword)
+            val result = authRepository.setPassword(newPassword)
             when (result) {
                 is NetworkResult.Success -> _resetPasswordState.value =
-                    NetworkResult.Success(result.data["message"] ?: "Password reset!")
-                is NetworkResult.Error   -> _resetPasswordState.value = result
+                    NetworkResult.Success(result.data["message"] ?: "Password reset successfully!")
+                is NetworkResult.Error -> _resetPasswordState.value = result
                 is NetworkResult.Loading -> Unit
             }
         }
