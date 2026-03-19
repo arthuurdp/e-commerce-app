@@ -178,7 +178,7 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_enterCodeFragment_to_loginFragment">
+                            <entry key="action_enterCodeFragment_to_resetPasswordFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -359,6 +359,27 @@
                         <option name="myPositions">
                           <map>
                             <entry key="action_registerFragment_to_loginFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="resetPasswordFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_resetPasswordFragment_to_loginFragment">
                               <value>
                                 <LayoutPositions />
                               </value>

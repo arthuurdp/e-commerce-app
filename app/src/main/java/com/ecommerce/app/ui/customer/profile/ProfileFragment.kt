@@ -58,8 +58,16 @@ class ProfileFragment : Fragment() {
                 is NetworkResult.Success -> {
                     binding.progressBar.hide()
                     val user = result.data
-                    binding.tvName.text = "${user.firstName} ${user.lastName}"
+                    binding.tvFirstName.text = "${user.firstName} "
+                    binding.tvLastName.text = "${user.lastName}"
                     binding.tvEmail.text = user.email
+
+                    val avatarRes = if (user.gender == "MALE") {
+                        R.drawable.male
+                    } else {
+                        R.drawable.female
+                    }
+                    binding.ivAvatar.setImageResource(avatarRes)
                 }
                 is NetworkResult.Error -> {
                     binding.progressBar.hide()

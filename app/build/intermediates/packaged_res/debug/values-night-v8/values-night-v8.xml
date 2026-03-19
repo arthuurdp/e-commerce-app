@@ -4,6 +4,7 @@
     <color name="gray">#BDBDBD</color>
     <color name="gray_light">#1E1E1E</color>
     <color name="gray_medium">#2C2C2C</color>
+    <color name="light_purple_bg">#2C2C2C</color>
     <color name="primary">#64B5F6</color>
     <color name="primary_dark">#0D47A1</color>
     <color name="purple">#9B95FF</color>

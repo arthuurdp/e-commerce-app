@@ -1,6 +1,7 @@
 package com.ecommerce.app.ui
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -13,6 +14,9 @@ import com.ecommerce.app.R
 import com.ecommerce.app.databinding.ActivityMainBinding
 import com.ecommerce.app.util.hide
 import com.ecommerce.app.util.show
+import com.google.android.material.bottomnavigation.BottomNavigationItemView
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -80,6 +84,10 @@ class MainActivity : AppCompatActivity() {
                     supportActionBar?.show()
                 }
             }
+            
+            // Apply scale animation based on destination
+            updateBottomNavScale(binding.bottomNavCustomer, destination.id)
+            updateBottomNavScale(binding.bottomNavAdmin, destination.id)
         }
 
         binding.bottomNavCustomer.setupWithNavController(navController)
@@ -87,6 +95,21 @@ class MainActivity : AppCompatActivity() {
 
         val appBarConfig = AppBarConfiguration(customerTopLevel + adminTopLevel)
         setupActionBarWithNavController(navController, appBarConfig)
+    }
+
+    private fun updateBottomNavScale(navView: BottomNavigationView, selectedId: Int) {
+        val menuView = navView.getChildAt(0) as BottomNavigationMenuView
+        for (i in 0 until menuView.childCount) {
+            val itemView = menuView.getChildAt(i) as BottomNavigationItemView
+            val isSelected = itemView.id == selectedId
+            
+            val scale = if (isSelected) 1.2f else 1.0f
+            itemView.animate()
+                .scaleX(scale)
+                .scaleY(scale)
+                .setDuration(200)
+                .start()
+        }
     }
 
     private fun observeSession() {
