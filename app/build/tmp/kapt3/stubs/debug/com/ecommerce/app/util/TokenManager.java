@@ -26,9 +26,6 @@ public final class TokenManager {
         super();
     }
     
-    /**
-     * Persist the JWT token returned by /auth/login
-     */
     @org.jetbrains.annotations.Nullable()
     public final java.lang.Object saveToken(@org.jetbrains.annotations.NotNull()
     java.lang.String token, @org.jetbrains.annotations.NotNull()
@@ -36,18 +33,12 @@ public final class TokenManager {
         return null;
     }
     
-    /**
-     * Retrieve the stored token (null if not logged in)
-     */
     @org.jetbrains.annotations.Nullable()
     public final java.lang.Object getToken(@org.jetbrains.annotations.NotNull()
     kotlin.coroutines.Continuation<? super java.lang.String> $completion) {
         return null;
     }
     
-    /**
-     * Save the decoded role so the UI can switch between customer/admin mode
-     */
     @org.jetbrains.annotations.Nullable()
     public final java.lang.Object saveRole(@org.jetbrains.annotations.NotNull()
     java.lang.String role, @org.jetbrains.annotations.NotNull()
@@ -61,18 +52,12 @@ public final class TokenManager {
         return null;
     }
     
-    /**
-     * Call this on logout
-     */
     @org.jetbrains.annotations.Nullable()
     public final java.lang.Object clearToken(@org.jetbrains.annotations.NotNull()
     kotlin.coroutines.Continuation<? super kotlin.Unit> $completion) {
         return null;
     }
     
-    /**
-     * Convenience: is any token present?
-     */
     @org.jetbrains.annotations.Nullable()
     public final java.lang.Object isLoggedIn(@org.jetbrains.annotations.NotNull()
     kotlin.coroutines.Continuation<? super java.lang.Boolean> $completion) {

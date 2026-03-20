@@ -24,18 +24,15 @@ class TokenManager @Inject constructor(
         private val USER_ROLE_KEY = stringPreferencesKey("user_role")
     }
 
-    /** Persist the JWT token returned by /auth/login */
     suspend fun saveToken(token: String) {
         context.dataStore.edit { prefs ->
             prefs[TOKEN_KEY] = token
         }
     }
 
-    /** Retrieve the stored token (null if not logged in) */
     suspend fun getToken(): String? =
         context.dataStore.data.map { it[TOKEN_KEY] }.firstOrNull()
 
-    /** Save the decoded role so the UI can switch between customer/admin mode */
     suspend fun saveRole(role: String) {
         context.dataStore.edit { prefs ->
             prefs[USER_ROLE_KEY] = role
@@ -45,11 +42,9 @@ class TokenManager @Inject constructor(
     suspend fun getRole(): String? =
         context.dataStore.data.map { it[USER_ROLE_KEY] }.firstOrNull()
 
-    /** Call this on logout */
     suspend fun clearToken() {
         context.dataStore.edit { it.clear() }
     }
 
-    /** Convenience: is any token present? */
     suspend fun isLoggedIn(): Boolean = !getToken().isNullOrBlank()
 }

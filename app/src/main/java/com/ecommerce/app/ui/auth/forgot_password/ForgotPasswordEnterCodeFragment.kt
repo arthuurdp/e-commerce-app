@@ -14,6 +14,7 @@ import com.ecommerce.app.databinding.FragmentForgotPasswordEnterCodeBinding
 import com.ecommerce.app.ui.auth.AuthViewModel
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hide
+import com.ecommerce.app.util.hideKeyboard
 import com.ecommerce.app.util.setFieldError
 import com.ecommerce.app.util.show
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,6 +37,10 @@ class ForgotPasswordEnterCodeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.mainContainer.setOnClickListener {
+            hideKeyboard()
+        }
 
         binding.tvSubtitle.text = getString(R.string.forgot_password_subtitle, args.email)
 

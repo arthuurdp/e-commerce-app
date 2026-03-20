@@ -45,17 +45,30 @@ abstract class BaseRepository {
 
     private fun extractFieldErrors(map: Map<String, Any>?): Map<String, String> {
         if (map == null) return emptyMap()
-        
-        // 1. Try "fields" key
+
         val fields = map["fields"]
         if (fields is Map<*, *>) {
             return fields.filterKeys { it is String }.mapValues { it.value.toString() } as Map<String, String>
         }
-        
-        // 2. Try "message" key if it's a map (common in some Spring configurations)
+
         val message = map["message"]
         if (message is Map<*, *>) {
             return message.filterKeys { it is String }.mapValues { it.value.toString() } as Map<String, String>
+        }
+
+        val errors = map["errors"]
+        if (errors is List<*>) {
+            val fieldMap = mutableMapOf<String, String>()
+            errors.forEach { 
+                if (it is Map<*, *>) {
+                    val field = it["field"]?.toString()
+                    val defaultMessage = it["defaultMessage"]?.toString()
+                    if (field != null && defaultMessage != null) {
+                        fieldMap[field] = defaultMessage
+                    }
+                }
+            }
+            if (fieldMap.isNotEmpty()) return fieldMap
         }
         
         return emptyMap()

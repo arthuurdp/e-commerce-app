@@ -7,7 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.ecommerce.app.data.model.PageResponse
 import com.ecommerce.app.data.model.ProductResponse
 import com.ecommerce.app.data.repository.ProductRepository
+import com.ecommerce.app.data.repository.UserRepository
 import com.ecommerce.app.util.NetworkResult
+import com.ecommerce.app.util.TokenManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,6 +21,9 @@ class HomeViewModel @Inject constructor(
 
     private val _productsState = MutableLiveData<NetworkResult<PageResponse<ProductResponse>>>()
     val productsState: LiveData<NetworkResult<PageResponse<ProductResponse>>> = _productsState
+
+    private val _firstName = MutableLiveData<String>()
+    val firstName: LiveData<String> = _firstName
 
     private var currentPage = 0
     private var isLastPage = false

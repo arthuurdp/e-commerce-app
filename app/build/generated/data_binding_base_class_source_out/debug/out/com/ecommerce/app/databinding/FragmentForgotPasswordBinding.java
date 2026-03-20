@@ -51,6 +51,9 @@ public final class FragmentForgotPasswordBinding implements ViewBinding {
   public final LinearLayout layoutReset;
 
   @NonNull
+  public final LinearLayout mainContainer;
+
+  @NonNull
   public final ProgressBar progressBar;
 
   @NonNull
@@ -66,9 +69,9 @@ public final class FragmentForgotPasswordBinding implements ViewBinding {
       @NonNull MaterialButton btnResetPassword, @NonNull MaterialButton btnSendCode,
       @NonNull TextInputEditText etCode, @NonNull TextInputEditText etEmail,
       @NonNull TextInputEditText etNewPassword, @NonNull ImageView ivIllustration,
-      @NonNull LinearLayout layoutReset, @NonNull ProgressBar progressBar,
-      @NonNull TextInputLayout tilEmail, @NonNull TextView tvSubtitle,
-      @NonNull LinearLayout tvTitle) {
+      @NonNull LinearLayout layoutReset, @NonNull LinearLayout mainContainer,
+      @NonNull ProgressBar progressBar, @NonNull TextInputLayout tilEmail,
+      @NonNull TextView tvSubtitle, @NonNull LinearLayout tvTitle) {
     this.rootView = rootView;
     this.btnBack = btnBack;
     this.btnResetPassword = btnResetPassword;
@@ -78,6 +81,7 @@ public final class FragmentForgotPasswordBinding implements ViewBinding {
     this.etNewPassword = etNewPassword;
     this.ivIllustration = ivIllustration;
     this.layoutReset = layoutReset;
+    this.mainContainer = mainContainer;
     this.progressBar = progressBar;
     this.tilEmail = tilEmail;
     this.tvSubtitle = tvSubtitle;
@@ -159,6 +163,12 @@ public final class FragmentForgotPasswordBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.main_container;
+      LinearLayout mainContainer = ViewBindings.findChildViewById(rootView, id);
+      if (mainContainer == null) {
+        break missingId;
+      }
+
       id = R.id.progress_bar;
       ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
       if (progressBar == null) {
@@ -184,8 +194,8 @@ public final class FragmentForgotPasswordBinding implements ViewBinding {
       }
 
       return new FragmentForgotPasswordBinding((ScrollView) rootView, btnBack, btnResetPassword,
-          btnSendCode, etCode, etEmail, etNewPassword, ivIllustration, layoutReset, progressBar,
-          tilEmail, tvSubtitle, tvTitle);
+          btnSendCode, etCode, etEmail, etNewPassword, ivIllustration, layoutReset, mainContainer,
+          progressBar, tilEmail, tvSubtitle, tvTitle);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -7,15 +7,19 @@ import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.ecommerce.app.R
 import com.ecommerce.app.databinding.FragmentLoginBinding
 import com.ecommerce.app.util.NetworkResult
+import com.ecommerce.app.util.SuccessDialogFragment
 import com.ecommerce.app.util.hide
 import com.ecommerce.app.util.hideKeyboard
 import com.ecommerce.app.util.setFieldError
 import com.ecommerce.app.util.show
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -94,11 +98,13 @@ class LoginFragment : Fragment() {
                 is NetworkResult.Success -> {
                     binding.progressBar.hide()
                     binding.btnLogin.isEnabled = true
+
                     val destination = if (viewModel.isAdmin) {
                         R.id.action_loginFragment_to_admin_nav_graph
                     } else {
                         R.id.action_loginFragment_to_homeFragment
                     }
+
                     findNavController().navigate(destination)
                 }
                 is NetworkResult.Error -> {

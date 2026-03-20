@@ -818,6 +818,30 @@ attr logo
 attr logoAdjustViewBounds
 attr logoDescription
 attr logoScaleType
+attr lottieAnimationViewStyle
+attr lottie_applyOpacityToLayers
+attr lottie_applyShadowToLayers
+attr lottie_asyncUpdates
+attr lottie_autoPlay
+attr lottie_cacheComposition
+attr lottie_clipTextToBoundingBox
+attr lottie_clipToCompositionBounds
+attr lottie_colorFilter
+attr lottie_defaultFontFileExtension
+attr lottie_enableMergePathsForKitKatAndAbove
+attr lottie_fallbackRes
+attr lottie_fileName
+attr lottie_ignoreDisabledSystemAnimations
+attr lottie_imageAssetsFolder
+attr lottie_loop
+attr lottie_progress
+attr lottie_rawRes
+attr lottie_renderMode
+attr lottie_repeatCount
+attr lottie_repeatMode
+attr lottie_speed
+attr lottie_url
+attr lottie_useCompositionFrameRate
 attr marginHorizontal
 attr marginLeftSystemWindowInsets
 attr marginRightSystemWindowInsets
@@ -3039,6 +3063,8 @@ drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable avd_hide_password
 drawable avd_show_password
+drawable bg_circle_purple_light
+drawable bg_search
 drawable bg_social_button
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
@@ -3082,6 +3108,7 @@ drawable ic_mtrl_chip_close_circle
 drawable ic_orders
 drawable ic_password
 drawable ic_pencil
+drawable ic_search
 drawable ic_search_black_24
 drawable ic_user
 drawable img_forgot_password
@@ -3277,6 +3304,7 @@ id animateToEnd
 id animateToStart
 id antiClockwise
 id anticipate
+id app_bar
 id arc
 id asConfigured
 id async
@@ -3284,6 +3312,7 @@ id auto
 id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
+id automatic
 id barrier
 id baseline
 id beginOnFirstDraw
@@ -3338,6 +3367,7 @@ id chains
 id checkbox
 id checked
 id checkoutFragment
+id chip_group_categories
 id chronometer
 id circle_center
 id clear_text
@@ -3381,6 +3411,7 @@ id disableHome
 id disableIntraAutoTransition
 id disablePostScroll
 id disableScroll
+id disabled
 id disjoint
 id dragAnticlockwise
 id dragClockwise
@@ -3401,6 +3432,7 @@ id edit_query
 id edit_text_id
 id elastic
 id embed
+id enabled
 id end
 id endToStart
 id enterAlways
@@ -3465,6 +3497,7 @@ id graph_wrap
 id group_divider
 id grouping
 id groups
+id hardware
 id header_title
 id hide_ime_id
 id hideable
@@ -3489,8 +3522,10 @@ id is_pooling_container_tag
 id italic
 id item_touch_helper_previous_elevation
 id iv_avatar
+id iv_banner
 id iv_illustration
 id iv_product
+id iv_search
 id jumpToEnd
 id jumpToStart
 id labeled
@@ -3507,8 +3542,10 @@ id linear
 id listMode
 id list_item
 id ll_register
+id ll_title
 id locale
 id loginFragment
+id lottie_layer_name
 id ltr
 id m3_side_sheet
 id main_container
@@ -3633,6 +3670,7 @@ id postLayout
 id pressed
 id productDetailFragment
 id profileFragment
+id progressBar
 id progress_bar
 id progress_circular
 id progress_horizontal
@@ -3642,6 +3680,8 @@ id rectangles
 id registerFragment
 id report_drawn
 id resetPasswordFragment
+id restart
+id reverse
 id reverseSawtooth
 id right
 id rightToLeft
@@ -3650,6 +3690,7 @@ id right_side
 id rounded
 id row_index_key
 id rtl
+id rvProducts
 id rv_addresses
 id rv_cart_items
 id rv_categories
@@ -3667,6 +3708,7 @@ id scrollIndicatorDown
 id scrollIndicatorUp
 id scrollView
 id scrollable
+id searchView
 id search_badge
 id search_bar
 id search_button
@@ -3676,7 +3718,6 @@ id search_go_btn
 id search_mag_icon
 id search_plate
 id search_src_text
-id search_view
 id search_voice_btn
 id securityFragment
 id select_dialog_listview
@@ -3698,6 +3739,7 @@ id snackbar_action
 id snackbar_text
 id snap
 id snapMargins
+id software
 id south
 id spacer
 id special_effects_controller_view_tag
@@ -3724,7 +3766,9 @@ id stop
 id stretch
 id submenuarrow
 id submit_area
+id successAnimation
 id supportScrollUp
+id swipeRefresh
 id swipe_refresh
 id tabMode
 id tag_accessibility_actions
@@ -3784,6 +3828,7 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
+id tvEmpty
 id tv_address_city
 id tv_address_name
 id tv_address_street
@@ -3810,6 +3855,8 @@ id tv_qty
 id tv_quantity
 id tv_register
 id tv_role
+id tv_section_title
+id tv_see_all
 id tv_status
 id tv_subtitle
 id tv_subtotal
@@ -3996,6 +4043,7 @@ layout fragment_product_detail
 layout fragment_profile
 layout fragment_register
 layout fragment_security
+layout fragment_success_dialog
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
 layout item_address
@@ -4070,6 +4118,8 @@ menu menu_admin_nav
 menu menu_customer_nav
 navigation nav_graph
 plurals mtrl_badge_content_description
+raw ecommerce
+raw success
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description
@@ -5465,6 +5515,7 @@ styleable LinearLayoutCompat android_gravity android_orientation android_baselin
 styleable LinearLayoutCompat_Layout android_layout_gravity android_layout_width android_layout_height android_layout_weight
 styleable LinearProgressIndicator indeterminateAnimationType indicatorDirectionLinear
 styleable ListPopupWindow android_dropDownHorizontalOffset android_dropDownVerticalOffset
+styleable LottieAnimationView lottie_applyOpacityToLayers lottie_applyShadowToLayers lottie_asyncUpdates lottie_autoPlay lottie_cacheComposition lottie_clipTextToBoundingBox lottie_clipToCompositionBounds lottie_colorFilter lottie_defaultFontFileExtension lottie_enableMergePathsForKitKatAndAbove lottie_fallbackRes lottie_fileName lottie_ignoreDisabledSystemAnimations lottie_imageAssetsFolder lottie_loop lottie_progress lottie_rawRes lottie_renderMode lottie_repeatCount lottie_repeatMode lottie_speed lottie_url lottie_useCompositionFrameRate
 styleable MaterialAlertDialog backgroundInsetBottom backgroundInsetEnd backgroundInsetStart backgroundInsetTop backgroundTint
 styleable MaterialAlertDialogTheme materialAlertDialogBodyTextStyle materialAlertDialogButtonSpacerVisibility materialAlertDialogTheme materialAlertDialogTitleIconStyle materialAlertDialogTitlePanelStyle materialAlertDialogTitleTextStyle
 styleable MaterialAutoCompleteTextView android_inputType android_popupElevation dropDownBackgroundTint simpleItemLayout simpleItemSelectedColor simpleItemSelectedRippleColor simpleItems

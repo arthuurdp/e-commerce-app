@@ -23,7 +23,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/arrow_back/baseline_arrow_back_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialsymbolsrounded/10k/rounded_10k_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -34,8 +34,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_user" />
-                            <entry key="sourceFile" value="C:\Users\arthur.dall\Desktop\ic_user.svg" />
+                            <entry key="outputName" value="icons8_pesquisar_48" />
+                            <entry key="sourceFile" value="C:\Users\arthur.dall\Desktop\icons8-pesquisar-material-outlined\icons8-pesquisar-48.svg" />
                           </map>
                         </option>
                       </PersistentState>
