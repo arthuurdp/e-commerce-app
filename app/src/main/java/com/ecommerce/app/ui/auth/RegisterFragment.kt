@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.ecommerce.app.R
 import com.ecommerce.app.data.model.RegisterRequest
 import com.ecommerce.app.databinding.FragmentRegisterBinding
+import com.ecommerce.app.util.MaskWatcher
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hide
 import com.ecommerce.app.util.hideKeyboard
@@ -40,6 +41,10 @@ class RegisterFragment : Fragment() {
 
         binding.mainContainer.setOnClickListener { hideKeyboard() }
         binding.btnBack.setOnClickListener { findNavController().popBackStack() }
+
+        binding.etCpf.addTextChangedListener(MaskWatcher("###.###.###-##"))
+        binding.etPhone.addTextChangedListener(MaskWatcher("(##) #####-####"))
+        binding.etBirthDate.addTextChangedListener(MaskWatcher("####-##-##"))
 
         binding.etFirstName.doAfterTextChanged {
             setFieldError(requireContext(), binding.tilFirstName, null)
