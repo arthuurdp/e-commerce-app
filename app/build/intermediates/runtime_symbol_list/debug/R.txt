@@ -1439,6 +1439,10 @@ int color cardview_dark_background 0x7f05002d
 int color cardview_light_background 0x7f05002e
 int color cardview_shadow_end_color 0x7f05002f
 int color cardview_shadow_start_color 0x7f050030
+int color chip_background 0x7f05031a
+int color chip_background_unselected 0x7f05031c
+int color chip_text 0x7f05031b
+int color chip_text_unselected 0x7f05031d
 int color design_bottom_navigation_shadow_color 0x7f050031
 int color design_box_stroke_color 0x7f050032
 int color design_dark_default_color_background 0x7f050033
@@ -3062,7 +3066,12 @@ int drawable abc_textfield_search_material 0x7f070075
 int drawable abc_vector_test 0x7f070076
 int drawable avd_hide_password 0x7f070077
 int drawable avd_show_password 0x7f070078
+int drawable banner_1 0x7f0700fa
+int drawable banner_2 0x7f0700fb
+int drawable banner_3 0x7f0700fc
 int drawable bg_circle_purple_light 0x7f070079
+int drawable bg_dot_active 0x7f0700fd
+int drawable bg_dot_inactive 0x7f0700fe
 int drawable bg_search 0x7f07007a
 int drawable bg_social_button 0x7f07007b
 int drawable btn_checkbox_checked_mtrl 0x7f07007c
@@ -3262,6 +3271,7 @@ int id action_context_bar 0x7f090042
 int id action_divider 0x7f090043
 int id action_enterCodeFragment_to_resetPasswordFragment 0x7f090044
 int id action_forgotPasswordFragment_to_enterCodeFragment 0x7f090045
+int id action_homeFragment_to_cartFragment 0x7f0902bd
 int id action_homeFragment_to_productDetailFragment 0x7f090046
 int id action_image 0x7f090047
 int id action_loginFragment_to_admin_nav_graph 0x7f090048
@@ -3522,9 +3532,10 @@ int id italic 0x7f090146
 int id item_touch_helper_previous_elevation 0x7f090147
 int id iv_avatar 0x7f090148
 int id iv_banner 0x7f090149
+int id iv_cart 0x7f0902be
 int id iv_illustration 0x7f09014a
 int id iv_product 0x7f09014b
-int id iv_search 0x7f09014c
+int id iv_search_categories 0x7f0902bf
 int id jumpToEnd 0x7f09014d
 int id jumpToStart 0x7f09014e
 int id labeled 0x7f09014f
@@ -3540,8 +3551,10 @@ int id line3 0x7f090158
 int id linear 0x7f090159
 int id listMode 0x7f09015a
 int id list_item 0x7f09015b
+int id ll_categories_container 0x7f0902b8
+int id ll_dots 0x7f0902b9
+int id ll_greeting 0x7f0902bc
 int id ll_register 0x7f09015c
-int id ll_title 0x7f09015d
 int id locale 0x7f09015e
 int id loginFragment 0x7f09015f
 int id lottie_layer_name 0x7f090160
@@ -3689,10 +3702,10 @@ int id right_side 0x7f0901ed
 int id rounded 0x7f0901ee
 int id row_index_key 0x7f0901ef
 int id rtl 0x7f0901f0
-int id rvProducts 0x7f0901f1
 int id rv_addresses 0x7f0901f2
 int id rv_cart_items 0x7f0901f3
 int id rv_categories 0x7f0901f4
+int id rv_category_products 0x7f0902ba
 int id rv_items 0x7f0901f5
 int id rv_orders 0x7f0901f6
 int id rv_products 0x7f0901f7
@@ -3815,7 +3828,6 @@ int id title 0x7f09026b
 int id titleDividerNoCustom 0x7f09026c
 int id title_template 0x7f09026d
 int id toggle 0x7f09026e
-int id toolbar 0x7f09026f
 int id top 0x7f090270
 int id topPanel 0x7f090271
 int id touch_outside 0x7f090272
@@ -3831,6 +3843,7 @@ int id tvEmpty 0x7f09027b
 int id tv_address_city 0x7f09027c
 int id tv_address_name 0x7f09027d
 int id tv_address_street 0x7f09027e
+int id tv_browse_categories 0x7f0902c0
 int id tv_categories 0x7f09027f
 int id tv_category_name 0x7f090280
 int id tv_city 0x7f090281
@@ -3854,8 +3867,6 @@ int id tv_qty 0x7f090292
 int id tv_quantity 0x7f090293
 int id tv_register 0x7f090294
 int id tv_role 0x7f090295
-int id tv_section_title 0x7f090296
-int id tv_see_all 0x7f090297
 int id tv_status 0x7f090298
 int id tv_subtitle 0x7f090299
 int id tv_subtotal 0x7f09029a
@@ -3879,6 +3890,7 @@ int id view_tree_saved_state_registry_owner 0x7f0902ab
 int id view_tree_view_model_store_owner 0x7f0902ac
 int id visible 0x7f0902ad
 int id visible_removing_fragment_view_tag 0x7f0902ae
+int id vp_banner 0x7f0902bb
 int id west 0x7f0902af
 int id withText 0x7f0902b0
 int id with_icon 0x7f0902b1
@@ -4046,8 +4058,10 @@ int layout fragment_success_dialog 0x7f0c0043
 int layout ime_base_split_test_activity 0x7f0c0044
 int layout ime_secondary_split_test_activity 0x7f0c0045
 int layout item_address 0x7f0c0046
+int layout item_banner 0x7f0c008a
 int layout item_cart 0x7f0c0047
 int layout item_category 0x7f0c0048
+int layout item_category_section 0x7f0c008b
 int layout item_order 0x7f0c0049
 int layout item_order_line 0x7f0c004a
 int layout item_product 0x7f0c004b

@@ -2,6 +2,10 @@ R_DEF: Internal format may change without notice
 local
 color black
 color blue_button
+color chip_background
+color chip_background_unselected
+color chip_text
+color chip_text_unselected
 color gray
 color gray_light
 color gray_medium
@@ -24,7 +28,12 @@ color text_input_hint_color
 color text_input_icon_tint
 color text_input_stroke_color
 color white
+drawable banner_1
+drawable banner_2
+drawable banner_3
 drawable bg_circle_purple_light
+drawable bg_dot_active
+drawable bg_dot_inactive
 drawable bg_search
 drawable bg_social_button
 drawable female
@@ -57,6 +66,7 @@ id action_adminProductsFragment_to_adminEditProductFragment
 id action_cartFragment_to_checkoutFragment
 id action_enterCodeFragment_to_resetPasswordFragment
 id action_forgotPasswordFragment_to_enterCodeFragment
+id action_homeFragment_to_cartFragment
 id action_homeFragment_to_productDetailFragment
 id action_loginFragment_to_admin_nav_graph
 id action_loginFragment_to_forgotPasswordFragment
@@ -143,14 +153,17 @@ id forgotPasswordFragment
 id homeFragment
 id iv_avatar
 id iv_banner
+id iv_cart
 id iv_illustration
 id iv_product
-id iv_search
+id iv_search_categories
 id layout_cart_footer
 id layout_confirm
 id layout_reset
+id ll_categories_container
+id ll_dots
+id ll_greeting
 id ll_register
-id ll_title
 id loginFragment
 id main_container
 id nav_graph
@@ -163,10 +176,10 @@ id progressBar
 id progress_bar
 id registerFragment
 id resetPasswordFragment
-id rvProducts
 id rv_addresses
 id rv_cart_items
 id rv_categories
+id rv_category_products
 id rv_items
 id rv_orders
 id rv_products
@@ -190,11 +203,11 @@ id til_email
 id til_enter_code
 id til_new_password
 id til_password
-id toolbar
 id tvEmpty
 id tv_address_city
 id tv_address_name
 id tv_address_street
+id tv_browse_categories
 id tv_categories
 id tv_category_name
 id tv_city
@@ -218,8 +231,6 @@ id tv_qty
 id tv_quantity
 id tv_register
 id tv_role
-id tv_section_title
-id tv_see_all
 id tv_status
 id tv_subtitle
 id tv_subtotal
@@ -229,6 +240,7 @@ id tv_total_orders
 id tv_total_products
 id tv_total_users
 id tv_unit_price
+id vp_banner
 layout activity_main
 layout fragment_add_address
 layout fragment_address_list
@@ -254,8 +266,10 @@ layout fragment_register
 layout fragment_security
 layout fragment_success_dialog
 layout item_address
+layout item_banner
 layout item_cart
 layout item_category
+layout item_category_section
 layout item_order
 layout item_order_line
 layout item_product

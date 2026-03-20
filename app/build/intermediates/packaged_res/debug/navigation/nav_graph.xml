@@ -76,7 +76,6 @@
     </fragment>
 
     <!-- ══════════════════════════ CUSTOMER ══════════════════════════════ -->
-
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.ecommerce.app.ui.customer.home.HomeFragment"
@@ -84,6 +83,8 @@
         tools:layout="@layout/fragment_home">
         <action android:id="@+id/action_homeFragment_to_productDetailFragment"
             app:destination="@id/productDetailFragment" />
+        <action android:id="@+id/action_homeFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
 
     <fragment

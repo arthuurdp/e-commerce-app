@@ -1,14 +1,11 @@
 package com.ecommerce.app.ui
 
 import android.os.Bundle
-import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.ecommerce.app.R
 import com.ecommerce.app.databinding.ActivityMainBinding
@@ -31,7 +28,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
 
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -42,12 +38,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupBottomNav() {
-        val customerTopLevel = setOf(
-            R.id.homeFragment,
-            R.id.cartFragment,
-            R.id.ordersFragment,
-            R.id.profileFragment
-        )
         val adminTopLevel = setOf(
             R.id.adminDashboardFragment,
             R.id.adminProductsFragment,
@@ -55,15 +45,16 @@ class MainActivity : AppCompatActivity() {
             R.id.adminUsersFragment
         )
 
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            val isAuthScreen = destination.id in setOf(
-                R.id.loginFragment,
-                R.id.registerFragment,
-                R.id.forgotPasswordFragment,
-                R.id.enterCodeFragment,
-                R.id.resetPasswordFragment
-            )
+        val authScreens = setOf(
+            R.id.loginFragment,
+            R.id.registerFragment,
+            R.id.forgotPasswordFragment,
+            R.id.enterCodeFragment,
+            R.id.resetPasswordFragment
+        )
 
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            val isAuthScreen = destination.id in authScreens
             val isAdminScreen = destination.id in adminTopLevel ||
                     destination.parent?.id == R.id.admin_nav_graph
 
@@ -71,30 +62,23 @@ class MainActivity : AppCompatActivity() {
                 isAuthScreen -> {
                     binding.bottomNavCustomer.hide()
                     binding.bottomNavAdmin.hide()
-                    supportActionBar?.hide()
                 }
                 isAdminScreen -> {
                     binding.bottomNavCustomer.hide()
                     binding.bottomNavAdmin.show()
-                    supportActionBar?.show()
                 }
                 else -> {
                     binding.bottomNavCustomer.show()
                     binding.bottomNavAdmin.hide()
-                    supportActionBar?.show()
                 }
             }
-            
-            // Apply scale animation based on destination
+
             updateBottomNavScale(binding.bottomNavCustomer, destination.id)
             updateBottomNavScale(binding.bottomNavAdmin, destination.id)
         }
 
         binding.bottomNavCustomer.setupWithNavController(navController)
         binding.bottomNavAdmin.setupWithNavController(navController)
-
-        val appBarConfig = AppBarConfiguration(customerTopLevel + adminTopLevel)
-        setupActionBarWithNavController(navController, appBarConfig)
     }
 
     private fun updateBottomNavScale(navView: BottomNavigationView, selectedId: Int) {
@@ -102,7 +86,6 @@ class MainActivity : AppCompatActivity() {
         for (i in 0 until menuView.childCount) {
             val itemView = menuView.getChildAt(i) as BottomNavigationItemView
             val isSelected = itemView.id == selectedId
-            
             val scale = if (isSelected) 1.2f else 1.0f
             itemView.animate()
                 .scaleX(scale)

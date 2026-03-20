@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.FragmentContainerView;
 import androidx.viewbinding.ViewBinding;
@@ -30,17 +29,13 @@ public final class ActivityMainBinding implements ViewBinding {
   @NonNull
   public final FragmentContainerView navHostFragment;
 
-  @NonNull
-  public final Toolbar toolbar;
-
   private ActivityMainBinding(@NonNull CoordinatorLayout rootView,
       @NonNull BottomNavigationView bottomNavAdmin, @NonNull BottomNavigationView bottomNavCustomer,
-      @NonNull FragmentContainerView navHostFragment, @NonNull Toolbar toolbar) {
+      @NonNull FragmentContainerView navHostFragment) {
     this.rootView = rootView;
     this.bottomNavAdmin = bottomNavAdmin;
     this.bottomNavCustomer = bottomNavCustomer;
     this.navHostFragment = navHostFragment;
-    this.toolbar = toolbar;
   }
 
   @Override
@@ -88,14 +83,8 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.toolbar;
-      Toolbar toolbar = ViewBindings.findChildViewById(rootView, id);
-      if (toolbar == null) {
-        break missingId;
-      }
-
       return new ActivityMainBinding((CoordinatorLayout) rootView, bottomNavAdmin,
-          bottomNavCustomer, navHostFragment, toolbar);
+          bottomNavCustomer, navHostFragment);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

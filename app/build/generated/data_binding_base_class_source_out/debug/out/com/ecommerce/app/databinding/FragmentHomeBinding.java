@@ -12,11 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
-import com.airbnb.lottie.LottieAnimationView;
+import androidx.viewpager2.widget.ViewPager2;
 import com.ecommerce.app.R;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.chip.ChipGroup;
@@ -35,19 +34,22 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final ChipGroup chipGroupCategories;
 
   @NonNull
-  public final LottieAnimationView ivBanner;
+  public final ImageView ivCart;
 
   @NonNull
-  public final ImageView ivSearch;
+  public final ImageView ivSearchCategories;
 
   @NonNull
-  public final LinearLayout llTitle;
+  public final LinearLayout llCategoriesContainer;
+
+  @NonNull
+  public final LinearLayout llDots;
+
+  @NonNull
+  public final LinearLayout llGreeting;
 
   @NonNull
   public final ProgressBar progressBar;
-
-  @NonNull
-  public final RecyclerView rvProducts;
 
   @NonNull
   public final SearchView searchView;
@@ -56,33 +58,39 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final SwipeRefreshLayout swipeRefresh;
 
   @NonNull
+  public final TextView tvBrowseCategories;
+
+  @NonNull
   public final TextView tvEmpty;
 
   @NonNull
-  public final TextView tvSectionTitle;
+  public final TextView tvFirstName;
 
   @NonNull
-  public final TextView tvSeeAll;
+  public final ViewPager2 vpBanner;
 
   private FragmentHomeBinding(@NonNull CoordinatorLayout rootView, @NonNull AppBarLayout appBar,
-      @NonNull ChipGroup chipGroupCategories, @NonNull LottieAnimationView ivBanner,
-      @NonNull ImageView ivSearch, @NonNull LinearLayout llTitle, @NonNull ProgressBar progressBar,
-      @NonNull RecyclerView rvProducts, @NonNull SearchView searchView,
-      @NonNull SwipeRefreshLayout swipeRefresh, @NonNull TextView tvEmpty,
-      @NonNull TextView tvSectionTitle, @NonNull TextView tvSeeAll) {
+      @NonNull ChipGroup chipGroupCategories, @NonNull ImageView ivCart,
+      @NonNull ImageView ivSearchCategories, @NonNull LinearLayout llCategoriesContainer,
+      @NonNull LinearLayout llDots, @NonNull LinearLayout llGreeting,
+      @NonNull ProgressBar progressBar, @NonNull SearchView searchView,
+      @NonNull SwipeRefreshLayout swipeRefresh, @NonNull TextView tvBrowseCategories,
+      @NonNull TextView tvEmpty, @NonNull TextView tvFirstName, @NonNull ViewPager2 vpBanner) {
     this.rootView = rootView;
     this.appBar = appBar;
     this.chipGroupCategories = chipGroupCategories;
-    this.ivBanner = ivBanner;
-    this.ivSearch = ivSearch;
-    this.llTitle = llTitle;
+    this.ivCart = ivCart;
+    this.ivSearchCategories = ivSearchCategories;
+    this.llCategoriesContainer = llCategoriesContainer;
+    this.llDots = llDots;
+    this.llGreeting = llGreeting;
     this.progressBar = progressBar;
-    this.rvProducts = rvProducts;
     this.searchView = searchView;
     this.swipeRefresh = swipeRefresh;
+    this.tvBrowseCategories = tvBrowseCategories;
     this.tvEmpty = tvEmpty;
-    this.tvSectionTitle = tvSectionTitle;
-    this.tvSeeAll = tvSeeAll;
+    this.tvFirstName = tvFirstName;
+    this.vpBanner = vpBanner;
   }
 
   @Override
@@ -124,33 +132,39 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.iv_banner;
-      LottieAnimationView ivBanner = ViewBindings.findChildViewById(rootView, id);
-      if (ivBanner == null) {
+      id = R.id.iv_cart;
+      ImageView ivCart = ViewBindings.findChildViewById(rootView, id);
+      if (ivCart == null) {
         break missingId;
       }
 
-      id = R.id.iv_search;
-      ImageView ivSearch = ViewBindings.findChildViewById(rootView, id);
-      if (ivSearch == null) {
+      id = R.id.iv_search_categories;
+      ImageView ivSearchCategories = ViewBindings.findChildViewById(rootView, id);
+      if (ivSearchCategories == null) {
         break missingId;
       }
 
-      id = R.id.ll_title;
-      LinearLayout llTitle = ViewBindings.findChildViewById(rootView, id);
-      if (llTitle == null) {
+      id = R.id.ll_categories_container;
+      LinearLayout llCategoriesContainer = ViewBindings.findChildViewById(rootView, id);
+      if (llCategoriesContainer == null) {
+        break missingId;
+      }
+
+      id = R.id.ll_dots;
+      LinearLayout llDots = ViewBindings.findChildViewById(rootView, id);
+      if (llDots == null) {
+        break missingId;
+      }
+
+      id = R.id.ll_greeting;
+      LinearLayout llGreeting = ViewBindings.findChildViewById(rootView, id);
+      if (llGreeting == null) {
         break missingId;
       }
 
       id = R.id.progressBar;
       ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
       if (progressBar == null) {
-        break missingId;
-      }
-
-      id = R.id.rvProducts;
-      RecyclerView rvProducts = ViewBindings.findChildViewById(rootView, id);
-      if (rvProducts == null) {
         break missingId;
       }
 
@@ -166,27 +180,33 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tv_browse_categories;
+      TextView tvBrowseCategories = ViewBindings.findChildViewById(rootView, id);
+      if (tvBrowseCategories == null) {
+        break missingId;
+      }
+
       id = R.id.tvEmpty;
       TextView tvEmpty = ViewBindings.findChildViewById(rootView, id);
       if (tvEmpty == null) {
         break missingId;
       }
 
-      id = R.id.tv_section_title;
-      TextView tvSectionTitle = ViewBindings.findChildViewById(rootView, id);
-      if (tvSectionTitle == null) {
+      id = R.id.tv_first_name;
+      TextView tvFirstName = ViewBindings.findChildViewById(rootView, id);
+      if (tvFirstName == null) {
         break missingId;
       }
 
-      id = R.id.tv_see_all;
-      TextView tvSeeAll = ViewBindings.findChildViewById(rootView, id);
-      if (tvSeeAll == null) {
+      id = R.id.vp_banner;
+      ViewPager2 vpBanner = ViewBindings.findChildViewById(rootView, id);
+      if (vpBanner == null) {
         break missingId;
       }
 
       return new FragmentHomeBinding((CoordinatorLayout) rootView, appBar, chipGroupCategories,
-          ivBanner, ivSearch, llTitle, progressBar, rvProducts, searchView, swipeRefresh, tvEmpty,
-          tvSectionTitle, tvSeeAll);
+          ivCart, ivSearchCategories, llCategoriesContainer, llDots, llGreeting, progressBar,
+          searchView, swipeRefresh, tvBrowseCategories, tvEmpty, tvFirstName, vpBanner);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

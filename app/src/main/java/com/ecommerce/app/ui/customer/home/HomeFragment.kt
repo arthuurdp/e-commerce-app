@@ -1,23 +1,32 @@
 package com.ecommerce.app.ui.customer.home
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.SearchView
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.ecommerce.app.R
 import com.ecommerce.app.databinding.FragmentHomeBinding
+import com.ecommerce.app.data.model.CategoryResponse
+import com.ecommerce.app.data.model.ProductResponse
 import com.ecommerce.app.ui.customer.products.ProductAdapter
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hide
 import com.ecommerce.app.util.show
-import com.ecommerce.app.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
+import com.google.android.material.chip.Chip
+import androidx.appcompat.widget.SearchView
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -25,7 +34,6 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val viewModel: HomeViewModel by viewModels()
-    private lateinit var productAdapter: ProductAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,71 +46,188 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupRecyclerView()
-        setupSearch()
-        setupSwipeRefresh()
-        observeProducts()
-
-        viewModel.loadProducts()
-    }
-
-    private fun setupRecyclerView() {
-        productAdapter = ProductAdapter { product ->
-            findNavController().navigate(
-                R.id.action_homeFragment_to_productDetailFragment,
-                bundleOf("productId" to product.id)
-            )
+        binding.ivCart.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_cartFragment)
         }
-        binding.rvProducts.apply {
-            adapter = productAdapter
-            layoutManager = GridLayoutManager(requireContext(), 2)
-        }
-    }
 
-    private fun setupSearch() {
+        binding.ivSearchCategories.setOnClickListener {
+            val isVisible = binding.searchView.visibility == View.VISIBLE
+            binding.searchView.visibility = if (isVisible) View.GONE else View.VISIBLE
+        }
+
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                viewModel.loadProducts(name = query)
+            override fun onQueryTextSubmit(query: String?) = false
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filterChips(newText)
                 return true
             }
-            override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText.isNullOrEmpty()) viewModel.loadProducts()
-                return false
+        })
+
+        setupBanner()
+        setupSwipeRefresh()
+        observeCategories()
+        observeProductsByCategory()
+
+        viewModel.loadCategories()
+    }
+
+    private fun setupBanner() {
+        val banners = listOf(
+            BannerItem(R.drawable.banner_1),
+            BannerItem(R.drawable.banner_2),
+            BannerItem(R.drawable.banner_3)
+        )
+
+        val bannerAdapter = BannerAdapter(banners)
+
+        binding.vpBanner.apply {
+            adapter = bannerAdapter
+            offscreenPageLimit = 1
+            clipChildren = false
+            setPageTransformer { page, position ->
+                page.scaleY = 1 - (0.05f * kotlin.math.abs(position))
+                page.alpha = 1 - (0.3f * kotlin.math.abs(position))
+            }
+        }
+
+        setupDots(banners.size)
+
+        binding.vpBanner.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                updateDots(position, banners.size)
             }
         })
+
+        val handler = Handler(Looper.getMainLooper())
+        val runnable = object : Runnable {
+            override fun run() {
+                val next = (binding.vpBanner.currentItem + 1) % bannerAdapter.itemCount
+                binding.vpBanner.setCurrentItem(next, true)
+                handler.postDelayed(this, 5000)
+            }
+        }
+        handler.postDelayed(runnable, 5000)
+    }
+
+    private fun setupDots(count: Int) {
+        binding.llDots.removeAllViews()
+        repeat(count) {
+            val dot = View(requireContext()).apply {
+                layoutParams = LinearLayout.LayoutParams(8.dp, 8.dp).also { params ->
+                    params.marginEnd = 6.dp
+                }
+                background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_dot_inactive)
+            }
+            binding.llDots.addView(dot)
+        }
+        updateDots(0, count)
+    }
+
+    private fun updateDots(selected: Int, count: Int) {
+        for (i in 0 until count) {
+            val dot = binding.llDots.getChildAt(i) ?: continue
+            dot.background = ContextCompat.getDrawable(
+                requireContext(),
+                if (i == selected) R.drawable.bg_dot_active else R.drawable.bg_dot_inactive
+            )
+        }
+    }
+
+    private fun observeCategories() {
+        viewModel.categoriesState.observe(viewLifecycleOwner) { result ->
+            if (result is NetworkResult.Success) {
+                val categories = result.data.content
+                setupCategoryChips(categories)
+                viewModel.loadProductsByCategories(categories)
+            }
+        }
+    }
+
+    private fun observeProductsByCategory() {
+        viewModel.productsByCategory.observe(viewLifecycleOwner) { grouped ->
+            binding.swipeRefresh.isRefreshing = false
+            binding.progressBar.hide()
+
+            if (grouped.isEmpty()) {
+                binding.tvEmpty.show()
+            } else {
+                binding.tvEmpty.hide()
+                buildCategorySections(grouped)
+            }
+        }
+    }
+
+    private fun filterChips(query: String?) {
+        val chipGroup = binding.chipGroupCategories
+        for (i in 0 until chipGroup.childCount) {
+            val chip = chipGroup.getChildAt(i) as Chip
+            chip.visibility = if (query.isNullOrEmpty() || chip.text.contains(query, ignoreCase = true))
+                View.VISIBLE else View.GONE
+        }
+    }
+
+    private fun buildCategorySections(grouped: Map<CategoryResponse, List<ProductResponse>>) {
+        val container = binding.llCategoriesContainer
+        container.removeAllViews()
+
+        grouped.forEach { (category, products) ->
+            if (products.isEmpty()) return@forEach
+
+            val sectionView = layoutInflater.inflate(
+                R.layout.item_category_section, container, false
+            )
+
+            sectionView.findViewById<TextView>(R.id.tv_category_name).text = category.name
+
+            val rv = sectionView.findViewById<RecyclerView>(R.id.rv_category_products)
+            rv.layoutManager = LinearLayoutManager(
+                requireContext(), LinearLayoutManager.HORIZONTAL, false
+            )
+            rv.adapter = ProductAdapter { product ->
+                findNavController().navigate(
+                    R.id.action_homeFragment_to_productDetailFragment,
+                    bundleOf("productId" to product.id)
+                )
+            }.also { it.submitList(products) }
+
+            container.addView(sectionView)
+        }
+    }
+
+    private fun setupCategoryChips(categories: List<CategoryResponse>) {
+        val chipGroup = binding.chipGroupCategories
+        chipGroup.removeAllViews()
+
+        categories.forEach { category ->
+            val chip = Chip(requireContext()).apply {
+                text = category.name
+                tag = category
+                isCheckable = true
+                setChipBackgroundColorResource(R.color.chip_background)
+                setTextColor(resources.getColorStateList(R.color.chip_text, null))
+            }
+            chipGroup.addView(chip)
+        }
+
+        chipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
+            if (checkedIds.isEmpty()) {
+                val allCategories = (0 until group.childCount)
+                    .map { group.getChildAt(it).tag as CategoryResponse }
+                viewModel.loadProductsByCategories(allCategories)
+            } else {
+                val selected = group.findViewById<Chip>(checkedIds.first()).tag as CategoryResponse
+                viewModel.loadProductsByCategories(listOf(selected))
+            }
+        }
     }
 
     private fun setupSwipeRefresh() {
         binding.swipeRefresh.setOnRefreshListener {
-            viewModel.loadProducts()
+            viewModel.loadCategories()
         }
     }
 
-    private fun observeProducts() {
-        viewModel.productsState.observe(viewLifecycleOwner) { result ->
-            binding.swipeRefresh.isRefreshing = false
-            when (result) {
-                is NetworkResult.Loading -> {
-                    binding.progressBar.show()
-                    binding.tvEmpty.hide()
-                }
-                is NetworkResult.Success -> {
-                    binding.progressBar.hide()
-                    val products = result.data.content
-                    productAdapter.submitList(products)
-                    binding.tvEmpty.showIf(products.isEmpty())
-                }
-                is NetworkResult.Error -> {
-                    binding.progressBar.hide()
-                    showToast(result.message)
-                }
-            }
-        }
-    }
-
-    private fun View.showIf(condition: Boolean) {
-        visibility = if (condition) View.VISIBLE else View.GONE
-    }
+    private val Int.dp get() = (this * resources.displayMetrics.density).toInt()
 
     override fun onDestroyView() {
         super.onDestroyView()

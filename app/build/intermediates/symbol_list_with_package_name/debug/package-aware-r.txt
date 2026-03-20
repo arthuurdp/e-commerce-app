@@ -1440,6 +1440,10 @@ color cardview_dark_background
 color cardview_light_background
 color cardview_shadow_end_color
 color cardview_shadow_start_color
+color chip_background
+color chip_background_unselected
+color chip_text
+color chip_text_unselected
 color design_bottom_navigation_shadow_color
 color design_box_stroke_color
 color design_dark_default_color_background
@@ -3063,7 +3067,12 @@ drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable avd_hide_password
 drawable avd_show_password
+drawable banner_1
+drawable banner_2
+drawable banner_3
 drawable bg_circle_purple_light
+drawable bg_dot_active
+drawable bg_dot_inactive
 drawable bg_search
 drawable bg_social_button
 drawable btn_checkbox_checked_mtrl
@@ -3263,6 +3272,7 @@ id action_context_bar
 id action_divider
 id action_enterCodeFragment_to_resetPasswordFragment
 id action_forgotPasswordFragment_to_enterCodeFragment
+id action_homeFragment_to_cartFragment
 id action_homeFragment_to_productDetailFragment
 id action_image
 id action_loginFragment_to_admin_nav_graph
@@ -3523,9 +3533,10 @@ id italic
 id item_touch_helper_previous_elevation
 id iv_avatar
 id iv_banner
+id iv_cart
 id iv_illustration
 id iv_product
-id iv_search
+id iv_search_categories
 id jumpToEnd
 id jumpToStart
 id labeled
@@ -3541,8 +3552,10 @@ id line3
 id linear
 id listMode
 id list_item
+id ll_categories_container
+id ll_dots
+id ll_greeting
 id ll_register
-id ll_title
 id locale
 id loginFragment
 id lottie_layer_name
@@ -3690,10 +3703,10 @@ id right_side
 id rounded
 id row_index_key
 id rtl
-id rvProducts
 id rv_addresses
 id rv_cart_items
 id rv_categories
+id rv_category_products
 id rv_items
 id rv_orders
 id rv_products
@@ -3816,7 +3829,6 @@ id title
 id titleDividerNoCustom
 id title_template
 id toggle
-id toolbar
 id top
 id topPanel
 id touch_outside
@@ -3832,6 +3844,7 @@ id tvEmpty
 id tv_address_city
 id tv_address_name
 id tv_address_street
+id tv_browse_categories
 id tv_categories
 id tv_category_name
 id tv_city
@@ -3855,8 +3868,6 @@ id tv_qty
 id tv_quantity
 id tv_register
 id tv_role
-id tv_section_title
-id tv_see_all
 id tv_status
 id tv_subtitle
 id tv_subtotal
@@ -3880,6 +3891,7 @@ id view_tree_saved_state_registry_owner
 id view_tree_view_model_store_owner
 id visible
 id visible_removing_fragment_view_tag
+id vp_banner
 id west
 id withText
 id with_icon
@@ -4047,8 +4059,10 @@ layout fragment_success_dialog
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
 layout item_address
+layout item_banner
 layout item_cart
 layout item_category
+layout item_category_section
 layout item_order
 layout item_order_line
 layout item_product
