@@ -10,7 +10,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.SearchView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewbinding.ViewBinding;
@@ -37,9 +36,6 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final ImageView ivCart;
 
   @NonNull
-  public final ImageView ivSearchCategories;
-
-  @NonNull
   public final LinearLayout llCategoriesContainer;
 
   @NonNull
@@ -50,9 +46,6 @@ public final class FragmentHomeBinding implements ViewBinding {
 
   @NonNull
   public final ProgressBar progressBar;
-
-  @NonNull
-  public final SearchView searchView;
 
   @NonNull
   public final SwipeRefreshLayout swipeRefresh;
@@ -71,21 +64,18 @@ public final class FragmentHomeBinding implements ViewBinding {
 
   private FragmentHomeBinding(@NonNull CoordinatorLayout rootView, @NonNull AppBarLayout appBar,
       @NonNull ChipGroup chipGroupCategories, @NonNull ImageView ivCart,
-      @NonNull ImageView ivSearchCategories, @NonNull LinearLayout llCategoriesContainer,
-      @NonNull LinearLayout llDots, @NonNull LinearLayout llGreeting,
-      @NonNull ProgressBar progressBar, @NonNull SearchView searchView,
+      @NonNull LinearLayout llCategoriesContainer, @NonNull LinearLayout llDots,
+      @NonNull LinearLayout llGreeting, @NonNull ProgressBar progressBar,
       @NonNull SwipeRefreshLayout swipeRefresh, @NonNull TextView tvBrowseCategories,
       @NonNull TextView tvEmpty, @NonNull TextView tvFirstName, @NonNull ViewPager2 vpBanner) {
     this.rootView = rootView;
     this.appBar = appBar;
     this.chipGroupCategories = chipGroupCategories;
     this.ivCart = ivCart;
-    this.ivSearchCategories = ivSearchCategories;
     this.llCategoriesContainer = llCategoriesContainer;
     this.llDots = llDots;
     this.llGreeting = llGreeting;
     this.progressBar = progressBar;
-    this.searchView = searchView;
     this.swipeRefresh = swipeRefresh;
     this.tvBrowseCategories = tvBrowseCategories;
     this.tvEmpty = tvEmpty;
@@ -138,12 +128,6 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.iv_search_categories;
-      ImageView ivSearchCategories = ViewBindings.findChildViewById(rootView, id);
-      if (ivSearchCategories == null) {
-        break missingId;
-      }
-
       id = R.id.ll_categories_container;
       LinearLayout llCategoriesContainer = ViewBindings.findChildViewById(rootView, id);
       if (llCategoriesContainer == null) {
@@ -165,12 +149,6 @@ public final class FragmentHomeBinding implements ViewBinding {
       id = R.id.progressBar;
       ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
       if (progressBar == null) {
-        break missingId;
-      }
-
-      id = R.id.searchView;
-      SearchView searchView = ViewBindings.findChildViewById(rootView, id);
-      if (searchView == null) {
         break missingId;
       }
 
@@ -205,8 +183,8 @@ public final class FragmentHomeBinding implements ViewBinding {
       }
 
       return new FragmentHomeBinding((CoordinatorLayout) rootView, appBar, chipGroupCategories,
-          ivCart, ivSearchCategories, llCategoriesContainer, llDots, llGreeting, progressBar,
-          searchView, swipeRefresh, tvBrowseCategories, tvEmpty, tvFirstName, vpBanner);
+          ivCart, llCategoriesContainer, llDots, llGreeting, progressBar, swipeRefresh,
+          tvBrowseCategories, tvEmpty, tvFirstName, vpBanner);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

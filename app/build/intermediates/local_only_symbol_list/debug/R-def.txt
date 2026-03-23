@@ -156,7 +156,6 @@ id iv_banner
 id iv_cart
 id iv_illustration
 id iv_product
-id iv_search_categories
 id layout_cart_footer
 id layout_confirm
 id layout_reset
@@ -184,7 +183,7 @@ id rv_items
 id rv_orders
 id rv_products
 id rv_users
-id searchView
+id searchFragment
 id securityFragment
 id spinner_address
 id spinner_gender

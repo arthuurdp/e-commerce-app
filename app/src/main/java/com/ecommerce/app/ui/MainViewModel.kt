@@ -23,7 +23,7 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch {
             val token = tokenManager.getToken()
             _startDestination.value = when {
-                token.isNullOrBlank()       -> R.id.loginFragment
+                token.isNullOrBlank() -> R.id.loginFragment
                 JwtDecoder.isExpired(token) -> {
                     tokenManager.clearToken()
                     R.id.loginFragment

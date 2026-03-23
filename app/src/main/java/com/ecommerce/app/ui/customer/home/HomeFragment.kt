@@ -26,7 +26,6 @@ import com.ecommerce.app.util.hide
 import com.ecommerce.app.util.show
 import dagger.hilt.android.AndroidEntryPoint
 import com.google.android.material.chip.Chip
-import androidx.appcompat.widget.SearchView
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -49,19 +48,6 @@ class HomeFragment : Fragment() {
         binding.ivCart.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_cartFragment)
         }
-
-        binding.ivSearchCategories.setOnClickListener {
-            val isVisible = binding.searchView.visibility == View.VISIBLE
-            binding.searchView.visibility = if (isVisible) View.GONE else View.VISIBLE
-        }
-
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?) = false
-            override fun onQueryTextChange(newText: String?): Boolean {
-                filterChips(newText)
-                return true
-            }
-        })
 
         setupBanner()
         setupSwipeRefresh()
@@ -157,15 +143,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun filterChips(query: String?) {
-        val chipGroup = binding.chipGroupCategories
-        for (i in 0 until chipGroup.childCount) {
-            val chip = chipGroup.getChildAt(i) as Chip
-            chip.visibility = if (query.isNullOrEmpty() || chip.text.contains(query, ignoreCase = true))
-                View.VISIBLE else View.GONE
-        }
-    }
-
     private fun buildCategorySections(grouped: Map<CategoryResponse, List<ProductResponse>>) {
         val container = binding.llCategoriesContainer
         container.removeAllViews()
@@ -220,7 +197,6 @@ class HomeFragment : Fragment() {
             }
         }
     }
-
     private fun setupSwipeRefresh() {
         binding.swipeRefresh.setOnRefreshListener {
             viewModel.loadCategories()

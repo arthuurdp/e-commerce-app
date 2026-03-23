@@ -3536,7 +3536,6 @@ id iv_banner
 id iv_cart
 id iv_illustration
 id iv_product
-id iv_search_categories
 id jumpToEnd
 id jumpToStart
 id labeled
@@ -3721,7 +3720,7 @@ id scrollIndicatorDown
 id scrollIndicatorUp
 id scrollView
 id scrollable
-id searchView
+id searchFragment
 id search_badge
 id search_bar
 id search_button

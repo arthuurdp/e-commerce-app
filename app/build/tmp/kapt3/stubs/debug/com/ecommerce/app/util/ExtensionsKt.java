@@ -1,6 +1,5 @@
 package com.ecommerce.app.util;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.view.View;

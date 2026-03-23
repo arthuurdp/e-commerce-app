@@ -88,6 +88,12 @@
     </fragment>
 
     <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.ecommerce.app.ui.customer.search.SearchFragment"
+        android:label="Search"
+        tools:layout="@layout/fragment_search" />
+
+    <fragment
         android:id="@+id/productDetailFragment"
         android:name="com.ecommerce.app.ui.customer.products.ProductDetailFragment"
         android:label="Product"
