@@ -88,6 +88,10 @@
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\drawable\\bg_social_button.xml"
     },
     {
+        "merged": "com.ecommerce.app-merged_res-54:/layout_item_product.xml.flat",
+        "source": "com.ecommerce.app-main-56:/layout/item_product.xml"
+    },
+    {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-54:\\layout_fragment_address_list.xml.flat",
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_address_list.xml"
     },

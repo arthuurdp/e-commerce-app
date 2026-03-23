@@ -52,6 +52,10 @@
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_cart.xml"
     },
     {
+        "merged": "com.ecommerce.app-mergeDebugResources-53:/layout/item_product.xml",
+        "source": "com.ecommerce.app-main-56:/layout/item_product.xml"
+    },
+    {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_admin_products.xml",
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_admin_products.xml"
     },

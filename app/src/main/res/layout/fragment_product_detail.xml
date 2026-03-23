@@ -9,7 +9,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Product Image -->
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="300dp">
@@ -92,24 +91,6 @@
                 android:textSize="14sp"
                 android:lineSpacingMultiplier="1.4"
                 android:layout_marginBottom="16dp" />
-
-            <!-- Dimensions -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Shipping Info"
-                android:textStyle="bold"
-                android:textSize="15sp"
-                android:layout_marginBottom="4dp" />
-
-            <TextView
-                android:id="@+id/tv_dimensions"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0.5kg · 15×10×20 cm"
-                android:textSize="13sp"
-                android:textColor="?attr/colorOnSurfaceVariant"
-                android:layout_marginBottom="24dp" />
 
             <!-- Add to Cart -->
             <com.google.android.material.button.MaterialButton
