@@ -3070,9 +3070,12 @@ drawable avd_show_password
 drawable banner_1
 drawable banner_2
 drawable banner_3
+drawable bg_badge
+drawable bg_bottom_fade
 drawable bg_circle_purple_light
 drawable bg_dot_active
 drawable bg_dot_inactive
+drawable bg_rounded
 drawable bg_search
 drawable bg_social_button
 drawable btn_checkbox_checked_mtrl
@@ -3120,6 +3123,7 @@ drawable ic_pencil
 drawable ic_search
 drawable ic_search_black_24
 drawable ic_user
+drawable ic_verify_email
 drawable img_forgot_password
 drawable img_forgot_password_enter_code
 drawable login_image
@@ -3196,6 +3200,7 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable scrim_top
 drawable spinner_background
 drawable test_level_drawable
 drawable tooltip_frame_dark
@@ -3285,6 +3290,7 @@ id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
 id action_ordersFragment_to_orderDetailFragment
+id action_productDetailFragment_to_cartFragment
 id action_profileFragment_to_addressListFragment
 id action_profileFragment_to_editProfileFragment
 id action_profileFragment_to_loginFragment
@@ -3336,6 +3342,8 @@ id bounce
 id bounceBoth
 id bounceEnd
 id bounceStart
+id btnCancel
+id btnConfirm
 id btn_add_to_cart
 id btn_addresses
 id btn_back
@@ -3532,6 +3540,7 @@ id is_pooling_container_tag
 id italic
 id item_touch_helper_previous_elevation
 id iv_avatar
+id iv_back
 id iv_banner
 id iv_cart
 id iv_illustration
@@ -3844,12 +3853,11 @@ id tv_address_city
 id tv_address_name
 id tv_address_street
 id tv_browse_categories
-id tv_categories
+id tv_category
 id tv_category_name
 id tv_city
 id tv_date
 id tv_description
-id tv_dimensions
 id tv_email
 id tv_empty
 id tv_empty_cart
@@ -3861,6 +3869,7 @@ id tv_login
 id tv_name
 id tv_order_id
 id tv_price
+id tv_price_old
 id tv_product_name
 id tv_product_price
 id tv_qty
@@ -3868,6 +3877,7 @@ id tv_quantity
 id tv_register
 id tv_role
 id tv_status
+id tv_stock
 id tv_subtitle
 id tv_subtotal
 id tv_title
@@ -3891,6 +3901,7 @@ id view_tree_view_model_store_owner
 id visible
 id visible_removing_fragment_view_tag
 id vp_banner
+id vp_product_images
 id west
 id withText
 id with_icon
@@ -4032,6 +4043,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout dialog_verify_email
 layout fragment_add_address
 layout fragment_address_list
 layout fragment_admin_categories

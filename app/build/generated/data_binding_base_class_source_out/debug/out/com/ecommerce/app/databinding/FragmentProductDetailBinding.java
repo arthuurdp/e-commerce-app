@@ -5,13 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
+import androidx.viewpager2.widget.ViewPager2;
 import com.ecommerce.app.R;
 import com.google.android.material.button.MaterialButton;
 import java.lang.NullPointerException;
@@ -20,25 +22,28 @@ import java.lang.String;
 
 public final class FragmentProductDetailBinding implements ViewBinding {
   @NonNull
-  private final ScrollView rootView;
+  private final CoordinatorLayout rootView;
 
   @NonNull
   public final MaterialButton btnAddToCart;
 
   @NonNull
-  public final ImageView ivProduct;
+  public final ImageView ivBack;
+
+  @NonNull
+  public final ImageView ivCart;
+
+  @NonNull
+  public final LinearLayout llDots;
 
   @NonNull
   public final ProgressBar progressBar;
 
   @NonNull
-  public final TextView tvCategories;
+  public final TextView tvCategory;
 
   @NonNull
   public final TextView tvDescription;
-
-  @NonNull
-  public final TextView tvDimensions;
 
   @NonNull
   public final TextView tvName;
@@ -46,25 +51,39 @@ public final class FragmentProductDetailBinding implements ViewBinding {
   @NonNull
   public final TextView tvPrice;
 
-  private FragmentProductDetailBinding(@NonNull ScrollView rootView,
-      @NonNull MaterialButton btnAddToCart, @NonNull ImageView ivProduct,
-      @NonNull ProgressBar progressBar, @NonNull TextView tvCategories,
-      @NonNull TextView tvDescription, @NonNull TextView tvDimensions, @NonNull TextView tvName,
-      @NonNull TextView tvPrice) {
+  @NonNull
+  public final TextView tvPriceOld;
+
+  @NonNull
+  public final TextView tvStock;
+
+  @NonNull
+  public final ViewPager2 vpProductImages;
+
+  private FragmentProductDetailBinding(@NonNull CoordinatorLayout rootView,
+      @NonNull MaterialButton btnAddToCart, @NonNull ImageView ivBack, @NonNull ImageView ivCart,
+      @NonNull LinearLayout llDots, @NonNull ProgressBar progressBar, @NonNull TextView tvCategory,
+      @NonNull TextView tvDescription, @NonNull TextView tvName, @NonNull TextView tvPrice,
+      @NonNull TextView tvPriceOld, @NonNull TextView tvStock,
+      @NonNull ViewPager2 vpProductImages) {
     this.rootView = rootView;
     this.btnAddToCart = btnAddToCart;
-    this.ivProduct = ivProduct;
+    this.ivBack = ivBack;
+    this.ivCart = ivCart;
+    this.llDots = llDots;
     this.progressBar = progressBar;
-    this.tvCategories = tvCategories;
+    this.tvCategory = tvCategory;
     this.tvDescription = tvDescription;
-    this.tvDimensions = tvDimensions;
     this.tvName = tvName;
     this.tvPrice = tvPrice;
+    this.tvPriceOld = tvPriceOld;
+    this.tvStock = tvStock;
+    this.vpProductImages = vpProductImages;
   }
 
   @Override
   @NonNull
-  public ScrollView getRoot() {
+  public CoordinatorLayout getRoot() {
     return rootView;
   }
 
@@ -95,9 +114,21 @@ public final class FragmentProductDetailBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.iv_product;
-      ImageView ivProduct = ViewBindings.findChildViewById(rootView, id);
-      if (ivProduct == null) {
+      id = R.id.iv_back;
+      ImageView ivBack = ViewBindings.findChildViewById(rootView, id);
+      if (ivBack == null) {
+        break missingId;
+      }
+
+      id = R.id.iv_cart;
+      ImageView ivCart = ViewBindings.findChildViewById(rootView, id);
+      if (ivCart == null) {
+        break missingId;
+      }
+
+      id = R.id.ll_dots;
+      LinearLayout llDots = ViewBindings.findChildViewById(rootView, id);
+      if (llDots == null) {
         break missingId;
       }
 
@@ -107,21 +138,15 @@ public final class FragmentProductDetailBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.tv_categories;
-      TextView tvCategories = ViewBindings.findChildViewById(rootView, id);
-      if (tvCategories == null) {
+      id = R.id.tv_category;
+      TextView tvCategory = ViewBindings.findChildViewById(rootView, id);
+      if (tvCategory == null) {
         break missingId;
       }
 
       id = R.id.tv_description;
       TextView tvDescription = ViewBindings.findChildViewById(rootView, id);
       if (tvDescription == null) {
-        break missingId;
-      }
-
-      id = R.id.tv_dimensions;
-      TextView tvDimensions = ViewBindings.findChildViewById(rootView, id);
-      if (tvDimensions == null) {
         break missingId;
       }
 
@@ -137,8 +162,27 @@ public final class FragmentProductDetailBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentProductDetailBinding((ScrollView) rootView, btnAddToCart, ivProduct,
-          progressBar, tvCategories, tvDescription, tvDimensions, tvName, tvPrice);
+      id = R.id.tv_price_old;
+      TextView tvPriceOld = ViewBindings.findChildViewById(rootView, id);
+      if (tvPriceOld == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_stock;
+      TextView tvStock = ViewBindings.findChildViewById(rootView, id);
+      if (tvStock == null) {
+        break missingId;
+      }
+
+      id = R.id.vp_product_images;
+      ViewPager2 vpProductImages = ViewBindings.findChildViewById(rootView, id);
+      if (vpProductImages == null) {
+        break missingId;
+      }
+
+      return new FragmentProductDetailBinding((CoordinatorLayout) rootView, btnAddToCart, ivBack,
+          ivCart, llDots, progressBar, tvCategory, tvDescription, tvName, tvPrice, tvPriceOld,
+          tvStock, vpProductImages);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

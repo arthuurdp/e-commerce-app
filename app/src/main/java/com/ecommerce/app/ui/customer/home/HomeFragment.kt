@@ -12,6 +12,9 @@ import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,6 +29,8 @@ import com.ecommerce.app.util.hide
 import com.ecommerce.app.util.show
 import dagger.hilt.android.AndroidEntryPoint
 import com.google.android.material.chip.Chip
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -83,16 +88,7 @@ class HomeFragment : Fragment() {
                 updateDots(position, banners.size)
             }
         })
-
-        val handler = Handler(Looper.getMainLooper())
-        val runnable = object : Runnable {
-            override fun run() {
-                val next = (binding.vpBanner.currentItem + 1) % bannerAdapter.itemCount
-                binding.vpBanner.setCurrentItem(next, true)
-                handler.postDelayed(this, 5000)
-            }
-        }
-        handler.postDelayed(runnable, 5000)
+        startAutoScroll(bannerAdapter)
     }
 
     private fun setupDots(count: Int) {
@@ -194,6 +190,22 @@ class HomeFragment : Fragment() {
             } else {
                 val selected = group.findViewById<Chip>(checkedIds.first()).tag as CategoryResponse
                 viewModel.loadProductsByCategories(listOf(selected))
+            }
+        }
+    }
+
+    private fun startAutoScroll(adapter: BannerAdapter) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+
+                while (true) {
+                    delay(5000)
+
+                    val vp = _binding?.vpBanner ?: break
+
+                    val next = (vp.currentItem + 1) % adapter.itemCount
+                    vp.setCurrentItem(next, true)
+                }
             }
         }
     }

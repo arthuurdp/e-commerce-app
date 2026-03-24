@@ -19,23 +19,26 @@ class ProductDetailViewModel @Inject constructor(
     private val cartRepository: CartRepository
 ) : ViewModel() {
 
-    private val _productState = MutableLiveData<NetworkResult<ProductDetailsResponse>>()
-    val productState: LiveData<NetworkResult<ProductDetailsResponse>> = _productState
+    private val _product = MutableLiveData<NetworkResult<ProductDetailsResponse>>()
+    val product: LiveData<NetworkResult<ProductDetailsResponse>> = _product
 
-    private val _cartActionState = MutableLiveData<NetworkResult<CartItemResponse>>()
-    val cartActionState: LiveData<NetworkResult<CartItemResponse>> = _cartActionState
+    private val _addToCartState = MutableLiveData<NetworkResult<CartItemResponse>>()
+    val addToCartState: LiveData<NetworkResult<CartItemResponse>> = _addToCartState
 
     fun loadProduct(id: Long) {
         viewModelScope.launch {
-            _productState.value = NetworkResult.Loading
-            _productState.value = productRepository.getProductById(id)
+            _product.value = NetworkResult.Loading
+            _product.value = productRepository.getProductById(id)
         }
     }
 
     fun addToCart(productId: Long) {
         viewModelScope.launch {
-            _cartActionState.value = NetworkResult.Loading
-            _cartActionState.value = cartRepository.addToCart(productId)
+            _addToCartState.value = NetworkResult.Loading
+
+            val result = cartRepository.addToCart(productId)
+
+            _addToCartState.value = result
         }
     }
 }

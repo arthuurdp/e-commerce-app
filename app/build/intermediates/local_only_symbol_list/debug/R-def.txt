@@ -31,9 +31,12 @@ color white
 drawable banner_1
 drawable banner_2
 drawable banner_3
+drawable bg_badge
+drawable bg_bottom_fade
 drawable bg_circle_purple_light
 drawable bg_dot_active
 drawable bg_dot_inactive
+drawable bg_rounded
 drawable bg_search
 drawable bg_social_button
 drawable female
@@ -50,10 +53,12 @@ drawable ic_password
 drawable ic_pencil
 drawable ic_search
 drawable ic_user
+drawable ic_verify_email
 drawable img_forgot_password
 drawable img_forgot_password_enter_code
 drawable login_image
 drawable male
+drawable scrim_top
 drawable spinner_background
 drawable undraw_leave_a_review_uj9v
 font poppins
@@ -73,6 +78,7 @@ id action_loginFragment_to_forgotPasswordFragment
 id action_loginFragment_to_homeFragment
 id action_loginFragment_to_registerFragment
 id action_ordersFragment_to_orderDetailFragment
+id action_productDetailFragment_to_cartFragment
 id action_profileFragment_to_addressListFragment
 id action_profileFragment_to_editProfileFragment
 id action_profileFragment_to_loginFragment
@@ -91,6 +97,8 @@ id admin_nav_graph
 id app_bar
 id bottom_nav_admin
 id bottom_nav_customer
+id btnCancel
+id btnConfirm
 id btn_add_to_cart
 id btn_addresses
 id btn_back
@@ -152,6 +160,7 @@ id fab_add_product
 id forgotPasswordFragment
 id homeFragment
 id iv_avatar
+id iv_back
 id iv_banner
 id iv_cart
 id iv_illustration
@@ -207,12 +216,11 @@ id tv_address_city
 id tv_address_name
 id tv_address_street
 id tv_browse_categories
-id tv_categories
+id tv_category
 id tv_category_name
 id tv_city
 id tv_date
 id tv_description
-id tv_dimensions
 id tv_email
 id tv_empty
 id tv_empty_cart
@@ -224,6 +232,7 @@ id tv_login
 id tv_name
 id tv_order_id
 id tv_price
+id tv_price_old
 id tv_product_name
 id tv_product_price
 id tv_qty
@@ -231,6 +240,7 @@ id tv_quantity
 id tv_register
 id tv_role
 id tv_status
+id tv_stock
 id tv_subtitle
 id tv_subtotal
 id tv_title
@@ -240,7 +250,9 @@ id tv_total_products
 id tv_total_users
 id tv_unit_price
 id vp_banner
+id vp_product_images
 layout activity_main
+layout dialog_verify_email
 layout fragment_add_address
 layout fragment_address_list
 layout fragment_admin_categories

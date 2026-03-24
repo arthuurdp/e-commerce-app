@@ -24,8 +24,8 @@ data class RegisterRequest(
     val password: String,
     val cpf: String,
     val phone: String,
-    val birthDate: String,       // "yyyy-MM-dd"
-    val gender: String           // "MALE" | "FEMALE" | "OTHER"
+    val birthDate: String,
+    val gender: String
 )
 
 data class RegisterResponse(

@@ -13,7 +13,7 @@
     <color name="light_purple_bg">#F3F0FF</color>
     <color name="red">#B00020</color>
 
-    <color name="chip_background_unselected">#2D2D2D</color>
+    <color name="chip_background_unselected"></color>
     <color name="chip_text_unselected">#FFFFFF</color>
 
 
