@@ -14,7 +14,7 @@
     <string name="already_have_account">Already have an account?</string>
 
     <!-- Forgot Password -->
-    <string name="forgot_password_subtitle">Please enter the code that was sent to %1$s. The code expires in 15 minutes.</string>
+    <string name="forgot_password_subtitle">Please enter the code that was sent to %1$s. The code expires in 5 minutes.</string>
 
     <!-- Product -->
     <string name="add_to_cart">Add to Cart</string>

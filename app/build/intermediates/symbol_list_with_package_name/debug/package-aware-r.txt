@@ -3124,6 +3124,7 @@ drawable ic_search
 drawable ic_search_black_24
 drawable ic_user
 drawable ic_verify_email
+drawable img_empty_cart
 drawable img_forgot_password
 drawable img_forgot_password_enter_code
 drawable login_image
@@ -3504,6 +3505,7 @@ id floating
 id forever
 id forgotPasswordFragment
 id fragment_container_view_tag
+id frameLayout
 id frost
 id fullscreen_header
 id ghost_view
@@ -3869,7 +3871,6 @@ id tv_login
 id tv_name
 id tv_order_id
 id tv_price
-id tv_price_old
 id tv_product_name
 id tv_product_price
 id tv_qty

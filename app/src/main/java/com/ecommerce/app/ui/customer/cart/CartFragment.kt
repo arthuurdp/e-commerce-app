@@ -38,6 +38,10 @@ class CartFragment : Fragment() {
         setupRecyclerView()
         observeCart()
 
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         binding.btnCheckout.setOnClickListener {
             findNavController().navigate(R.id.action_cartFragment_to_checkoutFragment)
         }

@@ -30,10 +30,9 @@ class CartViewModel @Inject constructor(
         viewModelScope.launch {
             val result = cartRepository.addToCart(productId)
             if (result is NetworkResult.Error) {
-                // Re-expose error but keep existing cart data visible
                 _cartState.value = NetworkResult.Error(result.message)
             } else {
-                loadCart() // Refresh full cart after change
+                loadCart()
             }
         }
     }

@@ -54,6 +54,7 @@ drawable ic_pencil
 drawable ic_search
 drawable ic_user
 drawable ic_verify_email
+drawable img_empty_cart
 drawable img_forgot_password
 drawable img_forgot_password_enter_code
 drawable login_image
@@ -158,6 +159,7 @@ id fab_add_address
 id fab_add_category
 id fab_add_product
 id forgotPasswordFragment
+id frameLayout
 id homeFragment
 id iv_avatar
 id iv_back
@@ -232,7 +234,6 @@ id tv_login
 id tv_name
 id tv_order_id
 id tv_price
-id tv_price_old
 id tv_product_name
 id tv_product_price
 id tv_qty

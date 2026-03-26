@@ -24,20 +24,16 @@
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_admin_orders.xml"
     },
     {
-        "merged": "com.ecommerce.app-mergeDebugResources-53:/layout/fragment_home.xml",
-        "source": "com.ecommerce.app-main-56:/layout/fragment_home.xml"
-    },
-    {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_order_detail.xml",
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_order_detail.xml"
     },
     {
-        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_forgot_password_reset_password.xml",
-        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_forgot_password_reset_password.xml"
-    },
-    {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\dialog_verify_email.xml",
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\dialog_verify_email.xml"
+    },
+    {
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_forgot_password_reset_password.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_forgot_password_reset_password.xml"
     },
     {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_home.xml",
@@ -134,6 +130,10 @@
     {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\item_cart.xml",
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\item_cart.xml"
+    },
+    {
+        "merged": "com.ecommerce.app-mergeDebugResources-53:/layout/fragment_product_detail.xml",
+        "source": "com.ecommerce.app-main-56:/layout/fragment_product_detail.xml"
     },
     {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\item_user.xml",
