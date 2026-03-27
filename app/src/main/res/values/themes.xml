@@ -5,22 +5,41 @@
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/primary_dark</item>
         <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/black</item>
 
-        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondary">@color/primary_dark</item>
         <item name="colorOnSecondary">@color/white</item>
 
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/black</item>
+        <item name="colorOnSurfaceVariant">@color/gray</item>
+
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorError">@color/error</item>
+
         <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
 
         <item name="android:fontFamily">@font/poppins</item>
         <item name="fontFamily">@font/poppins</item>
 
-        <item name="bottomNavigationStyle">@style/BottomNavStyle</item>
+        <item name="bottomNavigationStyle">@style/App.BottomNav</item>
+        <item name="chipStyle">@style/App.Chip</item>
     </style>
 
-    <style name="BottomNavStyle" parent="Widget.MaterialComponents.BottomNavigationView">
-        <item name="itemIconTint">@color/purple</item>
-        <item name="itemTextColor">@color/light_purple_bg</item>
+    <style name="App.BottomNav" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemIconTint">@color/nav_item_tint</item>
+        <item name="itemTextColor">@color/nav_item_tint</item>
+        <item name="android:background">@color/surface</item>
         <item name="elevation">8dp</item>
+    </style>
+
+    <style name="App.Chip" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/chip_background</item>
+        <item name="android:textColor">@color/chip_text</item>
+        <item name="chipCornerRadius">20dp</item>
+        <item name="chipStrokeWidth">0dp</item>
     </style>
 
 </resources>
