@@ -1,6 +1,6 @@
 package com.ecommerce.app.data.repository;
 
-import com.ecommerce.app.data.api.ApiService;
+import com.ecommerce.app.data.api.ProductApiService;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.QualifierMetadata;
@@ -8,7 +8,7 @@ import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
 import javax.inject.Provider;
 
-@ScopeMetadata("javax.inject.Singleton")
+@ScopeMetadata
 @QualifierMetadata
 @DaggerGenerated
 @Generated(
@@ -22,9 +22,9 @@ import javax.inject.Provider;
     "KotlinInternalInJava"
 })
 public final class ProductRepository_Factory implements Factory<ProductRepository> {
-  private final Provider<ApiService> apiProvider;
+  private final Provider<ProductApiService> apiProvider;
 
-  public ProductRepository_Factory(Provider<ApiService> apiProvider) {
+  public ProductRepository_Factory(Provider<ProductApiService> apiProvider) {
     this.apiProvider = apiProvider;
   }
 
@@ -33,11 +33,11 @@ public final class ProductRepository_Factory implements Factory<ProductRepositor
     return newInstance(apiProvider.get());
   }
 
-  public static ProductRepository_Factory create(Provider<ApiService> apiProvider) {
+  public static ProductRepository_Factory create(Provider<ProductApiService> apiProvider) {
     return new ProductRepository_Factory(apiProvider);
   }
 
-  public static ProductRepository newInstance(ApiService api) {
+  public static ProductRepository newInstance(ProductApiService api) {
     return new ProductRepository(api);
   }
 }

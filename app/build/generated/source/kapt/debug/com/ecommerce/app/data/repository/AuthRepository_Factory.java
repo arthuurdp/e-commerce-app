@@ -1,6 +1,6 @@
 package com.ecommerce.app.data.repository;
 
-import com.ecommerce.app.data.api.ApiService;
+import com.ecommerce.app.data.api.AuthApiService;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.QualifierMetadata;
@@ -22,9 +22,9 @@ import javax.inject.Provider;
     "KotlinInternalInJava"
 })
 public final class AuthRepository_Factory implements Factory<AuthRepository> {
-  private final Provider<ApiService> apiProvider;
+  private final Provider<AuthApiService> apiProvider;
 
-  public AuthRepository_Factory(Provider<ApiService> apiProvider) {
+  public AuthRepository_Factory(Provider<AuthApiService> apiProvider) {
     this.apiProvider = apiProvider;
   }
 
@@ -33,11 +33,11 @@ public final class AuthRepository_Factory implements Factory<AuthRepository> {
     return newInstance(apiProvider.get());
   }
 
-  public static AuthRepository_Factory create(Provider<ApiService> apiProvider) {
+  public static AuthRepository_Factory create(Provider<AuthApiService> apiProvider) {
     return new AuthRepository_Factory(apiProvider);
   }
 
-  public static AuthRepository newInstance(ApiService api) {
+  public static AuthRepository newInstance(AuthApiService api) {
     return new AuthRepository(api);
   }
 }

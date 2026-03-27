@@ -5,9 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
-import com.ecommerce.app.databinding.FragmentEditProfileBinding;
 import com.ecommerce.app.databinding.FragmentSecurityBinding;
-import com.ecommerce.app.util.NetworkResult;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @dagger.hilt.android.AndroidEntryPoint()

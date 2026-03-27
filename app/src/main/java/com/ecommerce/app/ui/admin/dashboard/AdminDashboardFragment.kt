@@ -16,7 +16,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class AdminDashboardFragment : Fragment() {
-
     private var _binding: FragmentAdminDashboardBinding? = null
     private val binding get() = _binding!!
     private val viewModel: AdminDashboardViewModel by viewModels()

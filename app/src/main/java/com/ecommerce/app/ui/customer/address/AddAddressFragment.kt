@@ -27,31 +27,7 @@ import javax.inject.Inject
 
 // ── ViewModel ─────────────────────────────────────────────────────────────────
 
-@HiltViewModel
-class AddAddressViewModel @Inject constructor(
-    private val addressRepository: AddressRepository
-) : ViewModel() {
 
-    private val _cepState = MutableLiveData<NetworkResult<CepLookupResponse>>()
-    val cepState: LiveData<NetworkResult<CepLookupResponse>> = _cepState
-
-    private val _saveState = MutableLiveData<NetworkResult<*>>()
-    val saveState: LiveData<NetworkResult<*>> = _saveState
-
-    fun lookupCep(cep: String) {
-        viewModelScope.launch {
-            _cepState.value = NetworkResult.Loading
-            _cepState.value = addressRepository.lookupCep(cep)
-        }
-    }
-
-    fun saveAddress(request: CreateAddressRequest) {
-        viewModelScope.launch {
-            _saveState.value = NetworkResult.Loading
-            _saveState.value = addressRepository.createAddress(request)
-        }
-    }
-}
 
 // ── Fragment ──────────────────────────────────────────────────────────────────
 

@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import com.ecommerce.app.R;
 import com.ecommerce.app.databinding.FragmentLoginBinding;
 import com.ecommerce.app.util.NetworkResult;
-import com.ecommerce.app.util.SuccessDialogFragment;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @dagger.hilt.android.AndroidEntryPoint()

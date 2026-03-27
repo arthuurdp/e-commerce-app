@@ -277,6 +277,7 @@ layout fragment_profile
 layout fragment_register
 layout fragment_security
 layout fragment_success_dialog
+layout fragment_verify_email
 layout item_address
 layout item_banner
 layout item_cart

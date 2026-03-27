@@ -76,6 +76,10 @@
         "source": "com.ecommerce.app-main-56:/layout/item_address.xml"
     },
     {
+        "merged": "com.ecommerce.app-merged_res-54:/layout_fragment_verify_email.xml.flat",
+        "source": "com.ecommerce.app-main-56:/layout/fragment_verify_email.xml"
+    },
+    {
         "merged": "com.ecommerce.app-merged_res-54:/layout_fragment_admin_edit_product.xml.flat",
         "source": "com.ecommerce.app-main-56:/layout/fragment_admin_edit_product.xml"
     },

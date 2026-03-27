@@ -1,6 +1,6 @@
 package com.ecommerce.app.data.repository;
 
-import com.ecommerce.app.data.api.ApiService;
+import com.ecommerce.app.data.api.OrderApiService;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.QualifierMetadata;
@@ -8,7 +8,7 @@ import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
 import javax.inject.Provider;
 
-@ScopeMetadata("javax.inject.Singleton")
+@ScopeMetadata
 @QualifierMetadata
 @DaggerGenerated
 @Generated(
@@ -22,9 +22,9 @@ import javax.inject.Provider;
     "KotlinInternalInJava"
 })
 public final class OrderRepository_Factory implements Factory<OrderRepository> {
-  private final Provider<ApiService> apiProvider;
+  private final Provider<OrderApiService> apiProvider;
 
-  public OrderRepository_Factory(Provider<ApiService> apiProvider) {
+  public OrderRepository_Factory(Provider<OrderApiService> apiProvider) {
     this.apiProvider = apiProvider;
   }
 
@@ -33,11 +33,11 @@ public final class OrderRepository_Factory implements Factory<OrderRepository> {
     return newInstance(apiProvider.get());
   }
 
-  public static OrderRepository_Factory create(Provider<ApiService> apiProvider) {
+  public static OrderRepository_Factory create(Provider<OrderApiService> apiProvider) {
     return new OrderRepository_Factory(apiProvider);
   }
 
-  public static OrderRepository newInstance(ApiService api) {
+  public static OrderRepository newInstance(OrderApiService api) {
     return new OrderRepository(api);
   }
 }

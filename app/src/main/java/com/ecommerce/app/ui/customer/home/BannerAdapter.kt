@@ -1,6 +1,5 @@
 package com.ecommerce.app.ui.customer.home
 
-import android.R.attr.onClick
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.DrawableRes

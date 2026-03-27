@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.ecommerce.app.data.model.CreateProductRequest
-import com.ecommerce.app.data.model.UpdateProductRequest
+import com.ecommerce.app.data.model.product.CreateProductRequest
+import com.ecommerce.app.data.model.product.UpdateProductRequest
 import com.ecommerce.app.databinding.FragmentAdminEditProductBinding
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hide

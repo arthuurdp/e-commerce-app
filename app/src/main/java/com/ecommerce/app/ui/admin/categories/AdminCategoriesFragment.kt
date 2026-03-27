@@ -9,9 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.ecommerce.app.data.model.CategoryResponse
-import com.ecommerce.app.data.model.PageResponse
-import com.ecommerce.app.data.repository.CategoryRepository
+import com.ecommerce.app.data.model.category.CategoryResponse
 import com.ecommerce.app.databinding.FragmentAdminCategoriesBinding
 import com.ecommerce.app.databinding.ItemCategoryBinding
 import com.ecommerce.app.util.NetworkResult
@@ -19,51 +17,10 @@ import com.ecommerce.app.util.hide
 import com.ecommerce.app.util.show
 import com.ecommerce.app.util.showToast
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
-import javax.inject.Inject
-
-@HiltViewModel
-class AdminCategoriesViewModel @Inject constructor(
-    private val categoryRepository: CategoryRepository
-) : ViewModel() {
-
-    private val _state = MutableLiveData<NetworkResult<PageResponse<CategoryResponse>>>()
-    val state: LiveData<NetworkResult<PageResponse<CategoryResponse>>> = _state
-
-    private val _actionState = MutableLiveData<NetworkResult<*>>()
-    val actionState: LiveData<NetworkResult<*>> = _actionState
-
-    fun load() {
-        viewModelScope.launch {
-            _state.value = NetworkResult.Loading
-            _state.value = categoryRepository.getCategories()
-        }
-    }
-
-    fun create(name: String) {
-        viewModelScope.launch {
-            _actionState.value = NetworkResult.Loading
-            _actionState.value = categoryRepository.createCategory(name)
-        }
-    }
-
-    fun delete(id: Long) {
-        viewModelScope.launch {
-            _actionState.value = NetworkResult.Loading
-            _actionState.value = categoryRepository.deleteCategory(id)
-        }
-    }
-}
 
 @AndroidEntryPoint
 class AdminCategoriesFragment : Fragment() {
-
     private var _binding: FragmentAdminCategoriesBinding? = null
     private val binding get() = _binding!!
     private val viewModel: AdminCategoriesViewModel by viewModels()
@@ -124,25 +81,4 @@ class AdminCategoriesFragment : Fragment() {
     }
 
     override fun onDestroyView() { super.onDestroyView(); _binding = null }
-}
-
-class CategoryAdapter(
-    private val onDelete: (CategoryResponse) -> Unit
-) : ListAdapter<CategoryResponse, CategoryAdapter.VH>(Diff) {
-
-    inner class VH(val binding: ItemCategoryBinding) : RecyclerView.ViewHolder(binding.root)
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        VH(ItemCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false))
-
-    override fun onBindViewHolder(holder: VH, position: Int) {
-        val cat = getItem(position)
-        holder.binding.tvCategoryName.text = cat.name
-        holder.binding.btnDelete.setOnClickListener { onDelete(cat) }
-    }
-
-    object Diff : DiffUtil.ItemCallback<CategoryResponse>() {
-        override fun areItemsTheSame(a: CategoryResponse, b: CategoryResponse) = a.id == b.id
-        override fun areContentsTheSame(a: CategoryResponse, b: CategoryResponse) = a == b
-    }
 }

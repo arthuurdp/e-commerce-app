@@ -1,8 +1,6 @@
 package com.ecommerce.app.ui.customer.home
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,9 +18,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.ecommerce.app.R
+import com.ecommerce.app.data.model.category.CategoryResponse
+import com.ecommerce.app.data.model.product.ProductResponse
 import com.ecommerce.app.databinding.FragmentHomeBinding
-import com.ecommerce.app.data.model.CategoryResponse
-import com.ecommerce.app.data.model.ProductResponse
 import com.ecommerce.app.ui.customer.products.ProductAdapter
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hide
@@ -34,7 +32,6 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
-
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val viewModel: HomeViewModel by viewModels()

@@ -21,7 +21,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         // For the Android emulator pointing at localhost:
-        buildConfigField "String", "BASE_URL", "\"http://192.168.200.114:8080/\""
+        buildConfigField "String", "BASE_URL", "\"http://192.168.18.61:8080/\""
     }
 
     buildTypes {

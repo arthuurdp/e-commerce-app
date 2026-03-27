@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.ecommerce.app.data.model.auth.LoginRequest
 import com.ecommerce.app.data.model.auth.RegisterRequest
 import com.ecommerce.app.data.repository.AuthRepository
+import com.ecommerce.app.data.repository.EmailRepository
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.TokenManager
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,9 +17,9 @@ import javax.inject.Inject
 @HiltViewModel
 class AuthViewModel @Inject constructor(
     private val authRepository: AuthRepository,
+    private val emailRepository: EmailRepository,
     private val tokenManager: TokenManager
 ) : ViewModel() {
-
     private val _loginState = MutableLiveData<NetworkResult<Unit>>()
     val loginState: LiveData<NetworkResult<Unit>> = _loginState
 
@@ -61,7 +62,31 @@ class AuthViewModel @Inject constructor(
             val result = authRepository.register(request)
             when (result) {
                 is NetworkResult.Success -> _registerState.value = NetworkResult.Success(Unit)
-                is NetworkResult.Error   -> _registerState.value = result
+                is NetworkResult.Error -> _registerState.value = result
+                is NetworkResult.Loading -> Unit
+            }
+        }
+    }
+
+    fun forgotPassword(email: String) {
+        viewModelScope.launch {
+            _forgotPasswordState.value = NetworkResult.Loading
+            val result = emailRepository.forgotPassword(email)
+            when (result) {
+                is NetworkResult.Success -> _forgotPasswordState.value = NetworkResult.Success(result.data["message"] ?: "")
+                is NetworkResult.Error -> _forgotPasswordState.value = result
+                is NetworkResult.Loading -> Unit
+            }
+        }
+    }
+
+    fun verifyResetCode(code: String) {
+        viewModelScope.launch {
+            _verifyResetCodeState.value = NetworkResult.Loading
+            val result = emailRepository.verifyResetCode(code)
+            when (result) {
+                is NetworkResult.Success -> _verifyResetCodeState.value = NetworkResult.Success(result.data["message"] ?: "")
+                is NetworkResult.Error -> _verifyResetCodeState.value = result
                 is NetworkResult.Loading -> Unit
             }
         }

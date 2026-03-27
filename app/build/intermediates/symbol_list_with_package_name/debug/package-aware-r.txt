@@ -4068,6 +4068,7 @@ layout fragment_profile
 layout fragment_register
 layout fragment_security
 layout fragment_success_dialog
+layout fragment_verify_email
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
 layout item_address

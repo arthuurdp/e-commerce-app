@@ -15,8 +15,6 @@ import com.ecommerce.app.util.show
 import com.ecommerce.app.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
-// ── Edit Profile ──────────────────────────────────────────────────────────────
-
 @AndroidEntryPoint
 class EditProfileFragment : Fragment() {
 
@@ -63,44 +61,6 @@ class EditProfileFragment : Fragment() {
                 lastName  = binding.etLastName.text.toString().trim().ifEmpty { null },
                 phone     = binding.etPhone.text.toString().trim().ifEmpty { null }
             )
-        }
-    }
-
-    override fun onDestroyView() { super.onDestroyView(); _binding = null }
-}
-
-// ── Security ──────────────────────────────────────────────────────────────────
-
-@AndroidEntryPoint
-class SecurityFragment : Fragment() {
-
-    private var _binding: FragmentSecurityBinding? = null
-    private val binding get() = _binding!!
-    private val viewModel: ProfileViewModel by viewModels()
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = FragmentSecurityBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        // Password change is a two-step flow: request code → confirm with code
-        // Step 1
-        binding.btnRequestCode.setOnClickListener {
-            val newPwd = binding.etNewPassword.text.toString()
-            if (newPwd.isEmpty()) { showToast("Enter new password"); return@setOnClickListener }
-            // TODO: call userRepository.requestPasswordChange(newPwd)
-            showToast("Code sent to your email!")
-            binding.layoutConfirm.show()
-        }
-        // Step 2
-        binding.btnConfirm.setOnClickListener {
-            val code = binding.etCode.text.toString().trim()
-            if (code.isEmpty()) { showToast("Enter the code"); return@setOnClickListener }
-            // TODO: call userRepository.confirmPasswordChange(code)
-            showToast("Password changed!")
-            findNavController().navigateUp()
         }
     }
 

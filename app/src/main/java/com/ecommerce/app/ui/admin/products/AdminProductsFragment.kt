@@ -19,7 +19,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class AdminProductsFragment : Fragment() {
-
     private var _binding: FragmentAdminProductsBinding? = null
     private val binding get() = _binding!!
     private val viewModel: AdminProductsViewModel by viewModels()

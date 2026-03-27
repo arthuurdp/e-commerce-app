@@ -1,5 +1,6 @@
 package com.ecommerce.app.ui.customer.profile;
 
+import com.ecommerce.app.data.repository.EmailRepository;
 import com.ecommerce.app.data.repository.UserRepository;
 import com.ecommerce.app.util.TokenManager;
 import dagger.internal.DaggerGenerated;
@@ -25,26 +26,31 @@ import javax.inject.Provider;
 public final class ProfileViewModel_Factory implements Factory<ProfileViewModel> {
   private final Provider<UserRepository> userRepositoryProvider;
 
+  private final Provider<EmailRepository> emailRepositoryProvider;
+
   private final Provider<TokenManager> tokenManagerProvider;
 
   public ProfileViewModel_Factory(Provider<UserRepository> userRepositoryProvider,
+      Provider<EmailRepository> emailRepositoryProvider,
       Provider<TokenManager> tokenManagerProvider) {
     this.userRepositoryProvider = userRepositoryProvider;
+    this.emailRepositoryProvider = emailRepositoryProvider;
     this.tokenManagerProvider = tokenManagerProvider;
   }
 
   @Override
   public ProfileViewModel get() {
-    return newInstance(userRepositoryProvider.get(), tokenManagerProvider.get());
+    return newInstance(userRepositoryProvider.get(), emailRepositoryProvider.get(), tokenManagerProvider.get());
   }
 
   public static ProfileViewModel_Factory create(Provider<UserRepository> userRepositoryProvider,
+      Provider<EmailRepository> emailRepositoryProvider,
       Provider<TokenManager> tokenManagerProvider) {
-    return new ProfileViewModel_Factory(userRepositoryProvider, tokenManagerProvider);
+    return new ProfileViewModel_Factory(userRepositoryProvider, emailRepositoryProvider, tokenManagerProvider);
   }
 
   public static ProfileViewModel newInstance(UserRepository userRepository,
-      TokenManager tokenManager) {
-    return new ProfileViewModel(userRepository, tokenManager);
+      EmailRepository emailRepository, TokenManager tokenManager) {
+    return new ProfileViewModel(userRepository, emailRepository, tokenManager);
   }
 }

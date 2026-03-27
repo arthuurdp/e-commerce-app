@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import androidx.fragment.app.Fragment;
 import com.ecommerce.app.R;
-import com.ecommerce.app.data.model.RegisterRequest;
+import com.ecommerce.app.data.model.auth.RegisterRequest;
 import com.ecommerce.app.databinding.FragmentRegisterBinding;
 import com.ecommerce.app.util.MaskWatcher;
 import com.ecommerce.app.util.NetworkResult;

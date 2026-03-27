@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ecommerce.app.data.model.CheckoutRequest
-import com.ecommerce.app.data.model.CheckoutResponse
-import com.ecommerce.app.data.model.PageResponse
-import com.ecommerce.app.data.model.AddressResponse
+import com.ecommerce.app.data.model.address.AddressResponse
+import com.ecommerce.app.data.model.order.CheckoutRequest
+import com.ecommerce.app.data.model.order.CheckoutResponse
+import com.ecommerce.app.data.model.util.PageResponse
 import com.ecommerce.app.data.repository.AddressRepository
 import com.ecommerce.app.data.repository.OrderRepository
 import com.ecommerce.app.util.NetworkResult

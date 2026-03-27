@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ecommerce.app.R
-import com.ecommerce.app.data.model.CartItemResponse
+import com.ecommerce.app.data.model.cart.CartItemResponse
 import com.ecommerce.app.databinding.ItemCartBinding
 import com.ecommerce.app.util.toCurrency
 

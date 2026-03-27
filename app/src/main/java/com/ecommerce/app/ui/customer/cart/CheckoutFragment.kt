@@ -8,8 +8,8 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.ecommerce.app.data.model.AddressResponse
-import com.ecommerce.app.data.model.CheckoutRequest
+import com.ecommerce.app.data.model.address.AddressResponse
+import com.ecommerce.app.data.model.order.CheckoutRequest
 import com.ecommerce.app.databinding.FragmentCheckoutBinding
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hide

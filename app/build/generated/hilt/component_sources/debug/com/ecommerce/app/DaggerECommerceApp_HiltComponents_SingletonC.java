@@ -6,19 +6,34 @@ import android.view.View;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
-import com.ecommerce.app.data.api.ApiService;
+import com.ecommerce.app.data.api.AddressApiService;
+import com.ecommerce.app.data.api.AuthApiService;
 import com.ecommerce.app.data.api.AuthInterceptor;
+import com.ecommerce.app.data.api.CartApiService;
+import com.ecommerce.app.data.api.CategoryApiService;
+import com.ecommerce.app.data.api.EmailApiService;
+import com.ecommerce.app.data.api.OrderApiService;
+import com.ecommerce.app.data.api.ProductApiService;
+import com.ecommerce.app.data.api.UserApiService;
 import com.ecommerce.app.data.repository.AddressRepository;
 import com.ecommerce.app.data.repository.AuthRepository;
 import com.ecommerce.app.data.repository.CartRepository;
 import com.ecommerce.app.data.repository.CategoryRepository;
+import com.ecommerce.app.data.repository.EmailRepository;
 import com.ecommerce.app.data.repository.OrderRepository;
 import com.ecommerce.app.data.repository.ProductRepository;
 import com.ecommerce.app.data.repository.UserRepository;
-import com.ecommerce.app.di.NetworkModule_ProvideApiServiceFactory;
+import com.ecommerce.app.di.NetworkModule_ProvideAddressApiServiceFactory;
+import com.ecommerce.app.di.NetworkModule_ProvideAuthApiServiceFactory;
+import com.ecommerce.app.di.NetworkModule_ProvideCartApiServiceFactory;
+import com.ecommerce.app.di.NetworkModule_ProvideCategoryApiServiceFactory;
+import com.ecommerce.app.di.NetworkModule_ProvideEmailApiServiceFactory;
 import com.ecommerce.app.di.NetworkModule_ProvideLoggingInterceptorFactory;
 import com.ecommerce.app.di.NetworkModule_ProvideOkHttpClientFactory;
+import com.ecommerce.app.di.NetworkModule_ProvideOrderApiServiceFactory;
+import com.ecommerce.app.di.NetworkModule_ProvideProductApiServiceFactory;
 import com.ecommerce.app.di.NetworkModule_ProvideRetrofitFactory;
+import com.ecommerce.app.di.NetworkModule_ProvideUserApiServiceFactory;
 import com.ecommerce.app.ui.MainActivity;
 import com.ecommerce.app.ui.MainViewModel;
 import com.ecommerce.app.ui.MainViewModel_HiltModules_KeyModule_ProvideFactory;
@@ -592,6 +607,30 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
 
     }
 
+    private AddressRepository addressRepository() {
+      return new AddressRepository(singletonCImpl.provideAddressApiServiceProvider.get());
+    }
+
+    private CategoryRepository categoryRepository() {
+      return new CategoryRepository(singletonCImpl.provideCategoryApiServiceProvider.get());
+    }
+
+    private ProductRepository productRepository() {
+      return new ProductRepository(singletonCImpl.provideProductApiServiceProvider.get());
+    }
+
+    private OrderRepository orderRepository() {
+      return new OrderRepository(singletonCImpl.provideOrderApiServiceProvider.get());
+    }
+
+    private UserRepository userRepository() {
+      return new UserRepository(singletonCImpl.provideUserApiServiceProvider.get());
+    }
+
+    private CartRepository cartRepository() {
+      return new CartRepository(singletonCImpl.provideCartApiServiceProvider.get());
+    }
+
     @SuppressWarnings("unchecked")
     private void initialize(final SavedStateHandle savedStateHandleParam,
         final ViewModelLifecycle viewModelLifecycleParam) {
@@ -645,52 +684,52 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
       public T get() {
         switch (id) {
           case 0: // com.ecommerce.app.ui.customer.address.AddAddressViewModel 
-          return (T) new AddAddressViewModel(singletonCImpl.addressRepositoryProvider.get());
+          return (T) new AddAddressViewModel(viewModelCImpl.addressRepository());
 
           case 1: // com.ecommerce.app.ui.customer.address.AddressViewModel 
-          return (T) new AddressViewModel(singletonCImpl.addressRepositoryProvider.get());
+          return (T) new AddressViewModel(viewModelCImpl.addressRepository());
 
           case 2: // com.ecommerce.app.ui.admin.categories.AdminCategoriesViewModel 
-          return (T) new AdminCategoriesViewModel(singletonCImpl.categoryRepositoryProvider.get());
+          return (T) new AdminCategoriesViewModel(viewModelCImpl.categoryRepository());
 
           case 3: // com.ecommerce.app.ui.admin.dashboard.AdminDashboardViewModel 
-          return (T) new AdminDashboardViewModel(singletonCImpl.productRepositoryProvider.get(), singletonCImpl.orderRepositoryProvider.get(), singletonCImpl.userRepositoryProvider.get());
+          return (T) new AdminDashboardViewModel(viewModelCImpl.productRepository(), viewModelCImpl.orderRepository(), viewModelCImpl.userRepository());
 
           case 4: // com.ecommerce.app.ui.admin.orders.AdminOrdersViewModel 
-          return (T) new AdminOrdersViewModel(singletonCImpl.orderRepositoryProvider.get());
+          return (T) new AdminOrdersViewModel(viewModelCImpl.orderRepository());
 
           case 5: // com.ecommerce.app.ui.admin.products.AdminProductsViewModel 
-          return (T) new AdminProductsViewModel(singletonCImpl.productRepositoryProvider.get());
+          return (T) new AdminProductsViewModel(viewModelCImpl.productRepository());
 
           case 6: // com.ecommerce.app.ui.admin.users.AdminUsersViewModel 
-          return (T) new AdminUsersViewModel(singletonCImpl.userRepositoryProvider.get());
+          return (T) new AdminUsersViewModel(viewModelCImpl.userRepository());
 
           case 7: // com.ecommerce.app.ui.auth.AuthViewModel 
-          return (T) new AuthViewModel(singletonCImpl.authRepositoryProvider.get(), singletonCImpl.tokenManagerProvider.get());
+          return (T) new AuthViewModel(singletonCImpl.authRepositoryProvider.get(), singletonCImpl.emailRepositoryProvider.get(), singletonCImpl.tokenManagerProvider.get());
 
           case 8: // com.ecommerce.app.ui.customer.cart.CartViewModel 
-          return (T) new CartViewModel(singletonCImpl.cartRepositoryProvider.get());
+          return (T) new CartViewModel(viewModelCImpl.cartRepository());
 
           case 9: // com.ecommerce.app.ui.customer.cart.CheckoutViewModel 
-          return (T) new CheckoutViewModel(singletonCImpl.orderRepositoryProvider.get(), singletonCImpl.addressRepositoryProvider.get());
+          return (T) new CheckoutViewModel(viewModelCImpl.orderRepository(), viewModelCImpl.addressRepository());
 
           case 10: // com.ecommerce.app.ui.customer.home.HomeViewModel 
-          return (T) new HomeViewModel(singletonCImpl.productRepositoryProvider.get(), singletonCImpl.categoryRepositoryProvider.get(), singletonCImpl.userRepositoryProvider.get());
+          return (T) new HomeViewModel(viewModelCImpl.productRepository(), viewModelCImpl.categoryRepository(), viewModelCImpl.userRepository());
 
           case 11: // com.ecommerce.app.ui.MainViewModel 
           return (T) new MainViewModel(singletonCImpl.tokenManagerProvider.get());
 
           case 12: // com.ecommerce.app.ui.customer.orders.OrderDetailViewModel 
-          return (T) new OrderDetailViewModel(singletonCImpl.orderRepositoryProvider.get());
+          return (T) new OrderDetailViewModel(viewModelCImpl.orderRepository());
 
           case 13: // com.ecommerce.app.ui.customer.orders.OrdersViewModel 
-          return (T) new OrdersViewModel(singletonCImpl.orderRepositoryProvider.get());
+          return (T) new OrdersViewModel(viewModelCImpl.orderRepository());
 
           case 14: // com.ecommerce.app.ui.customer.products.ProductDetailViewModel 
-          return (T) new ProductDetailViewModel(singletonCImpl.productRepositoryProvider.get(), singletonCImpl.cartRepositoryProvider.get());
+          return (T) new ProductDetailViewModel(viewModelCImpl.productRepository(), viewModelCImpl.cartRepository());
 
           case 15: // com.ecommerce.app.ui.customer.profile.ProfileViewModel 
-          return (T) new ProfileViewModel(singletonCImpl.userRepositoryProvider.get(), singletonCImpl.tokenManagerProvider.get());
+          return (T) new ProfileViewModel(viewModelCImpl.userRepository(), singletonCImpl.emailRepositoryProvider.get(), singletonCImpl.tokenManagerProvider.get());
 
           default: throw new AssertionError(id);
         }
@@ -780,21 +819,25 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
 
     private Provider<Retrofit> provideRetrofitProvider;
 
-    private Provider<ApiService> provideApiServiceProvider;
+    private Provider<AddressApiService> provideAddressApiServiceProvider;
 
-    private Provider<AddressRepository> addressRepositoryProvider;
+    private Provider<CategoryApiService> provideCategoryApiServiceProvider;
 
-    private Provider<CategoryRepository> categoryRepositoryProvider;
+    private Provider<ProductApiService> provideProductApiServiceProvider;
 
-    private Provider<ProductRepository> productRepositoryProvider;
+    private Provider<OrderApiService> provideOrderApiServiceProvider;
 
-    private Provider<OrderRepository> orderRepositoryProvider;
+    private Provider<UserApiService> provideUserApiServiceProvider;
 
-    private Provider<UserRepository> userRepositoryProvider;
+    private Provider<AuthApiService> provideAuthApiServiceProvider;
 
     private Provider<AuthRepository> authRepositoryProvider;
 
-    private Provider<CartRepository> cartRepositoryProvider;
+    private Provider<EmailApiService> provideEmailApiServiceProvider;
+
+    private Provider<EmailRepository> emailRepositoryProvider;
+
+    private Provider<CartApiService> provideCartApiServiceProvider;
 
     private SingletonCImpl(ApplicationContextModule applicationContextModuleParam) {
       this.applicationContextModule = applicationContextModuleParam;
@@ -808,22 +851,24 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
 
     @SuppressWarnings("unchecked")
     private void initialize(final ApplicationContextModule applicationContextModuleParam) {
-      this.tokenManagerProvider = DoubleCheck.provider(new SwitchingProvider<TokenManager>(singletonCImpl, 4));
-      this.provideLoggingInterceptorProvider = DoubleCheck.provider(new SwitchingProvider<HttpLoggingInterceptor>(singletonCImpl, 5));
-      this.provideOkHttpClientProvider = DoubleCheck.provider(new SwitchingProvider<OkHttpClient>(singletonCImpl, 3));
-      this.provideRetrofitProvider = DoubleCheck.provider(new SwitchingProvider<Retrofit>(singletonCImpl, 2));
-      this.provideApiServiceProvider = DoubleCheck.provider(new SwitchingProvider<ApiService>(singletonCImpl, 1));
-      this.addressRepositoryProvider = DoubleCheck.provider(new SwitchingProvider<AddressRepository>(singletonCImpl, 0));
-      this.categoryRepositoryProvider = DoubleCheck.provider(new SwitchingProvider<CategoryRepository>(singletonCImpl, 6));
-      this.productRepositoryProvider = DoubleCheck.provider(new SwitchingProvider<ProductRepository>(singletonCImpl, 7));
-      this.orderRepositoryProvider = DoubleCheck.provider(new SwitchingProvider<OrderRepository>(singletonCImpl, 8));
-      this.userRepositoryProvider = DoubleCheck.provider(new SwitchingProvider<UserRepository>(singletonCImpl, 9));
-      this.authRepositoryProvider = DoubleCheck.provider(new SwitchingProvider<AuthRepository>(singletonCImpl, 10));
-      this.cartRepositoryProvider = DoubleCheck.provider(new SwitchingProvider<CartRepository>(singletonCImpl, 11));
+      this.tokenManagerProvider = DoubleCheck.provider(new SwitchingProvider<TokenManager>(singletonCImpl, 3));
+      this.provideLoggingInterceptorProvider = DoubleCheck.provider(new SwitchingProvider<HttpLoggingInterceptor>(singletonCImpl, 4));
+      this.provideOkHttpClientProvider = DoubleCheck.provider(new SwitchingProvider<OkHttpClient>(singletonCImpl, 2));
+      this.provideRetrofitProvider = DoubleCheck.provider(new SwitchingProvider<Retrofit>(singletonCImpl, 1));
+      this.provideAddressApiServiceProvider = DoubleCheck.provider(new SwitchingProvider<AddressApiService>(singletonCImpl, 0));
+      this.provideCategoryApiServiceProvider = DoubleCheck.provider(new SwitchingProvider<CategoryApiService>(singletonCImpl, 5));
+      this.provideProductApiServiceProvider = DoubleCheck.provider(new SwitchingProvider<ProductApiService>(singletonCImpl, 6));
+      this.provideOrderApiServiceProvider = DoubleCheck.provider(new SwitchingProvider<OrderApiService>(singletonCImpl, 7));
+      this.provideUserApiServiceProvider = DoubleCheck.provider(new SwitchingProvider<UserApiService>(singletonCImpl, 8));
+      this.provideAuthApiServiceProvider = DoubleCheck.provider(new SwitchingProvider<AuthApiService>(singletonCImpl, 10));
+      this.authRepositoryProvider = DoubleCheck.provider(new SwitchingProvider<AuthRepository>(singletonCImpl, 9));
+      this.provideEmailApiServiceProvider = DoubleCheck.provider(new SwitchingProvider<EmailApiService>(singletonCImpl, 12));
+      this.emailRepositoryProvider = DoubleCheck.provider(new SwitchingProvider<EmailRepository>(singletonCImpl, 11));
+      this.provideCartApiServiceProvider = DoubleCheck.provider(new SwitchingProvider<CartApiService>(singletonCImpl, 13));
     }
 
     @Override
-    public void injectECommerceApp(ECommerceApp arg0) {
+    public void injectECommerceApp(ECommerceApp eCommerceApp) {
     }
 
     @Override
@@ -855,41 +900,47 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
       @Override
       public T get() {
         switch (id) {
-          case 0: // com.ecommerce.app.data.repository.AddressRepository 
-          return (T) new AddressRepository(singletonCImpl.provideApiServiceProvider.get());
+          case 0: // com.ecommerce.app.data.api.AddressApiService 
+          return (T) NetworkModule_ProvideAddressApiServiceFactory.provideAddressApiService(singletonCImpl.provideRetrofitProvider.get());
 
-          case 1: // com.ecommerce.app.data.api.ApiService 
-          return (T) NetworkModule_ProvideApiServiceFactory.provideApiService(singletonCImpl.provideRetrofitProvider.get());
-
-          case 2: // retrofit2.Retrofit 
+          case 1: // retrofit2.Retrofit 
           return (T) NetworkModule_ProvideRetrofitFactory.provideRetrofit(singletonCImpl.provideOkHttpClientProvider.get());
 
-          case 3: // okhttp3.OkHttpClient 
+          case 2: // okhttp3.OkHttpClient 
           return (T) NetworkModule_ProvideOkHttpClientFactory.provideOkHttpClient(singletonCImpl.authInterceptor(), singletonCImpl.provideLoggingInterceptorProvider.get());
 
-          case 4: // com.ecommerce.app.util.TokenManager 
+          case 3: // com.ecommerce.app.util.TokenManager 
           return (T) new TokenManager(ApplicationContextModule_ProvideContextFactory.provideContext(singletonCImpl.applicationContextModule));
 
-          case 5: // okhttp3.logging.HttpLoggingInterceptor 
+          case 4: // okhttp3.logging.HttpLoggingInterceptor 
           return (T) NetworkModule_ProvideLoggingInterceptorFactory.provideLoggingInterceptor();
 
-          case 6: // com.ecommerce.app.data.repository.CategoryRepository 
-          return (T) new CategoryRepository(singletonCImpl.provideApiServiceProvider.get());
+          case 5: // com.ecommerce.app.data.api.CategoryApiService 
+          return (T) NetworkModule_ProvideCategoryApiServiceFactory.provideCategoryApiService(singletonCImpl.provideRetrofitProvider.get());
 
-          case 7: // com.ecommerce.app.data.repository.ProductRepository 
-          return (T) new ProductRepository(singletonCImpl.provideApiServiceProvider.get());
+          case 6: // com.ecommerce.app.data.api.ProductApiService 
+          return (T) NetworkModule_ProvideProductApiServiceFactory.provideProductApiService(singletonCImpl.provideRetrofitProvider.get());
 
-          case 8: // com.ecommerce.app.data.repository.OrderRepository 
-          return (T) new OrderRepository(singletonCImpl.provideApiServiceProvider.get());
+          case 7: // com.ecommerce.app.data.api.OrderApiService 
+          return (T) NetworkModule_ProvideOrderApiServiceFactory.provideOrderApiService(singletonCImpl.provideRetrofitProvider.get());
 
-          case 9: // com.ecommerce.app.data.repository.UserRepository 
-          return (T) new UserRepository(singletonCImpl.provideApiServiceProvider.get());
+          case 8: // com.ecommerce.app.data.api.UserApiService 
+          return (T) NetworkModule_ProvideUserApiServiceFactory.provideUserApiService(singletonCImpl.provideRetrofitProvider.get());
 
-          case 10: // com.ecommerce.app.data.repository.AuthRepository 
-          return (T) new AuthRepository(singletonCImpl.provideApiServiceProvider.get());
+          case 9: // com.ecommerce.app.data.repository.AuthRepository 
+          return (T) new AuthRepository(singletonCImpl.provideAuthApiServiceProvider.get());
 
-          case 11: // com.ecommerce.app.data.repository.CartRepository 
-          return (T) new CartRepository(singletonCImpl.provideApiServiceProvider.get());
+          case 10: // com.ecommerce.app.data.api.AuthApiService 
+          return (T) NetworkModule_ProvideAuthApiServiceFactory.provideAuthApiService(singletonCImpl.provideRetrofitProvider.get());
+
+          case 11: // com.ecommerce.app.data.repository.EmailRepository 
+          return (T) new EmailRepository(singletonCImpl.provideEmailApiServiceProvider.get());
+
+          case 12: // com.ecommerce.app.data.api.EmailApiService 
+          return (T) NetworkModule_ProvideEmailApiServiceFactory.provideEmailApiService(singletonCImpl.provideRetrofitProvider.get());
+
+          case 13: // com.ecommerce.app.data.api.CartApiService 
+          return (T) NetworkModule_ProvideCartApiServiceFactory.provideCartApiService(singletonCImpl.provideRetrofitProvider.get());
 
           default: throw new AssertionError(id);
         }

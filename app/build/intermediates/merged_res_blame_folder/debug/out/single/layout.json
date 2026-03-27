@@ -28,6 +28,10 @@
         "source": "com.ecommerce.app-main-56:/layout/fragment_checkout.xml"
     },
     {
+        "merged": "com.ecommerce.app-mergeDebugResources-53:/layout/fragment_verify_email.xml",
+        "source": "com.ecommerce.app-main-56:/layout/fragment_verify_email.xml"
+    },
+    {
         "merged": "com.ecommerce.app-mergeDebugResources-53:/layout/fragment_home.xml",
         "source": "com.ecommerce.app-main-56:/layout/fragment_home.xml"
     },

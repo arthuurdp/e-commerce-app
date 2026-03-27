@@ -86,8 +86,7 @@ class ForgotPasswordEnterCodeFragment : Fragment() {
                     binding.progressBar.hide()
                     binding.btnSendCode.isEnabled = true
 
-                    // Prioritize specific field error for 'code', then 'message', then fallback to general message
-                    val errorMessage = result.fieldErrors?.get("code") 
+                    val errorMessage = result.fieldErrors?.get("code")
                         ?: result.fieldErrors?.get("message") 
                         ?: result.message
 

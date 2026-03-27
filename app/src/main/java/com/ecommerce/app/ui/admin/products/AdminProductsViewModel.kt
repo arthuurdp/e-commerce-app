@@ -4,11 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ecommerce.app.data.model.CreateProductRequest
-import com.ecommerce.app.data.model.PageResponse
-import com.ecommerce.app.data.model.ProductDetailsResponse
-import com.ecommerce.app.data.model.ProductResponse
-import com.ecommerce.app.data.model.UpdateProductRequest
+import com.ecommerce.app.data.model.product.CreateProductRequest
+import com.ecommerce.app.data.model.product.ProductDetailsResponse
+import com.ecommerce.app.data.model.product.ProductResponse
+import com.ecommerce.app.data.model.product.UpdateProductRequest
+import com.ecommerce.app.data.model.util.PageResponse
 import com.ecommerce.app.data.repository.ProductRepository
 import com.ecommerce.app.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,7 +19,6 @@ import javax.inject.Inject
 class AdminProductsViewModel @Inject constructor(
     private val productRepository: ProductRepository
 ) : ViewModel() {
-
     private val _productsState = MutableLiveData<NetworkResult<PageResponse<ProductResponse>>>()
     val productsState: LiveData<NetworkResult<PageResponse<ProductResponse>>> = _productsState
 

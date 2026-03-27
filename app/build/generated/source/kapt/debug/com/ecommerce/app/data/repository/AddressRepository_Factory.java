@@ -1,6 +1,6 @@
 package com.ecommerce.app.data.repository;
 
-import com.ecommerce.app.data.api.ApiService;
+import com.ecommerce.app.data.api.AddressApiService;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.QualifierMetadata;
@@ -8,7 +8,7 @@ import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
 import javax.inject.Provider;
 
-@ScopeMetadata("javax.inject.Singleton")
+@ScopeMetadata
 @QualifierMetadata
 @DaggerGenerated
 @Generated(
@@ -22,9 +22,9 @@ import javax.inject.Provider;
     "KotlinInternalInJava"
 })
 public final class AddressRepository_Factory implements Factory<AddressRepository> {
-  private final Provider<ApiService> apiProvider;
+  private final Provider<AddressApiService> apiProvider;
 
-  public AddressRepository_Factory(Provider<ApiService> apiProvider) {
+  public AddressRepository_Factory(Provider<AddressApiService> apiProvider) {
     this.apiProvider = apiProvider;
   }
 
@@ -33,11 +33,11 @@ public final class AddressRepository_Factory implements Factory<AddressRepositor
     return newInstance(apiProvider.get());
   }
 
-  public static AddressRepository_Factory create(Provider<ApiService> apiProvider) {
+  public static AddressRepository_Factory create(Provider<AddressApiService> apiProvider) {
     return new AddressRepository_Factory(apiProvider);
   }
 
-  public static AddressRepository newInstance(ApiService api) {
+  public static AddressRepository newInstance(AddressApiService api) {
     return new AddressRepository(api);
   }
 }
