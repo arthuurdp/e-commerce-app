@@ -43,7 +43,6 @@
                     android:id="@+id/tv_first_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="User!"
                     android:textColor="@color/purple"
                     android:textSize="25sp"
                     android:textStyle="bold" />
@@ -52,13 +51,12 @@
 
             <ImageView
                 android:id="@+id/iv_cart"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/bg_circle_purple_light"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:contentDescription="Cart"
-                android:padding="10dp"
-                android:src="@drawable/ic_cart"
-                app:tint="@color/purple"
+                android:padding="15dp"
+                android:background="@drawable/ic_cart"
+                android:backgroundTint="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

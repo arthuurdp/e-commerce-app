@@ -95,8 +95,8 @@
         <argument
             android:name="productId"
             app:argType="long" />
-        <action android:id="@+id/action_productDetailFragment_to_cartFragment"
-            app:destination="@id/cartFragment" />
+        <action android:id="@+id/action_productDetailFragment_to_enterCodeFragment"
+            app:destination="@id/enterCodeFragment" />
     </fragment>
 
     <fragment

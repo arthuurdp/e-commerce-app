@@ -4,7 +4,7 @@ package com.ecommerce.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -28,10 +28,7 @@ public final class FragmentProductDetailBinding implements ViewBinding {
   public final MaterialButton btnAddToCart;
 
   @NonNull
-  public final ImageView ivBack;
-
-  @NonNull
-  public final ImageView ivCart;
+  public final ImageButton btnBack;
 
   @NonNull
   public final LinearLayout llDots;
@@ -58,14 +55,13 @@ public final class FragmentProductDetailBinding implements ViewBinding {
   public final ViewPager2 vpProductImages;
 
   private FragmentProductDetailBinding(@NonNull CoordinatorLayout rootView,
-      @NonNull MaterialButton btnAddToCart, @NonNull ImageView ivBack, @NonNull ImageView ivCart,
+      @NonNull MaterialButton btnAddToCart, @NonNull ImageButton btnBack,
       @NonNull LinearLayout llDots, @NonNull ProgressBar progressBar, @NonNull TextView tvCategory,
       @NonNull TextView tvDescription, @NonNull TextView tvName, @NonNull TextView tvPrice,
       @NonNull TextView tvStock, @NonNull ViewPager2 vpProductImages) {
     this.rootView = rootView;
     this.btnAddToCart = btnAddToCart;
-    this.ivBack = ivBack;
-    this.ivCart = ivCart;
+    this.btnBack = btnBack;
     this.llDots = llDots;
     this.progressBar = progressBar;
     this.tvCategory = tvCategory;
@@ -109,15 +105,9 @@ public final class FragmentProductDetailBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.iv_back;
-      ImageView ivBack = ViewBindings.findChildViewById(rootView, id);
-      if (ivBack == null) {
-        break missingId;
-      }
-
-      id = R.id.iv_cart;
-      ImageView ivCart = ViewBindings.findChildViewById(rootView, id);
-      if (ivCart == null) {
+      id = R.id.btn_back;
+      ImageButton btnBack = ViewBindings.findChildViewById(rootView, id);
+      if (btnBack == null) {
         break missingId;
       }
 
@@ -169,8 +159,8 @@ public final class FragmentProductDetailBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentProductDetailBinding((CoordinatorLayout) rootView, btnAddToCart, ivBack,
-          ivCart, llDots, progressBar, tvCategory, tvDescription, tvName, tvPrice, tvStock,
+      return new FragmentProductDetailBinding((CoordinatorLayout) rootView, btnAddToCart, btnBack,
+          llDots, progressBar, tvCategory, tvDescription, tvName, tvPrice, tvStock,
           vpProductImages);
     }
     String missingId = rootView.getResources().getResourceName(id);

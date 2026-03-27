@@ -4,11 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ecommerce.app.data.model.CategoryResponse
-import com.ecommerce.app.data.model.PageResponse
-import com.ecommerce.app.data.model.ProductResponse
+import com.ecommerce.app.data.model.category.CategoryResponse
+import com.ecommerce.app.data.model.product.ProductResponse
+import com.ecommerce.app.data.model.util.PageResponse
 import com.ecommerce.app.data.repository.CategoryRepository
 import com.ecommerce.app.data.repository.ProductRepository
+import com.ecommerce.app.data.repository.UserRepository
 import com.ecommerce.app.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -17,18 +18,32 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val productRepository: ProductRepository,
-    private val categoryRepository: CategoryRepository
+    private val categoryRepository: CategoryRepository,
+    private val userRepository: UserRepository
 ) : ViewModel() {
     private val _categoriesState = MutableLiveData<NetworkResult<PageResponse<CategoryResponse>>>()
     val categoriesState: LiveData<NetworkResult<PageResponse<CategoryResponse>>> = _categoriesState
-
     private val _productsByCategory = MutableLiveData<Map<CategoryResponse, List<ProductResponse>>>()
     val productsByCategory: LiveData<Map<CategoryResponse, List<ProductResponse>>> = _productsByCategory
+
+    private val _firstName = MutableLiveData<NetworkResult<String>>()
+
+    val firstName: LiveData<NetworkResult<String>> = _firstName
 
     fun loadCategories() {
         viewModelScope.launch {
             _categoriesState.value = NetworkResult.Loading
             _categoriesState.value = categoryRepository.getCategories()
+        }
+    }
+
+    fun loadFirstName() {
+        viewModelScope.launch {
+            val result = userRepository.getCurrentUser()
+            if (result is NetworkResult.Success) {
+                val firstName = result.data.firstName
+                _firstName.value = NetworkResult.Success(firstName)
+            }
         }
     }
 

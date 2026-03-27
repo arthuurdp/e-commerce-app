@@ -2,6 +2,7 @@ package com.ecommerce.app.ui.customer.home;
 
 import com.ecommerce.app.data.repository.CategoryRepository;
 import com.ecommerce.app.data.repository.ProductRepository;
+import com.ecommerce.app.data.repository.UserRepository;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.QualifierMetadata;
@@ -27,24 +28,29 @@ public final class HomeViewModel_Factory implements Factory<HomeViewModel> {
 
   private final Provider<CategoryRepository> categoryRepositoryProvider;
 
+  private final Provider<UserRepository> userRepositoryProvider;
+
   public HomeViewModel_Factory(Provider<ProductRepository> productRepositoryProvider,
-      Provider<CategoryRepository> categoryRepositoryProvider) {
+      Provider<CategoryRepository> categoryRepositoryProvider,
+      Provider<UserRepository> userRepositoryProvider) {
     this.productRepositoryProvider = productRepositoryProvider;
     this.categoryRepositoryProvider = categoryRepositoryProvider;
+    this.userRepositoryProvider = userRepositoryProvider;
   }
 
   @Override
   public HomeViewModel get() {
-    return newInstance(productRepositoryProvider.get(), categoryRepositoryProvider.get());
+    return newInstance(productRepositoryProvider.get(), categoryRepositoryProvider.get(), userRepositoryProvider.get());
   }
 
   public static HomeViewModel_Factory create(Provider<ProductRepository> productRepositoryProvider,
-      Provider<CategoryRepository> categoryRepositoryProvider) {
-    return new HomeViewModel_Factory(productRepositoryProvider, categoryRepositoryProvider);
+      Provider<CategoryRepository> categoryRepositoryProvider,
+      Provider<UserRepository> userRepositoryProvider) {
+    return new HomeViewModel_Factory(productRepositoryProvider, categoryRepositoryProvider, userRepositoryProvider);
   }
 
   public static HomeViewModel newInstance(ProductRepository productRepository,
-      CategoryRepository categoryRepository) {
-    return new HomeViewModel(productRepository, categoryRepository);
+      CategoryRepository categoryRepository, UserRepository userRepository) {
+    return new HomeViewModel(productRepository, categoryRepository, userRepository);
   }
 }

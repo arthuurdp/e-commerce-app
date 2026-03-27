@@ -3070,6 +3070,7 @@ drawable avd_show_password
 drawable banner_1
 drawable banner_2
 drawable banner_3
+drawable bg_back_button
 drawable bg_badge
 drawable bg_bottom_fade
 drawable bg_circle_purple_light
@@ -3291,7 +3292,7 @@ id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
 id action_ordersFragment_to_orderDetailFragment
-id action_productDetailFragment_to_cartFragment
+id action_productDetailFragment_to_enterCodeFragment
 id action_profileFragment_to_addressListFragment
 id action_profileFragment_to_editProfileFragment
 id action_profileFragment_to_loginFragment
@@ -3542,7 +3543,6 @@ id is_pooling_container_tag
 id italic
 id item_touch_helper_previous_elevation
 id iv_avatar
-id iv_back
 id iv_banner
 id iv_cart
 id iv_illustration

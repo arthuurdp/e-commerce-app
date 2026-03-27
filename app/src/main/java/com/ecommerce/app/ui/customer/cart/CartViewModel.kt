@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ecommerce.app.data.model.CartResponse
+import com.ecommerce.app.data.model.cart.CartResponse
 import com.ecommerce.app.data.repository.CartRepository
 import com.ecommerce.app.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel

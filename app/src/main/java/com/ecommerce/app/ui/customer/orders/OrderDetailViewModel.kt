@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ecommerce.app.data.model.OrderDetailsResponse
+import com.ecommerce.app.data.model.order.OrderDetailsResponse
 import com.ecommerce.app.data.repository.OrderRepository
 import com.ecommerce.app.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel

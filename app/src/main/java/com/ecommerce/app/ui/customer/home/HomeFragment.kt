@@ -54,6 +54,7 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_cartFragment)
         }
 
+        observeFirstName()
         setupBanner()
         setupSwipeRefresh()
         observeCategories()
@@ -112,6 +113,16 @@ class HomeFragment : Fragment() {
                 requireContext(),
                 if (i == selected) R.drawable.bg_dot_active else R.drawable.bg_dot_inactive
             )
+        }
+    }
+
+    private fun observeFirstName() {
+        viewModel.firstName.observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is NetworkResult.Success -> binding.tvFirstName.text = result.data
+                is NetworkResult.Error   -> binding.tvFirstName.text = "Olá!"
+                is NetworkResult.Loading -> { }
+            }
         }
     }
 

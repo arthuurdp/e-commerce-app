@@ -7,19 +7,15 @@ import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.ecommerce.app.R
 import com.ecommerce.app.databinding.FragmentLoginBinding
 import com.ecommerce.app.util.NetworkResult
-import com.ecommerce.app.util.SuccessDialogFragment
 import com.ecommerce.app.util.hide
 import com.ecommerce.app.util.hideKeyboard
 import com.ecommerce.app.util.setFieldError
 import com.ecommerce.app.util.show
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {

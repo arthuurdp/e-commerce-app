@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.ecommerce.app.data.model.ProductImageResponse
+import com.ecommerce.app.data.model.product.ProductImageResponse
 
 class ProductItemAdapter(
     private val imgs: List<ProductImageResponse>

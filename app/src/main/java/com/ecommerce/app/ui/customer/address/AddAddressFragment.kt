@@ -8,8 +8,6 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.ecommerce.app.data.model.CepLookupResponse
-import com.ecommerce.app.data.model.CreateAddressRequest
 import com.ecommerce.app.data.repository.AddressRepository
 import com.ecommerce.app.databinding.FragmentAddAddressBinding
 import com.ecommerce.app.util.NetworkResult
@@ -20,6 +18,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ecommerce.app.data.model.address.CepLookupResponse
+import com.ecommerce.app.data.model.address.CreateAddressRequest
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ecommerce.app.data.model.CartItemResponse
-import com.ecommerce.app.data.model.ProductDetailsResponse
+import com.ecommerce.app.data.model.cart.CartItemResponse
+import com.ecommerce.app.data.model.product.ProductDetailsResponse
 import com.ecommerce.app.data.repository.CartRepository
 import com.ecommerce.app.data.repository.ProductRepository
 import com.ecommerce.app.util.NetworkResult

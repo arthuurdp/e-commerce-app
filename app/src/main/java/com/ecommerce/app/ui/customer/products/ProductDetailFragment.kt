@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -18,8 +17,8 @@ import androidx.fragment.app.viewModels
 import com.ecommerce.app.R
 import androidx.viewpager2.widget.ViewPager2
 import androidx.navigation.fragment.findNavController
-import com.ecommerce.app.data.model.ProductDetailsResponse
-import com.ecommerce.app.data.model.ProductImageResponse
+import com.ecommerce.app.data.model.product.ProductDetailsResponse
+import com.ecommerce.app.data.model.product.ProductImageResponse
 import com.ecommerce.app.databinding.FragmentProductDetailBinding
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hide
@@ -43,10 +42,7 @@ class ProductDetailFragment : Fragment() {
 
         val productId = arguments?.getLong("productId") ?: return
 
-        binding.ivBack.setOnClickListener { findNavController().popBackStack() }
-        binding.ivCart.setOnClickListener {
-            findNavController().navigate(R.id.action_productDetailFragment_to_cartFragment)
-        }
+        binding.btnBack.setOnClickListener { findNavController().popBackStack() }
 
         viewModel.loadProduct(productId)
         observeProduct()
@@ -126,6 +122,9 @@ class ProductDetailFragment : Fragment() {
 
         dialog.findViewById<TextView>(R.id.btnConfirm).setOnClickListener {
             dialog.dismiss()
+            findNavController().navigate(
+                R.id.action_productDetailFragment_to_enterCodeFragment
+            )
         }
 
         dialog.show()
