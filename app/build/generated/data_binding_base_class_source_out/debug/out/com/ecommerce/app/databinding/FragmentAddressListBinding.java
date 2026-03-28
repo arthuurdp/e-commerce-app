@@ -4,6 +4,7 @@ package com.ecommerce.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -23,6 +24,9 @@ public final class FragmentAddressListBinding implements ViewBinding {
   private final CoordinatorLayout rootView;
 
   @NonNull
+  public final ImageButton btnBack;
+
+  @NonNull
   public final FloatingActionButton fabAddAddress;
 
   @NonNull
@@ -35,9 +39,11 @@ public final class FragmentAddressListBinding implements ViewBinding {
   public final TextView tvEmpty;
 
   private FragmentAddressListBinding(@NonNull CoordinatorLayout rootView,
-      @NonNull FloatingActionButton fabAddAddress, @NonNull ProgressBar progressBar,
-      @NonNull RecyclerView rvAddresses, @NonNull TextView tvEmpty) {
+      @NonNull ImageButton btnBack, @NonNull FloatingActionButton fabAddAddress,
+      @NonNull ProgressBar progressBar, @NonNull RecyclerView rvAddresses,
+      @NonNull TextView tvEmpty) {
     this.rootView = rootView;
+    this.btnBack = btnBack;
     this.fabAddAddress = fabAddAddress;
     this.progressBar = progressBar;
     this.rvAddresses = rvAddresses;
@@ -71,6 +77,12 @@ public final class FragmentAddressListBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btn_back;
+      ImageButton btnBack = ViewBindings.findChildViewById(rootView, id);
+      if (btnBack == null) {
+        break missingId;
+      }
+
       id = R.id.fab_add_address;
       FloatingActionButton fabAddAddress = ViewBindings.findChildViewById(rootView, id);
       if (fabAddAddress == null) {
@@ -95,7 +107,7 @@ public final class FragmentAddressListBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentAddressListBinding((CoordinatorLayout) rootView, fabAddAddress,
+      return new FragmentAddressListBinding((CoordinatorLayout) rootView, btnBack, fabAddAddress,
           progressBar, rvAddresses, tvEmpty);
     }
     String missingId = rootView.getResources().getResourceName(id);

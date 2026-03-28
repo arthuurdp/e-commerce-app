@@ -4,6 +4,7 @@ package com.ecommerce.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -21,6 +22,9 @@ import java.lang.String;
 public final class FragmentAddAddressBinding implements ViewBinding {
   @NonNull
   private final ScrollView rootView;
+
+  @NonNull
+  public final ImageButton btnBack;
 
   @NonNull
   public final MaterialButton btnSave;
@@ -49,12 +53,14 @@ public final class FragmentAddAddressBinding implements ViewBinding {
   @NonNull
   public final TextView tvCity;
 
-  private FragmentAddAddressBinding(@NonNull ScrollView rootView, @NonNull MaterialButton btnSave,
-      @NonNull TextInputEditText etComplement, @NonNull TextInputEditText etName,
-      @NonNull TextInputEditText etNeighborhood, @NonNull TextInputEditText etNumber,
-      @NonNull TextInputEditText etPostalCode, @NonNull TextInputEditText etStreet,
-      @NonNull ProgressBar progressBar, @NonNull TextView tvCity) {
+  private FragmentAddAddressBinding(@NonNull ScrollView rootView, @NonNull ImageButton btnBack,
+      @NonNull MaterialButton btnSave, @NonNull TextInputEditText etComplement,
+      @NonNull TextInputEditText etName, @NonNull TextInputEditText etNeighborhood,
+      @NonNull TextInputEditText etNumber, @NonNull TextInputEditText etPostalCode,
+      @NonNull TextInputEditText etStreet, @NonNull ProgressBar progressBar,
+      @NonNull TextView tvCity) {
     this.rootView = rootView;
+    this.btnBack = btnBack;
     this.btnSave = btnSave;
     this.etComplement = etComplement;
     this.etName = etName;
@@ -93,6 +99,12 @@ public final class FragmentAddAddressBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btn_back;
+      ImageButton btnBack = ViewBindings.findChildViewById(rootView, id);
+      if (btnBack == null) {
+        break missingId;
+      }
+
       id = R.id.btn_save;
       MaterialButton btnSave = ViewBindings.findChildViewById(rootView, id);
       if (btnSave == null) {
@@ -147,8 +159,8 @@ public final class FragmentAddAddressBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentAddAddressBinding((ScrollView) rootView, btnSave, etComplement, etName,
-          etNeighborhood, etNumber, etPostalCode, etStreet, progressBar, tvCity);
+      return new FragmentAddAddressBinding((ScrollView) rootView, btnBack, btnSave, etComplement,
+          etName, etNeighborhood, etNumber, etPostalCode, etStreet, progressBar, tvCity);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

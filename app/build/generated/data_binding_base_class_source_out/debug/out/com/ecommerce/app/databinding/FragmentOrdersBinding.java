@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewbinding.ViewBinding;
@@ -19,7 +20,7 @@ import java.lang.String;
 
 public final class FragmentOrdersBinding implements ViewBinding {
   @NonNull
-  private final SwipeRefreshLayout rootView;
+  private final CoordinatorLayout rootView;
 
   @NonNull
   public final ProgressBar progressBar;
@@ -33,7 +34,7 @@ public final class FragmentOrdersBinding implements ViewBinding {
   @NonNull
   public final LinearLayout tvEmpty;
 
-  private FragmentOrdersBinding(@NonNull SwipeRefreshLayout rootView,
+  private FragmentOrdersBinding(@NonNull CoordinatorLayout rootView,
       @NonNull ProgressBar progressBar, @NonNull RecyclerView rvOrders,
       @NonNull SwipeRefreshLayout swipeRefresh, @NonNull LinearLayout tvEmpty) {
     this.rootView = rootView;
@@ -45,7 +46,7 @@ public final class FragmentOrdersBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public SwipeRefreshLayout getRoot() {
+  public CoordinatorLayout getRoot() {
     return rootView;
   }
 
@@ -82,7 +83,11 @@ public final class FragmentOrdersBinding implements ViewBinding {
         break missingId;
       }
 
-      SwipeRefreshLayout swipeRefresh = (SwipeRefreshLayout) rootView;
+      id = R.id.swipe_refresh;
+      SwipeRefreshLayout swipeRefresh = ViewBindings.findChildViewById(rootView, id);
+      if (swipeRefresh == null) {
+        break missingId;
+      }
 
       id = R.id.tv_empty;
       LinearLayout tvEmpty = ViewBindings.findChildViewById(rootView, id);
@@ -90,7 +95,7 @@ public final class FragmentOrdersBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentOrdersBinding((SwipeRefreshLayout) rootView, progressBar, rvOrders,
+      return new FragmentOrdersBinding((CoordinatorLayout) rootView, progressBar, rvOrders,
           swipeRefresh, tvEmpty);
     }
     String missingId = rootView.getResources().getResourceName(id);

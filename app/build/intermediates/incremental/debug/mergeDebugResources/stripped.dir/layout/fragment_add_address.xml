@@ -1,56 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent" android:layout_height="match_parent" android:fillViewport="true">
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:orientation="vertical" android:padding="16dp">
-        <ProgressBar android:id="@+id/progress_bar" android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-            android:visibility="gone" android:layout_marginBottom="8dp" />
-        <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:hint="Label (e.g. Home, Work)"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" android:layout_marginBottom="12dp">
-            <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_name"
-                android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="text" />
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="40dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="28dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btn_back"
+                style="@style/App.BackButton"
+                android:layout_marginEnd="16dp" />
+
+            <TextView
+                style="@style/App.Text.PageTitle"
+                android:text="Add " />
+
+            <TextView
+                style="@style/App.Text.PageTitle.Accent"
+                android:text="Address" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="12dp"
+            android:indeterminateTint="@color/primary"
+            android:visibility="gone" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/App.TextInputLayout"
+            android:hint="Label (e.g. Home, Work)">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:hint="Postal Code (CEP)"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" android:layout_marginBottom="12dp">
-            <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_postal_code"
-                android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:inputType="number" android:maxLength="9" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/App.TextInputLayout"
+            android:hint="Postal Code (CEP)">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_postal_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="9" />
         </com.google.android.material.textfield.TextInputLayout>
-        <TextView android:id="@+id/tv_city" android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:text="City / State"
-            android:textColor="?attr/colorOnSurfaceVariant" android:layout_marginBottom="12dp" />
-        <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:hint="Street"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" android:layout_marginBottom="12dp">
-            <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_street"
-                android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="text" />
+
+        <TextView
+            android:id="@+id/tv_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            android:drawablePadding="6dp"
+            android:text="City / State"
+            android:textColor="@color/gray"
+            android:textSize="13sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/App.TextInputLayout"
+            android:hint="Street">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_street"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:orientation="horizontal" android:layout_marginBottom="12dp">
-            <com.google.android.material.textfield.TextInputLayout android:layout_width="0dp"
-                android:layout_height="wrap_content" android:layout_weight="1" android:hint="Number"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" android:layout_marginEnd="8dp">
-                <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_number"
-                    android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="number" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/App.TextInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:hint="Number">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout android:layout_width="0dp"
-                android:layout_height="wrap_content" android:layout_weight="1" android:hint="Complement"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_complement"
-                    android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="text" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/App.TextInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Complement">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_complement"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
-        <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:hint="Neighborhood"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" android:layout_marginBottom="24dp">
-            <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_neighborhood"
-                android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="text" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/App.TextInputLayout"
+            android:hint="Neighborhood">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_neighborhood"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn_save"
-            android:layout_width="match_parent" android:layout_height="56dp" android:text="Save Address" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_save"
+            style="@style/App.Button.Primary"
+            android:layout_marginTop="8dp"
+            android:text="Save Address" />
+
     </LinearLayout>
 </ScrollView>

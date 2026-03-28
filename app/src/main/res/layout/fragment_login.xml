@@ -22,7 +22,6 @@
             android:id="@+id/iv_illustration"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:contentDescription="Login"
             android:scaleType="fitCenter"
             android:src="@drawable/img_login"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,11 +42,11 @@
 
             <TextView
                 style="@style/App.Text.PageTitle"
-                android:text="Sign " />
+                android:text="@string/sign"  />
 
             <TextView
                 style="@style/App.Text.PageTitle.Accent"
-                android:text="In" />
+                android:text="@string/in" />
         </LinearLayout>
 
         <TextView
@@ -56,7 +55,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:text="Enter your email or CPF &amp; password to continue"
+            android:text="@string/enter_your_email_or_cpf"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_title" />
@@ -67,7 +66,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Email or CPF"
+            android:hint="@string/email_or_cpf"
             app:startIconDrawable="@drawable/ic_email_outline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -81,14 +80,13 @@
                 android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Password field -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_password"
             style="@style/App.TextInputLayout.Password"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Password"
-            app:startIconDrawable="@drawable/ic_password"
+            android:hint="@string/password"
+            app:startIconDrawable="@drawable/ic_lock_outline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/til_email">
@@ -101,7 +99,6 @@
                 android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Forgot password -->
         <TextView
             android:id="@+id/tv_forgot_password"
             android:layout_width="wrap_content"
@@ -109,27 +106,25 @@
             android:minHeight="48dp"
             android:gravity="center_vertical"
             android:padding="4dp"
-            android:text="Forgot Password?"
+            android:text="@string/forgot_password"
             android:textColor="@color/primary"
             android:textSize="13sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/til_password" />
 
-        <!-- Login button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_login"
             style="@style/App.Button.Primary"
             android:layout_width="0dp"
             android:layout_height="54dp"
             android:layout_marginTop="12dp"
-            android:text="Sign In"
+            android:text="@string/sign_in"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_forgot_password"
             app:layout_constraintWidth_max="480dp" />
 
-        <!-- ProgressBar -->
         <ProgressBar
             android:id="@+id/progress_bar"
             android:layout_width="wrap_content"
@@ -141,7 +136,6 @@
             app:layout_constraintStart_toStartOf="@id/btn_login"
             app:layout_constraintTop_toTopOf="@id/btn_login" />
 
-        <!-- Register link -->
         <LinearLayout
             android:id="@+id/ll_register"
             android:layout_width="wrap_content"
@@ -157,7 +151,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Don't have an account? "
+                android:text="@string/no_account"
                 android:textColor="@color/gray"
                 android:textSize="14sp" />
 
@@ -165,7 +159,7 @@
                 android:id="@+id/tv_register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sign Up"
+                android:text="@string/sign_up"
                 android:textColor="@color/primary"
                 android:textSize="14sp"
                 android:textStyle="bold" />

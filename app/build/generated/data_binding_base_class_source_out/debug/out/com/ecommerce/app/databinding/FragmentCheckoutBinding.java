@@ -4,6 +4,7 @@ package com.ecommerce.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Spinner;
@@ -22,6 +23,9 @@ public final class FragmentCheckoutBinding implements ViewBinding {
   private final ScrollView rootView;
 
   @NonNull
+  public final ImageButton btnBack;
+
+  @NonNull
   public final MaterialButton btnPlaceOrder;
 
   @NonNull
@@ -33,10 +37,11 @@ public final class FragmentCheckoutBinding implements ViewBinding {
   @NonNull
   public final Spinner spinnerPayment;
 
-  private FragmentCheckoutBinding(@NonNull ScrollView rootView,
+  private FragmentCheckoutBinding(@NonNull ScrollView rootView, @NonNull ImageButton btnBack,
       @NonNull MaterialButton btnPlaceOrder, @NonNull ProgressBar progressBar,
       @NonNull Spinner spinnerAddress, @NonNull Spinner spinnerPayment) {
     this.rootView = rootView;
+    this.btnBack = btnBack;
     this.btnPlaceOrder = btnPlaceOrder;
     this.progressBar = progressBar;
     this.spinnerAddress = spinnerAddress;
@@ -70,6 +75,12 @@ public final class FragmentCheckoutBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btn_back;
+      ImageButton btnBack = ViewBindings.findChildViewById(rootView, id);
+      if (btnBack == null) {
+        break missingId;
+      }
+
       id = R.id.btn_place_order;
       MaterialButton btnPlaceOrder = ViewBindings.findChildViewById(rootView, id);
       if (btnPlaceOrder == null) {
@@ -94,7 +105,7 @@ public final class FragmentCheckoutBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentCheckoutBinding((ScrollView) rootView, btnPlaceOrder, progressBar,
+      return new FragmentCheckoutBinding((ScrollView) rootView, btnBack, btnPlaceOrder, progressBar,
           spinnerAddress, spinnerPayment);
     }
     String missingId = rootView.getResources().getResourceName(id);

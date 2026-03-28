@@ -4,59 +4,64 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/background">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/surface"
         app:elevation="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:paddingTop="16dp"
-            android:paddingBottom="12dp">
+            android:paddingBottom="14dp">
 
             <LinearLayout
                 android:id="@+id/ll_greeting"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/iv_cart"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Hello, "
-                    android:textColor="@color/black"
-                    android:textSize="25sp" />
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tv_first_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/purple"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hello, "
+                        android:textColor="@color/black"
+                        android:textSize="25sp" />
 
+                    <TextView
+                        android:id="@+id/tv_first_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/primary"
+                        android:textSize="25sp"
+                        android:text="User!"
+                        android:textStyle="bold" />
+                </LinearLayout>
             </LinearLayout>
 
             <ImageView
                 android:id="@+id/iv_cart"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:contentDescription="Cart"
-                android:padding="15dp"
-                android:background="@drawable/ic_cart"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/ic_shopping_cart"
                 android:backgroundTint="@color/black"
+                android:contentDescription="Cart"
+                android:padding="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -79,18 +84,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingBottom="80dp">
+                android:paddingBottom="88dp">
 
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/vp_banner"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="12dp"
                     android:clipChildren="false"
                     android:clipToPadding="false"
                     android:overScrollMode="never"
-                    android:paddingStart="32dp"
-                    android:paddingEnd="32dp" />
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp" />
 
                 <LinearLayout
                     android:id="@+id/ll_dots"
@@ -101,26 +106,26 @@
                     android:orientation="horizontal" />
 
                 <TextView
-                    android:id="@+id/tv_browse_categories"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginTop="20dp"
-                    android:text="Browse Categories"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="Categories"
                     android:textColor="@color/black"
-                    android:textSize="22sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/chip_group_categories"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginTop="10dp"
-                    app:chipSpacingHorizontal="8dp"
-                    app:chipSpacingVertical="8dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="8dp"
+                    app:chipSpacingHorizontal="6dp"
+                    app:chipSpacingVertical="6dp"
                     app:selectionRequired="false"
                     app:singleSelection="true" />
 
@@ -128,7 +133,7 @@
                     android:id="@+id/ll_categories_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="16dp"
                     android:orientation="vertical" />
 
                 <TextView
@@ -136,11 +141,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="48dp"
                     android:gravity="center"
                     android:text="No products found"
                     android:textColor="@color/gray"
-                    android:textSize="16sp"
+                    android:textSize="15sp"
                     android:visibility="gone" />
 
                 <ProgressBar
@@ -148,8 +153,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="40dp"
-                    android:indeterminateTint="@color/purple"
+                    android:layout_marginTop="48dp"
+                    android:indeterminateTint="@color/primary"
                     android:visibility="gone" />
 
             </LinearLayout>

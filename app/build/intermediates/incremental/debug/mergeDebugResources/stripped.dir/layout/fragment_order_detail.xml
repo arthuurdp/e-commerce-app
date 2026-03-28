@@ -1,24 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="40dp">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            style="@style/App.BackButton"
+            android:layout_marginBottom="20dp" />
 
         <ProgressBar
             android:id="@+id/progress_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:visibility="gone"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="12dp"
+            android:indeterminateTint="@color/primary"
+            android:visibility="gone" />
 
-        <!-- Header card -->
         <com.google.android.material.card.MaterialCardView
+            style="@style/App.Card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp">
@@ -32,33 +43,49 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="8dp">
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
                     <TextView
                         android:id="@+id/tv_order_id"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Order #1"
-                        android:textStyle="bold"
-                        android:textSize="18sp" />
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/tv_status"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="PAID"
-                        android:textStyle="bold"
-                        android:textColor="@color/status_paid" />
+                        android:textColor="@color/status_paid"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
-                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
-                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
-                        android:layout_weight="1" android:text="Date"
-                        android:textColor="?attr/colorOnSurfaceVariant" />
-                    <TextView android:id="@+id/tv_date" android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:text="2025-01-01"
-                        android:textColor="?attr/colorOnSurfaceVariant" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Date"
+                        android:textColor="@color/gray"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tv_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2025-01-01"
+                        android:textColor="@color/gray"
+                        android:textSize="13sp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -66,33 +93,36 @@
 
         <!-- Items -->
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Items"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:layout_marginBottom="8dp" />
+            style="@style/App.Text.SectionTitle"
+            android:text="Items" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_items"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"
+            android:nestedScrollingEnabled="false" />
 
-        <!-- Total -->
-        <View android:layout_width="match_parent" android:layout_height="1dp"
-            android:background="?attr/colorOutline" android:layout_marginBottom="12dp" />
+        <View style="@style/App.Divider" />
 
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <TextView android:layout_width="0dp" android:layout_height="wrap_content"
-                android:layout_weight="1" android:text="Total" android:textStyle="bold"
-                android:textSize="16sp" />
-            <TextView android:id="@+id/tv_total" android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:text="R$ 0,00"
-                android:textStyle="bold" android:textSize="18sp"
-                android:textColor="?attr/colorPrimary" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Total"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_total"
+                style="@style/App.Text.Price"
+                android:text="R$ 0,00" />
         </LinearLayout>
 
     </LinearLayout>

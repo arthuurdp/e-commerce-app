@@ -42,14 +42,10 @@ public final class FragmentForgotPasswordResetPasswordBinding implements ViewBin
   @NonNull
   public final TextInputLayout tilNewPassword;
 
-  @NonNull
-  public final LinearLayout tvTitle;
-
   private FragmentForgotPasswordResetPasswordBinding(@NonNull ScrollView rootView,
       @NonNull ImageButton btnBack, @NonNull MaterialButton btnResetPassword,
       @NonNull TextInputEditText etNewPassword, @NonNull ImageView ivIllustration,
-      @NonNull LinearLayout mainContainer, @NonNull TextInputLayout tilNewPassword,
-      @NonNull LinearLayout tvTitle) {
+      @NonNull LinearLayout mainContainer, @NonNull TextInputLayout tilNewPassword) {
     this.rootView = rootView;
     this.btnBack = btnBack;
     this.btnResetPassword = btnResetPassword;
@@ -57,7 +53,6 @@ public final class FragmentForgotPasswordResetPasswordBinding implements ViewBin
     this.ivIllustration = ivIllustration;
     this.mainContainer = mainContainer;
     this.tilNewPassword = tilNewPassword;
-    this.tvTitle = tvTitle;
   }
 
   @Override
@@ -124,14 +119,8 @@ public final class FragmentForgotPasswordResetPasswordBinding implements ViewBin
         break missingId;
       }
 
-      id = R.id.tv_title;
-      LinearLayout tvTitle = ViewBindings.findChildViewById(rootView, id);
-      if (tvTitle == null) {
-        break missingId;
-      }
-
       return new FragmentForgotPasswordResetPasswordBinding((ScrollView) rootView, btnBack,
-          btnResetPassword, etNewPassword, ivIllustration, mainContainer, tilNewPassword, tvTitle);
+          btnResetPassword, etNewPassword, ivIllustration, mainContainer, tilNewPassword);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

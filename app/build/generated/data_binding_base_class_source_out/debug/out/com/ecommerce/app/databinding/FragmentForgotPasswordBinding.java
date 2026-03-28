@@ -30,25 +30,13 @@ public final class FragmentForgotPasswordBinding implements ViewBinding {
   public final ImageButton btnBack;
 
   @NonNull
-  public final MaterialButton btnResetPassword;
-
-  @NonNull
   public final MaterialButton btnSendCode;
-
-  @NonNull
-  public final TextInputEditText etCode;
 
   @NonNull
   public final TextInputEditText etEmail;
 
   @NonNull
-  public final TextInputEditText etNewPassword;
-
-  @NonNull
   public final ImageView ivIllustration;
-
-  @NonNull
-  public final LinearLayout layoutReset;
 
   @NonNull
   public final LinearLayout mainContainer;
@@ -62,30 +50,20 @@ public final class FragmentForgotPasswordBinding implements ViewBinding {
   @NonNull
   public final TextView tvSubtitle;
 
-  @NonNull
-  public final LinearLayout tvTitle;
-
   private FragmentForgotPasswordBinding(@NonNull ScrollView rootView, @NonNull ImageButton btnBack,
-      @NonNull MaterialButton btnResetPassword, @NonNull MaterialButton btnSendCode,
-      @NonNull TextInputEditText etCode, @NonNull TextInputEditText etEmail,
-      @NonNull TextInputEditText etNewPassword, @NonNull ImageView ivIllustration,
-      @NonNull LinearLayout layoutReset, @NonNull LinearLayout mainContainer,
+      @NonNull MaterialButton btnSendCode, @NonNull TextInputEditText etEmail,
+      @NonNull ImageView ivIllustration, @NonNull LinearLayout mainContainer,
       @NonNull ProgressBar progressBar, @NonNull TextInputLayout tilEmail,
-      @NonNull TextView tvSubtitle, @NonNull LinearLayout tvTitle) {
+      @NonNull TextView tvSubtitle) {
     this.rootView = rootView;
     this.btnBack = btnBack;
-    this.btnResetPassword = btnResetPassword;
     this.btnSendCode = btnSendCode;
-    this.etCode = etCode;
     this.etEmail = etEmail;
-    this.etNewPassword = etNewPassword;
     this.ivIllustration = ivIllustration;
-    this.layoutReset = layoutReset;
     this.mainContainer = mainContainer;
     this.progressBar = progressBar;
     this.tilEmail = tilEmail;
     this.tvSubtitle = tvSubtitle;
-    this.tvTitle = tvTitle;
   }
 
   @Override
@@ -121,21 +99,9 @@ public final class FragmentForgotPasswordBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.btn_reset_password;
-      MaterialButton btnResetPassword = ViewBindings.findChildViewById(rootView, id);
-      if (btnResetPassword == null) {
-        break missingId;
-      }
-
       id = R.id.btn_send_code;
       MaterialButton btnSendCode = ViewBindings.findChildViewById(rootView, id);
       if (btnSendCode == null) {
-        break missingId;
-      }
-
-      id = R.id.et_code;
-      TextInputEditText etCode = ViewBindings.findChildViewById(rootView, id);
-      if (etCode == null) {
         break missingId;
       }
 
@@ -145,21 +111,9 @@ public final class FragmentForgotPasswordBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.et_new_password;
-      TextInputEditText etNewPassword = ViewBindings.findChildViewById(rootView, id);
-      if (etNewPassword == null) {
-        break missingId;
-      }
-
       id = R.id.iv_illustration;
       ImageView ivIllustration = ViewBindings.findChildViewById(rootView, id);
       if (ivIllustration == null) {
-        break missingId;
-      }
-
-      id = R.id.layout_reset;
-      LinearLayout layoutReset = ViewBindings.findChildViewById(rootView, id);
-      if (layoutReset == null) {
         break missingId;
       }
 
@@ -187,15 +141,8 @@ public final class FragmentForgotPasswordBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.tv_title;
-      LinearLayout tvTitle = ViewBindings.findChildViewById(rootView, id);
-      if (tvTitle == null) {
-        break missingId;
-      }
-
-      return new FragmentForgotPasswordBinding((ScrollView) rootView, btnBack, btnResetPassword,
-          btnSendCode, etCode, etEmail, etNewPassword, ivIllustration, layoutReset, mainContainer,
-          progressBar, tilEmail, tvSubtitle, tvTitle);
+      return new FragmentForgotPasswordBinding((ScrollView) rootView, btnBack, btnSendCode, etEmail,
+          ivIllustration, mainContainer, progressBar, tilEmail, tvSubtitle);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

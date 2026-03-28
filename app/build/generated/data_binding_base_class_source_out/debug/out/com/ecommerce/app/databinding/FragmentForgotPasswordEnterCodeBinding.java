@@ -50,15 +50,11 @@ public final class FragmentForgotPasswordEnterCodeBinding implements ViewBinding
   @NonNull
   public final TextView tvSubtitle;
 
-  @NonNull
-  public final LinearLayout tvTitle;
-
   private FragmentForgotPasswordEnterCodeBinding(@NonNull ScrollView rootView,
       @NonNull ImageButton btnBack, @NonNull MaterialButton btnSendCode,
       @NonNull TextInputEditText etEnterCode, @NonNull ImageView ivIllustration,
       @NonNull LinearLayout mainContainer, @NonNull ProgressBar progressBar,
-      @NonNull TextInputLayout tilEnterCode, @NonNull TextView tvSubtitle,
-      @NonNull LinearLayout tvTitle) {
+      @NonNull TextInputLayout tilEnterCode, @NonNull TextView tvSubtitle) {
     this.rootView = rootView;
     this.btnBack = btnBack;
     this.btnSendCode = btnSendCode;
@@ -68,7 +64,6 @@ public final class FragmentForgotPasswordEnterCodeBinding implements ViewBinding
     this.progressBar = progressBar;
     this.tilEnterCode = tilEnterCode;
     this.tvSubtitle = tvSubtitle;
-    this.tvTitle = tvTitle;
   }
 
   @Override
@@ -146,15 +141,8 @@ public final class FragmentForgotPasswordEnterCodeBinding implements ViewBinding
         break missingId;
       }
 
-      id = R.id.tv_title;
-      LinearLayout tvTitle = ViewBindings.findChildViewById(rootView, id);
-      if (tvTitle == null) {
-        break missingId;
-      }
-
       return new FragmentForgotPasswordEnterCodeBinding((ScrollView) rootView, btnBack, btnSendCode,
-          etEnterCode, ivIllustration, mainContainer, progressBar, tilEnterCode, tvSubtitle,
-          tvTitle);
+          etEnterCode, ivIllustration, mainContainer, progressBar, tilEnterCode, tvSubtitle);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

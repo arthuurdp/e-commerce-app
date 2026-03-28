@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FFFFFF</color>
-    <color name="chip_background_unselected">#313131</color>
-    <color name="gray">#BDBDBD</color>
+    <color name="background">#121212</color>
+    <color name="black">#ECFDF3</color>
+    <color name="chip_background_unselected">#2C2C2C</color>
+    <color name="chip_text_unselected">#CFCFCF</color>
+    <color name="error">#EF5350</color>
+    <color name="gray">#9E9E9E</color>
+    <color name="gray_dark">#CFCFCF</color>
     <color name="gray_light">#1E1E1E</color>
     <color name="gray_medium">#2C2C2C</color>
-    <color name="light_purple_bg">#2C2C2C</color>
-    <color name="primary">#64B5F6</color>
-    <color name="primary_dark">#0D47A1</color>
-    <color name="purple">#9B95FF</color>
-    <color name="social_button_bg">#2C2C2C</color>
+    <color name="light_purple_bg">#1A2E20</color>
+    <color name="primary">#1DB954</color>
+    <color name="primary_container">#0D3320</color>
+    <color name="primary_dark">#17913F</color>
+    <color name="primary_light">#0D3320</color>
+    <color name="purple">#1DB954</color>
+    <color name="red">#EF5350</color>
+    <color name="social_button_bg">#1E1E1E</color>
+    <color name="status_canceled">#EF5350</color>
+    <color name="status_delivered">#1DB954</color>
+    <color name="status_paid">#1DB954</color>
+    <color name="status_pending">#FFA726</color>
+    <color name="status_shipped">#42A5F5</color>
+    <color name="success">#1DB954</color>
+    <color name="surface">#1E1E1E</color>
+    <color name="text_hint">#9E9E9E</color>
+    <color name="warning">#FFA726</color>
     <color name="white">#121212</color>
 </resources>

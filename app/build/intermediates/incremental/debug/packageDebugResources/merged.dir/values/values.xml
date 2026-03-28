@@ -1,26 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="black">#000000</color>
-    <color name="blue_button">#1A73E8</color>
-    <color name="chip_background_unselected">#BCBCBC</color>
-    <color name="chip_text_unselected">#FFFFFF</color>
-    <color name="gray">#757575</color>
-    <color name="gray_light">#F8F9FA</color>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <color name="background">#F8F8F8</color>
+    <color name="black">#0A2E1A</color>
+    <color name="blue_button">#1DB954</color>
+    <color name="chip_background_unselected">#EBEBEB</color>
+    <color name="chip_text_unselected">#3D3D3D</color>
+    <color name="error">#E53935</color>
+    <color name="gray">#8A8A8A</color>
+    <color name="gray_dark">#3D3D3D</color>
+    <color name="gray_light">#F2F2F2</color>
     <color name="gray_medium">#E0E0E0</color>
-    <color name="light_purple_bg">#F3F0FF</color>
-    <color name="nav_item_color">#2196F3</color>
-    <color name="primary">#2196F3</color>
-    <color name="primary_dark">#1976D2</color>
-    <color name="purple">#6c63ff</color>
-    <color name="red">#B00020</color>
-    <color name="secondary">#FF6F00</color>
+    <color name="gray_medium_alias">#E0E0E0</color>
+    <color name="light_purple_bg">#F0FAF4</color>
+    <color name="nav_item_color">#1DB954</color>
+    <color name="primary">#1DB954</color>
+    <color name="primary_container">#D4F0DF</color>
+    <color name="primary_dark">#17913F</color>
+    <color name="primary_light">#E8F8EE</color>
+    <color name="purple">#1DB954</color>
+    <color name="red">#E53935</color>
     <color name="social_button_bg">#FFFFFF</color>
-    <color name="status_canceled">#D32F2F</color>
-    <color name="status_delivered">#2E7D32</color>
-    <color name="status_paid">#388E3C</color>
-    <color name="status_pending">#F57C00</color>
+    <color name="status_canceled">#E53935</color>
+    <color name="status_delivered">#17913F</color>
+    <color name="status_paid">#1DB954</color>
+    <color name="status_pending">#FB8C00</color>
     <color name="status_shipped">#1565C0</color>
-    <color name="text_hint">#9AA0A6</color>
+    <color name="success">#1DB954</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="text_hint">#8A8A8A</color>
+    <color name="warning">#FB8C00</color>
     <color name="white">#FFFFFF</color>
     <string name="action_settings">Settings</string>
     <string name="add_to_cart">Add to Cart</string>
@@ -30,43 +38,190 @@
     <string name="checkout">Checkout</string>
     <string name="clear_cart">Clear Cart</string>
     <string name="email">Email</string>
+    <string name="email_or_cpf">Email or CPF</string>
+    <string name="enter_your_email_or_cpf">Enter your email or CPF &amp; password to continue</string>
     <string name="error_fill_all_fields">Please fill in all fields</string>
     <string name="error_network">Network error. Please try again.</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="forgot_password_subtitle">Please enter the code that was sent to %1$s. The code expires in 5 minutes.</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="in">In</string>
     <string name="no_account">Don\'t have an account?</string>
     <string name="no_orders">No orders yet</string>
     <string name="no_products">No products found</string>
     <string name="order_details">Order Details</string>
     <string name="out_of_stock">Out of Stock</string>
     <string name="password">Password</string>
+    <string name="sign">Sign </string>
     <string name="sign_in">Sign In</string>
-    <string name="sign_out">Sign Out</string>
     <string name="sign_up">Sign Up</string>
     <string name="status_canceled">CANCELED</string>
     <string name="status_delivered">DELIVERED</string>
     <string name="status_paid">PAID</string>
     <string name="status_pending">PENDING</string>
     <string name="status_shipped">SHIPPED</string>
-    <style name="BottomNavStyle" parent="Widget.MaterialComponents.BottomNavigationView">
-        <item name="itemIconTint">@color/purple</item>
-        <item name="itemTextColor">@color/light_purple_bg</item>
+    <style name="App.BackButton">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:background">@drawable/ic_arrow_back</item>
+        <item name="android:backgroundTint">@color/black</item>
+        <item name="android:contentDescription">Back</item>
+    </style>
+    <style name="App.BottomNav" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemIconTint">@color/nav_item_tint</item>
+        <item name="itemTextColor">@color/nav_item_tint</item>
+        <item name="android:background">@color/surface</item>
         <item name="elevation">8dp</item>
+    </style>
+    <style name="App.Button.Destructive" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="strokeColor">@color/error</item>
+        <item name="android:textColor">@color/error</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+    <style name="App.Button.Outlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="strokeColor">@color/primary</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="rippleColor">@color/primary_light</item>
+    </style>
+    <style name="App.Button.Primary" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">54dp</item>
+        <item name="backgroundTint">@color/primary</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="rippleColor">@color/primary_dark</item>
+    </style>
+    <style name="App.Card" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="cardBackgroundColor">@color/surface</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="strokeColor">@color/gray_medium</item>
+        <item name="android:layout_marginBottom">12dp</item>
+    </style>
+    <style name="App.Card.Action" parent="App.Card">
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:layout_height">64dp</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+    <style name="App.Card.Elevated" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">3dp</item>
+        <item name="cardBackgroundColor">@color/surface</item>
+        <item name="android:layout_marginHorizontal">8dp</item>
+        <item name="android:layout_marginVertical">4dp</item>
+    </style>
+    <style name="App.Chip" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/chip_background</item>
+        <item name="android:textColor">@color/chip_text</item>
+        <item name="chipCornerRadius">20dp</item>
+        <item name="chipStrokeWidth">0dp</item>
+    </style>
+    <style name="App.Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/gray_medium</item>
+        <item name="android:layout_marginVertical">16dp</item>
+    </style>
+    <style name="App.Text.Body">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/gray_dark</item>
+        <item name="android:lineSpacingMultiplier">1.5</item>
+    </style>
+    <style name="App.Text.Caption">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+    <style name="App.Text.PageTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="App.Text.PageTitle.Accent">
+        <item name="android:textColor">@color/primary</item>
+    </style>
+    <style name="App.Text.Price">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/primary</item>
+    </style>
+    <style name="App.Text.SectionTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_marginBottom">12dp</item>
+    </style>
+    <style name="App.Text.Subtitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:gravity">center</item>
+        <item name="android:lineSpacingMultiplier">1.5</item>
+        <item name="android:layout_marginBottom">24dp</item>
+    </style>
+    <style name="App.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">12dp</item>
+        <item name="boxCornerRadiusTopEnd">12dp</item>
+        <item name="boxCornerRadiusBottomStart">12dp</item>
+        <item name="boxCornerRadiusBottomEnd">12dp</item>
+        <item name="boxStrokeColor">@color/text_input_stroke_color</item>
+        <item name="hintTextColor">@color/text_input_hint_color</item>
+        <item name="startIconTint">@color/text_input_icon_tint</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">14dp</item>
+    </style>
+    <style name="App.TextInputLayout.Password" parent="App.TextInputLayout">
+        <item name="endIconMode">password_toggle</item>
+        <item name="endIconTint">@color/text_input_icon_tint</item>
     </style>
     <style name="Theme.ECommerceApp" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/primary_dark</item>
         <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/black</item>
 
-        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondary">@color/primary_dark</item>
         <item name="colorOnSecondary">@color/white</item>
 
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/black</item>
+        <item name="colorOnSurfaceVariant">@color/gray</item>
+
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorError">@color/error</item>
+
         <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar" ns1:targetApi="m">true</item>
 
         <item name="android:fontFamily">@font/poppins</item>
         <item name="fontFamily">@font/poppins</item>
 
-        <item name="bottomNavigationStyle">@style/BottomNavStyle</item>
+        <item name="bottomNavigationStyle">@style/App.BottomNav</item>
+        <item name="chipStyle">@style/App.Chip</item>
     </style>
 </resources>

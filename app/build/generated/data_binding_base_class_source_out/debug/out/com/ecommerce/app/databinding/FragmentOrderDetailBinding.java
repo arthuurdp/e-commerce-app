@@ -4,6 +4,7 @@ package com.ecommerce.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -20,6 +21,9 @@ import java.lang.String;
 public final class FragmentOrderDetailBinding implements ViewBinding {
   @NonNull
   private final ScrollView rootView;
+
+  @NonNull
+  public final ImageButton btnBack;
 
   @NonNull
   public final ProgressBar progressBar;
@@ -39,10 +43,11 @@ public final class FragmentOrderDetailBinding implements ViewBinding {
   @NonNull
   public final TextView tvTotal;
 
-  private FragmentOrderDetailBinding(@NonNull ScrollView rootView, @NonNull ProgressBar progressBar,
-      @NonNull RecyclerView rvItems, @NonNull TextView tvDate, @NonNull TextView tvOrderId,
-      @NonNull TextView tvStatus, @NonNull TextView tvTotal) {
+  private FragmentOrderDetailBinding(@NonNull ScrollView rootView, @NonNull ImageButton btnBack,
+      @NonNull ProgressBar progressBar, @NonNull RecyclerView rvItems, @NonNull TextView tvDate,
+      @NonNull TextView tvOrderId, @NonNull TextView tvStatus, @NonNull TextView tvTotal) {
     this.rootView = rootView;
+    this.btnBack = btnBack;
     this.progressBar = progressBar;
     this.rvItems = rvItems;
     this.tvDate = tvDate;
@@ -78,6 +83,12 @@ public final class FragmentOrderDetailBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btn_back;
+      ImageButton btnBack = ViewBindings.findChildViewById(rootView, id);
+      if (btnBack == null) {
+        break missingId;
+      }
+
       id = R.id.progress_bar;
       ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
       if (progressBar == null) {
@@ -114,8 +125,8 @@ public final class FragmentOrderDetailBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentOrderDetailBinding((ScrollView) rootView, progressBar, rvItems, tvDate,
-          tvOrderId, tvStatus, tvTotal);
+      return new FragmentOrderDetailBinding((ScrollView) rootView, btnBack, progressBar, rvItems,
+          tvDate, tvOrderId, tvStatus, tvTotal);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

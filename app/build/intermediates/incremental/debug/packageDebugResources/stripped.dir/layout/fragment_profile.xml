@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/background"
     android:fillViewport="true">
 
     <LinearLayout
@@ -11,36 +12,35 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!-- Header card -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@color/surface"
             android:gravity="center"
             android:orientation="vertical"
-            android:paddingStart="25dp"
-            android:paddingLeft="25dp"
-            android:paddingTop="25dp"
-            android:paddingEnd="25dp"
-            android:paddingRight="25dp"
-            android:paddingBottom="10dp">
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="40dp"
+            android:paddingBottom="28dp">
 
             <FrameLayout
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_marginBottom="14dp">
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginBottom="16dp">
 
                 <ImageView
                     android:id="@+id/iv_avatar"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/male" />
+                    android:src="@drawable/img_man" />
 
                 <ProgressBar
                     android:id="@+id/progress_bar"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_gravity="bottom|end"
-                    android:indeterminateTint="@color/purple"
+                    android:indeterminateTint="@color/primary"
                     android:visibility="gone" />
             </FrameLayout>
 
@@ -53,247 +53,171 @@
 
                 <TextView
                     android:id="@+id/tv_first_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
                     android:text="First "
                     android:textColor="@color/black"
-                    android:textSize="25sp"
+                    android:textSize="22sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_last_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="Last"
-                    android:textColor="@color/purple"
-                    android:textSize="25sp"
+                    android:textColor="@color/primary"
+                    android:textSize="22sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <!-- Email -->
             <TextView
                 android:id="@+id/tv_email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="user@email.com"
                 android:textColor="@color/gray"
                 android:textSize="13sp" />
-
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginEnd="60dp"
-            android:background="@color/gray" />
-
+        <!-- Menu items -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="25dp"
-            android:paddingEnd="25dp"
-            android:paddingTop="24dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="20dp"
             android:paddingBottom="24dp">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/btn_edit_profile"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginBottom="12dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackground"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="0dp"
-                app:strokeWidth="1dp"
-                app:strokeColor="@color/gray_medium"
-                app:cardBackgroundColor="@color/light_purple_bg">
+                style="@style/App.Card.Action"
+                android:layout_marginBottom="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="16dp"
-                    android:gravity="center_vertical">
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp">
 
                     <ImageView
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_marginEnd="14dp"
                         android:src="@drawable/ic_pencil"
-                        app:tint="@color/purple" />
+                        app:tint="@color/primary" />
 
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Edit Profile"
-                        android:textColor="@color/black"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
+                        style="@style/App.TextView.Label"
+                        android:text="Edit Profile" />
 
                     <ImageView
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
                         android:src="@drawable/ic_arrow_right"
-                        app:tint="@color/purple" />
+                        app:tint="@color/gray" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/btn_addresses"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginBottom="12dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackground"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="0dp"
-                app:strokeWidth="1dp"
-                app:strokeColor="@color/gray_medium"
-                app:cardBackgroundColor="@color/light_purple_bg">
+                style="@style/App.Card.Action"
+                android:layout_marginBottom="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="16dp"
-                    android:gravity="center_vertical">
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp">
 
                     <ImageView
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_marginEnd="14dp"
                         android:src="@drawable/ic_location"
-                        app:tint="@color/purple" />
+                        app:tint="@color/primary" />
 
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="My Addresses"
-                        android:textColor="@color/black"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
+                        style="@style/App.TextView.Label"
+                        android:text="My Addresses" />
 
                     <ImageView
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
                         android:src="@drawable/ic_arrow_right"
-                        app:tint="@color/purple" />
+                        app:tint="@color/gray" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- My Orders -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/btn_orders"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginBottom="12dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackground"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="0dp"
-                app:strokeWidth="1dp"
-                app:strokeColor="@color/gray_medium"
-                app:cardBackgroundColor="@color/light_purple_bg">
+                style="@style/App.Card.Action"
+                android:layout_marginBottom="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="16dp"
-                    android:gravity="center_vertical">
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp">
 
                     <ImageView
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_marginEnd="14dp"
                         android:src="@drawable/ic_orders"
-                        app:tint="@color/purple" />
+                        app:tint="@color/primary" />
 
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="My Orders"
-                        android:textColor="@color/black"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
+                        style="@style/App.TextView.Label"
+                        android:text="My Orders" />
 
                     <ImageView
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
                         android:src="@drawable/ic_arrow_right"
-                        app:tint="@color/purple" />
+                        app:tint="@color/gray" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Security -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/btn_security"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginBottom="32dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackground"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="0dp"
-                app:strokeWidth="1dp"
-                app:strokeColor="@color/gray_medium"
-                app:cardBackgroundColor="@color/light_purple_bg">
+                style="@style/App.Card.Action"
+                android:layout_marginBottom="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="16dp"
-                    android:gravity="center_vertical">
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp">
 
                     <ImageView
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_marginEnd="14dp"
                         android:src="@drawable/ic_lock"
-                        app:tint="@color/purple" />
+                        app:tint="@color/primary" />
 
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Security"
-                        android:textColor="@color/black"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
+                        style="@style/App.TextView.Label"
+                        android:text="Security" />
 
                     <ImageView
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
                         android:src="@drawable/ic_arrow_right"
-                        app:tint="@color/purple" />
+                        app:tint="@color/gray" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
+
+            <View style="@style/App.Divider" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_logout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:backgroundTint="@color/purple"
-                android:padding="10dp"
-                app:cornerRadius="20dp"
-                android:text="Sign Out"
-                android:textStyle="bold"
-                android:textSize="18sp" />
+                style="@style/App.Button.Outlined"
+                android:text="Sign Out" />
 
         </LinearLayout>
     </LinearLayout>

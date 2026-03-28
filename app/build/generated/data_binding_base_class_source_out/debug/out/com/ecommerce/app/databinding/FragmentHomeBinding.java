@@ -51,9 +51,6 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final SwipeRefreshLayout swipeRefresh;
 
   @NonNull
-  public final TextView tvBrowseCategories;
-
-  @NonNull
   public final TextView tvEmpty;
 
   @NonNull
@@ -66,8 +63,8 @@ public final class FragmentHomeBinding implements ViewBinding {
       @NonNull ChipGroup chipGroupCategories, @NonNull ImageView ivCart,
       @NonNull LinearLayout llCategoriesContainer, @NonNull LinearLayout llDots,
       @NonNull LinearLayout llGreeting, @NonNull ProgressBar progressBar,
-      @NonNull SwipeRefreshLayout swipeRefresh, @NonNull TextView tvBrowseCategories,
-      @NonNull TextView tvEmpty, @NonNull TextView tvFirstName, @NonNull ViewPager2 vpBanner) {
+      @NonNull SwipeRefreshLayout swipeRefresh, @NonNull TextView tvEmpty,
+      @NonNull TextView tvFirstName, @NonNull ViewPager2 vpBanner) {
     this.rootView = rootView;
     this.appBar = appBar;
     this.chipGroupCategories = chipGroupCategories;
@@ -77,7 +74,6 @@ public final class FragmentHomeBinding implements ViewBinding {
     this.llGreeting = llGreeting;
     this.progressBar = progressBar;
     this.swipeRefresh = swipeRefresh;
-    this.tvBrowseCategories = tvBrowseCategories;
     this.tvEmpty = tvEmpty;
     this.tvFirstName = tvFirstName;
     this.vpBanner = vpBanner;
@@ -158,12 +154,6 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.tv_browse_categories;
-      TextView tvBrowseCategories = ViewBindings.findChildViewById(rootView, id);
-      if (tvBrowseCategories == null) {
-        break missingId;
-      }
-
       id = R.id.tvEmpty;
       TextView tvEmpty = ViewBindings.findChildViewById(rootView, id);
       if (tvEmpty == null) {
@@ -183,8 +173,8 @@ public final class FragmentHomeBinding implements ViewBinding {
       }
 
       return new FragmentHomeBinding((CoordinatorLayout) rootView, appBar, chipGroupCategories,
-          ivCart, llCategoriesContainer, llDots, llGreeting, progressBar, swipeRefresh,
-          tvBrowseCategories, tvEmpty, tvFirstName, vpBanner);
+          ivCart, llCategoriesContainer, llDots, llGreeting, progressBar, swipeRefresh, tvEmpty,
+          tvFirstName, vpBanner);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

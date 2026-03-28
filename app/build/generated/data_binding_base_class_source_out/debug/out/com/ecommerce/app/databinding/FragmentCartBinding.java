@@ -4,9 +4,7 @@ package com.ecommerce.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -40,12 +38,6 @@ public final class FragmentCartBinding implements ViewBinding {
   public final MaterialButton btnClearCart;
 
   @NonNull
-  public final FrameLayout frameLayout;
-
-  @NonNull
-  public final ImageView ivIllustration;
-
-  @NonNull
   public final LinearLayout layoutCartFooter;
 
   @NonNull
@@ -65,8 +57,7 @@ public final class FragmentCartBinding implements ViewBinding {
 
   private FragmentCartBinding(@NonNull CoordinatorLayout rootView, @NonNull AppBarLayout appBar,
       @NonNull ImageButton btnBack, @NonNull MaterialButton btnCheckout,
-      @NonNull MaterialButton btnClearCart, @NonNull FrameLayout frameLayout,
-      @NonNull ImageView ivIllustration, @NonNull LinearLayout layoutCartFooter,
+      @NonNull MaterialButton btnClearCart, @NonNull LinearLayout layoutCartFooter,
       @NonNull ProgressBar progressBar, @NonNull RecyclerView rvCartItems,
       @NonNull LinearLayout tvEmptyCart, @NonNull TextView tvItemCount, @NonNull TextView tvTotal) {
     this.rootView = rootView;
@@ -74,8 +65,6 @@ public final class FragmentCartBinding implements ViewBinding {
     this.btnBack = btnBack;
     this.btnCheckout = btnCheckout;
     this.btnClearCart = btnClearCart;
-    this.frameLayout = frameLayout;
-    this.ivIllustration = ivIllustration;
     this.layoutCartFooter = layoutCartFooter;
     this.progressBar = progressBar;
     this.rvCartItems = rvCartItems;
@@ -135,18 +124,6 @@ public final class FragmentCartBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.frameLayout;
-      FrameLayout frameLayout = ViewBindings.findChildViewById(rootView, id);
-      if (frameLayout == null) {
-        break missingId;
-      }
-
-      id = R.id.iv_illustration;
-      ImageView ivIllustration = ViewBindings.findChildViewById(rootView, id);
-      if (ivIllustration == null) {
-        break missingId;
-      }
-
       id = R.id.layout_cart_footer;
       LinearLayout layoutCartFooter = ViewBindings.findChildViewById(rootView, id);
       if (layoutCartFooter == null) {
@@ -184,8 +161,8 @@ public final class FragmentCartBinding implements ViewBinding {
       }
 
       return new FragmentCartBinding((CoordinatorLayout) rootView, appBar, btnBack, btnCheckout,
-          btnClearCart, frameLayout, ivIllustration, layoutCartFooter, progressBar, rvCartItems,
-          tvEmptyCart, tvItemCount, tvTotal);
+          btnClearCart, layoutCartFooter, progressBar, rvCartItems, tvEmptyCart, tvItemCount,
+          tvTotal);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
