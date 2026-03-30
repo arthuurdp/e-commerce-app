@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_rounded"
     android:orientation="vertical"
     android:padding="28dp">
 
@@ -11,7 +10,7 @@
         android:layout_width="180dp"
         android:layout_height="180dp"
         android:layout_gravity="center"
-        android:src="@drawable/ic_verify_email" />
+        android:src="@drawable/img_verify_email" />
 
     <!-- Title -->
     <TextView

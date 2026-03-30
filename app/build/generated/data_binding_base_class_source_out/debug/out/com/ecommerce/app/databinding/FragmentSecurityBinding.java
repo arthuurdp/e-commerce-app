@@ -4,15 +4,17 @@ package com.ecommerce.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.ecommerce.app.R;
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.card.MaterialCardView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -22,29 +24,52 @@ public final class FragmentSecurityBinding implements ViewBinding {
   private final ScrollView rootView;
 
   @NonNull
-  public final MaterialButton btnConfirm;
+  public final ImageButton btnBack;
 
   @NonNull
-  public final MaterialButton btnRequestCode;
+  public final MaterialCardView cardChangeEmail;
 
   @NonNull
-  public final TextInputEditText etCode;
+  public final MaterialCardView cardChangePassword;
 
   @NonNull
-  public final TextInputEditText etNewPassword;
+  public final MaterialCardView cardDeleteAccount;
 
   @NonNull
-  public final LinearLayout layoutConfirm;
+  public final LinearLayout headerChangeEmail;
 
-  private FragmentSecurityBinding(@NonNull ScrollView rootView, @NonNull MaterialButton btnConfirm,
-      @NonNull MaterialButton btnRequestCode, @NonNull TextInputEditText etCode,
-      @NonNull TextInputEditText etNewPassword, @NonNull LinearLayout layoutConfirm) {
+  @NonNull
+  public final LinearLayout headerChangePassword;
+
+  @NonNull
+  public final LinearLayout headerDeleteAccount;
+
+  @NonNull
+  public final ImageView ivEmailChevron;
+
+  @NonNull
+  public final ImageView ivPasswordChevron;
+
+  @NonNull
+  public final TextView tvCurrentEmail;
+
+  private FragmentSecurityBinding(@NonNull ScrollView rootView, @NonNull ImageButton btnBack,
+      @NonNull MaterialCardView cardChangeEmail, @NonNull MaterialCardView cardChangePassword,
+      @NonNull MaterialCardView cardDeleteAccount, @NonNull LinearLayout headerChangeEmail,
+      @NonNull LinearLayout headerChangePassword, @NonNull LinearLayout headerDeleteAccount,
+      @NonNull ImageView ivEmailChevron, @NonNull ImageView ivPasswordChevron,
+      @NonNull TextView tvCurrentEmail) {
     this.rootView = rootView;
-    this.btnConfirm = btnConfirm;
-    this.btnRequestCode = btnRequestCode;
-    this.etCode = etCode;
-    this.etNewPassword = etNewPassword;
-    this.layoutConfirm = layoutConfirm;
+    this.btnBack = btnBack;
+    this.cardChangeEmail = cardChangeEmail;
+    this.cardChangePassword = cardChangePassword;
+    this.cardDeleteAccount = cardDeleteAccount;
+    this.headerChangeEmail = headerChangeEmail;
+    this.headerChangePassword = headerChangePassword;
+    this.headerDeleteAccount = headerDeleteAccount;
+    this.ivEmailChevron = ivEmailChevron;
+    this.ivPasswordChevron = ivPasswordChevron;
+    this.tvCurrentEmail = tvCurrentEmail;
   }
 
   @Override
@@ -74,38 +99,69 @@ public final class FragmentSecurityBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.btn_confirm;
-      MaterialButton btnConfirm = ViewBindings.findChildViewById(rootView, id);
-      if (btnConfirm == null) {
+      id = R.id.btn_back;
+      ImageButton btnBack = ViewBindings.findChildViewById(rootView, id);
+      if (btnBack == null) {
         break missingId;
       }
 
-      id = R.id.btn_request_code;
-      MaterialButton btnRequestCode = ViewBindings.findChildViewById(rootView, id);
-      if (btnRequestCode == null) {
+      id = R.id.card_change_email;
+      MaterialCardView cardChangeEmail = ViewBindings.findChildViewById(rootView, id);
+      if (cardChangeEmail == null) {
         break missingId;
       }
 
-      id = R.id.et_code;
-      TextInputEditText etCode = ViewBindings.findChildViewById(rootView, id);
-      if (etCode == null) {
+      id = R.id.card_change_password;
+      MaterialCardView cardChangePassword = ViewBindings.findChildViewById(rootView, id);
+      if (cardChangePassword == null) {
         break missingId;
       }
 
-      id = R.id.et_new_password;
-      TextInputEditText etNewPassword = ViewBindings.findChildViewById(rootView, id);
-      if (etNewPassword == null) {
+      id = R.id.card_delete_account;
+      MaterialCardView cardDeleteAccount = ViewBindings.findChildViewById(rootView, id);
+      if (cardDeleteAccount == null) {
         break missingId;
       }
 
-      id = R.id.layout_confirm;
-      LinearLayout layoutConfirm = ViewBindings.findChildViewById(rootView, id);
-      if (layoutConfirm == null) {
+      id = R.id.header_change_email;
+      LinearLayout headerChangeEmail = ViewBindings.findChildViewById(rootView, id);
+      if (headerChangeEmail == null) {
         break missingId;
       }
 
-      return new FragmentSecurityBinding((ScrollView) rootView, btnConfirm, btnRequestCode, etCode,
-          etNewPassword, layoutConfirm);
+      id = R.id.header_change_password;
+      LinearLayout headerChangePassword = ViewBindings.findChildViewById(rootView, id);
+      if (headerChangePassword == null) {
+        break missingId;
+      }
+
+      id = R.id.header_delete_account;
+      LinearLayout headerDeleteAccount = ViewBindings.findChildViewById(rootView, id);
+      if (headerDeleteAccount == null) {
+        break missingId;
+      }
+
+      id = R.id.iv_email_chevron;
+      ImageView ivEmailChevron = ViewBindings.findChildViewById(rootView, id);
+      if (ivEmailChevron == null) {
+        break missingId;
+      }
+
+      id = R.id.iv_password_chevron;
+      ImageView ivPasswordChevron = ViewBindings.findChildViewById(rootView, id);
+      if (ivPasswordChevron == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_current_email;
+      TextView tvCurrentEmail = ViewBindings.findChildViewById(rootView, id);
+      if (tvCurrentEmail == null) {
+        break missingId;
+      }
+
+      return new FragmentSecurityBinding((ScrollView) rootView, btnBack, cardChangeEmail,
+          cardChangePassword, cardDeleteAccount, headerChangeEmail, headerChangePassword,
+          headerDeleteAccount, ivEmailChevron, ivPasswordChevron, tvCurrentEmail);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

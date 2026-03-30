@@ -154,7 +154,14 @@
         android:id="@+id/editProfileFragment"
         android:name="com.ecommerce.app.ui.customer.profile.EditProfileFragment"
         android:label="Edit Profile"
-        tools:layout="@layout/fragment_edit_profile" />
+        tools:layout="@layout/fragment_edit_profile">
+        <action
+            android:id="@+id/action_editProfileFragment_to_changeEmailFragment"
+            app:destination="@id/changeEmailFragment" />
+        <action
+            android:id="@+id/action_editProfileFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/addressListFragment"
@@ -173,9 +180,33 @@
 
     <fragment
         android:id="@+id/securityFragment"
-        android:name="com.ecommerce.app.ui.customer.profile.SecurityFragment"
+        android:name="com.ecommerce.app.ui.customer.profile.security.SecurityFragment"
         android:label="Security"
-        tools:layout="@layout/fragment_security" />
+        tools:layout="@layout/fragment_security">
+        <action
+            android:id="@+id/action_securityFragment_to_changeEmailFragment"
+            app:destination="@id/changeEmailFragment" />
+        <action
+            android:id="@+id/action_securityFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
+        <action
+            android:id="@+id/action_securityFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/changeEmailFragment"
+        android:name="com.ecommerce.app.ui.customer.profile.security.ChangeEmailEnterNewEmailFragment"
+        android:label="Change Email"
+        tools:layout="@layout/fragment_change_email_enter_code" />
+
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.ecommerce.app.ui.customer.profile.security.ChangePasswordEnterNewPasswordFragment"
+        android:label="Change Password"
+        tools:layout="@layout/fragment_change_password_enter_code" />
 
     <!-- ════════════════════════════ ADMIN ═══════════════════════════════ -->
 

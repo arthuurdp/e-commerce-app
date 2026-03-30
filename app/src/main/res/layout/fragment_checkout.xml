@@ -53,8 +53,7 @@
             android:id="@+id/spinner_address"
             android:layout_width="match_parent"
             android:layout_height="52dp"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/spinner_background" />
+            android:layout_marginBottom="24dp" />
 
         <TextView
             style="@style/App.Text.SectionTitle"
@@ -64,8 +63,7 @@
             android:id="@+id/spinner_payment"
             android:layout_width="match_parent"
             android:layout_height="52dp"
-            android:layout_marginBottom="32dp"
-            android:background="@drawable/spinner_background" />
+            android:layout_marginBottom="32dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_place_order"

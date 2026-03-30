@@ -37,7 +37,6 @@
 
     <style name="App.Chip" parent="Widget.MaterialComponents.Chip.Choice">
         <item name="chipBackgroundColor">@color/chip_background</item>
-        <item name="android:textColor">@color/chip_text</item>
         <item name="chipCornerRadius">20dp</item>
         <item name="chipStrokeWidth">0dp</item>
     </style>

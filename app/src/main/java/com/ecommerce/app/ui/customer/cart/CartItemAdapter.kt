@@ -27,8 +27,8 @@ class CartItemAdapter(
 
             Glide.with(binding.ivProduct)
                 .load(item.imageUrl)
-                .placeholder(R.drawable.ic_image_placeholder)
-                .error(R.drawable.ic_image_placeholder)
+                .placeholder(R.drawable.img_logo)
+                .error(R.drawable.img_logo)
                 .centerCrop()
                 .into(binding.ivProduct)
 

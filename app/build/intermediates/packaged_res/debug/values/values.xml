@@ -33,7 +33,7 @@
     <string name="action_settings">Settings</string>
     <string name="add_to_cart">Add to Cart</string>
     <string name="already_have_account">Already have an account?</string>
-    <string name="app_name">E-Commerce App</string>
+    <string name="app_name">Sabor da Casa</string>
     <string name="cart_empty">Your cart is empty</string>
     <string name="checkout">Checkout</string>
     <string name="clear_cart">Clear Cart</string>
@@ -60,6 +60,7 @@
     <string name="status_paid">PAID</string>
     <string name="status_pending">PENDING</string>
     <string name="status_shipped">SHIPPED</string>
+    <style name="App"/>
     <style name="App.BackButton">
         <item name="android:layout_width">40dp</item>
         <item name="android:layout_height">40dp</item>
@@ -73,6 +74,7 @@
         <item name="android:background">@color/surface</item>
         <item name="elevation">8dp</item>
     </style>
+    <style name="App.Button"/>
     <style name="App.Button.Destructive" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">50dp</item>
@@ -125,7 +127,6 @@
     </style>
     <style name="App.Chip" parent="Widget.MaterialComponents.Chip.Choice">
         <item name="chipBackgroundColor">@color/chip_background</item>
-        <item name="android:textColor">@color/chip_text</item>
         <item name="chipCornerRadius">20dp</item>
         <item name="chipStrokeWidth">0dp</item>
     </style>
@@ -135,6 +136,7 @@
         <item name="android:background">@color/gray_medium</item>
         <item name="android:layout_marginVertical">16dp</item>
     </style>
+    <style name="App.Text"/>
     <style name="App.Text.Body">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -197,6 +199,15 @@
     <style name="App.TextInputLayout.Password" parent="App.TextInputLayout">
         <item name="endIconMode">password_toggle</item>
         <item name="endIconTint">@color/text_input_icon_tint</item>
+    </style>
+    <style name="App.TextView"/>
+    <style name="App.TextView.Label">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
     </style>
     <style name="Theme.ECommerceApp" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primary</item>

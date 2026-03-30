@@ -4,14 +4,17 @@ package com.ecommerce.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.ecommerce.app.R;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textfield.TextInputEditText;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -20,6 +23,15 @@ import java.lang.String;
 public final class FragmentEditProfileBinding implements ViewBinding {
   @NonNull
   private final ScrollView rootView;
+
+  @NonNull
+  public final ImageButton btnBack;
+
+  @NonNull
+  public final MaterialCardView btnChangeEmail;
+
+  @NonNull
+  public final MaterialCardView btnChangePassword;
 
   @NonNull
   public final MaterialButton btnSave;
@@ -36,15 +48,24 @@ public final class FragmentEditProfileBinding implements ViewBinding {
   @NonNull
   public final ProgressBar progressBar;
 
-  private FragmentEditProfileBinding(@NonNull ScrollView rootView, @NonNull MaterialButton btnSave,
-      @NonNull TextInputEditText etFirstName, @NonNull TextInputEditText etLastName,
-      @NonNull TextInputEditText etPhone, @NonNull ProgressBar progressBar) {
+  @NonNull
+  public final TextView tvCurrentEmail;
+
+  private FragmentEditProfileBinding(@NonNull ScrollView rootView, @NonNull ImageButton btnBack,
+      @NonNull MaterialCardView btnChangeEmail, @NonNull MaterialCardView btnChangePassword,
+      @NonNull MaterialButton btnSave, @NonNull TextInputEditText etFirstName,
+      @NonNull TextInputEditText etLastName, @NonNull TextInputEditText etPhone,
+      @NonNull ProgressBar progressBar, @NonNull TextView tvCurrentEmail) {
     this.rootView = rootView;
+    this.btnBack = btnBack;
+    this.btnChangeEmail = btnChangeEmail;
+    this.btnChangePassword = btnChangePassword;
     this.btnSave = btnSave;
     this.etFirstName = etFirstName;
     this.etLastName = etLastName;
     this.etPhone = etPhone;
     this.progressBar = progressBar;
+    this.tvCurrentEmail = tvCurrentEmail;
   }
 
   @Override
@@ -74,6 +95,24 @@ public final class FragmentEditProfileBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btn_back;
+      ImageButton btnBack = ViewBindings.findChildViewById(rootView, id);
+      if (btnBack == null) {
+        break missingId;
+      }
+
+      id = R.id.btn_change_email;
+      MaterialCardView btnChangeEmail = ViewBindings.findChildViewById(rootView, id);
+      if (btnChangeEmail == null) {
+        break missingId;
+      }
+
+      id = R.id.btn_change_password;
+      MaterialCardView btnChangePassword = ViewBindings.findChildViewById(rootView, id);
+      if (btnChangePassword == null) {
+        break missingId;
+      }
+
       id = R.id.btn_save;
       MaterialButton btnSave = ViewBindings.findChildViewById(rootView, id);
       if (btnSave == null) {
@@ -104,8 +143,15 @@ public final class FragmentEditProfileBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentEditProfileBinding((ScrollView) rootView, btnSave, etFirstName, etLastName,
-          etPhone, progressBar);
+      id = R.id.tv_current_email;
+      TextView tvCurrentEmail = ViewBindings.findChildViewById(rootView, id);
+      if (tvCurrentEmail == null) {
+        break missingId;
+      }
+
+      return new FragmentEditProfileBinding((ScrollView) rootView, btnBack, btnChangeEmail,
+          btnChangePassword, btnSave, etFirstName, etLastName, etPhone, progressBar,
+          tvCurrentEmail);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

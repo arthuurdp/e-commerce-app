@@ -20,7 +20,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_image_placeholder"
+            android:src="@drawable/img_logo"
             android:contentDescription="Product image" />
 
         <LinearLayout

@@ -63,9 +63,9 @@ class ProfileFragment : Fragment() {
                     binding.tvEmail.text = user.email
 
                     val avatarRes = if (user.gender == "MALE") {
-                        R.drawable.male
+                        R.drawable.img_male
                     } else {
-                        R.drawable.female
+                        R.drawable.img_female
                     }
                     binding.ivAvatar.setImageResource(avatarRes)
                 }

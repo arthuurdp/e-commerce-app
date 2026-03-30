@@ -28,7 +28,8 @@ class ForgotPasswordEnterCodeFragment : Fragment() {
     private val args: ForgotPasswordEnterCodeFragmentArgs by navArgs()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentForgotPasswordEnterCodeBinding.inflate(inflater, container, false)

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="App" />
+    <style name="App.Text" />
+    <style name="App.TextView" />
+    <style name="App.Button" />
+
     <!-- ══════════════════════════════════════════════════════════════════════
          TEXT INPUT
     ══════════════════════════════════════════════════════════════════════════ -->
@@ -21,6 +26,15 @@
     <style name="App.TextInputLayout.Password" parent="App.TextInputLayout">
         <item name="endIconMode">password_toggle</item>
         <item name="endIconTint">@color/text_input_icon_tint</item>
+    </style>
+
+    <style name="App.TextView.Label">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <!-- ══════════════════════════════════════════════════════════════════════

@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.ecommerce.app.R
 import com.ecommerce.app.databinding.FragmentForgotPasswordResetPasswordBinding
-import com.ecommerce.app.ui.customer.profile.ProfileViewModel
+import com.ecommerce.app.ui.customer.profile.security.SecurityViewModel
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hideKeyboard
 import com.ecommerce.app.util.setFieldError
@@ -20,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class ForgotPasswordResetPasswordFragment : Fragment() {
     private var _binding: FragmentForgotPasswordResetPasswordBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: ProfileViewModel by viewModels()
+    private val viewModel: SecurityViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -1,31 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent" android:layout_height="match_parent" android:fillViewport="true">
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:orientation="vertical" android:padding="16dp">
-        <ProgressBar android:id="@+id/progress_bar" android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-            android:visibility="gone" android:layout_marginBottom="8dp" />
-        <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:hint="First Name"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" android:layout_marginBottom="12dp">
-            <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_first_name"
-                android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textPersonName" />
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="40dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="28dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btn_back"
+                style="@style/App.BackButton"
+                android:layout_marginEnd="16dp" />
+
+            <TextView
+                style="@style/App.Text.PageTitle"
+                android:text="Edit " />
+
+            <TextView
+                style="@style/App.Text.PageTitle.Accent"
+                android:text="Profile" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="12dp"
+            android:indeterminateTint="@color/primary"
+            android:visibility="gone" />
+
+        <TextView
+            style="@style/App.Text.SectionTitle"
+            android:text="Personal Information" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/App.TextInputLayout"
+            android:hint="First Name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_first_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:hint="Last Name"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" android:layout_marginBottom="12dp">
-            <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_last_name"
-                android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textPersonName" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/App.TextInputLayout"
+            android:hint="Last Name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_last_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:hint="Phone"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" android:layout_marginBottom="24dp">
-            <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_phone"
-                android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="phone" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/App.TextInputLayout"
+            android:hint="Phone">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn_save"
-            android:layout_width="match_parent" android:layout_height="56dp" android:text="Save Changes" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_save"
+            style="@style/App.Button.Primary"
+            android:layout_marginBottom="32dp"
+            android:text="Save Changes" />
+
+        <View style="@style/App.Divider" />
+
+        <TextView
+            style="@style/App.Text.SectionTitle"
+            android:layout_marginTop="8dp"
+            android:text="Account" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btn_change_email"
+            style="@style/App.Card.Action"
+            android:layout_marginBottom="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="14dp"
+                    android:src="@drawable/ic_email"
+                    app:tint="@color/primary" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Change Email"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_current_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="A verification code will be sent to your email"
+                        android:textColor="@color/gray"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_arrow_right"
+                    app:tint="@color/gray" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btn_change_password"
+            style="@style/App.Card.Action">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="14dp"
+                    android:src="@drawable/ic_lock"
+                    app:tint="@color/primary" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Change Password"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="A verification code will be sent to your email"
+                        android:textColor="@color/gray"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_arrow_right"
+                    app:tint="@color/gray" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
     </LinearLayout>
 </ScrollView>

@@ -1,198 +1,166 @@
 [
     {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_order_detail.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_order_detail.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_admin_categories.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_admin_categories.xml"
     },
     {
-        "merged": "com.ecommerce.app-mergeDebugResources-53:/layout/fragment_order_detail.xml",
-        "source": "com.ecommerce.app-main-56:/layout/fragment_order_detail.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_change_email.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_change_email.xml"
     },
     {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_edit_profile.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_edit_profile.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_checkout.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_checkout.xml"
     },
     {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_admin_users.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_admin_users.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\item_address.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\item_address.xml"
     },
     {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_register.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_register.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_profile.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_profile.xml"
     },
     {
-        "merged": "com.ecommerce.app-mergeDebugResources-53:/layout/fragment_profile.xml",
-        "source": "com.ecommerce.app-main-56:/layout/fragment_profile.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_change_password.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_change_password.xml"
     },
     {
-        "merged": "com.ecommerce.app-mergeDebugResources-53:/layout/fragment_login.xml",
-        "source": "com.ecommerce.app-main-56:/layout/fragment_login.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\item_category.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\item_category.xml"
     },
     {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_login.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_login.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_admin_orders.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_admin_orders.xml"
     },
     {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\item_address.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\item_address.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_order_detail.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_order_detail.xml"
     },
     {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\item_user.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\item_user.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\dialog_verify_email.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\dialog_verify_email.xml"
     },
     {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_security.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_security.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_forgot_password_reset_password.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_forgot_password_reset_password.xml"
     },
     {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_admin_edit_product.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_admin_edit_product.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_home.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_home.xml"
     },
     {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\dialog_verify_email.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\dialog_verify_email.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\item_product.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\item_product.xml"
     },
     {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_product_detail.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_product_detail.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_edit_profile.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_edit_profile.xml"
     },
     {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_add_address.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_add_address.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_register.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_register.xml"
     },
     {
-        "merged": "com.ecommerce.app-mergeDebugResources-53:/layout/fragment_address_list.xml",
-        "source": "com.ecommerce.app-main-56:/layout/fragment_address_list.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_cart.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_cart.xml"
     },
     {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_checkout.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_checkout.xml"
+        "merged": "com.ecommerce.app-mergeDebugResources-53:/layout/fragment_change_password_enter_new_password.xml",
+        "source": "com.ecommerce.app-main-56:/layout/fragment_change_password_enter_new_password.xml"
     },
     {
-        "merged": "com.ecommerce.app-mergeDebugResources-53:/layout/fragment_product_detail.xml",
-        "source": "com.ecommerce.app-main-56:/layout/fragment_product_detail.xml"
+        "merged": "com.ecommerce.app-mergeDebugResources-53:/layout/fragment_change_email_enter_code.xml",
+        "source": "com.ecommerce.app-main-56:/layout/fragment_change_email_enter_code.xml"
     },
     {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_cart.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_cart.xml"
+        "merged": "com.ecommerce.app-mergeDebugResources-53:/layout/fragment_change_email_enter_new_email.xml",
+        "source": "com.ecommerce.app-main-56:/layout/fragment_change_email_enter_new_email.xml"
     },
     {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_address_list.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_address_list.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_admin_products.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_admin_products.xml"
     },
     {
-        "merged": "com.ecommerce.app-mergeDebugResources-53:/layout/fragment_add_address.xml",
-        "source": "com.ecommerce.app-main-56:/layout/fragment_add_address.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_login.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_login.xml"
     },
     {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_admin_orders.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_admin_orders.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\dialog_delete_account.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\dialog_delete_account.xml"
     },
     {
-        "merged": "com.ecommerce.app-mergeDebugResources-53:/layout/fragment_checkout.xml",
-        "source": "com.ecommerce.app-main-56:/layout/fragment_checkout.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_forgot_password.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_forgot_password.xml"
     },
     {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_orders.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_orders.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\item_order.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\item_order.xml"
     },
     {
-        "merged": "com.ecommerce.app-mergeDebugResources-53:/layout/fragment_home.xml",
-        "source": "com.ecommerce.app-main-56:/layout/fragment_home.xml"
-    },
-    {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_success_dialog.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_success_dialog.xml"
-    },
-    {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\item_banner.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\item_banner.xml"
-    },
-    {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_admin_dashboard.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_admin_dashboard.xml"
-    },
-    {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_verify_email.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_verify_email.xml"
-    },
-    {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\activity_main.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\activity_main.xml"
-    },
-    {
-        "merged": "com.ecommerce.app-mergeDebugResources-53:/layout/fragment_register.xml",
-        "source": "com.ecommerce.app-main-56:/layout/fragment_register.xml"
-    },
-    {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\item_category.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\item_category.xml"
-    },
-    {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_forgot_password_reset_password.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_forgot_password_reset_password.xml"
-    },
-    {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\item_order_line.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\item_order_line.xml"
-    },
-    {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\item_cart.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\item_cart.xml"
-    },
-    {
-        "merged": "com.ecommerce.app-mergeDebugResources-53:/layout/fragment_cart.xml",
-        "source": "com.ecommerce.app-main-56:/layout/fragment_cart.xml"
-    },
-    {
-        "merged": "com.ecommerce.app-mergeDebugResources-53:/layout/fragment_forgot_password_enter_code.xml",
-        "source": "com.ecommerce.app-main-56:/layout/fragment_forgot_password_enter_code.xml"
-    },
-    {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_profile.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_profile.xml"
-    },
-    {
-        "merged": "com.ecommerce.app-mergeDebugResources-53:/layout/fragment_orders.xml",
-        "source": "com.ecommerce.app-main-56:/layout/fragment_orders.xml"
-    },
-    {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_forgot_password_enter_code.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_forgot_password_enter_code.xml"
-    },
-    {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_home.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_home.xml"
-    },
-    {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\item_category_section.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\item_category_section.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_admin_users.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_admin_users.xml"
     },
     {
         "merged": "com.ecommerce.app-mergeDebugResources-53:/layout/fragment_forgot_password_reset_password.xml",
         "source": "com.ecommerce.app-main-56:/layout/fragment_forgot_password_reset_password.xml"
     },
     {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\item_product.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\item_product.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\item_order_line.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\item_order_line.xml"
     },
     {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_forgot_password.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_forgot_password.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_address_list.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_address_list.xml"
     },
     {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\item_order.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\item_order.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_change_password_enter_code.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_change_password_enter_code.xml"
     },
     {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_admin_products.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_admin_products.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.ecommerce.app-mergeDebugResources-53:/layout/fragment_forgot_password.xml",
-        "source": "com.ecommerce.app-main-56:/layout/fragment_forgot_password.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_product_detail.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_product_detail.xml"
     },
     {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_admin_categories.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_admin_categories.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_admin_dashboard.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_admin_dashboard.xml"
+    },
+    {
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_forgot_password_enter_code.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_forgot_password_enter_code.xml"
+    },
+    {
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_security.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_security.xml"
+    },
+    {
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_orders.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_orders.xml"
+    },
+    {
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_admin_edit_product.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_admin_edit_product.xml"
+    },
+    {
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\fragment_add_address.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\fragment_add_address.xml"
+    },
+    {
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\item_banner.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\item_banner.xml"
+    },
+    {
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\item_category_section.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\item_category_section.xml"
+    },
+    {
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\item_cart.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\item_cart.xml"
+    },
+    {
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-53:\\layout\\item_user.xml",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-56:\\layout\\item_user.xml"
     }
 ]

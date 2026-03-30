@@ -19,7 +19,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ForgotPasswordEnterEmailFragment : Fragment() {
-
     private var _binding: FragmentForgotPasswordBinding? = null
     private val binding get() = _binding!!
     private val viewModel: AuthViewModel by viewModels()
@@ -78,7 +77,6 @@ class ForgotPasswordEnterEmailFragment : Fragment() {
                 }
                 is NetworkResult.Error -> {
                     binding.progressBar.hide()
-
                     val errorMessage = result.fieldErrors?.get("email") ?: result.message
                     setFieldError(requireContext(), binding.tilEmail, errorMessage)
                 }

@@ -62,9 +62,9 @@ class HomeFragment : Fragment() {
 
     private fun setupBanner() {
         val banners = listOf(
-            BannerItem(R.drawable.banner_1),
-            BannerItem(R.drawable.banner_2),
-            BannerItem(R.drawable.banner_3)
+            BannerItem(R.drawable.img_banner_1),
+            BannerItem(R.drawable.img_banner_2),
+            BannerItem(R.drawable.img_banner_3)
         )
 
         val bannerAdapter = BannerAdapter(banners)
@@ -185,7 +185,7 @@ class HomeFragment : Fragment() {
                 tag = category
                 isCheckable = true
                 setChipBackgroundColorResource(R.color.chip_background)
-                setTextColor(resources.getColorStateList(R.color.chip_text, null))
+                setTextColor(resources.getColorStateList(R.color.chip_text_color, null))
             }
             chipGroup.addView(chip)
         }
