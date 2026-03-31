@@ -3279,6 +3279,8 @@ id action_bar_spinner
 id action_bar_subtitle
 id action_bar_title
 id action_cartFragment_to_checkoutFragment
+id action_changeEmailFragment_to_enterCodeFragment
+id action_changePasswordFragment_to_enterCodeFragment
 id action_container
 id action_context_bar
 id action_divider
@@ -4072,14 +4074,12 @@ layout fragment_admin_orders
 layout fragment_admin_products
 layout fragment_admin_users
 layout fragment_cart
-layout fragment_change_email_enter_code
 layout fragment_change_email_enter_new_email
-layout fragment_change_password_enter_code
 layout fragment_change_password_enter_new_password
 layout fragment_checkout
 layout fragment_edit_profile
+layout fragment_enter_code
 layout fragment_forgot_password
-layout fragment_forgot_password_enter_code
 layout fragment_forgot_password_reset_password
 layout fragment_home
 layout fragment_login

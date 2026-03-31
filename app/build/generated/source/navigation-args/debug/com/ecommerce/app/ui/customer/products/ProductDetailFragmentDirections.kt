@@ -8,20 +8,22 @@ import kotlin.String
 
 public class ProductDetailFragmentDirections private constructor() {
   private data class ActionProductDetailFragmentToEnterCodeFragment(
-    public val email: String,
+    public val mode: String,
+    public val email: String = "",
   ) : NavDirections {
     public override val actionId: Int = R.id.action_productDetailFragment_to_enterCodeFragment
 
     public override val arguments: Bundle
       get() {
         val result = Bundle()
+        result.putString("mode", this.mode)
         result.putString("email", this.email)
         return result
       }
   }
 
   public companion object {
-    public fun actionProductDetailFragmentToEnterCodeFragment(email: String): NavDirections =
-        ActionProductDetailFragmentToEnterCodeFragment(email)
+    public fun actionProductDetailFragmentToEnterCodeFragment(mode: String, email: String = ""):
+        NavDirections = ActionProductDetailFragmentToEnterCodeFragment(mode, email)
   }
 }

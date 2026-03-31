@@ -8,28 +8,14 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.ecommerce.app.data.repository.AddressRepository
 import com.ecommerce.app.databinding.FragmentAddAddressBinding
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hide
 import com.ecommerce.app.util.show
 import com.ecommerce.app.util.showToast
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.ecommerce.app.data.model.address.CepLookupResponse
 import com.ecommerce.app.data.model.address.CreateAddressRequest
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-// ── ViewModel ─────────────────────────────────────────────────────────────────
-
-
-
-// ── Fragment ──────────────────────────────────────────────────────────────────
 
 @AndroidEntryPoint
 class AddAddressFragment : Fragment() {
@@ -49,7 +35,6 @@ class AddAddressFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Auto-lookup when CEP has 8 digits
         binding.etPostalCode.doAfterTextChanged { text ->
             val clean = text.toString().replace("-", "").trim()
             if (clean.length == 8) viewModel.lookupCep(clean)
@@ -93,12 +78,12 @@ class AddAddressFragment : Fragment() {
         }
 
         binding.btnSave.setOnClickListener {
-            val name         = binding.etName.text.toString().trim()
-            val street       = binding.etStreet.text.toString().trim().ifEmpty { null }
-            val numberStr    = binding.etNumber.text.toString().trim()
-            val complement   = binding.etComplement.text.toString().trim().ifEmpty { null }
+            val name = binding.etName.text.toString().trim()
+            val street = binding.etStreet.text.toString().trim().ifEmpty { null }
+            val numberStr = binding.etNumber.text.toString().trim()
+            val complement = binding.etComplement.text.toString().trim().ifEmpty { null }
             val neighborhood = binding.etNeighborhood.text.toString().trim().ifEmpty { null }
-            val postalCode   = binding.etPostalCode.text.toString().replace("-", "").trim()
+            val postalCode = binding.etPostalCode.text.toString().replace("-", "").trim()
 
             if (name.isEmpty() || numberStr.isEmpty() || postalCode.length < 8) {
                 showToast("Please fill in Name, Number and Postal Code")
@@ -107,12 +92,12 @@ class AddAddressFragment : Fragment() {
 
             viewModel.saveAddress(
                 CreateAddressRequest(
-                    name         = name,
-                    street       = street,
-                    number       = numberStr.toInt(),
-                    complement   = complement,
+                    name = name,
+                    street = street,
+                    number = numberStr.toInt(),
+                    complement = complement,
                     neighborhood = neighborhood,
-                    postalCode   = postalCode
+                    postalCode = postalCode
                 )
             )
         }

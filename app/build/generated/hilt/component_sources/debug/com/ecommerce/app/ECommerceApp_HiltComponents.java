@@ -17,7 +17,6 @@ import com.ecommerce.app.ui.admin.users.AdminUsersViewModel_HiltModules;
 import com.ecommerce.app.ui.auth.AuthViewModel_HiltModules;
 import com.ecommerce.app.ui.auth.LoginFragment_GeneratedInjector;
 import com.ecommerce.app.ui.auth.RegisterFragment_GeneratedInjector;
-import com.ecommerce.app.ui.auth.forgot_password.ForgotPasswordEnterCodeFragment_GeneratedInjector;
 import com.ecommerce.app.ui.auth.forgot_password.ForgotPasswordEnterEmailFragment_GeneratedInjector;
 import com.ecommerce.app.ui.auth.forgot_password.ForgotPasswordResetPasswordFragment_GeneratedInjector;
 import com.ecommerce.app.ui.customer.address.AddAddressFragment_GeneratedInjector;
@@ -39,7 +38,11 @@ import com.ecommerce.app.ui.customer.products.ProductDetailViewModel_HiltModules
 import com.ecommerce.app.ui.customer.profile.EditProfileFragment_GeneratedInjector;
 import com.ecommerce.app.ui.customer.profile.ProfileFragment_GeneratedInjector;
 import com.ecommerce.app.ui.customer.profile.ProfileViewModel_HiltModules;
-import com.ecommerce.app.ui.customer.profile.SecurityFragment_GeneratedInjector;
+import com.ecommerce.app.ui.customer.profile.security.ChangeEmailEnterNewEmailFragment_GeneratedInjector;
+import com.ecommerce.app.ui.customer.profile.security.ChangePasswordEnterNewPasswordFragment_GeneratedInjector;
+import com.ecommerce.app.ui.customer.profile.security.SecurityFragment_GeneratedInjector;
+import com.ecommerce.app.ui.customer.profile.security.SecurityViewModel_HiltModules;
+import com.ecommerce.app.ui.shared.EnterCodeFragment_GeneratedInjector;
 import dagger.Binds;
 import dagger.Component;
 import dagger.Module;
@@ -210,7 +213,8 @@ public final class ECommerceApp_HiltComponents {
           OrderDetailViewModel_HiltModules.KeyModule.class,
           OrdersViewModel_HiltModules.KeyModule.class,
           ProductDetailViewModel_HiltModules.KeyModule.class,
-          ProfileViewModel_HiltModules.KeyModule.class
+          ProfileViewModel_HiltModules.KeyModule.class,
+          SecurityViewModel_HiltModules.KeyModule.class
       }
   )
   @ActivityRetainedScoped
@@ -262,7 +266,8 @@ public final class ECommerceApp_HiltComponents {
           OrderDetailViewModel_HiltModules.BindsModule.class,
           OrdersViewModel_HiltModules.BindsModule.class,
           ProductDetailViewModel_HiltModules.BindsModule.class,
-          ProfileViewModel_HiltModules.BindsModule.class
+          ProfileViewModel_HiltModules.BindsModule.class,
+          SecurityViewModel_HiltModules.BindsModule.class
       }
   )
   @ViewModelScoped
@@ -295,7 +300,6 @@ public final class ECommerceApp_HiltComponents {
       AdminUsersFragment_GeneratedInjector,
       LoginFragment_GeneratedInjector,
       RegisterFragment_GeneratedInjector,
-      ForgotPasswordEnterCodeFragment_GeneratedInjector,
       ForgotPasswordEnterEmailFragment_GeneratedInjector,
       ForgotPasswordResetPasswordFragment_GeneratedInjector,
       AddAddressFragment_GeneratedInjector,
@@ -308,7 +312,10 @@ public final class ECommerceApp_HiltComponents {
       ProductDetailFragment_GeneratedInjector,
       EditProfileFragment_GeneratedInjector,
       ProfileFragment_GeneratedInjector,
+      ChangeEmailEnterNewEmailFragment_GeneratedInjector,
+      ChangePasswordEnterNewPasswordFragment_GeneratedInjector,
       SecurityFragment_GeneratedInjector,
+      EnterCodeFragment_GeneratedInjector,
       FragmentComponent,
       DefaultViewModelFactories.FragmentEntryPoint,
       ViewComponentManager.ViewWithFragmentComponentBuilderEntryPoint,
