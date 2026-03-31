@@ -5,20 +5,29 @@ import androidx.lifecycle.SavedStateHandle;
 import androidx.navigation.NavArgs;
 import java.lang.IllegalArgumentException;
 import kotlin.Long;
+import kotlin.String;
 import kotlin.jvm.JvmStatic;
 
-@kotlin.Metadata(mv = {1, 9, 0}, k = 1, xi = 48, d1 = {"\u00008\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\t\n\u0002\b\u0006\n\u0002\u0010\u000b\n\u0000\n\u0002\u0010\u0000\n\u0000\n\u0002\u0010\b\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u000e\n\u0002\b\u0002\b\u0086\b\u0018\u0000 \u00152\u00020\u0001:\u0001\u0015B\r\u0012\u0006\u0010\u0002\u001a\u00020\u0003\u00a2\u0006\u0002\u0010\u0004J\t\u0010\u0007\u001a\u00020\u0003H\u00c6\u0003J\u0013\u0010\b\u001a\u00020\u00002\b\b\u0002\u0010\u0002\u001a\u00020\u0003H\u00c6\u0001J\u0013\u0010\t\u001a\u00020\n2\b\u0010\u000b\u001a\u0004\u0018\u00010\fH\u00d6\u0003J\t\u0010\r\u001a\u00020\u000eH\u00d6\u0001J\u0006\u0010\u000f\u001a\u00020\u0010J\u0006\u0010\u0011\u001a\u00020\u0012J\t\u0010\u0013\u001a\u00020\u0014H\u00d6\u0001R\u0011\u0010\u0002\u001a\u00020\u0003\u00a2\u0006\b\n\u0000\u001a\u0004\b\u0005\u0010\u0006\u00a8\u0006\u0016"}, d2 = {"Lcom/ecommerce/app/ui/customer/products/ProductDetailFragmentArgs;", "Landroidx/navigation/NavArgs;", "productId", "", "(J)V", "getProductId", "()J", "component1", "copy", "equals", "", "other", "", "hashCode", "", "toBundle", "Landroid/os/Bundle;", "toSavedStateHandle", "Landroidx/lifecycle/SavedStateHandle;", "toString", "", "Companion", "app_debug"})
+@kotlin.Metadata(mv = {1, 9, 0}, k = 1, xi = 48, d1 = {"\u00008\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\t\n\u0000\n\u0002\u0010\u000e\n\u0002\b\t\n\u0002\u0010\u000b\n\u0000\n\u0002\u0010\u0000\n\u0000\n\u0002\u0010\b\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0003\b\u0086\b\u0018\u0000 \u00192\u00020\u0001:\u0001\u0019B\u0015\u0012\u0006\u0010\u0002\u001a\u00020\u0003\u0012\u0006\u0010\u0004\u001a\u00020\u0005\u00a2\u0006\u0002\u0010\u0006J\t\u0010\u000b\u001a\u00020\u0003H\u00c6\u0003J\t\u0010\f\u001a\u00020\u0005H\u00c6\u0003J\u001d\u0010\r\u001a\u00020\u00002\b\b\u0002\u0010\u0002\u001a\u00020\u00032\b\b\u0002\u0010\u0004\u001a\u00020\u0005H\u00c6\u0001J\u0013\u0010\u000e\u001a\u00020\u000f2\b\u0010\u0010\u001a\u0004\u0018\u00010\u0011H\u00d6\u0003J\t\u0010\u0012\u001a\u00020\u0013H\u00d6\u0001J\u0006\u0010\u0014\u001a\u00020\u0015J\u0006\u0010\u0016\u001a\u00020\u0017J\t\u0010\u0018\u001a\u00020\u0005H\u00d6\u0001R\u0011\u0010\u0004\u001a\u00020\u0005\u00a2\u0006\b\n\u0000\u001a\u0004\b\u0007\u0010\bR\u0011\u0010\u0002\u001a\u00020\u0003\u00a2\u0006\b\n\u0000\u001a\u0004\b\t\u0010\n\u00a8\u0006\u001a"}, d2 = {"Lcom/ecommerce/app/ui/customer/products/ProductDetailFragmentArgs;", "Landroidx/navigation/NavArgs;", "productId", "", "email", "", "(JLjava/lang/String;)V", "getEmail", "()Ljava/lang/String;", "getProductId", "()J", "component1", "component2", "copy", "equals", "", "other", "", "hashCode", "", "toBundle", "Landroid/os/Bundle;", "toSavedStateHandle", "Landroidx/lifecycle/SavedStateHandle;", "toString", "Companion", "app_debug"})
 public final class ProductDetailFragmentArgs implements androidx.navigation.NavArgs {
     private final long productId = 0L;
     @org.jetbrains.annotations.NotNull()
+    private final java.lang.String email = null;
+    @org.jetbrains.annotations.NotNull()
     public static final com.ecommerce.app.ui.customer.products.ProductDetailFragmentArgs.Companion Companion = null;
     
-    public ProductDetailFragmentArgs(long productId) {
+    public ProductDetailFragmentArgs(long productId, @org.jetbrains.annotations.NotNull()
+    java.lang.String email) {
         super();
     }
     
     public final long getProductId() {
         return 0L;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String getEmail() {
+        return null;
     }
     
     @org.jetbrains.annotations.NotNull()
@@ -36,7 +45,13 @@ public final class ProductDetailFragmentArgs implements androidx.navigation.NavA
     }
     
     @org.jetbrains.annotations.NotNull()
-    public final com.ecommerce.app.ui.customer.products.ProductDetailFragmentArgs copy(long productId) {
+    public final java.lang.String component2() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final com.ecommerce.app.ui.customer.products.ProductDetailFragmentArgs copy(long productId, @org.jetbrains.annotations.NotNull()
+    java.lang.String email) {
         return null;
     }
     

@@ -32,6 +32,8 @@ class ProductDetailFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: ProductDetailViewModel by viewModels()
 
+    private var userEmail: String? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ) = FragmentProductDetailBinding.inflate(inflater, container, false)
@@ -47,6 +49,10 @@ class ProductDetailFragment : Fragment() {
         viewModel.loadProduct(productId)
         observeProduct()
         observeAddToCart()
+
+        viewModel.userEmail.observe(viewLifecycleOwner) { email ->
+            userEmail = email
+        }
     }
 
     private fun observeProduct() {
@@ -98,7 +104,6 @@ class ProductDetailFragment : Fragment() {
 
                 is NetworkResult.Error -> {
                     binding.btnAddToCart.isEnabled = true
-
                     showVerifyEmailDialog()
                 }
             }
@@ -122,9 +127,12 @@ class ProductDetailFragment : Fragment() {
 
         dialog.findViewById<TextView>(R.id.btnConfirm).setOnClickListener {
             dialog.dismiss()
-            findNavController().navigate(
-                R.id.action_productDetailFragment_to_enterCodeFragment
-            )
+            val action = ProductDetailFragmentDirections
+                .actionProductDetailFragmentToEnterCodeFragment(
+                    mode = "verify_email",
+                    email = userEmail ?: ""
+                )
+            findNavController().navigate(action)
         }
 
         dialog.show()

@@ -42,6 +42,8 @@ import com.ecommerce.app.ui.customer.profile.security.ChangeEmailEnterNewEmailFr
 import com.ecommerce.app.ui.customer.profile.security.ChangePasswordEnterNewPasswordFragment_GeneratedInjector;
 import com.ecommerce.app.ui.customer.profile.security.SecurityFragment_GeneratedInjector;
 import com.ecommerce.app.ui.customer.profile.security.SecurityViewModel_HiltModules;
+import com.ecommerce.app.ui.customer.search.SearchFragment_GeneratedInjector;
+import com.ecommerce.app.ui.customer.search.SearchViewModel_HiltModules;
 import com.ecommerce.app.ui.shared.EnterCodeFragment_GeneratedInjector;
 import dagger.Binds;
 import dagger.Component;
@@ -214,6 +216,7 @@ public final class ECommerceApp_HiltComponents {
           OrdersViewModel_HiltModules.KeyModule.class,
           ProductDetailViewModel_HiltModules.KeyModule.class,
           ProfileViewModel_HiltModules.KeyModule.class,
+          SearchViewModel_HiltModules.KeyModule.class,
           SecurityViewModel_HiltModules.KeyModule.class
       }
   )
@@ -267,6 +270,7 @@ public final class ECommerceApp_HiltComponents {
           OrdersViewModel_HiltModules.BindsModule.class,
           ProductDetailViewModel_HiltModules.BindsModule.class,
           ProfileViewModel_HiltModules.BindsModule.class,
+          SearchViewModel_HiltModules.BindsModule.class,
           SecurityViewModel_HiltModules.BindsModule.class
       }
   )
@@ -315,6 +319,7 @@ public final class ECommerceApp_HiltComponents {
       ChangeEmailEnterNewEmailFragment_GeneratedInjector,
       ChangePasswordEnterNewPasswordFragment_GeneratedInjector,
       SecurityFragment_GeneratedInjector,
+      SearchFragment_GeneratedInjector,
       EnterCodeFragment_GeneratedInjector,
       FragmentComponent,
       DefaultViewModelFactories.FragmentEntryPoint,

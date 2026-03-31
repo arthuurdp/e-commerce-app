@@ -72,7 +72,11 @@ class ForgotPasswordEnterEmailFragment : Fragment() {
                 is NetworkResult.Success -> {
                     binding.progressBar.hide()
                     val email = binding.etEmail.text.toString().trim()
-                    val action = ForgotPasswordEnterEmailFragmentDirections.actionForgotPasswordFragmentToEnterCodeFragment(email)
+                    val action = ForgotPasswordEnterEmailFragmentDirections
+                        .actionForgotPasswordFragmentToEnterCodeFragment(
+                            mode = "forgot_password",
+                            email = email
+                        )
                     findNavController().navigate(action)
                 }
                 is NetworkResult.Error -> {

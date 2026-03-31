@@ -8,7 +8,7 @@ import kotlin.String
 
 public class ChangeEmailEnterNewEmailFragmentDirections private constructor() {
   private data class ActionChangeEmailFragmentToEnterCodeFragment(
-    public val mode: String,
+    public val mode: String = "none",
     public val email: String = "",
   ) : NavDirections {
     public override val actionId: Int = R.id.action_changeEmailFragment_to_enterCodeFragment
@@ -23,7 +23,7 @@ public class ChangeEmailEnterNewEmailFragmentDirections private constructor() {
   }
 
   public companion object {
-    public fun actionChangeEmailFragmentToEnterCodeFragment(mode: String, email: String = ""):
-        NavDirections = ActionChangeEmailFragmentToEnterCodeFragment(mode, email)
+    public fun actionChangeEmailFragmentToEnterCodeFragment(mode: String = "none", email: String =
+        ""): NavDirections = ActionChangeEmailFragmentToEnterCodeFragment(mode, email)
   }
 }

@@ -36,6 +36,7 @@ color text_input_icon_tint
 color text_input_stroke_color
 color warning
 color white
+drawable bg_dialog
 drawable bg_dot_active
 drawable bg_dot_inactive
 drawable ic_arrow_back
@@ -96,6 +97,7 @@ id action_profileFragment_to_loginFragment
 id action_profileFragment_to_securityFragment
 id action_registerFragment_to_loginFragment
 id action_resetPasswordFragment_to_loginFragment
+id action_searchFragment_to_productDetailFragment
 id action_securityFragment_to_changeEmailFragment
 id action_securityFragment_to_changePasswordFragment
 id action_securityFragment_to_loginFragment
@@ -116,6 +118,7 @@ id btnConfirm
 id btn_add_to_cart
 id btn_addresses
 id btn_back
+id btn_cancel
 id btn_change_email
 id btn_change_password
 id btn_checkout
@@ -134,6 +137,7 @@ id btn_save
 id btn_security
 id btn_send_code
 id card_categories
+id card_category
 id card_change_email
 id card_change_password
 id card_delete_account
@@ -144,7 +148,8 @@ id cartFragment
 id changeEmailFragment
 id changePasswordFragment
 id checkoutFragment
-id chip_group_categories
+id chip_group
+id chip_scroll_view
 id editProfileFragment
 id enterCodeFragment
 id et_birth_date
@@ -169,6 +174,7 @@ id et_password
 id et_phone
 id et_postal_code
 id et_price
+id et_search
 id et_stock
 id et_street
 id et_weight
@@ -189,7 +195,12 @@ id iv_illustration
 id iv_password_chevron
 id iv_product
 id layout_cart_footer
+id layout_empty_state
+id layout_no_results
+id layout_results
 id ll_categories_container
+id ll_categories_grid
+id ll_category_tiles
 id ll_dots
 id ll_greeting
 id ll_register
@@ -212,7 +223,9 @@ id rv_category_products
 id rv_items
 id rv_orders
 id rv_products
+id rv_search_results
 id rv_users
+id scroll_view
 id searchFragment
 id securityFragment
 id spinner_address
@@ -232,12 +245,15 @@ id til_enter_code
 id til_new_email
 id til_new_password
 id til_password
+id til_search
 id tvEmpty
 id tv_address_city
 id tv_address_name
 id tv_address_street
 id tv_category
+id tv_category_emoji
 id tv_category_name
+id tv_category_tile_name
 id tv_city
 id tv_current_email
 id tv_date
@@ -251,6 +267,7 @@ id tv_item_count
 id tv_last_name
 id tv_login
 id tv_name
+id tv_no_results_query
 id tv_order_id
 id tv_price
 id tv_product_name
@@ -258,6 +275,7 @@ id tv_product_price
 id tv_qty
 id tv_quantity
 id tv_register
+id tv_result_count
 id tv_role
 id tv_status
 id tv_stock
@@ -269,6 +287,7 @@ id tv_total_orders
 id tv_total_products
 id tv_total_users
 id tv_unit_price
+id v_overlay
 id vp_banner
 id vp_product_images
 layout activity_main
@@ -297,12 +316,14 @@ layout fragment_orders
 layout fragment_product_detail
 layout fragment_profile
 layout fragment_register
+layout fragment_search
 layout fragment_security
 layout item_address
 layout item_banner
 layout item_cart
 layout item_category
 layout item_category_section
+layout item_category_tile
 layout item_order
 layout item_order_line
 layout item_product

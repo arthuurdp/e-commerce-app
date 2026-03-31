@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -45,9 +44,6 @@ public final class FragmentLoginBinding implements ViewBinding {
   public final ConstraintLayout mainContainer;
 
   @NonNull
-  public final ProgressBar progressBar;
-
-  @NonNull
   public final TextInputLayout tilEmail;
 
   @NonNull
@@ -68,10 +64,9 @@ public final class FragmentLoginBinding implements ViewBinding {
   private FragmentLoginBinding(@NonNull NestedScrollView rootView, @NonNull MaterialButton btnLogin,
       @NonNull TextInputEditText etCredential, @NonNull TextInputEditText etPassword,
       @NonNull ImageView ivIllustration, @NonNull LinearLayout llRegister,
-      @NonNull ConstraintLayout mainContainer, @NonNull ProgressBar progressBar,
-      @NonNull TextInputLayout tilEmail, @NonNull TextInputLayout tilPassword,
-      @NonNull TextView tvForgotPassword, @NonNull TextView tvRegister,
-      @NonNull TextView tvSubtitle, @NonNull LinearLayout tvTitle) {
+      @NonNull ConstraintLayout mainContainer, @NonNull TextInputLayout tilEmail,
+      @NonNull TextInputLayout tilPassword, @NonNull TextView tvForgotPassword,
+      @NonNull TextView tvRegister, @NonNull TextView tvSubtitle, @NonNull LinearLayout tvTitle) {
     this.rootView = rootView;
     this.btnLogin = btnLogin;
     this.etCredential = etCredential;
@@ -79,7 +74,6 @@ public final class FragmentLoginBinding implements ViewBinding {
     this.ivIllustration = ivIllustration;
     this.llRegister = llRegister;
     this.mainContainer = mainContainer;
-    this.progressBar = progressBar;
     this.tilEmail = tilEmail;
     this.tilPassword = tilPassword;
     this.tvForgotPassword = tvForgotPassword;
@@ -151,12 +145,6 @@ public final class FragmentLoginBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.progress_bar;
-      ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
-      if (progressBar == null) {
-        break missingId;
-      }
-
       id = R.id.til_email;
       TextInputLayout tilEmail = ViewBindings.findChildViewById(rootView, id);
       if (tilEmail == null) {
@@ -194,7 +182,7 @@ public final class FragmentLoginBinding implements ViewBinding {
       }
 
       return new FragmentLoginBinding((NestedScrollView) rootView, btnLogin, etCredential,
-          etPassword, ivIllustration, llRegister, mainContainer, progressBar, tilEmail, tilPassword,
+          etPassword, ivIllustration, llRegister, mainContainer, tilEmail, tilPassword,
           tvForgotPassword, tvRegister, tvSubtitle, tvTitle);
     }
     String missingId = rootView.getResources().getResourceName(id);

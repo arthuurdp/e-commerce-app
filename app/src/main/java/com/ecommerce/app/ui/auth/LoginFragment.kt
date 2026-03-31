@@ -88,11 +88,9 @@ class LoginFragment : Fragment() {
         viewModel.loginState.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is NetworkResult.Loading -> {
-                    binding.progressBar.show()
                     binding.btnLogin.isEnabled = false
                 }
                 is NetworkResult.Success -> {
-                    binding.progressBar.hide()
                     binding.btnLogin.isEnabled = true
 
                     val destination = if (viewModel.isAdmin) {
@@ -104,7 +102,6 @@ class LoginFragment : Fragment() {
                     findNavController().navigate(destination)
                 }
                 is NetworkResult.Error -> {
-                    binding.progressBar.hide()
                     binding.btnLogin.isEnabled = true
                     setFieldError(requireContext(), binding.tilEmail, result.message)
                     setFieldError(requireContext(), binding.tilPassword, result.message)

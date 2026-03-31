@@ -87,6 +87,7 @@
 
         <argument
             android:name="mode"
+            android:defaultValue="none"
             app:argType="string" />
 
         <argument
@@ -117,6 +118,18 @@
     </fragment>
 
     <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.ecommerce.app.ui.customer.search.SearchFragment"
+        android:label="Search"
+        tools:layout="@layout/fragment_search">
+
+        <action
+            android:id="@+id/action_searchFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+
+    </fragment>
+
+    <fragment
         android:id="@+id/productDetailFragment"
         android:name="com.ecommerce.app.ui.customer.products.ProductDetailFragment"
         android:label="Product"
@@ -126,7 +139,10 @@
             android:name="productId"
             app:argType="long" />
 
-        <!-- opcional (verificação de email, se fizer sentido no teu fluxo) -->
+        <argument
+            android:name="email"
+            app:argType="string" />
+
         <action
             android:id="@+id/action_productDetailFragment_to_enterCodeFragment"
             app:destination="@id/enterCodeFragment" />

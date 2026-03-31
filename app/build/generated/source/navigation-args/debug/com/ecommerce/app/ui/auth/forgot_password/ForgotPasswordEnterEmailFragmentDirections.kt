@@ -8,7 +8,7 @@ import kotlin.String
 
 public class ForgotPasswordEnterEmailFragmentDirections private constructor() {
   private data class ActionForgotPasswordFragmentToEnterCodeFragment(
-    public val mode: String,
+    public val mode: String = "none",
     public val email: String = "",
   ) : NavDirections {
     public override val actionId: Int = R.id.action_forgotPasswordFragment_to_enterCodeFragment
@@ -23,7 +23,7 @@ public class ForgotPasswordEnterEmailFragmentDirections private constructor() {
   }
 
   public companion object {
-    public fun actionForgotPasswordFragmentToEnterCodeFragment(mode: String, email: String = ""):
-        NavDirections = ActionForgotPasswordFragmentToEnterCodeFragment(mode, email)
+    public fun actionForgotPasswordFragmentToEnterCodeFragment(mode: String = "none", email: String
+        = ""): NavDirections = ActionForgotPasswordFragmentToEnterCodeFragment(mode, email)
   }
 }

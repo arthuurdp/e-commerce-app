@@ -8,7 +8,7 @@ import kotlin.String
 
 public class ProductDetailFragmentDirections private constructor() {
   private data class ActionProductDetailFragmentToEnterCodeFragment(
-    public val mode: String,
+    public val mode: String = "none",
     public val email: String = "",
   ) : NavDirections {
     public override val actionId: Int = R.id.action_productDetailFragment_to_enterCodeFragment
@@ -23,7 +23,7 @@ public class ProductDetailFragmentDirections private constructor() {
   }
 
   public companion object {
-    public fun actionProductDetailFragmentToEnterCodeFragment(mode: String, email: String = ""):
-        NavDirections = ActionProductDetailFragmentToEnterCodeFragment(mode, email)
+    public fun actionProductDetailFragmentToEnterCodeFragment(mode: String = "none", email: String =
+        ""): NavDirections = ActionProductDetailFragmentToEnterCodeFragment(mode, email)
   }
 }

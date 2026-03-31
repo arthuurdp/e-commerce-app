@@ -17,7 +17,6 @@ import androidx.viewbinding.ViewBindings;
 import androidx.viewpager2.widget.ViewPager2;
 import com.ecommerce.app.R;
 import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.chip.ChipGroup;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -30,13 +29,13 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final AppBarLayout appBar;
 
   @NonNull
-  public final ChipGroup chipGroupCategories;
-
-  @NonNull
   public final ImageView ivCart;
 
   @NonNull
   public final LinearLayout llCategoriesContainer;
+
+  @NonNull
+  public final LinearLayout llCategoryTiles;
 
   @NonNull
   public final LinearLayout llDots;
@@ -60,16 +59,16 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final ViewPager2 vpBanner;
 
   private FragmentHomeBinding(@NonNull CoordinatorLayout rootView, @NonNull AppBarLayout appBar,
-      @NonNull ChipGroup chipGroupCategories, @NonNull ImageView ivCart,
-      @NonNull LinearLayout llCategoriesContainer, @NonNull LinearLayout llDots,
+      @NonNull ImageView ivCart, @NonNull LinearLayout llCategoriesContainer,
+      @NonNull LinearLayout llCategoryTiles, @NonNull LinearLayout llDots,
       @NonNull LinearLayout llGreeting, @NonNull ProgressBar progressBar,
       @NonNull SwipeRefreshLayout swipeRefresh, @NonNull TextView tvEmpty,
       @NonNull TextView tvFirstName, @NonNull ViewPager2 vpBanner) {
     this.rootView = rootView;
     this.appBar = appBar;
-    this.chipGroupCategories = chipGroupCategories;
     this.ivCart = ivCart;
     this.llCategoriesContainer = llCategoriesContainer;
+    this.llCategoryTiles = llCategoryTiles;
     this.llDots = llDots;
     this.llGreeting = llGreeting;
     this.progressBar = progressBar;
@@ -112,12 +111,6 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.chip_group_categories;
-      ChipGroup chipGroupCategories = ViewBindings.findChildViewById(rootView, id);
-      if (chipGroupCategories == null) {
-        break missingId;
-      }
-
       id = R.id.iv_cart;
       ImageView ivCart = ViewBindings.findChildViewById(rootView, id);
       if (ivCart == null) {
@@ -127,6 +120,12 @@ public final class FragmentHomeBinding implements ViewBinding {
       id = R.id.ll_categories_container;
       LinearLayout llCategoriesContainer = ViewBindings.findChildViewById(rootView, id);
       if (llCategoriesContainer == null) {
+        break missingId;
+      }
+
+      id = R.id.ll_category_tiles;
+      LinearLayout llCategoryTiles = ViewBindings.findChildViewById(rootView, id);
+      if (llCategoryTiles == null) {
         break missingId;
       }
 
@@ -172,9 +171,9 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentHomeBinding((CoordinatorLayout) rootView, appBar, chipGroupCategories,
-          ivCart, llCategoriesContainer, llDots, llGreeting, progressBar, swipeRefresh, tvEmpty,
-          tvFirstName, vpBanner);
+      return new FragmentHomeBinding((CoordinatorLayout) rootView, appBar, ivCart,
+          llCategoriesContainer, llCategoryTiles, llDots, llGreeting, progressBar, swipeRefresh,
+          tvEmpty, tvFirstName, vpBanner);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -2,6 +2,7 @@ package com.ecommerce.app.ui.customer.products;
 
 import com.ecommerce.app.data.repository.CartRepository;
 import com.ecommerce.app.data.repository.ProductRepository;
+import com.ecommerce.app.data.repository.UserRepository;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.QualifierMetadata;
@@ -27,25 +28,30 @@ public final class ProductDetailViewModel_Factory implements Factory<ProductDeta
 
   private final Provider<CartRepository> cartRepositoryProvider;
 
+  private final Provider<UserRepository> userRepositoryProvider;
+
   public ProductDetailViewModel_Factory(Provider<ProductRepository> productRepositoryProvider,
-      Provider<CartRepository> cartRepositoryProvider) {
+      Provider<CartRepository> cartRepositoryProvider,
+      Provider<UserRepository> userRepositoryProvider) {
     this.productRepositoryProvider = productRepositoryProvider;
     this.cartRepositoryProvider = cartRepositoryProvider;
+    this.userRepositoryProvider = userRepositoryProvider;
   }
 
   @Override
   public ProductDetailViewModel get() {
-    return newInstance(productRepositoryProvider.get(), cartRepositoryProvider.get());
+    return newInstance(productRepositoryProvider.get(), cartRepositoryProvider.get(), userRepositoryProvider.get());
   }
 
   public static ProductDetailViewModel_Factory create(
       Provider<ProductRepository> productRepositoryProvider,
-      Provider<CartRepository> cartRepositoryProvider) {
-    return new ProductDetailViewModel_Factory(productRepositoryProvider, cartRepositoryProvider);
+      Provider<CartRepository> cartRepositoryProvider,
+      Provider<UserRepository> userRepositoryProvider) {
+    return new ProductDetailViewModel_Factory(productRepositoryProvider, cartRepositoryProvider, userRepositoryProvider);
   }
 
   public static ProductDetailViewModel newInstance(ProductRepository productRepository,
-      CartRepository cartRepository) {
-    return new ProductDetailViewModel(productRepository, cartRepository);
+      CartRepository cartRepository, UserRepository userRepository) {
+    return new ProductDetailViewModel(productRepository, cartRepository, userRepository);
   }
 }

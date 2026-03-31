@@ -1,9 +1,11 @@
 package com.ecommerce.app.ui.customer.home
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -25,16 +27,48 @@ import com.ecommerce.app.ui.customer.products.ProductAdapter
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hide
 import com.ecommerce.app.util.show
+import com.google.android.material.card.MaterialCardView
 import dagger.hilt.android.AndroidEntryPoint
-import com.google.android.material.chip.Chip
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+private val TILE_COLORS = listOf(
+    0xFF1DB954.toInt(), // green  – Mercado
+    0xFFFF8C00.toInt(), // amber  – Farmácia
+    0xFFE91E8C.toInt(), // pink   – Bebidas
+    0xFF3D5AFE.toInt(), // indigo – Gourmet
+    0xFFD32F2F.toInt(), // red    – Promoções
+    0xFF00BCD4.toInt(), // cyan   – Açaí
+    0xFF8E24AA.toInt(), // purple
+    0xFF388E3C.toInt(), // dark green
+    0xFFFF6B35.toInt(), // orange
+    0xFF0277BD.toInt(), // blue
+)
+
+private val CATEGORY_EMOJIS = mapOf(
+    "lanche" to "🍔", "burger" to "🍔",
+    "pizza" to "🍕",
+    "sushi" to "🍣", "japonesa" to "🍣",
+    "bebida" to "🥤",
+    "doce" to "🍰", "sobremesa" to "🍰", "bolo" to "🎂",
+    "mercado" to "🛒",
+    "farmácia" to "💊", "farmacia" to "💊",
+    "açaí" to "🫐", "acai" to "🫐",
+    "fit" to "💪", "saudável" to "🥗",
+    "mexicana" to "🌮",
+    "italiana" to "🍝",
+    "frango" to "🍗",
+    "vegano" to "🌱",
+    "gourmet" to "⭐",
+    "chinesa" to "🥡",
+    "árabe" to "🥙",
+)
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val viewModel: HomeViewModel by viewModels()
+    private var selectedCategoryId: Long? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,13 +85,13 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_cartFragment)
         }
 
-        observeFirstName()
+        viewModel.loadFirstName()
+        viewModel.loadCategories()
+
         setupBanner()
         setupSwipeRefresh()
         observeCategories()
         observeProductsByCategory()
-
-        viewModel.loadCategories()
     }
 
     private fun setupBanner() {
@@ -66,25 +100,19 @@ class HomeFragment : Fragment() {
             BannerItem(R.drawable.img_banner_2),
             BannerItem(R.drawable.img_banner_3)
         )
-
         val bannerAdapter = BannerAdapter(banners)
-
         binding.vpBanner.apply {
             adapter = bannerAdapter
             offscreenPageLimit = 1
             clipChildren = false
             setPageTransformer { page, position ->
-                page.scaleY = 1 - (0.05f * kotlin.math.abs(position))
-                page.alpha = 1 - (0.3f * kotlin.math.abs(position))
+                page.scaleY = 1 - 0.05f * kotlin.math.abs(position)
+                page.alpha = 1 - 0.3f * kotlin.math.abs(position)
             }
         }
-
         setupDots(banners.size)
-
         binding.vpBanner.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                updateDots(position, banners.size)
-            }
+            override fun onPageSelected(position: Int) = updateDots(position, banners.size)
         })
         startAutoScroll(bannerAdapter)
     }
@@ -93,9 +121,7 @@ class HomeFragment : Fragment() {
         binding.llDots.removeAllViews()
         repeat(count) {
             val dot = View(requireContext()).apply {
-                layoutParams = LinearLayout.LayoutParams(8.dp, 8.dp).also { params ->
-                    params.marginEnd = 6.dp
-                }
+                layoutParams = LinearLayout.LayoutParams(8.dp, 8.dp).also { p -> p.marginEnd = 6.dp }
                 background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_dot_inactive)
             }
             binding.llDots.addView(dot)
@@ -105,30 +131,192 @@ class HomeFragment : Fragment() {
 
     private fun updateDots(selected: Int, count: Int) {
         for (i in 0 until count) {
-            val dot = binding.llDots.getChildAt(i) ?: continue
-            dot.background = ContextCompat.getDrawable(
+            binding.llDots.getChildAt(i)?.background = ContextCompat.getDrawable(
                 requireContext(),
                 if (i == selected) R.drawable.bg_dot_active else R.drawable.bg_dot_inactive
             )
         }
     }
 
-    private fun observeFirstName() {
-        viewModel.firstName.observe(viewLifecycleOwner) { result ->
-            when (result) {
-                is NetworkResult.Success -> binding.tvFirstName.text = result.data
-                is NetworkResult.Error   -> binding.tvFirstName.text = "Olá!"
-                is NetworkResult.Loading -> { }
-            }
-        }
-    }
+    // ── Category tiles ──────────────────────────────────────────────────
 
     private fun observeCategories() {
         viewModel.categoriesState.observe(viewLifecycleOwner) { result ->
             if (result is NetworkResult.Success) {
                 val categories = result.data.content
-                setupCategoryChips(categories)
+                buildCategoryTiles(categories)
                 viewModel.loadProductsByCategories(categories)
+            }
+        }
+    }
+
+    private fun buildCategoryTiles(categories: List<CategoryResponse>) {
+        val container = binding.llCategoryTiles
+        container.removeAllViews()
+
+        // Row 0: "All" tile spanning full width + first category
+        val allPlusFirst = buildRow(
+            left = buildAllTile(categories),
+            right = if (categories.isNotEmpty()) buildTile(categories[0], 0) else null
+        )
+        container.addView(allPlusFirst)
+
+        // Remaining categories: 2 per row
+        val rest = if (categories.size > 1) categories.subList(1, categories.size) else emptyList()
+        rest.chunked(2).forEachIndexed { rowIdx, pair ->
+            val row = buildRow(
+                left = buildTile(pair[0], (rowIdx * 2 + 1) % TILE_COLORS.size),
+                right = if (pair.size > 1) buildTile(pair[1], (rowIdx * 2 + 2) % TILE_COLORS.size) else null
+            )
+            container.addView(row)
+        }
+    }
+
+    /** The "All" tile — always green, full-width feel */
+    private fun buildAllTile(categories: List<CategoryResponse>): MaterialCardView {
+        return buildColoredTile(
+            label = "Ver Tudo",
+            emoji = "🏠",
+            colorInt = 0xFF1DB954.toInt(),
+            onClick = {
+                selectedCategoryId = null
+                viewModel.loadProductsByCategories(categories)
+                refreshTileSelections(null)
+            }
+        ).also { it.tag = "ALL" }
+    }
+
+    private fun buildTile(category: CategoryResponse, colorIndex: Int): MaterialCardView {
+        val colorInt = TILE_COLORS[colorIndex % TILE_COLORS.size]
+        val emoji = resolveEmoji(category.name)
+        return buildColoredTile(
+            label = category.name,
+            emoji = emoji,
+            colorInt = colorInt,
+            onClick = {
+                selectedCategoryId = category.id
+                viewModel.loadProductsByCategories(listOf(category))
+                refreshTileSelections(category.id)
+            }
+        ).also { it.tag = category.id }
+    }
+
+    private fun buildColoredTile(
+        label: String,
+        emoji: String,
+        colorInt: Int,
+        onClick: () -> Unit
+    ): MaterialCardView {
+        val card = MaterialCardView(requireContext()).apply {
+            radius = 16.dp.toFloat()
+            cardElevation = 0f
+            setCardBackgroundColor(colorInt)
+            isClickable = true
+            isFocusable = true
+            foreground = requireContext().obtainStyledAttributes(
+                intArrayOf(android.R.attr.selectableItemBackground)
+            ).getDrawable(0)
+        }
+
+        val frame = FrameLayout(requireContext()).apply {
+            layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+        }
+
+        val scrim = View(requireContext()).apply {
+            layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+            setBackgroundColor(Color.parseColor("#1A000000"))
+        }
+
+        val nameView = TextView(requireContext()).apply {
+            text = label
+            setTextColor(Color.WHITE)
+            textSize = 13.5f
+            setTypeface(null, android.graphics.Typeface.BOLD)
+            setShadowLayer(4f, 0f, 1f, 0x66000000)
+            layoutParams = FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            ).apply {
+                gravity = android.view.Gravity.BOTTOM or android.view.Gravity.START
+                setMargins(12.dp, 0, 12.dp, 12.dp)
+            }
+        }
+
+        val emojiView = TextView(requireContext()).apply {
+            text = emoji
+            textSize = 28f
+            layoutParams = FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            ).apply {
+                gravity = android.view.Gravity.TOP or android.view.Gravity.END
+                setMargins(0, 8.dp, 10.dp, 0)
+            }
+        }
+
+        frame.addView(scrim)
+        frame.addView(nameView)
+        frame.addView(emojiView)
+        card.addView(frame)
+        card.setOnClickListener { onClick() }
+        return card
+    }
+
+    private fun buildRow(left: MaterialCardView, right: MaterialCardView?): LinearLayout {
+        return LinearLayout(requireContext()).apply {
+            orientation = LinearLayout.HORIZONTAL
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            val rowParams = LinearLayout.LayoutParams(0, 90.dp, 1f).apply {
+                marginStart = 0
+                marginEnd = 0
+                topMargin = 5.dp
+                bottomMargin = 5.dp
+            }
+            left.layoutParams = rowParams
+            addView(left)
+
+            if (right != null) {
+                val rightParams = LinearLayout.LayoutParams(0, 90.dp, 1f).apply {
+                    marginStart = 6.dp
+                    topMargin = 5.dp
+                    bottomMargin = 5.dp
+                }
+                right.layoutParams = rightParams
+                addView(right)
+            } else {
+                // Spacer so left tile doesn't stretch full width
+                addView(View(requireContext()).apply {
+                    layoutParams = LinearLayout.LayoutParams(0, 90.dp, 1f).apply {
+                        marginStart = 6.dp
+                    }
+                })
+            }
+        }
+    }
+
+    /** Dims non-selected tiles slightly to show active selection. */
+    private fun refreshTileSelections(selectedId: Long?) {
+        val container = binding.llCategoryTiles
+        for (rowIdx in 0 until container.childCount) {
+            val row = container.getChildAt(rowIdx) as? LinearLayout ?: continue
+            for (colIdx in 0 until row.childCount) {
+                val tile = row.getChildAt(colIdx) as? MaterialCardView ?: continue
+                val isSelected = when {
+                    selectedId == null && tile.tag == "ALL" -> true
+                    selectedId != null && tile.tag == selectedId -> true
+                    else -> false
+                }
+                tile.alpha = if (isSelected) 1f else 0.65f
+                tile.cardElevation = if (isSelected) 4.dp.toFloat() else 0f
             }
         }
     }
@@ -154,16 +342,13 @@ class HomeFragment : Fragment() {
         grouped.forEach { (category, products) ->
             if (products.isEmpty()) return@forEach
 
-            val sectionView = layoutInflater.inflate(
-                R.layout.item_category_section, container, false
-            )
-
+            val sectionView =
+                layoutInflater.inflate(R.layout.item_category_section, container, false)
             sectionView.findViewById<TextView>(R.id.tv_category_name).text = category.name
 
             val rv = sectionView.findViewById<RecyclerView>(R.id.rv_category_products)
-            rv.layoutManager = LinearLayoutManager(
-                requireContext(), LinearLayoutManager.HORIZONTAL, false
-            )
+            rv.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             rv.adapter = ProductAdapter { product ->
                 findNavController().navigate(
                     R.id.action_homeFragment_to_productDetailFragment,
@@ -175,52 +360,28 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setupCategoryChips(categories: List<CategoryResponse>) {
-        val chipGroup = binding.chipGroupCategories
-        chipGroup.removeAllViews()
-
-        categories.forEach { category ->
-            val chip = Chip(requireContext()).apply {
-                text = category.name
-                tag = category
-                isCheckable = true
-                setChipBackgroundColorResource(R.color.chip_background)
-                setTextColor(resources.getColorStateList(R.color.chip_text_color, null))
-            }
-            chipGroup.addView(chip)
-        }
-
-        chipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
-            if (checkedIds.isEmpty()) {
-                val allCategories = (0 until group.childCount)
-                    .map { group.getChildAt(it).tag as CategoryResponse }
-                viewModel.loadProductsByCategories(allCategories)
-            } else {
-                val selected = group.findViewById<Chip>(checkedIds.first()).tag as CategoryResponse
-                viewModel.loadProductsByCategories(listOf(selected))
-            }
-        }
-    }
-
     private fun startAutoScroll(adapter: BannerAdapter) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-
                 while (true) {
                     delay(5000)
-
                     val vp = _binding?.vpBanner ?: break
-
-                    val next = (vp.currentItem + 1) % adapter.itemCount
-                    vp.setCurrentItem(next, true)
+                    vp.setCurrentItem((vp.currentItem + 1) % adapter.itemCount, true)
                 }
             }
         }
     }
+
     private fun setupSwipeRefresh() {
         binding.swipeRefresh.setOnRefreshListener {
+            selectedCategoryId = null
             viewModel.loadCategories()
         }
+    }
+
+    private fun resolveEmoji(name: String): String {
+        val lower = name.lowercase()
+        return CATEGORY_EMOJIS.entries.firstOrNull { lower.contains(it.key) }?.value ?: "🛍️"
     }
 
     private val Int.dp get() = (this * resources.displayMetrics.density).toInt()

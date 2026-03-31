@@ -92,6 +92,9 @@ import com.ecommerce.app.ui.customer.profile.security.ChangePasswordEnterNewPass
 import com.ecommerce.app.ui.customer.profile.security.SecurityFragment;
 import com.ecommerce.app.ui.customer.profile.security.SecurityViewModel;
 import com.ecommerce.app.ui.customer.profile.security.SecurityViewModel_HiltModules_KeyModule_ProvideFactory;
+import com.ecommerce.app.ui.customer.search.SearchFragment;
+import com.ecommerce.app.ui.customer.search.SearchViewModel;
+import com.ecommerce.app.ui.customer.search.SearchViewModel_HiltModules_KeyModule_ProvideFactory;
 import com.ecommerce.app.ui.shared.EnterCodeFragment;
 import com.ecommerce.app.util.TokenManager;
 import dagger.hilt.android.ActivityRetainedLifecycle;
@@ -493,6 +496,10 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
     }
 
     @Override
+    public void injectSearchFragment(SearchFragment arg0) {
+    }
+
+    @Override
     public void injectEnterCodeFragment(EnterCodeFragment arg0) {
     }
 
@@ -552,7 +559,7 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
 
     @Override
     public Set<String> getViewModelKeys() {
-      return SetBuilder.<String>newSetBuilder(17).add(AddAddressViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(AddressViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(AdminCategoriesViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(AdminDashboardViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(AdminOrdersViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(AdminProductsViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(AdminUsersViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(AuthViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(CartViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(CheckoutViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(HomeViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(MainViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(OrderDetailViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(OrdersViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(ProductDetailViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(ProfileViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(SecurityViewModel_HiltModules_KeyModule_ProvideFactory.provide()).build();
+      return SetBuilder.<String>newSetBuilder(18).add(AddAddressViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(AddressViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(AdminCategoriesViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(AdminDashboardViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(AdminOrdersViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(AdminProductsViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(AdminUsersViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(AuthViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(CartViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(CheckoutViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(HomeViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(MainViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(OrderDetailViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(OrdersViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(ProductDetailViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(ProfileViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(SearchViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(SecurityViewModel_HiltModules_KeyModule_ProvideFactory.provide()).build();
     }
 
     @Override
@@ -610,6 +617,8 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
 
     private Provider<ProfileViewModel> profileViewModelProvider;
 
+    private Provider<SearchViewModel> searchViewModelProvider;
+
     private Provider<SecurityViewModel> securityViewModelProvider;
 
     private ViewModelCImpl(SingletonCImpl singletonCImpl,
@@ -665,12 +674,13 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
       this.ordersViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 13);
       this.productDetailViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 14);
       this.profileViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 15);
-      this.securityViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 16);
+      this.searchViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 16);
+      this.securityViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 17);
     }
 
     @Override
     public Map<String, javax.inject.Provider<ViewModel>> getHiltViewModelMap() {
-      return MapBuilder.<String, javax.inject.Provider<ViewModel>>newMapBuilder(17).put("com.ecommerce.app.ui.customer.address.AddAddressViewModel", ((Provider) addAddressViewModelProvider)).put("com.ecommerce.app.ui.customer.address.AddressViewModel", ((Provider) addressViewModelProvider)).put("com.ecommerce.app.ui.admin.categories.AdminCategoriesViewModel", ((Provider) adminCategoriesViewModelProvider)).put("com.ecommerce.app.ui.admin.dashboard.AdminDashboardViewModel", ((Provider) adminDashboardViewModelProvider)).put("com.ecommerce.app.ui.admin.orders.AdminOrdersViewModel", ((Provider) adminOrdersViewModelProvider)).put("com.ecommerce.app.ui.admin.products.AdminProductsViewModel", ((Provider) adminProductsViewModelProvider)).put("com.ecommerce.app.ui.admin.users.AdminUsersViewModel", ((Provider) adminUsersViewModelProvider)).put("com.ecommerce.app.ui.auth.AuthViewModel", ((Provider) authViewModelProvider)).put("com.ecommerce.app.ui.customer.cart.CartViewModel", ((Provider) cartViewModelProvider)).put("com.ecommerce.app.ui.customer.cart.CheckoutViewModel", ((Provider) checkoutViewModelProvider)).put("com.ecommerce.app.ui.customer.home.HomeViewModel", ((Provider) homeViewModelProvider)).put("com.ecommerce.app.ui.MainViewModel", ((Provider) mainViewModelProvider)).put("com.ecommerce.app.ui.customer.orders.OrderDetailViewModel", ((Provider) orderDetailViewModelProvider)).put("com.ecommerce.app.ui.customer.orders.OrdersViewModel", ((Provider) ordersViewModelProvider)).put("com.ecommerce.app.ui.customer.products.ProductDetailViewModel", ((Provider) productDetailViewModelProvider)).put("com.ecommerce.app.ui.customer.profile.ProfileViewModel", ((Provider) profileViewModelProvider)).put("com.ecommerce.app.ui.customer.profile.security.SecurityViewModel", ((Provider) securityViewModelProvider)).build();
+      return MapBuilder.<String, javax.inject.Provider<ViewModel>>newMapBuilder(18).put("com.ecommerce.app.ui.customer.address.AddAddressViewModel", ((Provider) addAddressViewModelProvider)).put("com.ecommerce.app.ui.customer.address.AddressViewModel", ((Provider) addressViewModelProvider)).put("com.ecommerce.app.ui.admin.categories.AdminCategoriesViewModel", ((Provider) adminCategoriesViewModelProvider)).put("com.ecommerce.app.ui.admin.dashboard.AdminDashboardViewModel", ((Provider) adminDashboardViewModelProvider)).put("com.ecommerce.app.ui.admin.orders.AdminOrdersViewModel", ((Provider) adminOrdersViewModelProvider)).put("com.ecommerce.app.ui.admin.products.AdminProductsViewModel", ((Provider) adminProductsViewModelProvider)).put("com.ecommerce.app.ui.admin.users.AdminUsersViewModel", ((Provider) adminUsersViewModelProvider)).put("com.ecommerce.app.ui.auth.AuthViewModel", ((Provider) authViewModelProvider)).put("com.ecommerce.app.ui.customer.cart.CartViewModel", ((Provider) cartViewModelProvider)).put("com.ecommerce.app.ui.customer.cart.CheckoutViewModel", ((Provider) checkoutViewModelProvider)).put("com.ecommerce.app.ui.customer.home.HomeViewModel", ((Provider) homeViewModelProvider)).put("com.ecommerce.app.ui.MainViewModel", ((Provider) mainViewModelProvider)).put("com.ecommerce.app.ui.customer.orders.OrderDetailViewModel", ((Provider) orderDetailViewModelProvider)).put("com.ecommerce.app.ui.customer.orders.OrdersViewModel", ((Provider) ordersViewModelProvider)).put("com.ecommerce.app.ui.customer.products.ProductDetailViewModel", ((Provider) productDetailViewModelProvider)).put("com.ecommerce.app.ui.customer.profile.ProfileViewModel", ((Provider) profileViewModelProvider)).put("com.ecommerce.app.ui.customer.search.SearchViewModel", ((Provider) searchViewModelProvider)).put("com.ecommerce.app.ui.customer.profile.security.SecurityViewModel", ((Provider) securityViewModelProvider)).build();
     }
 
     @Override
@@ -742,12 +752,15 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
           return (T) new OrdersViewModel(viewModelCImpl.orderRepository());
 
           case 14: // com.ecommerce.app.ui.customer.products.ProductDetailViewModel 
-          return (T) new ProductDetailViewModel(viewModelCImpl.productRepository(), viewModelCImpl.cartRepository());
+          return (T) new ProductDetailViewModel(viewModelCImpl.productRepository(), viewModelCImpl.cartRepository(), viewModelCImpl.userRepository());
 
           case 15: // com.ecommerce.app.ui.customer.profile.ProfileViewModel 
           return (T) new ProfileViewModel(viewModelCImpl.userRepository(), singletonCImpl.tokenManagerProvider.get());
 
-          case 16: // com.ecommerce.app.ui.customer.profile.security.SecurityViewModel 
+          case 16: // com.ecommerce.app.ui.customer.search.SearchViewModel 
+          return (T) new SearchViewModel(viewModelCImpl.productRepository(), viewModelCImpl.categoryRepository());
+
+          case 17: // com.ecommerce.app.ui.customer.profile.security.SecurityViewModel 
           return (T) new SecurityViewModel(singletonCImpl.emailRepositoryProvider.get(), viewModelCImpl.userRepository());
 
           default: throw new AssertionError(id);
@@ -887,7 +900,7 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
     }
 
     @Override
-    public void injectECommerceApp(ECommerceApp arg0) {
+    public void injectECommerceApp(ECommerceApp eCommerceApp) {
     }
 
     @Override

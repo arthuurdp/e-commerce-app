@@ -5,20 +5,24 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.navigation.NavArgs
 import java.lang.IllegalArgumentException
 import kotlin.Long
+import kotlin.String
 import kotlin.jvm.JvmStatic
 
 public data class ProductDetailFragmentArgs(
   public val productId: Long,
+  public val email: String,
 ) : NavArgs {
   public fun toBundle(): Bundle {
     val result = Bundle()
     result.putLong("productId", this.productId)
+    result.putString("email", this.email)
     return result
   }
 
   public fun toSavedStateHandle(): SavedStateHandle {
     val result = SavedStateHandle()
     result.set("productId", this.productId)
+    result.set("email", this.email)
     return result
   }
 
@@ -32,7 +36,16 @@ public data class ProductDetailFragmentArgs(
       } else {
         throw IllegalArgumentException("Required argument \"productId\" is missing and does not have an android:defaultValue")
       }
-      return ProductDetailFragmentArgs(__productId)
+      val __email : String?
+      if (bundle.containsKey("email")) {
+        __email = bundle.getString("email")
+        if (__email == null) {
+          throw IllegalArgumentException("Argument \"email\" is marked as non-null but was passed a null value.")
+        }
+      } else {
+        throw IllegalArgumentException("Required argument \"email\" is missing and does not have an android:defaultValue")
+      }
+      return ProductDetailFragmentArgs(__productId, __email)
     }
 
     @JvmStatic
@@ -46,7 +59,16 @@ public data class ProductDetailFragmentArgs(
       } else {
         throw IllegalArgumentException("Required argument \"productId\" is missing and does not have an android:defaultValue")
       }
-      return ProductDetailFragmentArgs(__productId)
+      val __email : String?
+      if (savedStateHandle.contains("email")) {
+        __email = savedStateHandle["email"]
+        if (__email == null) {
+          throw IllegalArgumentException("Argument \"email\" is marked as non-null but was passed a null value")
+        }
+      } else {
+        throw IllegalArgumentException("Required argument \"email\" is missing and does not have an android:defaultValue")
+      }
+      return ProductDetailFragmentArgs(__productId, __email)
     }
   }
 }

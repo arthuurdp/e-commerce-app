@@ -8,7 +8,7 @@ import kotlin.String
 import kotlin.jvm.JvmStatic
 
 public data class EnterCodeFragmentArgs(
-  public val mode: String,
+  public val mode: String = "none",
   public val email: String = "",
 ) : NavArgs {
   public fun toBundle(): Bundle {
@@ -36,7 +36,7 @@ public data class EnterCodeFragmentArgs(
           throw IllegalArgumentException("Argument \"mode\" is marked as non-null but was passed a null value.")
         }
       } else {
-        throw IllegalArgumentException("Required argument \"mode\" is missing and does not have an android:defaultValue")
+        __mode = "none"
       }
       val __email : String?
       if (bundle.containsKey("email")) {
@@ -59,7 +59,7 @@ public data class EnterCodeFragmentArgs(
           throw IllegalArgumentException("Argument \"mode\" is marked as non-null but was passed a null value")
         }
       } else {
-        throw IllegalArgumentException("Required argument \"mode\" is missing and does not have an android:defaultValue")
+        __mode = "none"
       }
       val __email : String?
       if (savedStateHandle.contains("email")) {

@@ -78,14 +78,13 @@ class EnterCodeFragment : Fragment() {
                     
                     val code = binding.etEnterCode.text.toString().trim()
                     
-                    // Decisão de navegação baseada no modo
                     when (args.mode) {
                         "forgot_password" -> {
                             val action = EnterCodeFragmentDirections
                                 .actionEnterCodeFragmentToResetPasswordFragment(args.email, code)
                             findNavController().navigate(action)
                         }
-                        "change_email" -> {
+                        "verify_email" -> {
                             showToast("Email verified successfully!")
                             findNavController().popBackStack(R.id.profileFragment, false)
                         }

@@ -41,7 +41,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             val result = userRepository.getCurrentUser()
             if (result is NetworkResult.Success) {
-                val firstName = result.data.firstName
+                val firstName = result.data.firstName + "!"
                 _firstName.value = NetworkResult.Success(firstName)
             }
         }
