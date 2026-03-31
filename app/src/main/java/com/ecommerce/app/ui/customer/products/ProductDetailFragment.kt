@@ -87,6 +87,8 @@ class ProductDetailFragment : Fragment() {
 
     private fun observeAddToCart() {
         viewModel.addToCartState.observe(viewLifecycleOwner) { result ->
+            if (result == null) return@observe
+
             when (result) {
                 is NetworkResult.Loading -> {
                     binding.btnAddToCart.isEnabled = false
@@ -111,6 +113,8 @@ class ProductDetailFragment : Fragment() {
     }
 
     private fun showVerifyEmailDialog() {
+        viewModel.resetAddToCartState()
+
         val dialog = Dialog(requireContext())
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_verify_email)

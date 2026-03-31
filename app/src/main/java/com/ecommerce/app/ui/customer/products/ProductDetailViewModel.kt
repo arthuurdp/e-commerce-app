@@ -23,8 +23,8 @@ class ProductDetailViewModel @Inject constructor(
     private val _product = MutableLiveData<NetworkResult<ProductDetailsResponse>>()
     val product: LiveData<NetworkResult<ProductDetailsResponse>> = _product
 
-    private val _addToCartState = MutableLiveData<NetworkResult<CartItemResponse>>()
-    val addToCartState: LiveData<NetworkResult<CartItemResponse>> = _addToCartState
+    private val _addToCartState = MutableLiveData<NetworkResult<CartItemResponse>?>()
+    val addToCartState: LiveData<NetworkResult<CartItemResponse>?> = _addToCartState
 
     private val _userEmail = MutableLiveData<String?>()
     val userEmail: LiveData<String?> = _userEmail
@@ -50,6 +50,10 @@ class ProductDetailViewModel @Inject constructor(
         }
     }
 
+    fun resetAddToCartState() {
+        _addToCartState.value = null
+    }
+
     private fun loadUserEmail() {
         viewModelScope.launch {
             val result = userRepository.getCurrentUser()
@@ -58,4 +62,5 @@ class ProductDetailViewModel @Inject constructor(
             }
         }
     }
+
 }

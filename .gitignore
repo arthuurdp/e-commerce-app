@@ -1,0 +1,27 @@
+gitignore
+# IDE / Editor
+.idea/
+*.iml
+.vscode/
+
+# Build outputs
+**/build/
+captures/
+
+# Gradle
+.gradle/
+/local.properties
+/.bundle/
+
+# Kotlin / Java
+*.class
+*.pyc
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Secrets
+/google-services.json
+*.jks
+*.keystore
