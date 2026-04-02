@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -48,16 +47,10 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final LinearLayout llGreeting;
 
   @NonNull
-  public final ProgressBar progressBar;
-
-  @NonNull
   public final SwipeRefreshLayout swipeRefresh;
 
   @NonNull
   public final TextView tvCartBadge;
-
-  @NonNull
-  public final TextView tvEmpty;
 
   @NonNull
   public final TextView tvFirstName;
@@ -72,9 +65,9 @@ public final class FragmentHomeBinding implements ViewBinding {
       @NonNull FrameLayout flCartContainer, @NonNull ImageView ivCart,
       @NonNull LinearLayout llCategoriesContainer, @NonNull LinearLayout llCategoryTiles,
       @NonNull LinearLayout llDots, @NonNull LinearLayout llGreeting,
-      @NonNull ProgressBar progressBar, @NonNull SwipeRefreshLayout swipeRefresh,
-      @NonNull TextView tvCartBadge, @NonNull TextView tvEmpty, @NonNull TextView tvFirstName,
-      @NonNull TextView tvSeeMoreCategories, @NonNull ViewPager2 vpBanner) {
+      @NonNull SwipeRefreshLayout swipeRefresh, @NonNull TextView tvCartBadge,
+      @NonNull TextView tvFirstName, @NonNull TextView tvSeeMoreCategories,
+      @NonNull ViewPager2 vpBanner) {
     this.rootView = rootView;
     this.appBar = appBar;
     this.flCartContainer = flCartContainer;
@@ -83,10 +76,8 @@ public final class FragmentHomeBinding implements ViewBinding {
     this.llCategoryTiles = llCategoryTiles;
     this.llDots = llDots;
     this.llGreeting = llGreeting;
-    this.progressBar = progressBar;
     this.swipeRefresh = swipeRefresh;
     this.tvCartBadge = tvCartBadge;
-    this.tvEmpty = tvEmpty;
     this.tvFirstName = tvFirstName;
     this.tvSeeMoreCategories = tvSeeMoreCategories;
     this.vpBanner = vpBanner;
@@ -161,12 +152,6 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.progressBar;
-      ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
-      if (progressBar == null) {
-        break missingId;
-      }
-
       id = R.id.swipeRefresh;
       SwipeRefreshLayout swipeRefresh = ViewBindings.findChildViewById(rootView, id);
       if (swipeRefresh == null) {
@@ -176,12 +161,6 @@ public final class FragmentHomeBinding implements ViewBinding {
       id = R.id.tv_cart_badge;
       TextView tvCartBadge = ViewBindings.findChildViewById(rootView, id);
       if (tvCartBadge == null) {
-        break missingId;
-      }
-
-      id = R.id.tvEmpty;
-      TextView tvEmpty = ViewBindings.findChildViewById(rootView, id);
-      if (tvEmpty == null) {
         break missingId;
       }
 
@@ -204,8 +183,8 @@ public final class FragmentHomeBinding implements ViewBinding {
       }
 
       return new FragmentHomeBinding((CoordinatorLayout) rootView, appBar, flCartContainer, ivCart,
-          llCategoriesContainer, llCategoryTiles, llDots, llGreeting, progressBar, swipeRefresh,
-          tvCartBadge, tvEmpty, tvFirstName, tvSeeMoreCategories, vpBanner);
+          llCategoriesContainer, llCategoryTiles, llDots, llGreeting, swipeRefresh, tvCartBadge,
+          tvFirstName, tvSeeMoreCategories, vpBanner);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

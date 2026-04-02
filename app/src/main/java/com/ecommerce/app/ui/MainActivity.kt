@@ -1,18 +1,19 @@
 package com.ecommerce.app.ui
 
+import android.graphics.Rect
 import android.os.Bundle
+import android.view.View
+import android.view.ViewGroup
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
 import com.ecommerce.app.R
 import com.ecommerce.app.databinding.ActivityMainBinding
 import com.ecommerce.app.util.hide
 import com.ecommerce.app.util.show
-import com.google.android.material.bottomnavigation.BottomNavigationItemView
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
     private val viewModel: MainViewModel by viewModels()
+    private var isKeyboardVisible = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,34 +37,68 @@ class MainActivity : AppCompatActivity() {
 
         setupBottomNav()
         observeSession()
+        setupKeyboardListener()
     }
 
-    private fun setupBottomNav() {
+    private fun setupKeyboardListener() {
+        binding.root.viewTreeObserver.addOnGlobalLayoutListener {
+            val r = Rect()
+            binding.root.getWindowVisibleDisplayFrame(r)
+            val screenHeight = binding.root.rootView.height
+            val keypadHeight = screenHeight - r.bottom
+
+            // If keypad height is more than 15% of screen height, keyboard is likely visible
+            val currentlyVisible = keypadHeight > screenHeight * 0.15
+            if (currentlyVisible != isKeyboardVisible) {
+                isKeyboardVisible = currentlyVisible
+                handleBottomNavVisibility()
+            }
+        }
+    }
+
+    private fun handleBottomNavVisibility() {
         val customerRootDestinations = setOf(
             R.id.homeFragment,
             R.id.searchFragment,
             R.id.profileFragment
         )
 
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            // Show bottom nav only for the main root destinations to avoid overlapping content
-            if (destination.id in customerRootDestinations) {
-                binding.bottomNavCustomer.show()
-            } else {
-                binding.bottomNavCustomer.hide()
-            }
+        val isRootDestination = navController.currentDestination?.id in customerRootDestinations
 
-            updateBottomNavScale(binding.bottomNavCustomer, destination.id)
+        if (isRootDestination && !isKeyboardVisible) {
+            binding.bottomNavCustomer.show()
+        } else {
+            binding.bottomNavCustomer.hide()
+        }
+    }
+
+    private fun setupBottomNav() {
+        navController.addOnDestinationChangedListener { _, _, _ ->
+            handleBottomNavVisibility()
+            navController.currentDestination?.let {
+                updateBottomNavScale(binding.bottomNavCustomer, it.id)
+            }
         }
 
-        binding.bottomNavCustomer.setupWithNavController(navController)
+        binding.bottomNavCustomer.setOnItemSelectedListener { item ->
+            if (navController.currentDestination?.id == item.itemId) return@setOnItemSelectedListener false
+
+            val options = androidx.navigation.NavOptions.Builder()
+                .setPopUpTo(R.id.homeFragment, inclusive = false, saveState = true)
+                .setLaunchSingleTop(true)
+                .setRestoreState(true)
+                .build()
+
+            navController.navigate(item.itemId, null, options)
+            true
+        }
     }
 
     private fun updateBottomNavScale(navView: BottomNavigationView, selectedId: Int) {
-        val menuView = navView.getChildAt(0) as BottomNavigationMenuView
+        val menuView = navView.get(0) as ViewGroup
         for (i in 0 until menuView.childCount) {
-            val itemView = menuView.getChildAt(i) as BottomNavigationItemView
-            val isSelected = itemView.id == selectedId
+            val itemView = menuView.get(i)
+            val isSelected = navView.menu.getItem(i).itemId == selectedId
             val scale = if (isSelected) 1.2f else 1.0f
             itemView.animate()
                 .scaleX(scale)

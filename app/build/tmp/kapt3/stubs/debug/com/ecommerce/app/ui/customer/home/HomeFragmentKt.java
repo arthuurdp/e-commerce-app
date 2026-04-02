@@ -20,6 +20,7 @@ import com.ecommerce.app.data.model.product.ProductResponse;
 import com.ecommerce.app.databinding.FragmentHomeBinding;
 import com.ecommerce.app.ui.customer.products.ProductAdapter;
 import com.ecommerce.app.util.NetworkResult;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.card.MaterialCardView;
 import dagger.hilt.android.AndroidEntryPoint;
 

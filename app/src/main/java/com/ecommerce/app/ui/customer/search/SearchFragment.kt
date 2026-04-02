@@ -85,13 +85,11 @@ class SearchFragment : Fragment() {
     }
 
     private fun setupSearchBar() {
-        // Show chip row when search bar gains focus
         binding.etSearch.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 binding.chipScrollView.show()
                 binding.chipScrollView.animate().alpha(1f).translationY(0f).setDuration(200).start()
             }
-            // Don't hide on focus loss — chips stay visible while user browses results
         }
 
         binding.etSearch.addTextChangedListener(object : TextWatcher {
@@ -102,11 +100,6 @@ class SearchFragment : Fragment() {
             }
         })
 
-        binding.etSearch.setOnEditorActionListener { _, _, _ ->
-            hideKeyboard()
-            true
-        }
-
         binding.btnCancel.setOnClickListener {
             binding.etSearch.clearFocus()
             binding.etSearch.setText("")
@@ -116,7 +109,6 @@ class SearchFragment : Fragment() {
             showEmptyState()
         }
 
-        // Show cancel button when focused
         binding.etSearch.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 binding.btnCancel.show()

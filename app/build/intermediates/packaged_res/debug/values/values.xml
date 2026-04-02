@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="http://schemas.android.com/tools">
-    <color name="background">#F8F8F8</color>
+    <color name="background">#F2F2F2</color>
     <color name="black">#0A2E1A</color>
     <color name="blue_button">#1DB954</color>
     <color name="chip_background_unselected">#EBEBEB</color>

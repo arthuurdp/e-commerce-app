@@ -27,22 +27,23 @@ import com.ecommerce.app.ui.customer.products.ProductAdapter
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hide
 import com.ecommerce.app.util.show
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.card.MaterialCardView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 private val TILE_COLORS = listOf(
-    0xFF1DB954.toInt(), // green  – Mercado
-    0xFFFF8C00.toInt(), // amber  – Farmácia
-    0xFFE91E8C.toInt(), // pink   – Bebidas
-    0xFF3D5AFE.toInt(), // indigo – Gourmet
-    0xFFD32F2F.toInt(), // red    – Promoções
-    0xFF00BCD4.toInt(), // cyan   – Açaí
-    0xFF8E24AA.toInt(), // purple
-    0xFF388E3C.toInt(), // dark green
-    0xFFFF6B35.toInt(), // orange
-    0xFF0277BD.toInt(), // blue
+    0xFF1DB954.toInt(),
+    0xFFFF8C00.toInt(),
+    0xFFE91E8C.toInt(),
+    0xFF3D5AFE.toInt(),
+    0xFFD32F2F.toInt(),
+    0xFF00BCD4.toInt(),
+    0xFF8E24AA.toInt(),
+    0xFF388E3C.toInt(),
+    0xFFFF6B35.toInt(),
+    0xFF0277BD.toInt(),
 )
 
 private val CATEGORY_EMOJIS = mapOf(
@@ -84,9 +85,9 @@ class HomeFragment : Fragment() {
         binding.flCartContainer.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_cartFragment)
         }
-        
-        binding.tvSeeMoreCategories.setOnClickListener { 
-            findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+
+        binding.tvSeeMoreCategories.setOnClickListener {
+            navigateToSearch()
         }
 
         viewModel.loadCategories()
@@ -99,6 +100,23 @@ class HomeFragment : Fragment() {
         observeProductsByCategory()
         observeCart()
     }
+
+    // ── Navigation ────────────────────────────────────────────────────────────
+
+    private fun navigateToSearch(categoryId: Long? = null) {
+        requireActivity()
+            .findViewById<BottomNavigationView>(R.id.bottom_nav_customer)
+            ?.selectedItemId = R.id.bottom_nav_customer
+
+        if (categoryId != null) {
+            findNavController()
+                .currentBackStackEntry
+                ?.savedStateHandle
+                ?.set("categoryId", categoryId)
+        }
+    }
+
+    // ── Banner ────────────────────────────────────────────────────────────────
 
     private fun setupBanner() {
         val banners = listOf(
@@ -144,6 +162,8 @@ class HomeFragment : Fragment() {
         }
     }
 
+    // ── Categories ────────────────────────────────────────────────────────────
+
     private fun observeCategories() {
         viewModel.categoriesState.observe(viewLifecycleOwner) { result ->
             if (result is NetworkResult.Success) {
@@ -158,12 +178,6 @@ class HomeFragment : Fragment() {
         val container = binding.llCategoryTiles
         container.removeAllViews()
 
-        val allPlusFirst = buildRow(
-            left = buildAllTile(),
-            right = if (categories.isNotEmpty()) buildTile(categories[0], 0) else null
-        )
-        container.addView(allPlusFirst)
-
         val rest = if (categories.size > 1) categories.subList(1, categories.size) else emptyList()
         rest.chunked(2).forEachIndexed { rowIdx, pair ->
             val row = buildRow(
@@ -174,30 +188,12 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun buildAllTile(): MaterialCardView {
-        return buildColoredTile(
-            label = "Ver Tudo",
-            emoji = "🏠",
-            colorInt = 0xFF1DB954.toInt(),
-            onClick = {
-                findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
-            }
-        )
-    }
-
     private fun buildTile(category: CategoryResponse, colorIndex: Int): MaterialCardView {
-        val colorInt = TILE_COLORS[colorIndex % TILE_COLORS.size]
-        val emoji = resolveEmoji(category.name)
         return buildColoredTile(
             label = category.name,
-            emoji = emoji,
-            colorInt = colorInt,
-            onClick = {
-                findNavController().navigate(
-                    R.id.action_homeFragment_to_searchFragment,
-                    bundleOf("categoryId" to category.id)
-                )
-            }
+            emoji = resolveEmoji(category.name),
+            colorInt = TILE_COLORS[colorIndex % TILE_COLORS.size],
+            onClick = { navigateToSearch(category.id) }
         )
     }
 
@@ -276,8 +272,6 @@ class HomeFragment : Fragment() {
                 LinearLayout.LayoutParams.WRAP_CONTENT
             )
             val rowParams = LinearLayout.LayoutParams(0, 90.dp, 1f).apply {
-                marginStart = 0
-                marginEnd = 0
                 topMargin = 5.dp
                 bottomMargin = 5.dp
             }
@@ -302,15 +296,14 @@ class HomeFragment : Fragment() {
         }
     }
 
+    // ── Products by category ──────────────────────────────────────────────────
+
     private fun observeProductsByCategory() {
         viewModel.productsByCategory.observe(viewLifecycleOwner) { grouped ->
             binding.swipeRefresh.isRefreshing = false
-            binding.progressBar.hide()
 
             if (grouped.isEmpty()) {
-                binding.tvEmpty.show()
             } else {
-                binding.tvEmpty.hide()
                 buildCategorySections(grouped)
             }
         }
@@ -341,6 +334,8 @@ class HomeFragment : Fragment() {
         }
     }
 
+    // ── Auto-scroll banner ────────────────────────────────────────────────────
+
     private fun startAutoScroll(adapter: BannerAdapter) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -353,18 +348,14 @@ class HomeFragment : Fragment() {
         }
     }
 
+    // ── Misc observers ────────────────────────────────────────────────────────
+
     private fun loadFirstName() {
         viewModel.firstName.observe(viewLifecycleOwner) { result ->
-            when (result) {
-                is NetworkResult.Success -> {
-                    binding.tvFirstName.text = result.data
-                }
-                is NetworkResult.Error -> {
-                    binding.tvFirstName.text = "Erro ao carregar"
-                }
-                is NetworkResult.Loading -> {
-                    binding.tvFirstName.text = "Carregando..."
-                }
+            binding.tvFirstName.text = when (result) {
+                is NetworkResult.Success -> result.data
+                is NetworkResult.Error -> "Erro ao carregar"
+                is NetworkResult.Loading -> "Carregando..."
             }
         }
     }
@@ -389,6 +380,8 @@ class HomeFragment : Fragment() {
             }
         }
     }
+
+    // ── Utilities ─────────────────────────────────────────────────────────────
 
     private fun resolveEmoji(name: String): String {
         val lower = name.lowercase()
