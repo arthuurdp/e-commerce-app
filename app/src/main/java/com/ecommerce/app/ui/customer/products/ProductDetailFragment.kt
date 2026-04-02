@@ -96,12 +96,7 @@ class ProductDetailFragment : Fragment() {
 
                 is NetworkResult.Success -> {
                     binding.btnAddToCart.isEnabled = true
-
-                    Toast.makeText(
-                        requireContext(),
-                        "Produto adicionado ao carrinho",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    showProductAddedToCartDialog()
                 }
 
                 is NetworkResult.Error -> {
@@ -141,6 +136,32 @@ class ProductDetailFragment : Fragment() {
 
         dialog.show()
     }
+
+    private fun showProductAddedToCartDialog() {
+        viewModel.resetAddToCartState()
+
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.dialog_add_more_products)
+        dialog.setCancelable(false)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.setLayout(
+            (resources.displayMetrics.widthPixels * 0.85).toInt(),
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+
+        dialog.findViewById<TextView>(R.id.btnCancel).setOnClickListener {
+            dialog.dismiss()
+            findNavController().navigate(R.id.action_productDetailFragment_to_homeFragment)
+        }
+
+        dialog.findViewById<TextView>(R.id.btnConfirm).setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
+
+
 
     private fun setupImageCarousel(imgs: List<ProductImageResponse>) {
         binding.vpProductImages.adapter = ProductItemAdapter(imgs)

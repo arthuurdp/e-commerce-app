@@ -36,9 +36,13 @@ color text_input_icon_tint
 color text_input_stroke_color
 color warning
 color white
+drawable bg_bottom_nav
+drawable bg_bottom_radius
+drawable bg_circle_green
 drawable bg_dialog
 drawable bg_dot_active
 drawable bg_dot_inactive
+drawable bg_upper_radius
 drawable ic_arrow_back
 drawable ic_arrow_right
 drawable ic_cart
@@ -66,6 +70,7 @@ drawable img_login
 drawable img_logo
 drawable img_male
 drawable img_man
+drawable img_product_added_to_cart
 drawable img_reset_password
 drawable img_verify_email
 drawable img_woman
@@ -85,18 +90,21 @@ id action_enterCodeFragment_to_resetPasswordFragment
 id action_forgotPasswordFragment_to_enterCodeFragment
 id action_homeFragment_to_cartFragment
 id action_homeFragment_to_productDetailFragment
+id action_homeFragment_to_searchFragment
 id action_loginFragment_to_admin_nav_graph
 id action_loginFragment_to_forgotPasswordFragment
 id action_loginFragment_to_homeFragment
 id action_loginFragment_to_registerFragment
 id action_ordersFragment_to_orderDetailFragment
 id action_productDetailFragment_to_enterCodeFragment
+id action_productDetailFragment_to_homeFragment
 id action_profileFragment_to_addressListFragment
 id action_profileFragment_to_editProfileFragment
 id action_profileFragment_to_loginFragment
 id action_profileFragment_to_securityFragment
 id action_registerFragment_to_loginFragment
 id action_resetPasswordFragment_to_loginFragment
+id action_searchFragment_to_homeFragment
 id action_searchFragment_to_productDetailFragment
 id action_securityFragment_to_changeEmailFragment
 id action_securityFragment_to_changePasswordFragment
@@ -111,7 +119,6 @@ id adminProductsFragment
 id adminUsersFragment
 id admin_nav_graph
 id app_bar
-id bottom_nav_admin
 id bottom_nav_customer
 id btnCancel
 id btnConfirm
@@ -129,7 +136,6 @@ id btn_edit_profile
 id btn_increment
 id btn_login
 id btn_logout
-id btn_orders
 id btn_place_order
 id btn_register
 id btn_reset_password
@@ -182,6 +188,7 @@ id et_width
 id fab_add_address
 id fab_add_category
 id fab_add_product
+id fl_cart_container
 id forgotPasswordFragment
 id header_change_email
 id header_change_password
@@ -250,6 +257,7 @@ id tvEmpty
 id tv_address_city
 id tv_address_name
 id tv_address_street
+id tv_cart_badge
 id tv_category
 id tv_category_emoji
 id tv_category_name
@@ -277,6 +285,7 @@ id tv_quantity
 id tv_register
 id tv_result_count
 id tv_role
+id tv_see_more_categories
 id tv_status
 id tv_stock
 id tv_subtitle
@@ -291,6 +300,7 @@ id v_overlay
 id vp_banner
 id vp_product_images
 layout activity_main
+layout dialog_add_more_products
 layout dialog_delete_account
 layout dialog_verify_email
 layout fragment_add_address

@@ -31,6 +31,7 @@ import com.google.android.material.card.MaterialCardView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+
 private val TILE_COLORS = listOf(
     0xFF1DB954.toInt(), // green  – Mercado
     0xFFFF8C00.toInt(), // amber  – Farmácia
@@ -68,7 +69,6 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val viewModel: HomeViewModel by viewModels()
-    private var selectedCategoryId: Long? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -81,17 +81,23 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.ivCart.setOnClickListener {
+        binding.flCartContainer.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_cartFragment)
         }
+        
+        binding.tvSeeMoreCategories.setOnClickListener { 
+            findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+        }
 
-        viewModel.loadFirstName()
         viewModel.loadCategories()
+        viewModel.loadCart()
 
+        loadFirstName()
         setupBanner()
         setupSwipeRefresh()
         observeCategories()
         observeProductsByCategory()
+        observeCart()
     }
 
     private fun setupBanner() {
@@ -138,8 +144,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-    // ── Category tiles ──────────────────────────────────────────────────
-
     private fun observeCategories() {
         viewModel.categoriesState.observe(viewLifecycleOwner) { result ->
             if (result is NetworkResult.Success) {
@@ -154,14 +158,12 @@ class HomeFragment : Fragment() {
         val container = binding.llCategoryTiles
         container.removeAllViews()
 
-        // Row 0: "All" tile spanning full width + first category
         val allPlusFirst = buildRow(
-            left = buildAllTile(categories),
+            left = buildAllTile(),
             right = if (categories.isNotEmpty()) buildTile(categories[0], 0) else null
         )
         container.addView(allPlusFirst)
 
-        // Remaining categories: 2 per row
         val rest = if (categories.size > 1) categories.subList(1, categories.size) else emptyList()
         rest.chunked(2).forEachIndexed { rowIdx, pair ->
             val row = buildRow(
@@ -172,18 +174,15 @@ class HomeFragment : Fragment() {
         }
     }
 
-    /** The "All" tile — always green, full-width feel */
-    private fun buildAllTile(categories: List<CategoryResponse>): MaterialCardView {
+    private fun buildAllTile(): MaterialCardView {
         return buildColoredTile(
             label = "Ver Tudo",
             emoji = "🏠",
             colorInt = 0xFF1DB954.toInt(),
             onClick = {
-                selectedCategoryId = null
-                viewModel.loadProductsByCategories(categories)
-                refreshTileSelections(null)
+                findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
             }
-        ).also { it.tag = "ALL" }
+        )
     }
 
     private fun buildTile(category: CategoryResponse, colorIndex: Int): MaterialCardView {
@@ -194,11 +193,12 @@ class HomeFragment : Fragment() {
             emoji = emoji,
             colorInt = colorInt,
             onClick = {
-                selectedCategoryId = category.id
-                viewModel.loadProductsByCategories(listOf(category))
-                refreshTileSelections(category.id)
+                findNavController().navigate(
+                    R.id.action_homeFragment_to_searchFragment,
+                    bundleOf("categoryId" to category.id)
+                )
             }
-        ).also { it.tag = category.id }
+        )
     }
 
     private fun buildColoredTile(
@@ -293,30 +293,11 @@ class HomeFragment : Fragment() {
                 right.layoutParams = rightParams
                 addView(right)
             } else {
-                // Spacer so left tile doesn't stretch full width
                 addView(View(requireContext()).apply {
                     layoutParams = LinearLayout.LayoutParams(0, 90.dp, 1f).apply {
                         marginStart = 6.dp
                     }
                 })
-            }
-        }
-    }
-
-    /** Dims non-selected tiles slightly to show active selection. */
-    private fun refreshTileSelections(selectedId: Long?) {
-        val container = binding.llCategoryTiles
-        for (rowIdx in 0 until container.childCount) {
-            val row = container.getChildAt(rowIdx) as? LinearLayout ?: continue
-            for (colIdx in 0 until row.childCount) {
-                val tile = row.getChildAt(colIdx) as? MaterialCardView ?: continue
-                val isSelected = when {
-                    selectedId == null && tile.tag == "ALL" -> true
-                    selectedId != null && tile.tag == selectedId -> true
-                    else -> false
-                }
-                tile.alpha = if (isSelected) 1f else 0.65f
-                tile.cardElevation = if (isSelected) 4.dp.toFloat() else 0f
             }
         }
     }
@@ -372,10 +353,40 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun loadFirstName() {
+        viewModel.firstName.observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is NetworkResult.Success -> {
+                    binding.tvFirstName.text = result.data
+                }
+                is NetworkResult.Error -> {
+                    binding.tvFirstName.text = "Erro ao carregar"
+                }
+                is NetworkResult.Loading -> {
+                    binding.tvFirstName.text = "Carregando..."
+                }
+            }
+        }
+    }
+
     private fun setupSwipeRefresh() {
         binding.swipeRefresh.setOnRefreshListener {
-            selectedCategoryId = null
             viewModel.loadCategories()
+            viewModel.loadCart()
+        }
+    }
+
+    private fun observeCart() {
+        viewModel.cartState.observe(viewLifecycleOwner) { result ->
+            if (result is NetworkResult.Success) {
+                val quantity = result.data.totalQuantity
+                if (quantity > 0) {
+                    binding.tvCartBadge.text = quantity.toString()
+                    binding.tvCartBadge.show()
+                } else {
+                    binding.tvCartBadge.hide()
+                }
+            }
         }
     }
 

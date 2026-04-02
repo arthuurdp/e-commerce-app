@@ -1,6 +1,7 @@
 package com.ecommerce.app.ui.customer.products
 
 import android.os.Bundle
+import androidx.navigation.ActionOnlyNavDirections
 import androidx.navigation.NavDirections
 import com.ecommerce.app.R
 import kotlin.Int
@@ -25,5 +26,8 @@ public class ProductDetailFragmentDirections private constructor() {
   public companion object {
     public fun actionProductDetailFragmentToEnterCodeFragment(mode: String = "none", email: String =
         ""): NavDirections = ActionProductDetailFragmentToEnterCodeFragment(mode, email)
+
+    public fun actionProductDetailFragmentToHomeFragment(): NavDirections =
+        ActionOnlyNavDirections(R.id.action_productDetailFragment_to_homeFragment)
   }
 }

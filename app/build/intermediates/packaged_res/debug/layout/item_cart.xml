@@ -13,14 +13,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="12dp">
+        android:background="@color/white"
+        android:padding="10dp">
 
         <ImageView
             android:id="@+id/iv_product"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:scaleType="centerCrop"
             android:src="@drawable/img_logo"
+            android:background="@drawable/bg_dialog"
             android:contentDescription="Product image" />
 
         <LinearLayout
@@ -52,49 +54,52 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_marginTop="8dp"
                 android:gravity="center_vertical"
-                android:layout_marginTop="8dp">
+                android:orientation="horizontal">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_decrement"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
+                    android:padding="0dp"
                     android:text="−"
                     android:textSize="18sp"
-                    android:padding="0dp"
-                    app:cornerRadius="16dp"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+                    app:cornerRadius="16dp" />
 
                 <TextView
                     android:id="@+id/tv_quantity"
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
-                    android:text="1"
                     android:gravity="center"
+                    android:text="1"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_increment"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
+                    android:padding="0dp"
                     android:text="+"
                     android:textSize="18sp"
-                    android:padding="0dp"
-                    app:cornerRadius="16dp"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+                    app:cornerRadius="16dp" />
 
-                <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/tv_subtotal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="R$ 0,00"
+                    android:textColor="?attr/colorPrimary"
                     android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="?attr/colorPrimary" />
+                    android:textStyle="bold" />
 
             </LinearLayout>
         </LinearLayout>

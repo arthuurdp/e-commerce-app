@@ -21,19 +21,15 @@ public final class ActivityMainBinding implements ViewBinding {
   private final CoordinatorLayout rootView;
 
   @NonNull
-  public final BottomNavigationView bottomNavAdmin;
-
-  @NonNull
   public final BottomNavigationView bottomNavCustomer;
 
   @NonNull
   public final FragmentContainerView navHostFragment;
 
   private ActivityMainBinding(@NonNull CoordinatorLayout rootView,
-      @NonNull BottomNavigationView bottomNavAdmin, @NonNull BottomNavigationView bottomNavCustomer,
+      @NonNull BottomNavigationView bottomNavCustomer,
       @NonNull FragmentContainerView navHostFragment) {
     this.rootView = rootView;
-    this.bottomNavAdmin = bottomNavAdmin;
     this.bottomNavCustomer = bottomNavCustomer;
     this.navHostFragment = navHostFragment;
   }
@@ -65,12 +61,6 @@ public final class ActivityMainBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.bottom_nav_admin;
-      BottomNavigationView bottomNavAdmin = ViewBindings.findChildViewById(rootView, id);
-      if (bottomNavAdmin == null) {
-        break missingId;
-      }
-
       id = R.id.bottom_nav_customer;
       BottomNavigationView bottomNavCustomer = ViewBindings.findChildViewById(rootView, id);
       if (bottomNavCustomer == null) {
@@ -83,8 +73,8 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityMainBinding((CoordinatorLayout) rootView, bottomNavAdmin,
-          bottomNavCustomer, navHostFragment);
+      return new ActivityMainBinding((CoordinatorLayout) rootView, bottomNavCustomer,
+          navHostFragment);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

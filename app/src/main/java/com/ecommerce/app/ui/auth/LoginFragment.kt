@@ -93,13 +93,7 @@ class LoginFragment : Fragment() {
                 is NetworkResult.Success -> {
                     binding.btnLogin.isEnabled = true
 
-                    val destination = if (viewModel.isAdmin) {
-                        R.id.action_loginFragment_to_admin_nav_graph
-                    } else {
-                        R.id.action_loginFragment_to_homeFragment
-                    }
-
-                    findNavController().navigate(destination)
+                    findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                 }
                 is NetworkResult.Error -> {
                     binding.btnLogin.isEnabled = true

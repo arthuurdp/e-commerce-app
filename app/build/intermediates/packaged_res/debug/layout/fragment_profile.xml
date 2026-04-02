@@ -151,38 +151,6 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/btn_orders"
-                style="@style/App.Card.Action"
-                android:layout_marginBottom="10dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="14dp"
-                        android:src="@drawable/ic_order"
-                        app:tint="@color/primary" />
-
-                    <TextView
-                        style="@style/App.TextView.Label"
-                        android:text="My Orders" />
-
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/ic_arrow_right"
-                        app:tint="@color/gray" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/btn_security"
                 style="@style/App.Card.Action"
                 android:layout_marginBottom="10dp">

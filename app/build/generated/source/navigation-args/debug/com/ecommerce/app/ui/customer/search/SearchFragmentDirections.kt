@@ -1,6 +1,7 @@
 package com.ecommerce.app.ui.customer.search
 
 import android.os.Bundle
+import androidx.navigation.ActionOnlyNavDirections
 import androidx.navigation.NavDirections
 import com.ecommerce.app.R
 import kotlin.Int
@@ -26,5 +27,8 @@ public class SearchFragmentDirections private constructor() {
   public companion object {
     public fun actionSearchFragmentToProductDetailFragment(productId: Long, email: String):
         NavDirections = ActionSearchFragmentToProductDetailFragment(productId, email)
+
+    public fun actionSearchFragmentToHomeFragment(): NavDirections =
+        ActionOnlyNavDirections(R.id.action_searchFragment_to_homeFragment)
   }
 }

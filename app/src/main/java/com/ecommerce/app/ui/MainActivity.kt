@@ -38,47 +38,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupBottomNav() {
-        val adminTopLevel = setOf(
-            R.id.adminDashboardFragment,
-            R.id.adminProductsFragment,
-            R.id.adminOrdersFragment,
-            R.id.adminUsersFragment
-        )
-
-        val authScreens = setOf(
-            R.id.loginFragment,
-            R.id.registerFragment,
-            R.id.forgotPasswordFragment,
-            R.id.enterCodeFragment,
-            R.id.resetPasswordFragment
+        val customerRootDestinations = setOf(
+            R.id.homeFragment,
+            R.id.searchFragment,
+            R.id.profileFragment
         )
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            val isAuthScreen = destination.id in authScreens
-            val isAdminScreen = destination.id in adminTopLevel ||
-                    destination.parent?.id == R.id.admin_nav_graph
-
-            when {
-                isAuthScreen -> {
-                    binding.bottomNavCustomer.hide()
-                    binding.bottomNavAdmin.hide()
-                }
-                isAdminScreen -> {
-                    binding.bottomNavCustomer.hide()
-                    binding.bottomNavAdmin.show()
-                }
-                else -> {
-                    binding.bottomNavCustomer.show()
-                    binding.bottomNavAdmin.hide()
-                }
+            // Show bottom nav only for the main root destinations to avoid overlapping content
+            if (destination.id in customerRootDestinations) {
+                binding.bottomNavCustomer.show()
+            } else {
+                binding.bottomNavCustomer.hide()
             }
 
             updateBottomNavScale(binding.bottomNavCustomer, destination.id)
-            updateBottomNavScale(binding.bottomNavAdmin, destination.id)
         }
 
         binding.bottomNavCustomer.setupWithNavController(navController)
-        binding.bottomNavAdmin.setupWithNavController(navController)
     }
 
     private fun updateBottomNavScale(navView: BottomNavigationView, selectedId: Int) {

@@ -115,6 +115,10 @@
         <action
             android:id="@+id/action_homeFragment_to_cartFragment"
             app:destination="@id/cartFragment" />
+
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
 
     <fragment
@@ -122,6 +126,11 @@
         android:name="com.ecommerce.app.ui.customer.search.SearchFragment"
         android:label="Search"
         tools:layout="@layout/fragment_search">
+
+        <argument
+            android:name="categoryId"
+            android:defaultValue="-1L"
+            app:argType="long" />
 
         <action
             android:id="@+id/action_searchFragment_to_productDetailFragment"
@@ -146,6 +155,10 @@
         <action
             android:id="@+id/action_productDetailFragment_to_enterCodeFragment"
             app:destination="@id/enterCodeFragment" />
+
+        <action
+            android:id="@+id/action_productDetailFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 
     <fragment
@@ -258,103 +271,103 @@
             android:id="@+id/action_securityFragment_to_changePasswordFragment"
             app:destination="@id/changePasswordFragment" />
 
-        <action
-            android:id="@+id/action_securityFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:popUpTo="@id/nav_graph"
-            app:popUpToInclusive="true" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/changeEmailFragment"
-        android:name="com.ecommerce.app.ui.customer.profile.security.ChangeEmailEnterNewEmailFragment"
-        android:label="Change Email"
-        tools:layout="@layout/fragment_enter_code">
-
-        <action
-            android:id="@+id/action_changeEmailFragment_to_enterCodeFragment"
-            app:destination="@id/enterCodeFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/changePasswordFragment"
-        android:name="com.ecommerce.app.ui.customer.profile.security.ChangePasswordEnterNewPasswordFragment"
-        android:label="Change Password"
-        tools:layout="@layout/fragment_change_password_enter_code">
-
-        <action
-            android:id="@+id/action_changePasswordFragment_to_enterCodeFragment"
-            app:destination="@id/enterCodeFragment" />
-    </fragment>
-
-    <!-- ════════════════════════════ ADMIN ═══════════════════════════════ -->
-
-    <navigation
-        android:id="@+id/admin_nav_graph"
-        app:startDestination="@id/adminDashboardFragment">
-
-        <fragment
-            android:id="@+id/adminDashboardFragment"
-            android:name="com.ecommerce.app.ui.admin.dashboard.AdminDashboardFragment"
-            android:label="Dashboard"
-            tools:layout="@layout/fragment_admin_dashboard">
-
             <action
-                android:id="@+id/action_adminDashboardFragment_to_adminProductsFragment"
-                app:destination="@id/adminProductsFragment" />
-
-            <action
-                android:id="@+id/action_adminDashboardFragment_to_adminOrdersFragment"
-                app:destination="@id/adminOrdersFragment" />
-
-            <action
-                android:id="@+id/action_adminDashboardFragment_to_adminUsersFragment"
-                app:destination="@id/adminUsersFragment" />
-
-            <action
-                android:id="@+id/action_adminDashboardFragment_to_adminCategoriesFragment"
-                app:destination="@id/adminCategoriesFragment" />
+                android:id="@+id/action_securityFragment_to_loginFragment"
+                app:destination="@id/loginFragment"
+                app:popUpTo="@id/nav_graph"
+                app:popUpToInclusive="true" />
         </fragment>
 
         <fragment
-            android:id="@+id/adminProductsFragment"
-            android:name="com.ecommerce.app.ui.admin.products.AdminProductsFragment"
-            android:label="Products"
-            tools:layout="@layout/fragment_admin_products">
+            android:id="@+id/changeEmailFragment"
+            android:name="com.ecommerce.app.ui.customer.profile.security.ChangeEmailEnterNewEmailFragment"
+            android:label="Change Email"
+            tools:layout="@layout/fragment_enter_code">
 
             <action
-                android:id="@+id/action_adminProductsFragment_to_adminEditProductFragment"
-                app:destination="@id/adminEditProductFragment" />
+                android:id="@+id/action_changeEmailFragment_to_enterCodeFragment"
+                app:destination="@id/enterCodeFragment" />
         </fragment>
 
         <fragment
-            android:id="@+id/adminEditProductFragment"
-            android:name="com.ecommerce.app.ui.admin.products.AdminEditProductFragment"
-            android:label="Edit Product"
-            tools:layout="@layout/fragment_admin_edit_product">
+            android:id="@+id/changePasswordFragment"
+            android:name="com.ecommerce.app.ui.customer.profile.security.ChangePasswordEnterNewPasswordFragment"
+            android:label="Change Password"
+            tools:layout="@layout/fragment_change_password_enter_code">
 
-            <argument
-                android:name="productId"
-                app:argType="long" />
+            <action
+                android:id="@+id/action_changePasswordFragment_to_enterCodeFragment"
+                app:destination="@id/enterCodeFragment" />
         </fragment>
 
-        <fragment
-            android:id="@+id/adminOrdersFragment"
-            android:name="com.ecommerce.app.ui.admin.orders.AdminOrdersFragment"
-            android:label="Orders"
-            tools:layout="@layout/fragment_admin_orders" />
+        <!-- ════════════════════════════ ADMIN ═══════════════════════════════ -->
 
-        <fragment
-            android:id="@+id/adminUsersFragment"
-            android:name="com.ecommerce.app.ui.admin.users.AdminUsersFragment"
-            android:label="Users"
-            tools:layout="@layout/fragment_admin_users" />
+        <navigation
+            android:id="@+id/admin_nav_graph"
+            app:startDestination="@id/adminDashboardFragment">
 
-        <fragment
-            android:id="@+id/adminCategoriesFragment"
-            android:name="com.ecommerce.app.ui.admin.categories.AdminCategoriesFragment"
-            android:label="Categories"
-            tools:layout="@layout/fragment_admin_categories" />
+            <fragment
+                android:id="@+id/adminDashboardFragment"
+                android:name="com.ecommerce.app.ui.admin.dashboard.AdminDashboardFragment"
+                android:label="Dashboard"
+                tools:layout="@layout/fragment_admin_dashboard">
+
+                <action
+                    android:id="@+id/action_adminDashboardFragment_to_adminProductsFragment"
+                    app:destination="@id/adminProductsFragment" />
+
+                <action
+                    android:id="@+id/action_adminDashboardFragment_to_adminOrdersFragment"
+                    app:destination="@id/adminOrdersFragment" />
+
+                <action
+                    android:id="@+id/action_adminDashboardFragment_to_adminUsersFragment"
+                    app:destination="@id/adminUsersFragment" />
+
+                <action
+                    android:id="@+id/action_adminDashboardFragment_to_adminCategoriesFragment"
+                    app:destination="@id/adminCategoriesFragment" />
+            </fragment>
+
+            <fragment
+                android:id="@+id/adminProductsFragment"
+                android:name="com.ecommerce.app.ui.admin.products.AdminProductsFragment"
+                android:label="Products"
+                tools:layout="@layout/fragment_admin_products">
+
+                <action
+                    android:id="@+id/action_adminProductsFragment_to_adminEditProductFragment"
+                    app:destination="@id/adminEditProductFragment" />
+            </fragment>
+
+            <fragment
+                android:id="@+id/adminEditProductFragment"
+                android:name="com.ecommerce.app.ui.admin.products.AdminEditProductFragment"
+                android:label="Edit Product"
+                tools:layout="@layout/fragment_admin_edit_product">
+
+                <argument
+                    android:name="productId"
+                    app:argType="long" />
+            </fragment>
+
+            <fragment
+                android:id="@+id/adminOrdersFragment"
+                android:name="com.ecommerce.app.ui.admin.orders.AdminOrdersFragment"
+                android:label="Orders"
+                tools:layout="@layout/fragment_admin_orders" />
+
+            <fragment
+                android:id="@+id/adminUsersFragment"
+                android:name="com.ecommerce.app.ui.admin.users.AdminUsersFragment"
+                android:label="Users"
+                tools:layout="@layout/fragment_admin_users" />
+
+            <fragment
+                android:id="@+id/adminCategoriesFragment"
+                android:name="com.ecommerce.app.ui.admin.categories.AdminCategoriesFragment"
+                android:label="Categories"
+                tools:layout="@layout/fragment_admin_categories" />
+        </navigation>
+
     </navigation>
-
-</navigation>

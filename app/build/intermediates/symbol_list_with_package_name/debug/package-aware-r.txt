@@ -3075,9 +3075,13 @@ drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable avd_hide_password
 drawable avd_show_password
+drawable bg_bottom_nav
+drawable bg_bottom_radius
+drawable bg_circle_green
 drawable bg_dialog
 drawable bg_dot_active
 drawable bg_dot_inactive
+drawable bg_upper_radius
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
 drawable btn_checkbox_unchecked_mtrl
@@ -3136,6 +3140,7 @@ drawable img_login
 drawable img_logo
 drawable img_male
 drawable img_man
+drawable img_product_added_to_cart
 drawable img_reset_password
 drawable img_verify_email
 drawable img_woman
@@ -3291,6 +3296,7 @@ id action_enterCodeFragment_to_resetPasswordFragment
 id action_forgotPasswordFragment_to_enterCodeFragment
 id action_homeFragment_to_cartFragment
 id action_homeFragment_to_productDetailFragment
+id action_homeFragment_to_searchFragment
 id action_image
 id action_loginFragment_to_admin_nav_graph
 id action_loginFragment_to_forgotPasswordFragment
@@ -3303,12 +3309,14 @@ id action_mode_bar_stub
 id action_mode_close_button
 id action_ordersFragment_to_orderDetailFragment
 id action_productDetailFragment_to_enterCodeFragment
+id action_productDetailFragment_to_homeFragment
 id action_profileFragment_to_addressListFragment
 id action_profileFragment_to_editProfileFragment
 id action_profileFragment_to_loginFragment
 id action_profileFragment_to_securityFragment
 id action_registerFragment_to_loginFragment
 id action_resetPasswordFragment_to_loginFragment
+id action_searchFragment_to_homeFragment
 id action_searchFragment_to_productDetailFragment
 id action_securityFragment_to_changeEmailFragment
 id action_securityFragment_to_changePasswordFragment
@@ -3352,7 +3360,6 @@ id beginning
 id bestChoice
 id blocking
 id bottom
-id bottom_nav_admin
 id bottom_nav_customer
 id bounce
 id bounceBoth
@@ -3374,7 +3381,6 @@ id btn_edit_profile
 id btn_increment
 id btn_login
 id btn_logout
-id btn_orders
 id btn_place_order
 id btn_register
 id btn_reset_password
@@ -3524,6 +3530,7 @@ id fitStart
 id fitToContents
 id fitXY
 id fixed
+id fl_cart_container
 id flip
 id floating
 id forever
@@ -3887,6 +3894,7 @@ id tvEmpty
 id tv_address_city
 id tv_address_name
 id tv_address_street
+id tv_cart_badge
 id tv_category
 id tv_category_emoji
 id tv_category_name
@@ -3914,6 +3922,7 @@ id tv_quantity
 id tv_register
 id tv_result_count
 id tv_role
+id tv_see_more_categories
 id tv_status
 id tv_stock
 id tv_subtitle
@@ -4082,6 +4091,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout dialog_add_more_products
 layout dialog_delete_account
 layout dialog_verify_email
 layout fragment_add_address

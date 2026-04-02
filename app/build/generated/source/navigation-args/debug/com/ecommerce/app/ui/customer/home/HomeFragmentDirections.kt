@@ -24,11 +24,27 @@ public class HomeFragmentDirections private constructor() {
       }
   }
 
+  private data class ActionHomeFragmentToSearchFragment(
+    public val categoryId: Long = -1L,
+  ) : NavDirections {
+    public override val actionId: Int = R.id.action_homeFragment_to_searchFragment
+
+    public override val arguments: Bundle
+      get() {
+        val result = Bundle()
+        result.putLong("categoryId", this.categoryId)
+        return result
+      }
+  }
+
   public companion object {
     public fun actionHomeFragmentToProductDetailFragment(productId: Long, email: String):
         NavDirections = ActionHomeFragmentToProductDetailFragment(productId, email)
 
     public fun actionHomeFragmentToCartFragment(): NavDirections =
         ActionOnlyNavDirections(R.id.action_homeFragment_to_cartFragment)
+
+    public fun actionHomeFragmentToSearchFragment(categoryId: Long = -1L): NavDirections =
+        ActionHomeFragmentToSearchFragment(categoryId)
   }
 }

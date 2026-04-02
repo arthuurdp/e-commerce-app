@@ -4,9 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ecommerce.app.data.model.cart.CartResponse
 import com.ecommerce.app.data.model.category.CategoryResponse
 import com.ecommerce.app.data.model.product.ProductResponse
 import com.ecommerce.app.data.model.util.PageResponse
+import com.ecommerce.app.data.repository.CartRepository
 import com.ecommerce.app.data.repository.CategoryRepository
 import com.ecommerce.app.data.repository.ProductRepository
 import com.ecommerce.app.data.repository.UserRepository
@@ -19,7 +21,8 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val productRepository: ProductRepository,
     private val categoryRepository: CategoryRepository,
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val cartRepository: CartRepository
 ) : ViewModel() {
     private val _categoriesState = MutableLiveData<NetworkResult<PageResponse<CategoryResponse>>>()
     val categoriesState: LiveData<NetworkResult<PageResponse<CategoryResponse>>> = _categoriesState
@@ -27,8 +30,14 @@ class HomeViewModel @Inject constructor(
     val productsByCategory: LiveData<Map<CategoryResponse, List<ProductResponse>>> = _productsByCategory
 
     private val _firstName = MutableLiveData<NetworkResult<String>>()
-
     val firstName: LiveData<NetworkResult<String>> = _firstName
+
+    private val _cartState = MutableLiveData<NetworkResult<CartResponse>>()
+    val cartState: LiveData<NetworkResult<CartResponse>> = _cartState
+
+    init {
+        loadFirstName()
+    }
 
     fun loadCategories() {
         viewModelScope.launch {
@@ -44,6 +53,12 @@ class HomeViewModel @Inject constructor(
                 val firstName = result.data.firstName + "!"
                 _firstName.value = NetworkResult.Success(firstName)
             }
+        }
+    }
+
+    fun loadCart() {
+        viewModelScope.launch {
+            _cartState.value = cartRepository.getCart()
         }
     }
 
