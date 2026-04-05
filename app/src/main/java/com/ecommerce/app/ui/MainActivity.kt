@@ -2,10 +2,13 @@ package com.ecommerce.app.ui
 
 import android.graphics.Rect
 import android.os.Bundle
-import android.view.View
 import android.view.ViewGroup
+import android.view.WindowInsetsController
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.get
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
@@ -26,6 +29,12 @@ class MainActivity : AppCompatActivity() {
     private val viewModel: MainViewModel by viewModels()
     private var isKeyboardVisible = false
 
+    private val customerRootDestinations = setOf(
+        R.id.homeFragment,
+        R.id.searchFragment,
+        R.id.profileFragment
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -40,31 +49,65 @@ class MainActivity : AppCompatActivity() {
         setupKeyboardListener()
     }
 
-    private fun setupKeyboardListener() {
-        binding.root.viewTreeObserver.addOnGlobalLayoutListener {
-            val r = Rect()
-            binding.root.getWindowVisibleDisplayFrame(r)
-            val screenHeight = binding.root.rootView.height
-            val keypadHeight = screenHeight - r.bottom
+    private fun setupBottomNav() {
 
-            // If keypad height is more than 15% of screen height, keyboard is likely visible
-            val currentlyVisible = keypadHeight > screenHeight * 0.15
-            if (currentlyVisible != isKeyboardVisible) {
-                isKeyboardVisible = currentlyVisible
-                handleBottomNavVisibility()
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            handleBottomNavVisibility(destination.id)
+            updateBottomNavScale(binding.bottomNavCustomer, destination.id)
+
+            if (destination.id in customerRootDestinations) {
+                binding.bottomNavCustomer.menu.findItem(destination.id)?.isChecked = true
+            }
+        }
+
+        binding.bottomNavCustomer.setOnItemSelectedListener { item ->
+            val currentId = navController.currentDestination?.id
+
+            if (currentId == item.itemId) return@setOnItemSelectedListener true
+
+            when (item.itemId) {
+                R.id.homeFragment -> {
+                    navController.navigate(
+                        R.id.homeFragment,
+                        null,
+                        androidx.navigation.NavOptions.Builder()
+                            .setPopUpTo(R.id.homeFragment, inclusive = false, saveState = false)
+                            .setLaunchSingleTop(true)
+                            .build()
+                    )
+                    true
+                }
+                R.id.searchFragment -> {
+                    navController.navigate(
+                        R.id.searchFragment,
+                        null,
+                        androidx.navigation.NavOptions.Builder()
+                            .setPopUpTo(R.id.homeFragment, inclusive = false, saveState = true)
+                            .setLaunchSingleTop(true)
+                            .setRestoreState(true)
+                            .build()
+                    )
+                    true
+                }
+                R.id.profileFragment -> {
+                    navController.navigate(
+                        R.id.profileFragment,
+                        null,
+                        androidx.navigation.NavOptions.Builder()
+                            .setPopUpTo(R.id.homeFragment, inclusive = false, saveState = true)
+                            .setLaunchSingleTop(true)
+                            .setRestoreState(true)
+                            .build()
+                    )
+                    true
+                }
+                else -> false
             }
         }
     }
 
-    private fun handleBottomNavVisibility() {
-        val customerRootDestinations = setOf(
-            R.id.homeFragment,
-            R.id.searchFragment,
-            R.id.profileFragment
-        )
-
-        val isRootDestination = navController.currentDestination?.id in customerRootDestinations
-
+    private fun handleBottomNavVisibility(currentDestinationId: Int) {
+        val isRootDestination = currentDestinationId in customerRootDestinations
         if (isRootDestination && !isKeyboardVisible) {
             binding.bottomNavCustomer.show()
         } else {
@@ -72,25 +115,18 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupBottomNav() {
-        navController.addOnDestinationChangedListener { _, _, _ ->
-            handleBottomNavVisibility()
-            navController.currentDestination?.let {
-                updateBottomNavScale(binding.bottomNavCustomer, it.id)
+    private fun setupKeyboardListener() {
+        binding.root.viewTreeObserver.addOnGlobalLayoutListener {
+            val r = Rect()
+            binding.root.getWindowVisibleDisplayFrame(r)
+            val screenHeight = binding.root.rootView.height
+            val keypadHeight = screenHeight - r.bottom
+            val currentlyVisible = keypadHeight > screenHeight * 0.15
+
+            if (currentlyVisible != isKeyboardVisible) {
+                isKeyboardVisible = currentlyVisible
+                navController.currentDestination?.id?.let { handleBottomNavVisibility(it) }
             }
-        }
-
-        binding.bottomNavCustomer.setOnItemSelectedListener { item ->
-            if (navController.currentDestination?.id == item.itemId) return@setOnItemSelectedListener false
-
-            val options = androidx.navigation.NavOptions.Builder()
-                .setPopUpTo(R.id.homeFragment, inclusive = false, saveState = true)
-                .setLaunchSingleTop(true)
-                .setRestoreState(true)
-                .build()
-
-            navController.navigate(item.itemId, null, options)
-            true
         }
     }
 
@@ -99,10 +135,9 @@ class MainActivity : AppCompatActivity() {
         for (i in 0 until menuView.childCount) {
             val itemView = menuView.get(i)
             val isSelected = navView.menu.getItem(i).itemId == selectedId
-            val scale = if (isSelected) 1.2f else 1.0f
             itemView.animate()
-                .scaleX(scale)
-                .scaleY(scale)
+                .scaleX(if (isSelected) 1.2f else 1.0f)
+                .scaleY(if (isSelected) 1.2f else 1.0f)
                 .setDuration(200)
                 .start()
         }

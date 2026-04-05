@@ -27,22 +27,15 @@ import com.ecommerce.app.ui.customer.products.ProductAdapter
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hide
 import com.ecommerce.app.util.show
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.card.MaterialCardView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 private val TILE_COLORS = listOf(
-    0xFF1DB954.toInt(),
-    0xFFFF8C00.toInt(),
-    0xFFE91E8C.toInt(),
-    0xFF3D5AFE.toInt(),
-    0xFFD32F2F.toInt(),
-    0xFF00BCD4.toInt(),
-    0xFF8E24AA.toInt(),
-    0xFF388E3C.toInt(),
-    0xFFFF6B35.toInt(),
+    0xFF1DB954.toInt(), 0xFFFF8C00.toInt(), 0xFFE91E8C.toInt(),
+    0xFF3D5AFE.toInt(), 0xFFD32F2F.toInt(), 0xFF00BCD4.toInt(),
+    0xFF8E24AA.toInt(), 0xFF388E3C.toInt(), 0xFFFF6B35.toInt(),
     0xFF0277BD.toInt(),
 )
 
@@ -67,6 +60,7 @@ private val CATEGORY_EMOJIS = mapOf(
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
+
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val viewModel: HomeViewModel by viewModels()
@@ -85,38 +79,66 @@ class HomeFragment : Fragment() {
         binding.flCartContainer.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_cartFragment)
         }
-
-        binding.tvSeeMoreCategories.setOnClickListener {
-            navigateToSearch()
-        }
+        binding.tvSeeMoreCategories.setOnClickListener { navigateToSearch() }
 
         viewModel.loadCategories()
         viewModel.loadCart()
 
-        loadFirstName()
         setupBanner()
         setupSwipeRefresh()
+        observeFirstName()
         observeCategories()
         observeProductsByCategory()
         observeCart()
     }
 
-    // ── Navigation ────────────────────────────────────────────────────────────
-
     private fun navigateToSearch(categoryId: Long? = null) {
-        requireActivity()
-            .findViewById<BottomNavigationView>(R.id.bottom_nav_customer)
-            ?.selectedItemId = R.id.bottom_nav_customer
+        findNavController().navigate(
+            R.id.searchFragment,
+            bundleOf("categoryId" to (categoryId ?: -1L))
+        )
+    }
 
-        if (categoryId != null) {
-            findNavController()
-                .currentBackStackEntry
-                ?.savedStateHandle
-                ?.set("categoryId", categoryId)
+    private fun observeFirstName() {
+        viewModel.firstName.observe(viewLifecycleOwner) { result ->
+            binding.tvFirstName.text = when (result) {
+                is NetworkResult.Success -> result.data
+                is NetworkResult.Error   -> ""
+                is NetworkResult.Loading -> ""
+            }
         }
     }
 
-    // ── Banner ────────────────────────────────────────────────────────────────
+    private fun observeCategories() {
+        viewModel.categoriesState.observe(viewLifecycleOwner) { result ->
+            if (result is NetworkResult.Success) {
+                val categories = result.data.content
+                buildCategoryTiles(categories)
+                viewModel.loadProductsByCategories(categories)
+            }
+        }
+    }
+
+    private fun observeProductsByCategory() {
+        viewModel.productsByCategory.observe(viewLifecycleOwner) { grouped ->
+            binding.swipeRefresh.isRefreshing = false
+            if (grouped.isNotEmpty()) buildCategorySections(grouped)
+        }
+    }
+
+    private fun observeCart() {
+        viewModel.cartState.observe(viewLifecycleOwner) { result ->
+            if (result is NetworkResult.Success) {
+                val quantity = result.data.totalQuantity
+                if (quantity > 0) {
+                    binding.tvCartBadge.text = quantity.toString()
+                    binding.tvCartBadge.show()
+                } else {
+                    binding.tvCartBadge.hide()
+                }
+            }
+        }
+    }
 
     private fun setupBanner() {
         val banners = listOf(
@@ -145,7 +167,8 @@ class HomeFragment : Fragment() {
         binding.llDots.removeAllViews()
         repeat(count) {
             val dot = View(requireContext()).apply {
-                layoutParams = LinearLayout.LayoutParams(8.dp, 8.dp).also { p -> p.marginEnd = 6.dp }
+                layoutParams = LinearLayout.LayoutParams(8.dp, 8.dp)
+                    .also { p -> p.marginEnd = 6.dp }
                 background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_dot_inactive)
             }
             binding.llDots.addView(dot)
@@ -162,14 +185,14 @@ class HomeFragment : Fragment() {
         }
     }
 
-    // ── Categories ────────────────────────────────────────────────────────────
-
-    private fun observeCategories() {
-        viewModel.categoriesState.observe(viewLifecycleOwner) { result ->
-            if (result is NetworkResult.Success) {
-                val categories = result.data.content
-                buildCategoryTiles(categories)
-                viewModel.loadProductsByCategories(categories)
+    private fun startAutoScroll(adapter: BannerAdapter) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                while (true) {
+                    delay(5000)
+                    val vp = _binding?.vpBanner ?: break
+                    vp.setCurrentItem((vp.currentItem + 1) % adapter.itemCount, true)
+                }
             }
         }
     }
@@ -178,11 +201,10 @@ class HomeFragment : Fragment() {
         val container = binding.llCategoryTiles
         container.removeAllViews()
 
-        val rest = if (categories.size > 1) categories.subList(1, categories.size) else emptyList()
-        rest.chunked(2).forEachIndexed { rowIdx, pair ->
+        categories.chunked(2).forEachIndexed { rowIdx, pair ->
             val row = buildRow(
-                left = buildTile(pair[0], (rowIdx * 2 + 1) % TILE_COLORS.size),
-                right = if (pair.size > 1) buildTile(pair[1], (rowIdx * 2 + 2) % TILE_COLORS.size) else null
+                left  = buildTile(pair[0], rowIdx * 2),
+                right = pair.getOrNull(1)?.let { buildTile(it, rowIdx * 2 + 1) }
             )
             container.addView(row)
         }
@@ -209,9 +231,9 @@ class HomeFragment : Fragment() {
             setCardBackgroundColor(colorInt)
             isClickable = true
             isFocusable = true
-            foreground = requireContext().obtainStyledAttributes(
-                intArrayOf(android.R.attr.selectableItemBackground)
-            ).getDrawable(0)
+            foreground = requireContext()
+                .obtainStyledAttributes(intArrayOf(android.R.attr.selectableItemBackground))
+                .getDrawable(0)
         }
 
         val frame = FrameLayout(requireContext()).apply {
@@ -271,41 +293,18 @@ class HomeFragment : Fragment() {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
             )
-            val rowParams = LinearLayout.LayoutParams(0, 90.dp, 1f).apply {
-                topMargin = 5.dp
-                bottomMargin = 5.dp
+
+            val leftParams = LinearLayout.LayoutParams(0, 90.dp, 1f).apply {
+                topMargin = 5.dp; bottomMargin = 5.dp
             }
-            left.layoutParams = rowParams
+            left.layoutParams = leftParams
             addView(left)
 
-            if (right != null) {
-                val rightParams = LinearLayout.LayoutParams(0, 90.dp, 1f).apply {
-                    marginStart = 6.dp
-                    topMargin = 5.dp
-                    bottomMargin = 5.dp
-                }
-                right.layoutParams = rightParams
-                addView(right)
-            } else {
-                addView(View(requireContext()).apply {
-                    layoutParams = LinearLayout.LayoutParams(0, 90.dp, 1f).apply {
-                        marginStart = 6.dp
-                    }
-                })
+            val rightView: View = right ?: View(requireContext())
+            rightView.layoutParams = LinearLayout.LayoutParams(0, 90.dp, 1f).apply {
+                marginStart = 6.dp; topMargin = 5.dp; bottomMargin = 5.dp
             }
-        }
-    }
-
-    // ── Products by category ──────────────────────────────────────────────────
-
-    private fun observeProductsByCategory() {
-        viewModel.productsByCategory.observe(viewLifecycleOwner) { grouped ->
-            binding.swipeRefresh.isRefreshing = false
-
-            if (grouped.isEmpty()) {
-            } else {
-                buildCategorySections(grouped)
-            }
+            addView(rightView)
         }
     }
 
@@ -316,13 +315,13 @@ class HomeFragment : Fragment() {
         grouped.forEach { (category, products) ->
             if (products.isEmpty()) return@forEach
 
-            val sectionView =
-                layoutInflater.inflate(R.layout.item_category_section, container, false)
+            val sectionView = layoutInflater.inflate(
+                R.layout.item_category_section, container, false
+            )
             sectionView.findViewById<TextView>(R.id.tv_category_name).text = category.name
 
             val rv = sectionView.findViewById<RecyclerView>(R.id.rv_category_products)
-            rv.layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            rv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             rv.adapter = ProductAdapter { product ->
                 findNavController().navigate(
                     R.id.action_homeFragment_to_productDetailFragment,
@@ -334,32 +333,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-    // ── Auto-scroll banner ────────────────────────────────────────────────────
-
-    private fun startAutoScroll(adapter: BannerAdapter) {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                while (true) {
-                    delay(5000)
-                    val vp = _binding?.vpBanner ?: break
-                    vp.setCurrentItem((vp.currentItem + 1) % adapter.itemCount, true)
-                }
-            }
-        }
-    }
-
-    // ── Misc observers ────────────────────────────────────────────────────────
-
-    private fun loadFirstName() {
-        viewModel.firstName.observe(viewLifecycleOwner) { result ->
-            binding.tvFirstName.text = when (result) {
-                is NetworkResult.Success -> result.data
-                is NetworkResult.Error -> "Erro ao carregar"
-                is NetworkResult.Loading -> "Carregando..."
-            }
-        }
-    }
-
     private fun setupSwipeRefresh() {
         binding.swipeRefresh.setOnRefreshListener {
             viewModel.loadCategories()
@@ -367,21 +340,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun observeCart() {
-        viewModel.cartState.observe(viewLifecycleOwner) { result ->
-            if (result is NetworkResult.Success) {
-                val quantity = result.data.totalQuantity
-                if (quantity > 0) {
-                    binding.tvCartBadge.text = quantity.toString()
-                    binding.tvCartBadge.show()
-                } else {
-                    binding.tvCartBadge.hide()
-                }
-            }
-        }
-    }
-
-    // ── Utilities ─────────────────────────────────────────────────────────────
 
     private fun resolveEmoji(name: String): String {
         val lower = name.lowercase()

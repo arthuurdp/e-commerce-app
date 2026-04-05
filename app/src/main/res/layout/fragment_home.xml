@@ -53,7 +53,9 @@
                         android:textColor="@color/primary"
                         android:textSize="24sp"
                         android:textStyle="bold" />
+
                 </LinearLayout>
+
             </LinearLayout>
 
             <FrameLayout
@@ -71,8 +73,8 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:src="@drawable/ic_shopping_cart"
-                    app:tint="@color/black"
-                    android:contentDescription="Cart" />
+                    android:contentDescription="Cart"
+                    app:tint="@color/black" />
 
                 <TextView
                     android:id="@+id/tv_cart_badge"
@@ -117,7 +119,7 @@
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/vp_banner"
                     android:layout_width="match_parent"
-                    android:layout_height="230dp"
+                    android:layout_height="200dp"
                     android:layout_marginTop="14dp"
                     android:clipChildren="false"
                     android:clipToPadding="false"
@@ -138,15 +140,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_upper_radius"
-                    android:paddingTop="15dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
+                    android:paddingTop="12dp"
                     android:orientation="vertical" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingTop="15dp"
+                    android:background="@color/background"
+                    android:paddingTop="12dp"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp">
 
@@ -163,13 +166,13 @@
                             android:textSize="20sp"
                             android:textStyle="bold"
                             android:layout_alignParentStart="true"
-                            android:layout_centerVertical="true"/>
+                            android:layout_centerVertical="true" />
 
                         <TextView
                             android:id="@+id/tv_see_more_categories"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Ver Mais"
+                            android:text="Ver Tudo >"
                             android:textColor="@color/primary"
                             android:textSize="14sp"
                             android:textStyle="bold"
@@ -178,7 +181,7 @@
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:clickable="true"
                             android:focusable="true"
-                            android:padding="4dp"/>
+                            android:padding="4dp" />
 
                     </RelativeLayout>
 

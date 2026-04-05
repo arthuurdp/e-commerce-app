@@ -734,7 +734,7 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
           return (T) new AuthViewModel(singletonCImpl.authRepositoryProvider.get(), singletonCImpl.emailRepositoryProvider.get(), singletonCImpl.tokenManagerProvider.get());
 
           case 8: // com.ecommerce.app.ui.customer.cart.CartViewModel 
-          return (T) new CartViewModel(viewModelCImpl.cartRepository());
+          return (T) new CartViewModel(viewModelCImpl.cartRepository(), viewModelCImpl.addressRepository());
 
           case 9: // com.ecommerce.app.ui.customer.cart.CheckoutViewModel 
           return (T) new CheckoutViewModel(viewModelCImpl.orderRepository(), viewModelCImpl.addressRepository());

@@ -14,6 +14,8 @@ import com.ecommerce.app.data.repository.ProductRepository
 import com.ecommerce.app.data.repository.UserRepository
 import com.ecommerce.app.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -24,8 +26,10 @@ class HomeViewModel @Inject constructor(
     private val userRepository: UserRepository,
     private val cartRepository: CartRepository
 ) : ViewModel() {
+
     private val _categoriesState = MutableLiveData<NetworkResult<PageResponse<CategoryResponse>>>()
     val categoriesState: LiveData<NetworkResult<PageResponse<CategoryResponse>>> = _categoriesState
+
     private val _productsByCategory = MutableLiveData<Map<CategoryResponse, List<ProductResponse>>>()
     val productsByCategory: LiveData<Map<CategoryResponse, List<ProductResponse>>> = _productsByCategory
 
@@ -46,37 +50,42 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun loadFirstName() {
-        viewModelScope.launch {
-            val result = userRepository.getCurrentUser()
-            if (result is NetworkResult.Success) {
-                val firstName = result.data.firstName + "!"
-                _firstName.value = NetworkResult.Success(firstName)
-            }
-        }
-    }
-
     fun loadCart() {
         viewModelScope.launch {
             _cartState.value = cartRepository.getCart()
         }
     }
 
+    private fun loadFirstName() {
+        viewModelScope.launch {
+            val result = userRepository.getCurrentUser()
+            _firstName.value = if (result is NetworkResult.Success) {
+                NetworkResult.Success(result.data.firstName + "!")
+            } else {
+                result as NetworkResult<String>
+            }
+        }
+    }
+
     fun loadProductsByCategories(categories: List<CategoryResponse>) {
         viewModelScope.launch {
-            val result = mutableMapOf<CategoryResponse, List<ProductResponse>>()
-            categories.forEach { category ->
-                val response = productRepository.getProducts(
-                    page = 0,
-                    size = 10,
-                    name = null,
-                    categoryIds = listOf(category.id)
-                )
-                if (response is NetworkResult.Success) {
-                    result[category] = response.data.content
+            val results = categories
+                .map { category ->
+                    async {
+                        val response = productRepository.getProducts(
+                            page = 0,
+                            size = 10,
+                            name = null,
+                            categoryIds = listOf(category.id)
+                        )
+                        category to response
+                    }
                 }
-            }
-            _productsByCategory.value = result
+                .awaitAll()
+
+            _productsByCategory.value = results
+                .filterIsInstance<Pair<CategoryResponse, NetworkResult.Success<PageResponse<ProductResponse>>>>()
+                .associate { (category, result) -> category to result.data.content }
         }
     }
 }

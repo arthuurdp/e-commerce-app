@@ -34,8 +34,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="img_product_added_to_cart" />
-                            <entry key="sourceFile" value="C:\Users\arthu\Downloads\img_product_added_to_cart.svg" />
+                            <entry key="outputName" value="img_product_not_found" />
+                            <entry key="sourceFile" value="C:\Users\arthu\Downloads\img_product_not_found.svg" />
                           </map>
                         </option>
                       </PersistentState>

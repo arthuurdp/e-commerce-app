@@ -3096,6 +3096,7 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable divider_style
 drawable ic_arrow_back
 drawable ic_arrow_back_black_24
 drawable ic_arrow_right
@@ -3129,6 +3130,7 @@ drawable ic_search_black_24
 drawable ic_shopping_cart
 drawable ic_trash
 drawable ic_user
+drawable img_add_address
 drawable img_banner_1
 drawable img_banner_2
 drawable img_banner_3
@@ -3142,6 +3144,7 @@ drawable img_logo
 drawable img_male
 drawable img_man
 drawable img_product_added_to_cart
+drawable img_product_not_found
 drawable img_reset_password
 drawable img_verify_email
 drawable img_woman
@@ -3602,6 +3605,7 @@ id ll_categories_grid
 id ll_category_tiles
 id ll_dots
 id ll_greeting
+id ll_info
 id ll_register
 id locale
 id loginFragment
@@ -4089,6 +4093,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout dialog_add_first_address
 layout dialog_add_more_products
 layout dialog_delete_account
 layout dialog_verify_email
@@ -4128,6 +4133,7 @@ layout item_category_tile
 layout item_order
 layout item_order_line
 layout item_product
+layout item_product_search
 layout item_user
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
@@ -4414,6 +4420,7 @@ style App_Card
 style App_Card_Action
 style App_Card_Elevated
 style App_Chip
+style App_Dialog_Rounded
 style App_Divider
 style App_Text
 style App_Text_Body

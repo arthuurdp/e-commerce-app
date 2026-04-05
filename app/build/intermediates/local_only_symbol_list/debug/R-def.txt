@@ -44,6 +44,7 @@ drawable bg_dot_active
 drawable bg_dot_inactive
 drawable bg_search_input
 drawable bg_upper_radius
+drawable divider_style
 drawable ic_arrow_back
 drawable ic_arrow_right
 drawable ic_cart
@@ -59,6 +60,7 @@ drawable ic_search
 drawable ic_shopping_cart
 drawable ic_trash
 drawable ic_user
+drawable img_add_address
 drawable img_banner_1
 drawable img_banner_2
 drawable img_banner_3
@@ -72,6 +74,7 @@ drawable img_logo
 drawable img_male
 drawable img_man
 drawable img_product_added_to_cart
+drawable img_product_not_found
 drawable img_reset_password
 drawable img_verify_email
 drawable img_woman
@@ -210,6 +213,7 @@ id ll_categories_grid
 id ll_category_tiles
 id ll_dots
 id ll_greeting
+id ll_info
 id ll_register
 id loginFragment
 id main_container
@@ -298,6 +302,7 @@ id v_overlay
 id vp_banner
 id vp_product_images
 layout activity_main
+layout dialog_add_first_address
 layout dialog_add_more_products
 layout dialog_delete_account
 layout dialog_verify_email
@@ -335,6 +340,7 @@ layout item_category_tile
 layout item_order
 layout item_order_line
 layout item_product
+layout item_product_search
 layout item_user
 menu menu_customer_nav
 navigation nav_graph
@@ -379,6 +385,7 @@ style App.Card
 style App.Card.Action
 style App.Card.Elevated
 style App.Chip
+style App.Dialog.Rounded
 style App.Divider
 style App.Text
 style App.TextInputLayout

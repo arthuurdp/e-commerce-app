@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  Replace the existing item_category_section.xml.
-  The category header + horizontal products list stays the same,
-  but we're also providing the new home categories tile section below.
--->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_marginBottom="20dp">
 
-    <!-- Section header with "See all" arrow -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
     </LinearLayout>

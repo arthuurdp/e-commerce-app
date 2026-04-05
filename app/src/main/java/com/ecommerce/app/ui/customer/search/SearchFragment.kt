@@ -7,16 +7,19 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ecommerce.app.R
 import com.ecommerce.app.data.model.category.CategoryResponse
 import com.ecommerce.app.databinding.FragmentSearchBinding
-import com.ecommerce.app.ui.customer.products.ProductAdapter
+import com.ecommerce.app.ui.customer.products.ProductSearchAdapter
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hide
 import com.ecommerce.app.util.hideKeyboard
@@ -29,7 +32,8 @@ import dagger.hilt.android.AndroidEntryPoint
 private val CATEGORY_COLORS = listOf(
     0xFF1DB954.toInt(), 0xFFFF6B35.toInt(), 0xFFE91E8C.toInt(),
     0xFF3D5AFE.toInt(), 0xFFFF6F00.toInt(), 0xFF00BCD4.toInt(),
-    0xFF8E24AA.toInt(), 0xFFD32F2F.toInt(), 0xFF2196F3.toInt(), 0xFF388E3C.toInt(),
+    0xFF8E24AA.toInt(), 0xFFD32F2F.toInt(), 0xFF2196F3.toInt(),
+    0xFF388E3C.toInt(),
 )
 
 private val CATEGORY_EMOJIS = mapOf(
@@ -51,7 +55,7 @@ class SearchFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: SearchViewModel by viewModels()
 
-    private lateinit var resultsAdapter: ProductAdapter
+    private lateinit var resultsAdapter: ProductSearchAdapter
     private var loadedCategories: List<CategoryResponse> = emptyList()
 
     override fun onCreateView(
@@ -64,31 +68,55 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setupResultsList()
         setupSearchBar()
         observeCategories()
         observeSearch()
         viewModel.loadCategories()
+
+        val categoryId: Long =
+            findNavController().currentBackStackEntry
+                ?.savedStateHandle
+                ?.remove<Long>("categoryId")
+                ?: arguments?.getLong("categoryId", -1L)
+                ?: -1L
+
+        if (categoryId != -1L) {
+            showChipRow()
+            binding.btnCancel.show()
+            viewModel.search("", categoryId, force = true)
+        }
     }
 
     private fun setupResultsList() {
-        resultsAdapter = ProductAdapter { product ->
+        resultsAdapter = ProductSearchAdapter { product ->
             findNavController().navigate(
                 R.id.action_searchFragment_to_productDetailFragment,
                 bundleOf("productId" to product.id)
             )
         }
         binding.rvSearchResults.apply {
-            layoutManager = GridLayoutManager(requireContext(), 2)
+            val layoutManager = LinearLayoutManager(requireContext())
+            this.layoutManager = layoutManager
             adapter = resultsAdapter
+
+            val divider = DividerItemDecoration(requireContext(), layoutManager.orientation)
+            ContextCompat.getDrawable(requireContext(), R.drawable.divider_style)?.let {
+                divider.setDrawable(it)
+            } ?: run {
+                val insetDivider = DividerItemDecoration(requireContext(), layoutManager.orientation)
+                this.addItemDecoration(insetDivider)
+            }
+            this.addItemDecoration(divider)
         }
     }
 
     private fun setupSearchBar() {
         binding.etSearch.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
-                binding.chipScrollView.show()
-                binding.chipScrollView.animate().alpha(1f).translationY(0f).setDuration(200).start()
+                showChipRow()
+                binding.btnCancel.show()
             }
         }
 
@@ -108,32 +136,23 @@ class SearchFragment : Fragment() {
             hideChipRow()
             showEmptyState()
         }
-
-        binding.etSearch.setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-                binding.btnCancel.show()
-                showChipRow()
-            } else {
-                if (binding.etSearch.text.isNullOrBlank() && viewModel.selectedCategoryId == null) {
-                    binding.btnCancel.hide()
-                    hideChipRow()
-                }
-            }
-        }
     }
 
     private fun showChipRow() {
         binding.chipScrollView.apply {
-            alpha = 0f
-            translationY = -8f.dpToPx()
-            show()
-            animate().alpha(1f).translationY(0f).setDuration(220).start()
+            if (visibility != View.VISIBLE) {
+                alpha = 0f
+                translationY = -8f.dpToPx()
+                show()
+                animate().alpha(1f).translationY(0f).setDuration(220).start()
+            }
         }
     }
 
     private fun hideChipRow() {
         binding.chipScrollView.animate()
-            .alpha(0f).translationY(-8f.dpToPx())
+            .alpha(0f)
+            .translationY(-8f.dpToPx())
             .setDuration(180)
             .withEndAction { binding.chipScrollView.hide() }
             .start()
@@ -145,7 +164,6 @@ class SearchFragment : Fragment() {
                 loadedCategories = result.data.content
                 buildCategoryChips(loadedCategories)
                 buildCategoryGrid(loadedCategories)
-                showEmptyState()
             }
         }
     }
@@ -154,10 +172,12 @@ class SearchFragment : Fragment() {
         viewModel.searchState.observe(viewLifecycleOwner) { result ->
             when (result) {
                 null -> showEmptyState()
+
                 is NetworkResult.Loading -> {
                     hideAllStates()
                     binding.progressBar.show()
                 }
+
                 is NetworkResult.Success -> {
                     binding.progressBar.hide()
                     val items = result.data.content
@@ -171,6 +191,7 @@ class SearchFragment : Fragment() {
                         showResults()
                     }
                 }
+
                 is NetworkResult.Error -> {
                     binding.progressBar.hide()
                     showNoResults()
@@ -179,106 +200,103 @@ class SearchFragment : Fragment() {
         }
     }
 
-    // ── Category Chips ────────────────────────────────────────────────────────
-
     private fun buildCategoryChips(categories: List<CategoryResponse>) {
         val group = binding.chipGroup
         group.removeAllViews()
 
-        // "Todos" chip
         val allChip = createChip(
             label = "Todos",
             emoji = "🍽️",
-            isSelected = viewModel.selectedCategoryId == null
+            isSelected = viewModel.selectedCategoryId == null,
+            accentColor = requireContext().getColor(R.color.primary)
         )
         allChip.setOnClickListener {
             selectChip(group, allChip)
-            val currentQuery = binding.etSearch.text?.toString() ?: ""
-            viewModel.search(currentQuery, categoryId = null)
+            viewModel.search(binding.etSearch.text?.toString() ?: "", categoryId = null)
         }
         group.addView(allChip)
 
-        // One chip per category
         categories.forEachIndexed { index, category ->
             val chip = createChip(
-                label = category.name,
-                emoji = resolveEmoji(category.name),
-                isSelected = viewModel.selectedCategoryId == category.id,
+                label  = category.name,
+                emoji  = resolveEmoji(category.name),
+                isSelected  = viewModel.selectedCategoryId == category.id,
                 accentColor = CATEGORY_COLORS[index % CATEGORY_COLORS.size]
             )
             chip.setOnClickListener {
                 selectChip(group, chip)
-                val currentQuery = binding.etSearch.text?.toString() ?: ""
-                viewModel.search(currentQuery, categoryId = category.id)
+                viewModel.search(
+                    binding.etSearch.text?.toString() ?: "",
+                    categoryId = category.id
+                )
             }
             group.addView(chip)
         }
+
+        syncSelectedChip()
     }
 
     private fun createChip(
         label: String,
         emoji: String,
         isSelected: Boolean,
-        accentColor: Int = 0xFFEA1D2C.toInt() // iFood red default
+        accentColor: Int
     ): Chip {
         return Chip(requireContext()).apply {
             text = "$emoji  $label"
             isCheckable = false
-            isChecked = false
 
-            val selectedBg = accentColor
-            val unselectedBg = 0xFFF5F5F5.toInt()
+            chipBackgroundColor = android.content.res.ColorStateList.valueOf(
+                if (isSelected) accentColor else 0xFFF5F5F5.toInt()
+            )
+            setTextColor(if (isSelected) Color.WHITE else 0xFF666666.toInt())
 
-            if (isSelected) {
-                setChipBackgroundColorResource(android.R.color.transparent)
-                chipBackgroundColor = android.content.res.ColorStateList.valueOf(selectedBg)
-                setTextColor(Color.WHITE)
-                chipStrokeWidth = 0f
-            } else {
-                chipBackgroundColor = android.content.res.ColorStateList.valueOf(unselectedBg)
-                setTextColor(0xFF666666.toInt())
-                chipStrokeWidth = 0f
-            }
+            chipMinHeight  = dpToPx(36).toFloat()
+            textSize       = 13f
+            chipStartPadding  = dpToPx(12).toFloat()
+            chipEndPadding    = dpToPx(12).toFloat()
+            chipCornerRadius  = dpToPx(20).toFloat()
 
-            chipMinHeight = dpToPx(36).toFloat()
-            textSize = 13f
-            chipStartPadding = dpToPx(12).toFloat()
-            chipEndPadding = dpToPx(12).toFloat()
-            chipCornerRadius = dpToPx(20).toFloat()
             tag = accentColor
         }
     }
 
-    /** Visually marks [selected] as active and resets all others. */
     private fun selectChip(group: ChipGroup, selected: Chip) {
-        val allChip = group.getChildAt(0) as? Chip
         for (i in 0 until group.childCount) {
             val chip = group.getChildAt(i) as? Chip ?: continue
-            val isAll = chip == allChip
-            val accent = if (isAll) 0xFFEA1D2C.toInt() else (chip.tag as? Int ?: 0xFFEA1D2C.toInt())
+            val accent = chip.tag as? Int ?: requireContext().getColor(R.color.primary)
             if (chip == selected) {
-                chip.chipBackgroundColor = android.content.res.ColorStateList.valueOf(accent)
+                chip.chipBackgroundColor =
+                    android.content.res.ColorStateList.valueOf(accent)
                 chip.setTextColor(Color.WHITE)
             } else {
-                chip.chipBackgroundColor = android.content.res.ColorStateList.valueOf(0xFFF5F5F5.toInt())
+                chip.chipBackgroundColor =
+                    android.content.res.ColorStateList.valueOf(0xFFF5F5F5.toInt())
                 chip.setTextColor(0xFF666666.toInt())
             }
         }
-        // Scroll the selected chip into view
         binding.chipScrollView.post {
-            val x = selected.left - dpToPx(16)
-            binding.chipScrollView.smoothScrollTo(x, 0)
+            binding.chipScrollView.smoothScrollTo(selected.left - dpToPx(16), 0)
         }
     }
 
-    // ── Category Grid (home state) ────────────────────────────────────────────
+    private fun syncSelectedChip() {
+        val currentId = viewModel.selectedCategoryId ?: return
+        val group = binding.chipGroup
+        for (i in 1 until group.childCount) {
+            if (loadedCategories.getOrNull(i - 1)?.id == currentId) {
+                val chip = group.getChildAt(i) as? Chip ?: break
+                selectChip(group, chip)
+                break
+            }
+        }
+    }
 
     private fun buildCategoryGrid(categories: List<CategoryResponse>) {
         val container = binding.llCategoriesGrid
         container.removeAllViews()
 
-        val rows = categories.chunked(2)
-        rows.forEachIndexed { rowIndex, pair ->
+        categories.chunked(2).forEachIndexed { rowIndex, pair ->
             val rowLayout = LinearLayout(requireContext()).apply {
                 orientation = LinearLayout.HORIZONTAL
                 layoutParams = LinearLayout.LayoutParams(
@@ -288,27 +306,26 @@ class SearchFragment : Fragment() {
             }
 
             pair.forEachIndexed { colIndex, category ->
-                val tileView = buildCategoryTile(
+                val tile = buildCategoryTile(
                     category = category,
                     colorInt = CATEGORY_COLORS[(rowIndex * 2 + colIndex) % CATEGORY_COLORS.size]
                 )
-                val params = LinearLayout.LayoutParams(0, dpToPx(92), 1f).apply {
+                tile.layoutParams = LinearLayout.LayoutParams(0, dpToPx(92), 1f).apply {
                     marginStart = if (colIndex == 0) 0 else dpToPx(5)
-                    topMargin = dpToPx(5)
+                    topMargin    = dpToPx(5)
                     bottomMargin = dpToPx(5)
                 }
-                tileView.layoutParams = params
-                rowLayout.addView(tileView)
+                rowLayout.addView(tile)
             }
 
             if (pair.size == 1) {
-                val spacer = View(requireContext()).apply {
+                rowLayout.addView(View(requireContext()).apply {
                     layoutParams = LinearLayout.LayoutParams(0, dpToPx(92), 1f).apply {
                         marginStart = dpToPx(5)
                     }
-                }
-                rowLayout.addView(spacer)
+                })
             }
+
             container.addView(rowLayout)
         }
     }
@@ -320,20 +337,22 @@ class SearchFragment : Fragment() {
             setCardBackgroundColor(colorInt)
             isClickable = true
             isFocusable = true
-            foreground = requireContext().obtainStyledAttributes(
-                intArrayOf(android.R.attr.selectableItemBackground)
-            ).getDrawable(0)
+            foreground = requireContext()
+                .obtainStyledAttributes(intArrayOf(android.R.attr.selectableItemBackground))
+                .getDrawable(0)
         }
 
-        val inner = FrameLayoutCompat(requireContext())
-        inner.layoutParams = ViewGroup.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT
-        )
+        val inner = FrameLayout(requireContext()).apply {
+            layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+        }
 
         val overlay = View(requireContext()).apply {
             layoutParams = ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
             )
             setBackgroundColor(Color.parseColor("#22000000"))
         }
@@ -344,8 +363,9 @@ class SearchFragment : Fragment() {
             textSize = 13.5f
             setTypeface(null, android.graphics.Typeface.BOLD)
             setShadowLayer(4f, 0f, 1f, 0x55000000)
-            layoutParams = android.widget.FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
+            layoutParams = FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
             ).apply {
                 gravity = android.view.Gravity.BOTTOM or android.view.Gravity.START
                 setMargins(dpToPx(12), 0, dpToPx(12), dpToPx(12))
@@ -355,8 +375,9 @@ class SearchFragment : Fragment() {
         val emojiView = android.widget.TextView(requireContext()).apply {
             text = resolveEmoji(category.name)
             textSize = 30f
-            layoutParams = android.widget.FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
+            layoutParams = FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
             ).apply {
                 gravity = android.view.Gravity.TOP or android.view.Gravity.END
                 setMargins(0, dpToPx(10), dpToPx(10), 0)
@@ -369,26 +390,14 @@ class SearchFragment : Fragment() {
         card.addView(inner)
 
         card.setOnClickListener {
-            // Focus search bar, select chip, fetch
-            binding.etSearch.requestFocus()
-            binding.etSearch.setText("")
             showChipRow()
             binding.btnCancel.show()
-
-            val group = binding.chipGroup
-            for (i in 1 until group.childCount) {
-                val chip = group.getChildAt(i) as? Chip ?: continue
-                if (loadedCategories.getOrNull(i - 1)?.id == category.id) {
-                    selectChip(group, chip)
-                    break
-                }
-            }
             viewModel.searchByCategory(category)
+            syncSelectedChip()
         }
 
         return card
     }
-
 
     private fun hideAllStates() {
         binding.layoutEmptyState.hide()
@@ -398,8 +407,10 @@ class SearchFragment : Fragment() {
     }
 
     private fun showEmptyState() {
-        hideAllStates()
-        binding.layoutEmptyState.show()
+        if (viewModel.searchState.value == null) {
+            hideAllStates()
+            binding.layoutEmptyState.show()
+        }
     }
 
     private fun showResults() {
@@ -414,6 +425,7 @@ class SearchFragment : Fragment() {
         binding.layoutNoResults.show()
     }
 
+
     private fun resolveEmoji(name: String): String {
         val lower = name.lowercase()
         return CATEGORY_EMOJIS.entries.firstOrNull { lower.contains(it.key) }?.value ?: "🛍️"
@@ -427,6 +439,3 @@ class SearchFragment : Fragment() {
         _binding = null
     }
 }
-
-private class FrameLayoutCompat(context: android.content.Context) :
-    android.widget.FrameLayout(context)

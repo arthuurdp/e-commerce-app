@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -44,6 +45,9 @@ public final class FragmentSearchBinding implements ViewBinding {
   public final TextInputEditText etSearch;
 
   @NonNull
+  public final ImageView ivIllustration;
+
+  @NonNull
   public final LinearLayout layoutEmptyState;
 
   @NonNull
@@ -76,17 +80,19 @@ public final class FragmentSearchBinding implements ViewBinding {
   private FragmentSearchBinding(@NonNull CoordinatorLayout rootView, @NonNull AppBarLayout appBar,
       @NonNull TextView btnCancel, @NonNull ChipGroup chipGroup,
       @NonNull HorizontalScrollView chipScrollView, @NonNull TextInputEditText etSearch,
-      @NonNull LinearLayout layoutEmptyState, @NonNull LinearLayout layoutNoResults,
-      @NonNull LinearLayout layoutResults, @NonNull LinearLayout llCategoriesGrid,
-      @NonNull ProgressBar progressBar, @NonNull RecyclerView rvSearchResults,
-      @NonNull NestedScrollView scrollView, @NonNull TextInputLayout tilSearch,
-      @NonNull TextView tvNoResultsQuery, @NonNull TextView tvResultCount) {
+      @NonNull ImageView ivIllustration, @NonNull LinearLayout layoutEmptyState,
+      @NonNull LinearLayout layoutNoResults, @NonNull LinearLayout layoutResults,
+      @NonNull LinearLayout llCategoriesGrid, @NonNull ProgressBar progressBar,
+      @NonNull RecyclerView rvSearchResults, @NonNull NestedScrollView scrollView,
+      @NonNull TextInputLayout tilSearch, @NonNull TextView tvNoResultsQuery,
+      @NonNull TextView tvResultCount) {
     this.rootView = rootView;
     this.appBar = appBar;
     this.btnCancel = btnCancel;
     this.chipGroup = chipGroup;
     this.chipScrollView = chipScrollView;
     this.etSearch = etSearch;
+    this.ivIllustration = ivIllustration;
     this.layoutEmptyState = layoutEmptyState;
     this.layoutNoResults = layoutNoResults;
     this.layoutResults = layoutResults;
@@ -156,6 +162,12 @@ public final class FragmentSearchBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.iv_illustration;
+      ImageView ivIllustration = ViewBindings.findChildViewById(rootView, id);
+      if (ivIllustration == null) {
+        break missingId;
+      }
+
       id = R.id.layout_empty_state;
       LinearLayout layoutEmptyState = ViewBindings.findChildViewById(rootView, id);
       if (layoutEmptyState == null) {
@@ -217,9 +229,9 @@ public final class FragmentSearchBinding implements ViewBinding {
       }
 
       return new FragmentSearchBinding((CoordinatorLayout) rootView, appBar, btnCancel, chipGroup,
-          chipScrollView, etSearch, layoutEmptyState, layoutNoResults, layoutResults,
-          llCategoriesGrid, progressBar, rvSearchResults, scrollView, tilSearch, tvNoResultsQuery,
-          tvResultCount);
+          chipScrollView, etSearch, ivIllustration, layoutEmptyState, layoutNoResults,
+          layoutResults, llCategoriesGrid, progressBar, rvSearchResults, scrollView, tilSearch,
+          tvNoResultsQuery, tvResultCount);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

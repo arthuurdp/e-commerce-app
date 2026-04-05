@@ -39,28 +39,36 @@ class SearchViewModel @Inject constructor(
         }
     }
 
-    fun search(query: String, categoryId: Long? = selectedCategoryId) {
-        selectedCategoryId = categoryId
+    fun search(
+        query: String,
+        categoryId: Long? = selectedCategoryId,
+        force: Boolean = false
+    ) {
+        val resolvedCategoryId = categoryId?.takeIf { it != -1L }
+        selectedCategoryId = resolvedCategoryId
+
         searchJob?.cancel()
 
-        if (query.isBlank() && categoryId == null) {
+        if (!force && query.isBlank() && resolvedCategoryId == null) {
             _searchState.value = null
             return
         }
 
         searchJob = viewModelScope.launch {
-            delay(350)
+            if (!force) delay(300)
+
             _searchState.value = NetworkResult.Loading
             _searchState.value = productRepository.getProducts(
                 page = 0,
                 size = 40,
                 name = query.trim().ifBlank { null },
-                categoryIds = categoryId?.let { listOf(it) }
+                categoryIds = resolvedCategoryId?.let { listOf(it) }
             )
         }
     }
+
     fun searchByCategory(category: CategoryResponse) {
-        search(query = "", categoryId = category.id)
+        search(query = "", categoryId = category.id, force = true)
     }
 
     fun clearSearch() {

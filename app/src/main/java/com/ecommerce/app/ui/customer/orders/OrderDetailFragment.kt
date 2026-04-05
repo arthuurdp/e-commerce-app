@@ -48,9 +48,9 @@ class OrderDetailFragment : Fragment() {
                     binding.progressBar.hide()
                     val order = result.data
                     binding.tvOrderId.text  = "Order #${order.id}"
-                    binding.tvStatus.text   = order.status
-                    binding.tvDate.text     = order.createdAt.take(10)
-                    binding.tvTotal.text    = order.total.toCurrency()
+                    binding.tvStatus.text  = order.status
+                    binding.tvDate.text = order.createdAt.take(10)
+                    binding.tvTotal.text = order.total.toCurrency()
                     itemAdapter.submitList(order.items)
                 }
                 is NetworkResult.Error -> {

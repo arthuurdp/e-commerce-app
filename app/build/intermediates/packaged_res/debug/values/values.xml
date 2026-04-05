@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="http://schemas.android.com/tools">
-    <color name="background">#F2F2F2</color>
+    <color name="background">#F6F6F6</color>
     <color name="black">#0A2E1A</color>
     <color name="blue_button">#1DB954</color>
     <color name="chip_background_unselected">#EBEBEB</color>
@@ -129,6 +129,9 @@
         <item name="chipBackgroundColor">@color/chip_background</item>
         <item name="chipCornerRadius">20dp</item>
         <item name="chipStrokeWidth">0dp</item>
+    </style>
+    <style name="App.Dialog.Rounded" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
     <style name="App.Divider">
         <item name="android:layout_width">match_parent</item>
