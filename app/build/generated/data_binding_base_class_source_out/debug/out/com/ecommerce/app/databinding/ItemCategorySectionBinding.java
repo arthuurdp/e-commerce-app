@@ -21,14 +21,19 @@ public final class ItemCategorySectionBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
+  public final LinearLayout llCategoryHeader;
+
+  @NonNull
   public final RecyclerView rvCategoryProducts;
 
   @NonNull
   public final TextView tvCategoryName;
 
   private ItemCategorySectionBinding(@NonNull LinearLayout rootView,
-      @NonNull RecyclerView rvCategoryProducts, @NonNull TextView tvCategoryName) {
+      @NonNull LinearLayout llCategoryHeader, @NonNull RecyclerView rvCategoryProducts,
+      @NonNull TextView tvCategoryName) {
     this.rootView = rootView;
+    this.llCategoryHeader = llCategoryHeader;
     this.rvCategoryProducts = rvCategoryProducts;
     this.tvCategoryName = tvCategoryName;
   }
@@ -60,6 +65,12 @@ public final class ItemCategorySectionBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.ll_category_header;
+      LinearLayout llCategoryHeader = ViewBindings.findChildViewById(rootView, id);
+      if (llCategoryHeader == null) {
+        break missingId;
+      }
+
       id = R.id.rv_category_products;
       RecyclerView rvCategoryProducts = ViewBindings.findChildViewById(rootView, id);
       if (rvCategoryProducts == null) {
@@ -72,8 +83,8 @@ public final class ItemCategorySectionBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemCategorySectionBinding((LinearLayout) rootView, rvCategoryProducts,
-          tvCategoryName);
+      return new ItemCategorySectionBinding((LinearLayout) rootView, llCategoryHeader,
+          rvCategoryProducts, tvCategoryName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

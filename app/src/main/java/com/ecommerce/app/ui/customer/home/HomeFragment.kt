@@ -15,6 +15,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -93,10 +94,15 @@ class HomeFragment : Fragment() {
     }
 
     private fun navigateToSearch(categoryId: Long? = null) {
-        findNavController().navigate(
-            R.id.searchFragment,
-            bundleOf("categoryId" to (categoryId ?: -1L))
-        )
+        val navController = findNavController()
+        val navOptions = NavOptions.Builder()
+            .setLaunchSingleTop(true)
+            .setRestoreState(true)
+            .setPopUpTo(navController.graph.startDestinationId, inclusive = false, saveState = true)
+            .build()
+
+        val bundle = bundleOf("categoryId" to (categoryId ?: -1L))
+        navController.navigate(R.id.searchFragment, bundle, navOptions)
     }
 
     private fun observeFirstName() {
@@ -319,6 +325,10 @@ class HomeFragment : Fragment() {
                 R.layout.item_category_section, container, false
             )
             sectionView.findViewById<TextView>(R.id.tv_category_name).text = category.name
+            
+            sectionView.findViewById<View>(R.id.ll_category_header).setOnClickListener {
+                navigateToSearch(category.id)
+            }
 
             val rv = sectionView.findViewById<RecyclerView>(R.id.rv_category_products)
             rv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)

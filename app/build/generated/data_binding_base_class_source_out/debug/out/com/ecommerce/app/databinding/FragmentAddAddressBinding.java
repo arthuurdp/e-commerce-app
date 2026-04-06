@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
@@ -30,6 +29,9 @@ public final class FragmentAddAddressBinding implements ViewBinding {
   public final MaterialButton btnSave;
 
   @NonNull
+  public final TextInputEditText etCity;
+
+  @NonNull
   public final TextInputEditText etComplement;
 
   @NonNull
@@ -48,28 +50,29 @@ public final class FragmentAddAddressBinding implements ViewBinding {
   public final TextInputEditText etStreet;
 
   @NonNull
-  public final ProgressBar progressBar;
+  public final TextInputEditText etUf;
 
   @NonNull
-  public final TextView tvCity;
+  public final ProgressBar progressBar;
 
   private FragmentAddAddressBinding(@NonNull ScrollView rootView, @NonNull ImageButton btnBack,
-      @NonNull MaterialButton btnSave, @NonNull TextInputEditText etComplement,
-      @NonNull TextInputEditText etName, @NonNull TextInputEditText etNeighborhood,
-      @NonNull TextInputEditText etNumber, @NonNull TextInputEditText etPostalCode,
-      @NonNull TextInputEditText etStreet, @NonNull ProgressBar progressBar,
-      @NonNull TextView tvCity) {
+      @NonNull MaterialButton btnSave, @NonNull TextInputEditText etCity,
+      @NonNull TextInputEditText etComplement, @NonNull TextInputEditText etName,
+      @NonNull TextInputEditText etNeighborhood, @NonNull TextInputEditText etNumber,
+      @NonNull TextInputEditText etPostalCode, @NonNull TextInputEditText etStreet,
+      @NonNull TextInputEditText etUf, @NonNull ProgressBar progressBar) {
     this.rootView = rootView;
     this.btnBack = btnBack;
     this.btnSave = btnSave;
+    this.etCity = etCity;
     this.etComplement = etComplement;
     this.etName = etName;
     this.etNeighborhood = etNeighborhood;
     this.etNumber = etNumber;
     this.etPostalCode = etPostalCode;
     this.etStreet = etStreet;
+    this.etUf = etUf;
     this.progressBar = progressBar;
-    this.tvCity = tvCity;
   }
 
   @Override
@@ -111,6 +114,12 @@ public final class FragmentAddAddressBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.et_city;
+      TextInputEditText etCity = ViewBindings.findChildViewById(rootView, id);
+      if (etCity == null) {
+        break missingId;
+      }
+
       id = R.id.et_complement;
       TextInputEditText etComplement = ViewBindings.findChildViewById(rootView, id);
       if (etComplement == null) {
@@ -147,20 +156,21 @@ public final class FragmentAddAddressBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.et_uf;
+      TextInputEditText etUf = ViewBindings.findChildViewById(rootView, id);
+      if (etUf == null) {
+        break missingId;
+      }
+
       id = R.id.progress_bar;
       ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
       if (progressBar == null) {
         break missingId;
       }
 
-      id = R.id.tv_city;
-      TextView tvCity = ViewBindings.findChildViewById(rootView, id);
-      if (tvCity == null) {
-        break missingId;
-      }
-
-      return new FragmentAddAddressBinding((ScrollView) rootView, btnBack, btnSave, etComplement,
-          etName, etNeighborhood, etNumber, etPostalCode, etStreet, progressBar, tvCity);
+      return new FragmentAddAddressBinding((ScrollView) rootView, btnBack, btnSave, etCity,
+          etComplement, etName, etNeighborhood, etNumber, etPostalCode, etStreet, etUf,
+          progressBar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

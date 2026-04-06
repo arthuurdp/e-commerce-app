@@ -163,6 +163,7 @@ id editProfileFragment
 id enterCodeFragment
 id et_birth_date
 id et_category_ids
+id et_city
 id et_complement
 id et_cpf
 id et_credential
@@ -186,6 +187,7 @@ id et_price
 id et_search
 id et_stock
 id et_street
+id et_uf
 id et_weight
 id et_width
 id fab_add_address
@@ -210,6 +212,7 @@ id layout_no_results
 id layout_results
 id ll_categories_container
 id ll_categories_grid
+id ll_category_header
 id ll_category_tiles
 id ll_dots
 id ll_greeting
@@ -264,7 +267,6 @@ id tv_category
 id tv_category_emoji
 id tv_category_name
 id tv_category_tile_name
-id tv_city
 id tv_current_email
 id tv_date
 id tv_description

@@ -104,9 +104,6 @@ class SearchFragment : Fragment() {
             val divider = DividerItemDecoration(requireContext(), layoutManager.orientation)
             ContextCompat.getDrawable(requireContext(), R.drawable.divider_style)?.let {
                 divider.setDrawable(it)
-            } ?: run {
-                val insetDivider = DividerItemDecoration(requireContext(), layoutManager.orientation)
-                this.addItemDecoration(insetDivider)
             }
             this.addItemDecoration(divider)
         }
@@ -135,6 +132,7 @@ class SearchFragment : Fragment() {
             viewModel.clearSearch()
             hideChipRow()
             showEmptyState()
+            binding.btnCancel.hide()
         }
     }
 
@@ -160,10 +158,31 @@ class SearchFragment : Fragment() {
 
     private fun observeCategories() {
         viewModel.categoriesState.observe(viewLifecycleOwner) { result ->
-            if (result is NetworkResult.Success) {
-                loadedCategories = result.data.content
-                buildCategoryChips(loadedCategories)
-                buildCategoryGrid(loadedCategories)
+            when (result) {
+                is NetworkResult.Loading -> {
+                    if (viewModel.searchState.value == null) {
+                        binding.progressBar.show()
+                    }
+                }
+
+                is NetworkResult.Success -> {
+                    if (viewModel.searchState.value == null) {
+                        binding.progressBar.hide()
+                    }
+                    loadedCategories = result.data.content
+                    buildCategoryChips(loadedCategories)
+                    buildCategoryGrid(loadedCategories)
+
+                    if (viewModel.searchState.value == null) {
+                        binding.layoutEmptyState.show()
+                    }
+                }
+
+                is NetworkResult.Error -> {
+                    if (viewModel.searchState.value == null) {
+                        binding.progressBar.hide()
+                    }
+                }
             }
         }
     }
@@ -174,7 +193,9 @@ class SearchFragment : Fragment() {
                 null -> showEmptyState()
 
                 is NetworkResult.Loading -> {
-                    hideAllStates()
+
+                    binding.layoutResults.hide()
+                    binding.layoutNoResults.hide()
                     binding.progressBar.show()
                 }
 
@@ -185,9 +206,9 @@ class SearchFragment : Fragment() {
                         showNoResults()
                     } else {
                         resultsAdapter.submitList(items)
-                        val count = result.data.totalElements
+                        val total = result.data.content.size
                         binding.tvResultCount.text =
-                            "$count ${if (count == 1L) "produto encontrado" else "produtos encontrados"}"
+                            "$total ${if (total == 1) "produto encontrado" else "produtos encontrados"}"
                         showResults()
                     }
                 }
@@ -218,9 +239,9 @@ class SearchFragment : Fragment() {
 
         categories.forEachIndexed { index, category ->
             val chip = createChip(
-                label  = category.name,
-                emoji  = resolveEmoji(category.name),
-                isSelected  = viewModel.selectedCategoryId == category.id,
+                label = category.name,
+                emoji = resolveEmoji(category.name),
+                isSelected = viewModel.selectedCategoryId == category.id,
                 accentColor = CATEGORY_COLORS[index % CATEGORY_COLORS.size]
             )
             chip.setOnClickListener {
@@ -251,11 +272,11 @@ class SearchFragment : Fragment() {
             )
             setTextColor(if (isSelected) Color.WHITE else 0xFF666666.toInt())
 
-            chipMinHeight  = dpToPx(36).toFloat()
-            textSize       = 13f
-            chipStartPadding  = dpToPx(12).toFloat()
-            chipEndPadding    = dpToPx(12).toFloat()
-            chipCornerRadius  = dpToPx(20).toFloat()
+            chipMinHeight = dpToPx(36).toFloat()
+            textSize = 13f
+            chipStartPadding = dpToPx(12).toFloat()
+            chipEndPadding = dpToPx(12).toFloat()
+            chipCornerRadius = dpToPx(20).toFloat()
 
             tag = accentColor
         }
@@ -292,6 +313,17 @@ class SearchFragment : Fragment() {
         }
     }
 
+    private fun syncChipForCategory(categoryId: Long) {
+        val group = binding.chipGroup
+        for (i in 1 until group.childCount) {
+            if (loadedCategories.getOrNull(i - 1)?.id == categoryId) {
+                val chip = group.getChildAt(i) as? Chip ?: break
+                selectChip(group, chip)
+                break
+            }
+        }
+    }
+
     private fun buildCategoryGrid(categories: List<CategoryResponse>) {
         val container = binding.llCategoriesGrid
         container.removeAllViews()
@@ -312,7 +344,7 @@ class SearchFragment : Fragment() {
                 )
                 tile.layoutParams = LinearLayout.LayoutParams(0, dpToPx(92), 1f).apply {
                     marginStart = if (colIndex == 0) 0 else dpToPx(5)
-                    topMargin    = dpToPx(5)
+                    topMargin = dpToPx(5)
                     bottomMargin = dpToPx(5)
                 }
                 rowLayout.addView(tile)
@@ -320,7 +352,7 @@ class SearchFragment : Fragment() {
 
             if (pair.size == 1) {
                 rowLayout.addView(View(requireContext()).apply {
-                    layoutParams = LinearLayout.LayoutParams(0, dpToPx(92), 1f).apply {
+                    layoutParams = LinearLayout.LayoutParams(0, 0, 1f).apply {
                         marginStart = dpToPx(5)
                     }
                 })
@@ -339,7 +371,7 @@ class SearchFragment : Fragment() {
             isFocusable = true
             foreground = requireContext()
                 .obtainStyledAttributes(intArrayOf(android.R.attr.selectableItemBackground))
-                .getDrawable(0)
+                .let { ta -> ta.getDrawable(0).also { ta.recycle() } }
         }
 
         val inner = FrameLayout(requireContext()).apply {
@@ -393,38 +425,34 @@ class SearchFragment : Fragment() {
             showChipRow()
             binding.btnCancel.show()
             viewModel.searchByCategory(category)
-            syncSelectedChip()
+            syncChipForCategory(category.id)
         }
 
         return card
     }
 
-    private fun hideAllStates() {
-        binding.layoutEmptyState.hide()
+    private fun showEmptyState() {
         binding.layoutResults.hide()
+        binding.layoutNoResults.hide()
+        binding.progressBar.hide()
+        binding.layoutEmptyState.show()
+    }
+
+    private fun showResults() {
+        binding.layoutEmptyState.hide()
+        binding.layoutResults.show()
         binding.layoutNoResults.hide()
         binding.progressBar.hide()
     }
 
-    private fun showEmptyState() {
-        if (viewModel.searchState.value == null) {
-            hideAllStates()
-            binding.layoutEmptyState.show()
-        }
-    }
-
-    private fun showResults() {
-        hideAllStates()
-        binding.layoutResults.show()
-    }
-
     private fun showNoResults() {
-        hideAllStates()
+        binding.layoutEmptyState.hide()
+        binding.layoutResults.hide()
         val query = binding.etSearch.text?.toString() ?: ""
         binding.tvNoResultsQuery.text = if (query.isNotBlank()) "para \"$query\"" else ""
         binding.layoutNoResults.show()
+        binding.progressBar.hide()
     }
-
 
     private fun resolveEmoji(name: String): String {
         val lower = name.lowercase()

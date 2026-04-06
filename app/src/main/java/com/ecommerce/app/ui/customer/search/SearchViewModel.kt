@@ -29,10 +29,13 @@ class SearchViewModel @Inject constructor(
     val searchState: LiveData<NetworkResult<PageResponse<ProductResponse>>?> = _searchState
 
     private var searchJob: Job? = null
+
     var selectedCategoryId: Long? = null
         private set
 
+
     fun loadCategories() {
+        if (_categoriesState.value is NetworkResult.Success) return
         viewModelScope.launch {
             _categoriesState.value = NetworkResult.Loading
             _categoriesState.value = categoryRepository.getCategories()
@@ -45,6 +48,7 @@ class SearchViewModel @Inject constructor(
         force: Boolean = false
     ) {
         val resolvedCategoryId = categoryId?.takeIf { it != -1L }
+
         selectedCategoryId = resolvedCategoryId
 
         searchJob?.cancel()
@@ -56,7 +60,6 @@ class SearchViewModel @Inject constructor(
 
         searchJob = viewModelScope.launch {
             if (!force) delay(300)
-
             _searchState.value = NetworkResult.Loading
             _searchState.value = productRepository.getProducts(
                 page = 0,

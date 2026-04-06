@@ -19,7 +19,6 @@ class AuthInterceptor @Inject constructor(
         "password/set",
         "products",
         "categories",
-        "cities",
         "states",
         "freights"
     )
@@ -28,7 +27,6 @@ class AuthInterceptor @Inject constructor(
         val request = chain.request()
         val path = request.url.encodedPath
 
-        // If the endpoint is public, don't add the token
         val isPublic = publicEndpoints.any { path.contains(it) }
 
         if (isPublic) {
@@ -38,7 +36,6 @@ class AuthInterceptor @Inject constructor(
         val token = runBlocking { tokenManager.getToken() }
 
         val authenticatedRequest = request.newBuilder().apply {
-            // Ensure token is not null, blank, or the literal string "null"
             if (!token.isNullOrBlank() && token != "null") {
                 addHeader("Authorization", "Bearer $token")
             }
