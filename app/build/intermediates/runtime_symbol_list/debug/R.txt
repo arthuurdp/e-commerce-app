@@ -3108,6 +3108,7 @@ int drawable ic_call_decline_low 0x7f070097
 int drawable ic_cart 0x7f070098
 int drawable ic_clear_black_24 0x7f070099
 int drawable ic_clock_black_24dp 0x7f07009a
+int drawable ic_edit 0x7f07010e
 int drawable ic_email 0x7f07009b
 int drawable ic_email_outline 0x7f07009c
 int drawable ic_home 0x7f07009d
@@ -3142,6 +3143,7 @@ int drawable img_login 0x7f0700b9
 int drawable img_logo 0x7f0700ba
 int drawable img_male 0x7f0700bb
 int drawable img_man 0x7f0700bc
+int drawable img_no_addresses 0x7f07010d
 int drawable img_product_added_to_cart 0x7f0700bd
 int drawable img_product_not_found 0x7f0700be
 int drawable img_reset_password 0x7f0700bf
@@ -3275,6 +3277,7 @@ int id actionDown 0x7f090030
 int id actionDownUp 0x7f090031
 int id actionUp 0x7f090032
 int id action_addressListFragment_to_addAddressFragment 0x7f090033
+int id action_addressListFragment_to_editAddressFragment 0x7f0902e5
 int id action_adminDashboardFragment_to_adminCategoriesFragment 0x7f090034
 int id action_adminDashboardFragment_to_adminOrdersFragment 0x7f090035
 int id action_adminDashboardFragment_to_adminProductsFragment 0x7f090036
@@ -3379,6 +3382,7 @@ int id btn_checkout 0x7f090098
 int id btn_clear_cart 0x7f090099
 int id btn_decrement 0x7f09009a
 int id btn_delete 0x7f09009b
+int id btn_edit 0x7f0902e4
 int id btn_edit_profile 0x7f09009c
 int id btn_increment 0x7f09009d
 int id btn_login 0x7f09009e
@@ -3477,6 +3481,7 @@ int id easeInOut 0x7f0900fa
 int id easeOut 0x7f0900fb
 int id east 0x7f0900fc
 int id edge 0x7f0900fd
+int id editAddressFragment 0x7f0902e6
 int id editProfileFragment 0x7f0900fe
 int id edit_query 0x7f0900ff
 int id edit_text_id 0x7f090100
@@ -3873,12 +3878,20 @@ int id tilFirstName 0x7f090286
 int id tilLastName 0x7f090287
 int id tilPassword 0x7f090288
 int id tilPhone 0x7f090289
+int id til_city 0x7f0902e8
+int id til_complement 0x7f0902e9
 int id til_email 0x7f09028a
 int id til_enter_code 0x7f09028b
+int id til_label 0x7f0902ea
+int id til_neighborhood 0x7f0902eb
 int id til_new_email 0x7f09028c
 int id til_new_password 0x7f09028d
+int id til_number 0x7f0902ec
 int id til_password 0x7f09028e
+int id til_postalCode 0x7f0902e7
 int id til_search 0x7f09028f
+int id til_street 0x7f0902ed
+int id til_uf 0x7f0902ee
 int id time 0x7f090290
 int id title 0x7f090291
 int id titleDividerNoCustom 0x7f090292
@@ -3908,6 +3921,7 @@ int id tv_date 0x7f0902a9
 int id tv_description 0x7f0902aa
 int id tv_email 0x7f0902ab
 int id tv_empty 0x7f0902ac
+int id tv_empty_addresses 0x7f0902e3
 int id tv_empty_cart 0x7f0902ad
 int id tv_first_name 0x7f0902ae
 int id tv_forgot_password 0x7f0902af
@@ -4110,6 +4124,7 @@ int layout fragment_cart 0x7f0c0039
 int layout fragment_change_email_enter_new_email 0x7f0c003a
 int layout fragment_change_password_enter_new_password 0x7f0c003b
 int layout fragment_checkout 0x7f0c003c
+int layout fragment_edit_address 0x7f0c0094
 int layout fragment_edit_profile 0x7f0c003d
 int layout fragment_enter_code 0x7f0c003e
 int layout fragment_forgot_password 0x7f0c003f

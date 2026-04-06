@@ -20,6 +20,7 @@ import androidx.navigation.fragment.findNavController
 import com.ecommerce.app.data.model.product.ProductDetailsResponse
 import com.ecommerce.app.data.model.product.ProductImageResponse
 import com.ecommerce.app.databinding.FragmentProductDetailBinding
+import com.ecommerce.app.ui.customer.profile.security.SecurityViewModel
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hide
 import com.ecommerce.app.util.show
@@ -31,6 +32,7 @@ class ProductDetailFragment : Fragment() {
     private var _binding: FragmentProductDetailBinding? = null
     private val binding get() = _binding!!
     private val viewModel: ProductDetailViewModel by viewModels()
+    private val securityViewModel: SecurityViewModel by viewModels()
 
     private var userEmail: String? = null
 
@@ -125,6 +127,7 @@ class ProductDetailFragment : Fragment() {
         }
 
         dialog.findViewById<TextView>(R.id.btnConfirm).setOnClickListener {
+            securityViewModel.sendEmailVerification()
             dialog.dismiss()
             val action = ProductDetailFragmentDirections
                 .actionProductDetailFragmentToEnterCodeFragment(

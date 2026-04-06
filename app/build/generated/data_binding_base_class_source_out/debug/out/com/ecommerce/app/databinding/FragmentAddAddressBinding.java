@@ -14,6 +14,7 @@ import androidx.viewbinding.ViewBindings;
 import com.ecommerce.app.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -55,12 +56,40 @@ public final class FragmentAddAddressBinding implements ViewBinding {
   @NonNull
   public final ProgressBar progressBar;
 
+  @NonNull
+  public final TextInputLayout tilCity;
+
+  @NonNull
+  public final TextInputLayout tilComplement;
+
+  @NonNull
+  public final TextInputLayout tilLabel;
+
+  @NonNull
+  public final TextInputLayout tilNeighborhood;
+
+  @NonNull
+  public final TextInputLayout tilNumber;
+
+  @NonNull
+  public final TextInputLayout tilPostalCode;
+
+  @NonNull
+  public final TextInputLayout tilStreet;
+
+  @NonNull
+  public final TextInputLayout tilUf;
+
   private FragmentAddAddressBinding(@NonNull ScrollView rootView, @NonNull ImageButton btnBack,
       @NonNull MaterialButton btnSave, @NonNull TextInputEditText etCity,
       @NonNull TextInputEditText etComplement, @NonNull TextInputEditText etName,
       @NonNull TextInputEditText etNeighborhood, @NonNull TextInputEditText etNumber,
       @NonNull TextInputEditText etPostalCode, @NonNull TextInputEditText etStreet,
-      @NonNull TextInputEditText etUf, @NonNull ProgressBar progressBar) {
+      @NonNull TextInputEditText etUf, @NonNull ProgressBar progressBar,
+      @NonNull TextInputLayout tilCity, @NonNull TextInputLayout tilComplement,
+      @NonNull TextInputLayout tilLabel, @NonNull TextInputLayout tilNeighborhood,
+      @NonNull TextInputLayout tilNumber, @NonNull TextInputLayout tilPostalCode,
+      @NonNull TextInputLayout tilStreet, @NonNull TextInputLayout tilUf) {
     this.rootView = rootView;
     this.btnBack = btnBack;
     this.btnSave = btnSave;
@@ -73,6 +102,14 @@ public final class FragmentAddAddressBinding implements ViewBinding {
     this.etStreet = etStreet;
     this.etUf = etUf;
     this.progressBar = progressBar;
+    this.tilCity = tilCity;
+    this.tilComplement = tilComplement;
+    this.tilLabel = tilLabel;
+    this.tilNeighborhood = tilNeighborhood;
+    this.tilNumber = tilNumber;
+    this.tilPostalCode = tilPostalCode;
+    this.tilStreet = tilStreet;
+    this.tilUf = tilUf;
   }
 
   @Override
@@ -168,9 +205,58 @@ public final class FragmentAddAddressBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.til_city;
+      TextInputLayout tilCity = ViewBindings.findChildViewById(rootView, id);
+      if (tilCity == null) {
+        break missingId;
+      }
+
+      id = R.id.til_complement;
+      TextInputLayout tilComplement = ViewBindings.findChildViewById(rootView, id);
+      if (tilComplement == null) {
+        break missingId;
+      }
+
+      id = R.id.til_label;
+      TextInputLayout tilLabel = ViewBindings.findChildViewById(rootView, id);
+      if (tilLabel == null) {
+        break missingId;
+      }
+
+      id = R.id.til_neighborhood;
+      TextInputLayout tilNeighborhood = ViewBindings.findChildViewById(rootView, id);
+      if (tilNeighborhood == null) {
+        break missingId;
+      }
+
+      id = R.id.til_number;
+      TextInputLayout tilNumber = ViewBindings.findChildViewById(rootView, id);
+      if (tilNumber == null) {
+        break missingId;
+      }
+
+      id = R.id.til_postalCode;
+      TextInputLayout tilPostalCode = ViewBindings.findChildViewById(rootView, id);
+      if (tilPostalCode == null) {
+        break missingId;
+      }
+
+      id = R.id.til_street;
+      TextInputLayout tilStreet = ViewBindings.findChildViewById(rootView, id);
+      if (tilStreet == null) {
+        break missingId;
+      }
+
+      id = R.id.til_uf;
+      TextInputLayout tilUf = ViewBindings.findChildViewById(rootView, id);
+      if (tilUf == null) {
+        break missingId;
+      }
+
       return new FragmentAddAddressBinding((ScrollView) rootView, btnBack, btnSave, etCity,
-          etComplement, etName, etNeighborhood, etNumber, etPostalCode, etStreet, etUf,
-          progressBar);
+          etComplement, etName, etNeighborhood, etNumber, etPostalCode, etStreet, etUf, progressBar,
+          tilCity, tilComplement, tilLabel, tilNeighborhood, tilNumber, tilPostalCode, tilStreet,
+          tilUf);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

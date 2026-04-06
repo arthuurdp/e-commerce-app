@@ -23,6 +23,7 @@ import com.ecommerce.app.ui.customer.address.AddAddressFragment_GeneratedInjecto
 import com.ecommerce.app.ui.customer.address.AddAddressViewModel_HiltModules;
 import com.ecommerce.app.ui.customer.address.AddressListFragment_GeneratedInjector;
 import com.ecommerce.app.ui.customer.address.AddressViewModel_HiltModules;
+import com.ecommerce.app.ui.customer.address.EditAddressFragment_GeneratedInjector;
 import com.ecommerce.app.ui.customer.cart.CartFragment_GeneratedInjector;
 import com.ecommerce.app.ui.customer.cart.CartViewModel_HiltModules;
 import com.ecommerce.app.ui.customer.cart.CheckoutFragment_GeneratedInjector;
@@ -308,6 +309,7 @@ public final class ECommerceApp_HiltComponents {
       ForgotPasswordResetPasswordFragment_GeneratedInjector,
       AddAddressFragment_GeneratedInjector,
       AddressListFragment_GeneratedInjector,
+      EditAddressFragment_GeneratedInjector,
       CartFragment_GeneratedInjector,
       CheckoutFragment_GeneratedInjector,
       HomeFragment_GeneratedInjector,

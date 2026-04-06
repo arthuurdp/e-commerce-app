@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ecommerce.app.data.model.address.AddressResponse
+import com.ecommerce.app.data.model.address.UpdateAddressRequest
 import com.ecommerce.app.data.model.util.PageResponse
 import com.ecommerce.app.data.repository.AddressRepository
 import com.ecommerce.app.util.NetworkResult
@@ -20,6 +21,9 @@ class AddressViewModel @Inject constructor(
     private val _addressesState = MutableLiveData<NetworkResult<PageResponse<AddressResponse>>>()
     val addressesState: LiveData<NetworkResult<PageResponse<AddressResponse>>> = _addressesState
 
+    private val _editState = MutableLiveData<NetworkResult<AddressResponse>>()
+    val editState: LiveData<NetworkResult<AddressResponse>> = _editState
+
     private val _deleteState = MutableLiveData<NetworkResult<Unit>>()
     val deleteState: LiveData<NetworkResult<Unit>> = _deleteState
 
@@ -27,6 +31,13 @@ class AddressViewModel @Inject constructor(
         viewModelScope.launch {
             _addressesState.value = NetworkResult.Loading
             _addressesState.value = addressRepository.getAddresses()
+        }
+    }
+
+    fun editAddress(id: Long, req: UpdateAddressRequest) {
+        viewModelScope.launch {
+            _editState.value = NetworkResult.Loading
+            _editState.value = addressRepository.updateAddress(id, req)
         }
     }
 

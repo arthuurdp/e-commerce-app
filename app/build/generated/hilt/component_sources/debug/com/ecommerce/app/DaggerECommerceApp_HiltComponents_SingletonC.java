@@ -65,6 +65,7 @@ import com.ecommerce.app.ui.customer.address.AddAddressViewModel_HiltModules_Key
 import com.ecommerce.app.ui.customer.address.AddressListFragment;
 import com.ecommerce.app.ui.customer.address.AddressViewModel;
 import com.ecommerce.app.ui.customer.address.AddressViewModel_HiltModules_KeyModule_ProvideFactory;
+import com.ecommerce.app.ui.customer.address.EditAddressFragment;
 import com.ecommerce.app.ui.customer.cart.CartFragment;
 import com.ecommerce.app.ui.customer.cart.CartViewModel;
 import com.ecommerce.app.ui.customer.cart.CartViewModel_HiltModules_KeyModule_ProvideFactory;
@@ -448,6 +449,10 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
 
     @Override
     public void injectAddressListFragment(AddressListFragment arg0) {
+    }
+
+    @Override
+    public void injectEditAddressFragment(EditAddressFragment arg0) {
     }
 
     @Override

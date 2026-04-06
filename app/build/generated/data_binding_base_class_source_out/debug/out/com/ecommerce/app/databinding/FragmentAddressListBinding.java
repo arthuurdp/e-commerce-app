@@ -5,8 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.ecommerce.app.R;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -22,6 +23,9 @@ import java.lang.String;
 public final class FragmentAddressListBinding implements ViewBinding {
   @NonNull
   private final CoordinatorLayout rootView;
+
+  @NonNull
+  public final AppBarLayout appBar;
 
   @NonNull
   public final ImageButton btnBack;
@@ -36,18 +40,19 @@ public final class FragmentAddressListBinding implements ViewBinding {
   public final RecyclerView rvAddresses;
 
   @NonNull
-  public final TextView tvEmpty;
+  public final LinearLayout tvEmptyAddresses;
 
   private FragmentAddressListBinding(@NonNull CoordinatorLayout rootView,
-      @NonNull ImageButton btnBack, @NonNull FloatingActionButton fabAddAddress,
-      @NonNull ProgressBar progressBar, @NonNull RecyclerView rvAddresses,
-      @NonNull TextView tvEmpty) {
+      @NonNull AppBarLayout appBar, @NonNull ImageButton btnBack,
+      @NonNull FloatingActionButton fabAddAddress, @NonNull ProgressBar progressBar,
+      @NonNull RecyclerView rvAddresses, @NonNull LinearLayout tvEmptyAddresses) {
     this.rootView = rootView;
+    this.appBar = appBar;
     this.btnBack = btnBack;
     this.fabAddAddress = fabAddAddress;
     this.progressBar = progressBar;
     this.rvAddresses = rvAddresses;
-    this.tvEmpty = tvEmpty;
+    this.tvEmptyAddresses = tvEmptyAddresses;
   }
 
   @Override
@@ -77,6 +82,12 @@ public final class FragmentAddressListBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.app_bar;
+      AppBarLayout appBar = ViewBindings.findChildViewById(rootView, id);
+      if (appBar == null) {
+        break missingId;
+      }
+
       id = R.id.btn_back;
       ImageButton btnBack = ViewBindings.findChildViewById(rootView, id);
       if (btnBack == null) {
@@ -101,14 +112,14 @@ public final class FragmentAddressListBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.tv_empty;
-      TextView tvEmpty = ViewBindings.findChildViewById(rootView, id);
-      if (tvEmpty == null) {
+      id = R.id.tv_empty_addresses;
+      LinearLayout tvEmptyAddresses = ViewBindings.findChildViewById(rootView, id);
+      if (tvEmptyAddresses == null) {
         break missingId;
       }
 
-      return new FragmentAddressListBinding((CoordinatorLayout) rootView, btnBack, fabAddAddress,
-          progressBar, rvAddresses, tvEmpty);
+      return new FragmentAddressListBinding((CoordinatorLayout) rootView, appBar, btnBack,
+          fabAddAddress, progressBar, rvAddresses, tvEmptyAddresses);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

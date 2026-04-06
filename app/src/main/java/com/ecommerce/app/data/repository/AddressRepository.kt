@@ -10,9 +10,6 @@ class AddressRepository @Inject constructor(private val api: AddressApiService) 
     suspend fun getAddresses(): NetworkResult<PageResponse<AddressResponse>> =
         safeApiCall { api.getAddresses() }
 
-    suspend fun getAddressById(id: Long): NetworkResult<AddressResponse> =
-        safeApiCall { api.getAddressById(id) }
-
     suspend fun createAddress(request: CreateAddressRequest): NetworkResult<AddressResponse> =
         safeApiCall { api.createAddress(request) }
 

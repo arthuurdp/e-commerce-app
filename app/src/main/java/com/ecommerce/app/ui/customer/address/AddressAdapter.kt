@@ -9,6 +9,7 @@ import com.ecommerce.app.data.model.address.AddressResponse
 import com.ecommerce.app.databinding.ItemAddressBinding
 
 class AddressAdapter(
+    private val onEdit: (AddressResponse) -> Unit,
     private val onDelete: (AddressResponse) -> Unit
 ) : ListAdapter<AddressResponse, AddressAdapter.VH>(Diff) {
 
@@ -19,11 +20,11 @@ class AddressAdapter(
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         val address = getItem(position)
-        holder.binding.tvAddressName.text   = address.name
-        holder.binding.tvAddressStreet.text =
-            "${address.street}, ${address.number} - ${address.neighborhood}"
-        holder.binding.tvAddressCity.text   =
-            "${address.city.name} / ${address.state.uf} · ${address.postalCode}"
+        holder.binding.tvAddressName.text = address.name
+        holder.binding.tvAddressStreet.text = "${address.street}, ${address.number} - ${address.neighborhood}"
+        holder.binding.tvAddressCity.text = "${address.city.name} / ${address.state.uf}"
+        
+        holder.binding.root.setOnClickListener { onEdit(address) }
         holder.binding.btnDelete.setOnClickListener { onDelete(address) }
     }
 

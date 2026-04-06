@@ -48,6 +48,7 @@ drawable divider_style
 drawable ic_arrow_back
 drawable ic_arrow_right
 drawable ic_cart
+drawable ic_edit
 drawable ic_email
 drawable ic_email_outline
 drawable ic_home
@@ -73,6 +74,7 @@ drawable img_login
 drawable img_logo
 drawable img_male
 drawable img_man
+drawable img_no_addresses
 drawable img_product_added_to_cart
 drawable img_product_not_found
 drawable img_reset_password
@@ -80,6 +82,7 @@ drawable img_verify_email
 drawable img_woman
 font poppins
 id action_addressListFragment_to_addAddressFragment
+id action_addressListFragment_to_editAddressFragment
 id action_adminDashboardFragment_to_adminCategoriesFragment
 id action_adminDashboardFragment_to_adminOrdersFragment
 id action_adminDashboardFragment_to_adminProductsFragment
@@ -135,6 +138,7 @@ id btn_checkout
 id btn_clear_cart
 id btn_decrement
 id btn_delete
+id btn_edit
 id btn_edit_profile
 id btn_increment
 id btn_login
@@ -159,6 +163,7 @@ id changePasswordFragment
 id checkoutFragment
 id chip_group
 id chip_scroll_view
+id editAddressFragment
 id editProfileFragment
 id enterCodeFragment
 id et_birth_date
@@ -253,12 +258,20 @@ id tilFirstName
 id tilLastName
 id tilPassword
 id tilPhone
+id til_city
+id til_complement
 id til_email
 id til_enter_code
+id til_label
+id til_neighborhood
 id til_new_email
 id til_new_password
+id til_number
 id til_password
+id til_postalCode
 id til_search
+id til_street
+id til_uf
 id tv_address_city
 id tv_address_name
 id tv_address_street
@@ -272,6 +285,7 @@ id tv_date
 id tv_description
 id tv_email
 id tv_empty
+id tv_empty_addresses
 id tv_empty_cart
 id tv_first_name
 id tv_forgot_password
@@ -320,6 +334,7 @@ layout fragment_cart
 layout fragment_change_email_enter_new_email
 layout fragment_change_password_enter_new_password
 layout fragment_checkout
+layout fragment_edit_address
 layout fragment_edit_profile
 layout fragment_enter_code
 layout fragment_forgot_password

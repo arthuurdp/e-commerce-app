@@ -11,7 +11,7 @@ data class AddressResponse(
     val number: Int,
     val complement: String?,
     val neighborhood: String,
-    val postalCode: String = "",
+    val postalCode: String?,
     val city: CityResponse,
     val state: StateResponse
 ) : Parcelable

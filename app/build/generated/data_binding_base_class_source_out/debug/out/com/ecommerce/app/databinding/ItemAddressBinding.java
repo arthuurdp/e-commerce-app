@@ -4,13 +4,13 @@ package com.ecommerce.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.ecommerce.app.R;
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -21,7 +21,10 @@ public final class ItemAddressBinding implements ViewBinding {
   private final MaterialCardView rootView;
 
   @NonNull
-  public final MaterialButton btnDelete;
+  public final ImageView btnDelete;
+
+  @NonNull
+  public final ImageView btnEdit;
 
   @NonNull
   public final TextView tvAddressCity;
@@ -32,11 +35,12 @@ public final class ItemAddressBinding implements ViewBinding {
   @NonNull
   public final TextView tvAddressStreet;
 
-  private ItemAddressBinding(@NonNull MaterialCardView rootView, @NonNull MaterialButton btnDelete,
-      @NonNull TextView tvAddressCity, @NonNull TextView tvAddressName,
+  private ItemAddressBinding(@NonNull MaterialCardView rootView, @NonNull ImageView btnDelete,
+      @NonNull ImageView btnEdit, @NonNull TextView tvAddressCity, @NonNull TextView tvAddressName,
       @NonNull TextView tvAddressStreet) {
     this.rootView = rootView;
     this.btnDelete = btnDelete;
+    this.btnEdit = btnEdit;
     this.tvAddressCity = tvAddressCity;
     this.tvAddressName = tvAddressName;
     this.tvAddressStreet = tvAddressStreet;
@@ -70,8 +74,14 @@ public final class ItemAddressBinding implements ViewBinding {
     int id;
     missingId: {
       id = R.id.btn_delete;
-      MaterialButton btnDelete = ViewBindings.findChildViewById(rootView, id);
+      ImageView btnDelete = ViewBindings.findChildViewById(rootView, id);
       if (btnDelete == null) {
+        break missingId;
+      }
+
+      id = R.id.btn_edit;
+      ImageView btnEdit = ViewBindings.findChildViewById(rootView, id);
+      if (btnEdit == null) {
         break missingId;
       }
 
@@ -93,7 +103,7 @@ public final class ItemAddressBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemAddressBinding((MaterialCardView) rootView, btnDelete, tvAddressCity,
+      return new ItemAddressBinding((MaterialCardView) rootView, btnDelete, btnEdit, tvAddressCity,
           tvAddressName, tvAddressStreet);
     }
     String missingId = rootView.getResources().getResourceName(id);
