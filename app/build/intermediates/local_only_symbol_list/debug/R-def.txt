@@ -2,7 +2,6 @@ R_DEF: Internal format may change without notice
 local
 color background
 color black
-color blue_button
 color chip_background
 color chip_background_unselected
 color chip_text_color
@@ -12,9 +11,7 @@ color gray
 color gray_dark
 color gray_light
 color gray_medium
-color gray_medium_alias
 color light_purple_bg
-color nav_item_color
 color nav_item_tint
 color primary
 color primary_container
@@ -22,6 +19,7 @@ color primary_dark
 color primary_light
 color purple
 color red
+color shimmer_placeholder
 color social_button_bg
 color status_canceled
 color status_delivered
@@ -81,6 +79,9 @@ drawable img_product_not_found
 drawable img_reset_password
 drawable img_verify_email
 drawable img_woman
+drawable skeleton_circle
+drawable skeleton_rounded
+drawable skeleton_rounded_small
 font poppins
 id action_addressListFragment_to_addAddressFragment
 id action_addressListFragment_to_editAddressFragment
@@ -166,6 +167,7 @@ id changePasswordFragment
 id checkoutFragment
 id chip_group
 id chip_scroll_view
+id contentLayout
 id deepLink_payment_failure
 id deepLink_payment_success
 id editAddressFragment
@@ -240,6 +242,7 @@ id rv_search_results
 id scroll_view
 id searchFragment
 id securityFragment
+id shimmerLayout
 id spinner_address
 id spinner_freight
 id spinner_gender
@@ -348,6 +351,11 @@ layout item_order_line
 layout item_product
 layout item_product_search
 layout item_user
+layout skeleton_banner
+layout skeleton_category_chip
+layout skeleton_category_item
+layout skeleton_product_card
+layout skeleton_product_row
 menu menu_customer_nav
 navigation nav_graph
 string action_settings

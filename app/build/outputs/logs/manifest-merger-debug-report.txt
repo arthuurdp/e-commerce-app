@@ -15,7 +15,6 @@ MERGED from [androidx.navigation:navigation-ui-ktx:2.7.3] C:\Users\arthur.dall\.
 MERGED from [androidx.navigation:navigation-ui:2.7.3] C:\Users\arthur.dall\.gradle\caches\transforms-3\fa7145e36d70ea9d0cac6f9315545d4c\transformed\navigation-ui-2.7.3\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\c513cbc8bc04ac469bad0d449606655b\transformed\material-1.11.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\arthur.dall\.gradle\caches\transforms-3\6b120bad960dd536fab938178efd566c\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
-MERGED from [com.airbnb.android:lottie:6.7.1] C:\Users\arthur.dall\.gradle\caches\transforms-3\af609262e6b276b1f90f8d046b3b1067\transformed\lottie-6.7.1\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\arthur.dall\.gradle\caches\transforms-3\44e1d90e6acda3d18d543e0764525615\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.appcompat:appcompat:1.6.1] C:\Users\arthur.dall\.gradle\caches\transforms-3\5822b5d87934affa863722b072178266\transformed\appcompat-1.6.1\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.dagger:hilt-android:2.50] C:\Users\arthur.dall\.gradle\caches\transforms-3\7a9299f855a8c796dd6a1310558b1be9\transformed\hilt-android-2.50\AndroidManifest.xml:16:1-19:12
@@ -59,6 +58,7 @@ MERGED from [androidx.core:core-ktx:1.12.0] C:\Users\arthur.dall\.gradle\caches\
 MERGED from [androidx.datastore:datastore-preferences:1.0.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\3775fd8eeb1deb030456480f445f1652\transformed\datastore-preferences-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.annotation:annotation-experimental:1.3.1] C:\Users\arthur.dall\.gradle\caches\transforms-3\a955999a72f23924f8dcf6dd95ede55c\transformed\annotation-experimental-1.3.1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.datastore:datastore:1.0.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\99639c8add8de14cbefc7a9294188e07\transformed\datastore-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.facebook.shimmer:shimmer:0.5.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\26ba40b32524234038f44a9d568cc5d3\transformed\shimmer-0.5.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\ed9ae38ffe24c37784941488fe56563e\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\ffb16bca561480ae12709c857fe77f8a\transformed\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\6bdd436b1b768df5f20df5c58a37047c\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -92,8 +92,6 @@ MERGED from [com.google.android.material:material:1.11.0] C:\Users\arthur.dall\.
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\c513cbc8bc04ac469bad0d449606655b\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\arthur.dall\.gradle\caches\transforms-3\6b120bad960dd536fab938178efd566c\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\arthur.dall\.gradle\caches\transforms-3\6b120bad960dd536fab938178efd566c\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
-MERGED from [com.airbnb.android:lottie:6.7.1] C:\Users\arthur.dall\.gradle\caches\transforms-3\af609262e6b276b1f90f8d046b3b1067\transformed\lottie-6.7.1\AndroidManifest.xml:7:5-20
-MERGED from [com.airbnb.android:lottie:6.7.1] C:\Users\arthur.dall\.gradle\caches\transforms-3\af609262e6b276b1f90f8d046b3b1067\transformed\lottie-6.7.1\AndroidManifest.xml:7:5-20
 MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\096f652167f206075e6d4a87c5d7833b\transformed\emoji2-1.2.0\AndroidManifest.xml:23:5-33:19
 MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\096f652167f206075e6d4a87c5d7833b\transformed\emoji2-1.2.0\AndroidManifest.xml:23:5-33:19
 MERGED from [androidx.window:window:1.0.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\aafe0433bac29a521379e9dfed8948da\transformed\window-1.0.0\AndroidManifest.xml:24:5-31:19
@@ -196,8 +194,6 @@ MERGED from [com.google.android.material:material:1.11.0] C:\Users\arthur.dall\.
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\c513cbc8bc04ac469bad0d449606655b\transformed\material-1.11.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\arthur.dall\.gradle\caches\transforms-3\6b120bad960dd536fab938178efd566c\transformed\constraintlayout-2.1.4\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\arthur.dall\.gradle\caches\transforms-3\6b120bad960dd536fab938178efd566c\transformed\constraintlayout-2.1.4\AndroidManifest.xml:5:5-7:41
-MERGED from [com.airbnb.android:lottie:6.7.1] C:\Users\arthur.dall\.gradle\caches\transforms-3\af609262e6b276b1f90f8d046b3b1067\transformed\lottie-6.7.1\AndroidManifest.xml:5:5-44
-MERGED from [com.airbnb.android:lottie:6.7.1] C:\Users\arthur.dall\.gradle\caches\transforms-3\af609262e6b276b1f90f8d046b3b1067\transformed\lottie-6.7.1\AndroidManifest.xml:5:5-44
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\arthur.dall\.gradle\caches\transforms-3\44e1d90e6acda3d18d543e0764525615\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\arthur.dall\.gradle\caches\transforms-3\44e1d90e6acda3d18d543e0764525615\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.appcompat:appcompat:1.6.1] C:\Users\arthur.dall\.gradle\caches\transforms-3\5822b5d87934affa863722b072178266\transformed\appcompat-1.6.1\AndroidManifest.xml:20:5-44
@@ -284,6 +280,8 @@ MERGED from [androidx.annotation:annotation-experimental:1.3.1] C:\Users\arthur.
 MERGED from [androidx.annotation:annotation-experimental:1.3.1] C:\Users\arthur.dall\.gradle\caches\transforms-3\a955999a72f23924f8dcf6dd95ede55c\transformed\annotation-experimental-1.3.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.datastore:datastore:1.0.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\99639c8add8de14cbefc7a9294188e07\transformed\datastore-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.datastore:datastore:1.0.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\99639c8add8de14cbefc7a9294188e07\transformed\datastore-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.facebook.shimmer:shimmer:0.5.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\26ba40b32524234038f44a9d568cc5d3\transformed\shimmer-0.5.0\AndroidManifest.xml:5:5-44
+MERGED from [com.facebook.shimmer:shimmer:0.5.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\26ba40b32524234038f44a9d568cc5d3\transformed\shimmer-0.5.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\ed9ae38ffe24c37784941488fe56563e\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\ed9ae38ffe24c37784941488fe56563e\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\ffb16bca561480ae12709c857fe77f8a\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44

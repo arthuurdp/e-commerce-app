@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -91,6 +92,7 @@ class HomeFragment : Fragment() {
         observeCategories()
         observeProductsByCategory()
         observeCart()
+        observeLoading()
     }
 
     private fun navigateToSearch(categoryId: Long? = null) {
@@ -142,6 +144,20 @@ class HomeFragment : Fragment() {
                 } else {
                     binding.tvCartBadge.hide()
                 }
+            }
+        }
+    }
+
+    private fun observeLoading() {
+        viewModel.isLoading.observe(viewLifecycleOwner) { loading ->
+            if (loading) {
+                binding.shimmerLayout.startShimmer()
+                binding.shimmerLayout.isVisible = true
+                binding.contentLayout.isVisible = false
+            } else {
+                binding.shimmerLayout.stopShimmer()
+                binding.shimmerLayout.isVisible = false
+                binding.contentLayout.isVisible = true
             }
         }
     }

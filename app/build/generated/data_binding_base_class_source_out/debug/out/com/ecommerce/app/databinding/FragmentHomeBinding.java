@@ -16,6 +16,7 @@ import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import androidx.viewpager2.widget.ViewPager2;
 import com.ecommerce.app.R;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.appbar.AppBarLayout;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -27,6 +28,9 @@ public final class FragmentHomeBinding implements ViewBinding {
 
   @NonNull
   public final AppBarLayout appBar;
+
+  @NonNull
+  public final LinearLayout contentLayout;
 
   @NonNull
   public final FrameLayout flCartContainer;
@@ -47,6 +51,9 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final LinearLayout llGreeting;
 
   @NonNull
+  public final ShimmerFrameLayout shimmerLayout;
+
+  @NonNull
   public final SwipeRefreshLayout swipeRefresh;
 
   @NonNull
@@ -62,20 +69,23 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final ViewPager2 vpBanner;
 
   private FragmentHomeBinding(@NonNull CoordinatorLayout rootView, @NonNull AppBarLayout appBar,
-      @NonNull FrameLayout flCartContainer, @NonNull ImageView ivCart,
-      @NonNull LinearLayout llCategoriesContainer, @NonNull LinearLayout llCategoryTiles,
-      @NonNull LinearLayout llDots, @NonNull LinearLayout llGreeting,
+      @NonNull LinearLayout contentLayout, @NonNull FrameLayout flCartContainer,
+      @NonNull ImageView ivCart, @NonNull LinearLayout llCategoriesContainer,
+      @NonNull LinearLayout llCategoryTiles, @NonNull LinearLayout llDots,
+      @NonNull LinearLayout llGreeting, @NonNull ShimmerFrameLayout shimmerLayout,
       @NonNull SwipeRefreshLayout swipeRefresh, @NonNull TextView tvCartBadge,
       @NonNull TextView tvFirstName, @NonNull TextView tvSeeMoreCategories,
       @NonNull ViewPager2 vpBanner) {
     this.rootView = rootView;
     this.appBar = appBar;
+    this.contentLayout = contentLayout;
     this.flCartContainer = flCartContainer;
     this.ivCart = ivCart;
     this.llCategoriesContainer = llCategoriesContainer;
     this.llCategoryTiles = llCategoryTiles;
     this.llDots = llDots;
     this.llGreeting = llGreeting;
+    this.shimmerLayout = shimmerLayout;
     this.swipeRefresh = swipeRefresh;
     this.tvCartBadge = tvCartBadge;
     this.tvFirstName = tvFirstName;
@@ -116,6 +126,12 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.contentLayout;
+      LinearLayout contentLayout = ViewBindings.findChildViewById(rootView, id);
+      if (contentLayout == null) {
+        break missingId;
+      }
+
       id = R.id.fl_cart_container;
       FrameLayout flCartContainer = ViewBindings.findChildViewById(rootView, id);
       if (flCartContainer == null) {
@@ -152,6 +168,12 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.shimmerLayout;
+      ShimmerFrameLayout shimmerLayout = ViewBindings.findChildViewById(rootView, id);
+      if (shimmerLayout == null) {
+        break missingId;
+      }
+
       id = R.id.swipeRefresh;
       SwipeRefreshLayout swipeRefresh = ViewBindings.findChildViewById(rootView, id);
       if (swipeRefresh == null) {
@@ -182,9 +204,9 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentHomeBinding((CoordinatorLayout) rootView, appBar, flCartContainer, ivCart,
-          llCategoriesContainer, llCategoryTiles, llDots, llGreeting, swipeRefresh, tvCartBadge,
-          tvFirstName, tvSeeMoreCategories, vpBanner);
+      return new FragmentHomeBinding((CoordinatorLayout) rootView, appBar, contentLayout,
+          flCartContainer, ivCart, llCategoriesContainer, llCategoryTiles, llDots, llGreeting,
+          shimmerLayout, swipeRefresh, tvCartBadge, tvFirstName, tvSeeMoreCategories, vpBanner);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

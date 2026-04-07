@@ -39,14 +39,21 @@ class HomeViewModel @Inject constructor(
     private val _cartState = MutableLiveData<NetworkResult<CartResponse>>()
     val cartState: LiveData<NetworkResult<CartResponse>> = _cartState
 
+    private val _isLoading = MutableLiveData<Boolean>(true)
+    val isLoading: LiveData<Boolean> = _isLoading
+
     init {
-        loadFirstName()
+        loadAllData()
     }
 
     fun loadCategories() {
         viewModelScope.launch {
             _categoriesState.value = NetworkResult.Loading
-            _categoriesState.value = categoryRepository.getCategories()
+            val result = categoryRepository.getCategories()
+            _categoriesState.value = result
+            if (result is NetworkResult.Success) {
+                loadProductsByCategories(result.data.content)
+            }
         }
     }
 
@@ -56,14 +63,12 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    private fun loadFirstName() {
-        viewModelScope.launch {
-            val result = userRepository.getCurrentUser()
-            _firstName.value = if (result is NetworkResult.Success) {
-                NetworkResult.Success(result.data.firstName + "!")
-            } else {
-                result as NetworkResult<String>
-            }
+    private suspend fun fetchFirstName() {
+        val result = userRepository.getCurrentUser()
+        _firstName.value = if (result is NetworkResult.Success) {
+            NetworkResult.Success(result.data.firstName + "!")
+        } else {
+            NetworkResult.Error("Error")
         }
     }
 
@@ -84,8 +89,52 @@ class HomeViewModel @Inject constructor(
                 .awaitAll()
 
             _productsByCategory.value = results
-                .filterIsInstance<Pair<CategoryResponse, NetworkResult.Success<PageResponse<ProductResponse>>>>()
-                .associate { (category, result) -> category to result.data.content }
+                .filter { it.second is NetworkResult.Success }
+                .associate { it.first to (it.second as NetworkResult.Success).data.content }
+        }
+    }
+
+    fun loadAllData() {
+        viewModelScope.launch {
+            _isLoading.value = true
+
+            // 1. Fetch categories first as products depend on them
+            val categoriesDeferred = async { categoryRepository.getCategories() }
+            val userDeferred = async { userRepository.getCurrentUser() }
+            val cartDeferred = async { cartRepository.getCart() }
+
+            val categoriesResult = categoriesDeferred.await()
+            _categoriesState.value = categoriesResult
+
+            // 2. If categories loaded, fetch products for each category
+            if (categoriesResult is NetworkResult.Success) {
+                val categories = categoriesResult.data.content
+                val productsResults = categories.map { category ->
+                    async {
+                        val response = productRepository.getProducts(
+                            page = 0, size = 10, name = null, categoryIds = listOf(category.id)
+                        )
+                        category to response
+                    }
+                }.awaitAll()
+
+                _productsByCategory.value = productsResults
+                    .filter { it.second is NetworkResult.Success }
+                    .associate { it.first to (it.second as NetworkResult.Success).data.content }
+            }
+
+            // 3. Set user info
+            val userResult = userDeferred.await()
+            _firstName.value = if (userResult is NetworkResult.Success) {
+                NetworkResult.Success(userResult.data.firstName + "!")
+            } else {
+                NetworkResult.Error("Error")
+            }
+
+            // 4. Set cart info
+            _cartState.value = cartDeferred.await()
+
+            _isLoading.value = false
         }
     }
 }
