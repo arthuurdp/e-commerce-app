@@ -2,6 +2,55 @@
   {
     "name": "nav_graph",
     "navigationXmlIds": [],
-    "deepLinks": []
+    "deepLinks": [
+      {
+        "schemes": [
+          "ecommerce"
+        ],
+        "host": "payment",
+        "port": -1,
+        "path": "/success",
+        "query": "orderId\u003d.*",
+        "sourceFilePosition": {
+          "mSourceFile": {
+            "mDescription": "nav_graph.xml"
+          },
+          "mSourcePosition": {
+            "mStartLine": 200,
+            "mStartColumn": 8,
+            "mStartOffset": 7124,
+            "mEndLine": 202,
+            "mEndColumn": 70,
+            "mEndOffset": 7261
+          }
+        },
+        "isAutoVerify": false,
+        "action": "android.intent.action.VIEW"
+      },
+      {
+        "schemes": [
+          "ecommerce"
+        ],
+        "host": "payment",
+        "port": -1,
+        "path": "/failure",
+        "query": "orderId\u003d.*",
+        "sourceFilePosition": {
+          "mSourceFile": {
+            "mDescription": "nav_graph.xml"
+          },
+          "mSourcePosition": {
+            "mStartLine": 205,
+            "mStartColumn": 8,
+            "mStartOffset": 7342,
+            "mEndLine": 207,
+            "mEndColumn": 70,
+            "mEndOffset": 7479
+          }
+        },
+        "isAutoVerify": false,
+        "action": "android.intent.action.VIEW"
+      }
+    ]
   }
 ]

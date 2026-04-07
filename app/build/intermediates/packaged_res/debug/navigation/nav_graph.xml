@@ -135,7 +135,6 @@
         <action
             android:id="@+id/action_searchFragment_to_productDetailFragment"
             app:destination="@id/productDetailFragment" />
-
     </fragment>
 
     <fragment
@@ -176,13 +175,56 @@
         android:id="@+id/checkoutFragment"
         android:name="com.ecommerce.app.ui.customer.cart.CheckoutFragment"
         android:label="Checkout"
-        tools:layout="@layout/fragment_checkout" />
+        tools:layout="@layout/fragment_checkout">
+
+        <!-- After placing the order, navigate to the waiting screen popping checkout
+             so the user cannot go back to re-submit -->
+        <action
+            android:id="@+id/action_checkoutFragment_to_paymentWaitingFragment"
+            app:destination="@id/paymentWaitingFragment"
+            app:popUpTo="@id/checkoutFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- Payment waiting screen — no back navigation allowed -->
+    <fragment
+        android:id="@+id/paymentWaitingFragment"
+        android:name="com.ecommerce.app.ui.customer.orders.PaymentWaitingFragment"
+        android:label="Payment"
+        tools:layout="@layout/fragment_payment_waiting">
+
+        <argument
+            android:name="orderId"
+            app:argType="long" />
+
+        <!-- Deep link from browser after Stripe success -->
+        <deepLink
+            android:id="@+id/deepLink_payment_success"
+            app:uri="ecommerce://payment/success?orderId={orderId}" />
+
+        <!-- Deep link from browser after Stripe failure/cancel -->
+        <deepLink
+            android:id="@+id/deepLink_payment_failure"
+            app:uri="ecommerce://payment/failure?orderId={orderId}" />
+
+        <action
+            android:id="@+id/action_paymentWaitingFragment_to_ordersFragment"
+            app:destination="@id/ordersFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false" />
+
+        <action
+            android:id="@+id/action_paymentWaitingFragment_to_checkoutFragment"
+            app:destination="@id/checkoutFragment"
+            app:popUpTo="@id/cartFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
 
     <fragment
         android:id="@+id/ordersFragment"
         android:name="com.ecommerce.app.ui.customer.orders.OrdersFragment"
         android:label="My Orders"
-        tools:layout="@layout/fragment_orders">
+        tools:layout="@layout/fragment_order_list">
 
         <action
             android:id="@+id/action_ordersFragment_to_orderDetailFragment"
@@ -217,6 +259,10 @@
         <action
             android:id="@+id/action_profileFragment_to_securityFragment"
             app:destination="@id/securityFragment" />
+
+        <action
+            android:id="@+id/action_profileFragment_to_orderListFragment"
+            app:destination="@id/ordersFragment" />
 
         <action
             android:id="@+id/action_profileFragment_to_loginFragment"

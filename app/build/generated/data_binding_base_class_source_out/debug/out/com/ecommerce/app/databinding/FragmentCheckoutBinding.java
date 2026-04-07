@@ -5,9 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
@@ -29,23 +31,50 @@ public final class FragmentCheckoutBinding implements ViewBinding {
   public final MaterialButton btnPlaceOrder;
 
   @NonNull
+  public final LinearLayout llOrderItems;
+
+  @NonNull
   public final ProgressBar progressBar;
 
   @NonNull
   public final Spinner spinnerAddress;
 
   @NonNull
+  public final Spinner spinnerFreight;
+
+  @NonNull
   public final Spinner spinnerPayment;
 
+  @NonNull
+  public final TextView tvFreightCost;
+
+  @NonNull
+  public final TextView tvFreightLabel;
+
+  @NonNull
+  public final TextView tvSubtotal;
+
+  @NonNull
+  public final TextView tvTotal;
+
   private FragmentCheckoutBinding(@NonNull ScrollView rootView, @NonNull ImageButton btnBack,
-      @NonNull MaterialButton btnPlaceOrder, @NonNull ProgressBar progressBar,
-      @NonNull Spinner spinnerAddress, @NonNull Spinner spinnerPayment) {
+      @NonNull MaterialButton btnPlaceOrder, @NonNull LinearLayout llOrderItems,
+      @NonNull ProgressBar progressBar, @NonNull Spinner spinnerAddress,
+      @NonNull Spinner spinnerFreight, @NonNull Spinner spinnerPayment,
+      @NonNull TextView tvFreightCost, @NonNull TextView tvFreightLabel,
+      @NonNull TextView tvSubtotal, @NonNull TextView tvTotal) {
     this.rootView = rootView;
     this.btnBack = btnBack;
     this.btnPlaceOrder = btnPlaceOrder;
+    this.llOrderItems = llOrderItems;
     this.progressBar = progressBar;
     this.spinnerAddress = spinnerAddress;
+    this.spinnerFreight = spinnerFreight;
     this.spinnerPayment = spinnerPayment;
+    this.tvFreightCost = tvFreightCost;
+    this.tvFreightLabel = tvFreightLabel;
+    this.tvSubtotal = tvSubtotal;
+    this.tvTotal = tvTotal;
   }
 
   @Override
@@ -87,6 +116,12 @@ public final class FragmentCheckoutBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.ll_order_items;
+      LinearLayout llOrderItems = ViewBindings.findChildViewById(rootView, id);
+      if (llOrderItems == null) {
+        break missingId;
+      }
+
       id = R.id.progress_bar;
       ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
       if (progressBar == null) {
@@ -99,14 +134,45 @@ public final class FragmentCheckoutBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.spinner_freight;
+      Spinner spinnerFreight = ViewBindings.findChildViewById(rootView, id);
+      if (spinnerFreight == null) {
+        break missingId;
+      }
+
       id = R.id.spinner_payment;
       Spinner spinnerPayment = ViewBindings.findChildViewById(rootView, id);
       if (spinnerPayment == null) {
         break missingId;
       }
 
-      return new FragmentCheckoutBinding((ScrollView) rootView, btnBack, btnPlaceOrder, progressBar,
-          spinnerAddress, spinnerPayment);
+      id = R.id.tv_freight_cost;
+      TextView tvFreightCost = ViewBindings.findChildViewById(rootView, id);
+      if (tvFreightCost == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_freight_label;
+      TextView tvFreightLabel = ViewBindings.findChildViewById(rootView, id);
+      if (tvFreightLabel == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_subtotal;
+      TextView tvSubtotal = ViewBindings.findChildViewById(rootView, id);
+      if (tvSubtotal == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_total;
+      TextView tvTotal = ViewBindings.findChildViewById(rootView, id);
+      if (tvTotal == null) {
+        break missingId;
+      }
+
+      return new FragmentCheckoutBinding((ScrollView) rootView, btnBack, btnPlaceOrder,
+          llOrderItems, progressBar, spinnerAddress, spinnerFreight, spinnerPayment, tvFreightCost,
+          tvFreightLabel, tvSubtotal, tvTotal);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

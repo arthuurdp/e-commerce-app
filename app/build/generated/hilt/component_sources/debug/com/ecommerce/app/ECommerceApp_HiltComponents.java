@@ -34,6 +34,8 @@ import com.ecommerce.app.ui.customer.orders.OrderDetailFragment_GeneratedInjecto
 import com.ecommerce.app.ui.customer.orders.OrderDetailViewModel_HiltModules;
 import com.ecommerce.app.ui.customer.orders.OrdersFragment_GeneratedInjector;
 import com.ecommerce.app.ui.customer.orders.OrdersViewModel_HiltModules;
+import com.ecommerce.app.ui.customer.payment.PaymentWaitingFragment_GeneratedInjector;
+import com.ecommerce.app.ui.customer.payment.PaymentWaitingViewModel_HiltModules;
 import com.ecommerce.app.ui.customer.products.ProductDetailFragment_GeneratedInjector;
 import com.ecommerce.app.ui.customer.products.ProductDetailViewModel_HiltModules;
 import com.ecommerce.app.ui.customer.profile.EditProfileFragment_GeneratedInjector;
@@ -215,6 +217,7 @@ public final class ECommerceApp_HiltComponents {
           MainViewModel_HiltModules.KeyModule.class,
           OrderDetailViewModel_HiltModules.KeyModule.class,
           OrdersViewModel_HiltModules.KeyModule.class,
+          PaymentWaitingViewModel_HiltModules.KeyModule.class,
           ProductDetailViewModel_HiltModules.KeyModule.class,
           ProfileViewModel_HiltModules.KeyModule.class,
           SearchViewModel_HiltModules.KeyModule.class,
@@ -269,6 +272,7 @@ public final class ECommerceApp_HiltComponents {
           MainViewModel_HiltModules.BindsModule.class,
           OrderDetailViewModel_HiltModules.BindsModule.class,
           OrdersViewModel_HiltModules.BindsModule.class,
+          PaymentWaitingViewModel_HiltModules.BindsModule.class,
           ProductDetailViewModel_HiltModules.BindsModule.class,
           ProfileViewModel_HiltModules.BindsModule.class,
           SearchViewModel_HiltModules.BindsModule.class,
@@ -315,6 +319,7 @@ public final class ECommerceApp_HiltComponents {
       HomeFragment_GeneratedInjector,
       OrderDetailFragment_GeneratedInjector,
       OrdersFragment_GeneratedInjector,
+      PaymentWaitingFragment_GeneratedInjector,
       ProductDetailFragment_GeneratedInjector,
       EditProfileFragment_GeneratedInjector,
       ProfileFragment_GeneratedInjector,

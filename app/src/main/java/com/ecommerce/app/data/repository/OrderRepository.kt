@@ -2,6 +2,7 @@ package com.ecommerce.app.data.repository
 
 import com.ecommerce.app.data.api.OrderApiService
 import com.ecommerce.app.data.model.order.*
+import com.ecommerce.app.data.model.shipping.FreightResponse
 import com.ecommerce.app.data.model.util.PageResponse
 import com.ecommerce.app.util.NetworkResult
 import javax.inject.Inject
@@ -16,4 +17,7 @@ class OrderRepository @Inject constructor(private val api: OrderApiService) : Ba
 
     suspend fun checkout(request: CheckoutRequest): NetworkResult<CheckoutResponse> =
         safeApiCall { api.checkout(request) }
+
+    suspend fun calculateFreight(postalCode: String): NetworkResult<List<FreightResponse>> =
+        safeApiCall { api.calculateFreight(postalCode) }
 }

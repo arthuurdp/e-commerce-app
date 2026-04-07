@@ -3294,6 +3294,7 @@ id action_bar_title
 id action_cartFragment_to_checkoutFragment
 id action_changeEmailFragment_to_enterCodeFragment
 id action_changePasswordFragment_to_enterCodeFragment
+id action_checkoutFragment_to_paymentWaitingFragment
 id action_container
 id action_context_bar
 id action_divider
@@ -3315,11 +3316,14 @@ id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
 id action_ordersFragment_to_orderDetailFragment
+id action_paymentWaitingFragment_to_checkoutFragment
+id action_paymentWaitingFragment_to_ordersFragment
 id action_productDetailFragment_to_enterCodeFragment
 id action_productDetailFragment_to_homeFragment
 id action_profileFragment_to_addressListFragment
 id action_profileFragment_to_editProfileFragment
 id action_profileFragment_to_loginFragment
+id action_profileFragment_to_orderListFragment
 id action_profileFragment_to_securityFragment
 id action_registerFragment_to_loginFragment
 id action_resetPasswordFragment_to_loginFragment
@@ -3388,12 +3392,14 @@ id btn_edit_profile
 id btn_increment
 id btn_login
 id btn_logout
+id btn_orders
 id btn_place_order
 id btn_register
 id btn_reset_password
 id btn_save
 id btn_security
 id btn_send_code
+id btn_view_orders
 id buttonPanel
 id cache_measures
 id callMeasure
@@ -3451,6 +3457,8 @@ id date_picker_actions
 id decelerate
 id decelerateAndComplete
 id decor_content_parent
+id deepLink_payment_failure
+id deepLink_payment_success
 id default_activity_button
 id deltaRelative
 id dependency_ordering
@@ -3589,6 +3597,7 @@ id iv_banner
 id iv_cart
 id iv_email_chevron
 id iv_illustration
+id iv_order_icon
 id iv_password_chevron
 id iv_product
 id jumpToEnd
@@ -3614,6 +3623,7 @@ id ll_category_tiles
 id ll_dots
 id ll_greeting
 id ll_info
+id ll_order_items
 id ll_register
 id locale
 id loginFragment
@@ -3733,6 +3743,7 @@ id parent_matrix
 id password_toggle
 id path
 id pathRelative
+id paymentWaitingFragment
 id peekHeight
 id percent
 id pin
@@ -3817,6 +3828,7 @@ id south
 id spacer
 id special_effects_controller_view_tag
 id spinner_address
+id spinner_freight
 id spinner_gender
 id spinner_payment
 id spline
@@ -3926,6 +3938,8 @@ id tv_empty_addresses
 id tv_empty_cart
 id tv_first_name
 id tv_forgot_password
+id tv_freight_cost
+id tv_freight_label
 id tv_item_count
 id tv_last_name
 id tv_login
@@ -4133,7 +4147,8 @@ layout fragment_forgot_password_reset_password
 layout fragment_home
 layout fragment_login
 layout fragment_order_detail
-layout fragment_orders
+layout fragment_order_list
+layout fragment_payment_waiting
 layout fragment_product_detail
 layout fragment_profile
 layout fragment_register

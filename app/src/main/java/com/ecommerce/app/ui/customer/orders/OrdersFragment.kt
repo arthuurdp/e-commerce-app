@@ -8,8 +8,9 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ecommerce.app.R
-import com.ecommerce.app.databinding.FragmentOrdersBinding
+import com.ecommerce.app.databinding.FragmentOrderListBinding
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hide
 import com.ecommerce.app.util.show
@@ -19,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class OrdersFragment : Fragment() {
 
-    private var _binding: FragmentOrdersBinding? = null
+    private var _binding: FragmentOrderListBinding? = null
     private val binding get() = _binding!!
     private val viewModel: OrdersViewModel by viewModels()
     private lateinit var ordersAdapter: OrderAdapter
@@ -28,7 +29,7 @@ class OrdersFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentOrdersBinding.inflate(inflater, container, false)
+        _binding = FragmentOrderListBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -41,9 +42,17 @@ class OrdersFragment : Fragment() {
                 bundleOf("orderId" to order.id)
             )
         }
-        binding.rvOrders.adapter = ordersAdapter
+
+        binding.rvOrders.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = ordersAdapter
+        }
 
         binding.swipeRefresh.setOnRefreshListener { viewModel.loadOrders() }
+
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         observeOrders()
         viewModel.loadOrders()
@@ -51,22 +60,35 @@ class OrdersFragment : Fragment() {
 
     private fun observeOrders() {
         viewModel.ordersState.observe(viewLifecycleOwner) { result ->
-            binding.swipeRefresh.isRefreshing = false
             when (result) {
-                is NetworkResult.Loading -> binding.progressBar.show()
+                is NetworkResult.Loading -> {
+                    binding.progressBar.show()
+                    binding.tvEmpty.hide()
+                }
                 is NetworkResult.Success -> {
+                    binding.swipeRefresh.isRefreshing = false
                     binding.progressBar.hide()
                     val orders = result.data.content
                     ordersAdapter.submitList(orders)
-                    binding.tvEmpty.visibility = if (orders.isEmpty()) View.VISIBLE else View.GONE
+                    if (orders.isEmpty()) {
+                        binding.tvEmpty.show()
+                        binding.rvOrders.hide()
+                    } else {
+                        binding.tvEmpty.hide()
+                        binding.rvOrders.show()
+                    }
                 }
                 is NetworkResult.Error -> {
+                    binding.swipeRefresh.isRefreshing = false
                     binding.progressBar.hide()
+                    binding.tvEmpty.show()
+                    binding.rvOrders.hide()
                     showToast(result.message)
                 }
             }
         }
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

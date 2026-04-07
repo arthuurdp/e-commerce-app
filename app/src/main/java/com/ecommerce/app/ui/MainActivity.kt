@@ -1,5 +1,6 @@
 package com.ecommerce.app.ui
 
+import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.ViewGroup
@@ -128,6 +129,12 @@ class MainActivity : AppCompatActivity() {
                 navController.currentDestination?.id?.let { handleBottomNavVisibility(it) }
             }
         }
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        navController.handleDeepLink(intent)
     }
 
     private fun updateBottomNavScale(navView: BottomNavigationView, selectedId: Int) {

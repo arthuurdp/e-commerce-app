@@ -42,6 +42,9 @@ class ProfileFragment : Fragment() {
         binding.btnAddresses.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_addressListFragment)
         }
+        binding.btnOrders.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_orderListFragment)
+        }
         binding.btnSecurity.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_securityFragment)
         }

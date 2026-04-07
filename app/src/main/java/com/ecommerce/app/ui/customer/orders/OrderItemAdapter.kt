@@ -18,9 +18,9 @@ class OrderItemAdapter : ListAdapter<OrderItemResponse, OrderItemAdapter.VH>(Dif
     override fun onBindViewHolder(holder: VH, position: Int) {
         val item = getItem(position)
         holder.binding.tvProductName.text = item.productName
-        holder.binding.tvQty.text         = "× ${item.quantity}"
-        holder.binding.tvUnitPrice.text   = item.unitPrice.toCurrency()
-        holder.binding.tvSubtotal.text    = item.subtotal.toCurrency()
+        holder.binding.tvQty.text = "× ${item.quantity}"
+        holder.binding.tvUnitPrice.text = item.unitPrice.toCurrency()
+        holder.binding.tvSubtotal.text = item.subtotal.toCurrency()
     }
 
     object Diff : DiffUtil.ItemCallback<OrderItemResponse>() {

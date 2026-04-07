@@ -7,22 +7,45 @@
     android:background="@color/background">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/surface"
+        android:backgroundTint="@color/surface"
         app:elevation="0dp">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="8dp"
             android:paddingEnd="20dp"
-            android:paddingTop="20dp"
-            android:paddingBottom="16dp"
-            android:text="My Orders"
-            android:textColor="@color/black"
-            android:textSize="22sp"
-            android:textStyle="bold" />
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp">
+
+            <ImageButton
+                android:id="@+id/btn_back"
+                style="@style/App.BackButton"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="0dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="My "
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Orders "
+                android:textColor="@color/primary"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -56,9 +79,8 @@
 
             <LinearLayout
                 android:id="@+id/tv_empty"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:visibility="gone">
@@ -76,6 +98,7 @@
                     android:text="No orders yet"
                     android:textColor="@color/gray"
                     android:textSize="15sp" />
+
             </LinearLayout>
 
         </FrameLayout>

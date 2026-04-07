@@ -1,6 +1,7 @@
 package com.ecommerce.app.ui.customer.cart;
 
 import com.ecommerce.app.data.repository.AddressRepository;
+import com.ecommerce.app.data.repository.CartRepository;
 import com.ecommerce.app.data.repository.OrderRepository;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
@@ -27,24 +28,29 @@ public final class CheckoutViewModel_Factory implements Factory<CheckoutViewMode
 
   private final Provider<AddressRepository> addressRepositoryProvider;
 
+  private final Provider<CartRepository> cartRepositoryProvider;
+
   public CheckoutViewModel_Factory(Provider<OrderRepository> orderRepositoryProvider,
-      Provider<AddressRepository> addressRepositoryProvider) {
+      Provider<AddressRepository> addressRepositoryProvider,
+      Provider<CartRepository> cartRepositoryProvider) {
     this.orderRepositoryProvider = orderRepositoryProvider;
     this.addressRepositoryProvider = addressRepositoryProvider;
+    this.cartRepositoryProvider = cartRepositoryProvider;
   }
 
   @Override
   public CheckoutViewModel get() {
-    return newInstance(orderRepositoryProvider.get(), addressRepositoryProvider.get());
+    return newInstance(orderRepositoryProvider.get(), addressRepositoryProvider.get(), cartRepositoryProvider.get());
   }
 
   public static CheckoutViewModel_Factory create(Provider<OrderRepository> orderRepositoryProvider,
-      Provider<AddressRepository> addressRepositoryProvider) {
-    return new CheckoutViewModel_Factory(orderRepositoryProvider, addressRepositoryProvider);
+      Provider<AddressRepository> addressRepositoryProvider,
+      Provider<CartRepository> cartRepositoryProvider) {
+    return new CheckoutViewModel_Factory(orderRepositoryProvider, addressRepositoryProvider, cartRepositoryProvider);
   }
 
   public static CheckoutViewModel newInstance(OrderRepository orderRepository,
-      AddressRepository addressRepository) {
-    return new CheckoutViewModel(orderRepository, addressRepository);
+      AddressRepository addressRepository, CartRepository cartRepository) {
+    return new CheckoutViewModel(orderRepository, addressRepository, cartRepository);
   }
 }
