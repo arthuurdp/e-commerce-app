@@ -12,19 +12,4 @@ interface CategoryApiService {
         @Query("page") page: Int = 0,
         @Query("size") size: Int = 50
     ): Response<PageResponse<CategoryResponse>>
-
-    @GET("categories/{id}")
-    suspend fun getCategoryById(@Path("id") id: Long): Response<CategoryResponse>
-
-    @POST("categories")
-    suspend fun createCategory(@Body request: CreateCategoryRequest): Response<CategoryResponse>
-
-    @PATCH("categories/{id}")
-    suspend fun updateCategory(
-        @Path("id") id: Long,
-        @Body request: UpdateCategoryRequest
-    ): Response<CategoryResponse>
-
-    @DELETE("categories/{id}")
-    suspend fun deleteCategory(@Path("id") id: Long): Response<Unit>
 }

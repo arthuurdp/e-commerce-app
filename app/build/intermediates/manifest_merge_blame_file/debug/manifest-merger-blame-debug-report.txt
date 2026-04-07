@@ -9,162 +9,162 @@
 9        android:targetSdkVersion="34" />
 10
 11    <uses-permission android:name="android.permission.INTERNET" />
-11-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:4:5-67
-11-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:4:22-64
+11-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:4:5-67
+11-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:4:22-64
 12
 13    <permission
-13-->[androidx.core:core:1.12.0] C:\Users\arthu\.gradle\caches\transforms-3\6a18c43b25ea126ea6a81b668c172e8a\transformed\core-1.12.0\AndroidManifest.xml:22:5-24:47
+13-->[androidx.core:core:1.12.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\6a18c43b25ea126ea6a81b668c172e8a\transformed\core-1.12.0\AndroidManifest.xml:22:5-24:47
 14        android:name="com.ecommerce.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-14-->[androidx.core:core:1.12.0] C:\Users\arthu\.gradle\caches\transforms-3\6a18c43b25ea126ea6a81b668c172e8a\transformed\core-1.12.0\AndroidManifest.xml:23:9-81
+14-->[androidx.core:core:1.12.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\6a18c43b25ea126ea6a81b668c172e8a\transformed\core-1.12.0\AndroidManifest.xml:23:9-81
 15        android:protectionLevel="signature" />
-15-->[androidx.core:core:1.12.0] C:\Users\arthu\.gradle\caches\transforms-3\6a18c43b25ea126ea6a81b668c172e8a\transformed\core-1.12.0\AndroidManifest.xml:24:9-44
+15-->[androidx.core:core:1.12.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\6a18c43b25ea126ea6a81b668c172e8a\transformed\core-1.12.0\AndroidManifest.xml:24:9-44
 16
 17    <uses-permission android:name="com.ecommerce.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-17-->[androidx.core:core:1.12.0] C:\Users\arthu\.gradle\caches\transforms-3\6a18c43b25ea126ea6a81b668c172e8a\transformed\core-1.12.0\AndroidManifest.xml:26:5-97
-17-->[androidx.core:core:1.12.0] C:\Users\arthu\.gradle\caches\transforms-3\6a18c43b25ea126ea6a81b668c172e8a\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
+17-->[androidx.core:core:1.12.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\6a18c43b25ea126ea6a81b668c172e8a\transformed\core-1.12.0\AndroidManifest.xml:26:5-97
+17-->[androidx.core:core:1.12.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\6a18c43b25ea126ea6a81b668c172e8a\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
 18
 19    <application
-19-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:6:5-33:19
+19-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:6:5-33:19
 20        android:name="com.ecommerce.app.ECommerceApp"
-20-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:7:9-37
+20-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:7:9-37
 21        android:allowBackup="true"
-21-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:8:9-35
+21-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:8:9-35
 22        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-22-->[androidx.core:core:1.12.0] C:\Users\arthu\.gradle\caches\transforms-3\6a18c43b25ea126ea6a81b668c172e8a\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
+22-->[androidx.core:core:1.12.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\6a18c43b25ea126ea6a81b668c172e8a\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
 23        android:debuggable="true"
 24        android:extractNativeLibs="false"
 25        android:icon="@drawable/img_logo"
-25-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:9:9-42
+25-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:9:9-42
 26        android:label="@string/app_name"
-26-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:10:9-41
+26-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:10:9-41
 27        android:roundIcon="@drawable/img_logo"
-27-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:11:9-47
+27-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:11:9-47
 28        android:supportsRtl="true"
-28-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:12:9-35
+28-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:12:9-35
 29        android:testOnly="true"
 30        android:theme="@style/Theme.ECommerceApp"
-30-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:13:9-50
+30-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:13:9-50
 31        android:usesCleartextTraffic="true" >
-31-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:14:9-44
+31-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:14:9-44
 32        <activity
-32-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:16:9-31:20
+32-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:16:9-31:20
 33            android:name="com.ecommerce.app.ui.MainActivity"
-33-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:17:13-44
+33-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:17:13-44
 34            android:exported="true"
-34-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:18:13-36
+34-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:18:13-36
 35            android:launchMode="singleTask"
-35-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:19:13-44
+35-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:19:13-44
 36            android:windowSoftInputMode="adjustResize" >
-36-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:20:13-55
+36-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:20:13-55
 37            <intent-filter android:autoVerify="false" >
-37-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:21:13-26:29
-37-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:21:28-54
+37-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:21:13-26:29
+37-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:21:28-54
 38                <action android:name="android.intent.action.VIEW" />
-38-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:22:17-69
-38-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:22:25-66
+38-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:22:17-69
+38-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:22:25-66
 39
 40                <category android:name="android.intent.category.DEFAULT" />
-40-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:23:17-76
-40-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:23:27-73
+40-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:23:17-76
+40-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:23:27-73
 41                <category android:name="android.intent.category.BROWSABLE" />
-41-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:24:17-78
-41-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:24:27-75
+41-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:24:17-78
+41-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:24:27-75
 42
 43                <data
-43-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:25:17-75
+43-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:25:17-75
 44                    android:host="payment"
-44-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:25:50-72
+44-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:25:50-72
 45                    android:scheme="ecommerce" />
-45-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:25:23-49
+45-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:25:23-49
 46            </intent-filter>
 47            <intent-filter>
-47-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:27:13-30:29
+47-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:27:13-30:29
 48                <action android:name="android.intent.action.MAIN" />
-48-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:28:17-69
-48-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:28:25-66
+48-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:28:17-69
+48-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:28:25-66
 49
 50                <category android:name="android.intent.category.LAUNCHER" />
-50-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:29:17-77
-50-->C:\Users\arthu\OneDrive\Documentos\e-commerce-app\app\src\main\AndroidManifest.xml:29:27-74
+50-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:29:17-77
+50-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:29:27-74
 51            </intent-filter>
 52        </activity>
 53
 54        <provider
-54-->[androidx.emoji2:emoji2:1.2.0] C:\Users\arthu\.gradle\caches\transforms-3\096f652167f206075e6d4a87c5d7833b\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+54-->[androidx.emoji2:emoji2:1.2.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\096f652167f206075e6d4a87c5d7833b\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
 55            android:name="androidx.startup.InitializationProvider"
-55-->[androidx.emoji2:emoji2:1.2.0] C:\Users\arthu\.gradle\caches\transforms-3\096f652167f206075e6d4a87c5d7833b\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+55-->[androidx.emoji2:emoji2:1.2.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\096f652167f206075e6d4a87c5d7833b\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
 56            android:authorities="com.ecommerce.app.androidx-startup"
-56-->[androidx.emoji2:emoji2:1.2.0] C:\Users\arthu\.gradle\caches\transforms-3\096f652167f206075e6d4a87c5d7833b\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+56-->[androidx.emoji2:emoji2:1.2.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\096f652167f206075e6d4a87c5d7833b\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
 57            android:exported="false" >
-57-->[androidx.emoji2:emoji2:1.2.0] C:\Users\arthu\.gradle\caches\transforms-3\096f652167f206075e6d4a87c5d7833b\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+57-->[androidx.emoji2:emoji2:1.2.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\096f652167f206075e6d4a87c5d7833b\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
 58            <meta-data
-58-->[androidx.emoji2:emoji2:1.2.0] C:\Users\arthu\.gradle\caches\transforms-3\096f652167f206075e6d4a87c5d7833b\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+58-->[androidx.emoji2:emoji2:1.2.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\096f652167f206075e6d4a87c5d7833b\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
 59                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-59-->[androidx.emoji2:emoji2:1.2.0] C:\Users\arthu\.gradle\caches\transforms-3\096f652167f206075e6d4a87c5d7833b\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+59-->[androidx.emoji2:emoji2:1.2.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\096f652167f206075e6d4a87c5d7833b\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
 60                android:value="androidx.startup" />
-60-->[androidx.emoji2:emoji2:1.2.0] C:\Users\arthu\.gradle\caches\transforms-3\096f652167f206075e6d4a87c5d7833b\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+60-->[androidx.emoji2:emoji2:1.2.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\096f652167f206075e6d4a87c5d7833b\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
 61            <meta-data
-61-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\arthu\.gradle\caches\transforms-3\b7fcf0eed8ab01ed832b56600cde9c10\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:29:13-31:52
+61-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\arthur.dall\.gradle\caches\transforms-3\b7fcf0eed8ab01ed832b56600cde9c10\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:29:13-31:52
 62                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-62-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\arthu\.gradle\caches\transforms-3\b7fcf0eed8ab01ed832b56600cde9c10\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:30:17-78
+62-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\arthur.dall\.gradle\caches\transforms-3\b7fcf0eed8ab01ed832b56600cde9c10\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:30:17-78
 63                android:value="androidx.startup" />
-63-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\arthu\.gradle\caches\transforms-3\b7fcf0eed8ab01ed832b56600cde9c10\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:31:17-49
+63-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\arthur.dall\.gradle\caches\transforms-3\b7fcf0eed8ab01ed832b56600cde9c10\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:31:17-49
 64            <meta-data
-64-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthu\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+64-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
 65                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-65-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthu\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+65-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
 66                android:value="androidx.startup" />
-66-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthu\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+66-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
 67        </provider>
 68
 69        <uses-library
-69-->[androidx.window:window:1.0.0] C:\Users\arthu\.gradle\caches\transforms-3\aafe0433bac29a521379e9dfed8948da\transformed\window-1.0.0\AndroidManifest.xml:25:9-27:40
+69-->[androidx.window:window:1.0.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\aafe0433bac29a521379e9dfed8948da\transformed\window-1.0.0\AndroidManifest.xml:25:9-27:40
 70            android:name="androidx.window.extensions"
-70-->[androidx.window:window:1.0.0] C:\Users\arthu\.gradle\caches\transforms-3\aafe0433bac29a521379e9dfed8948da\transformed\window-1.0.0\AndroidManifest.xml:26:13-54
+70-->[androidx.window:window:1.0.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\aafe0433bac29a521379e9dfed8948da\transformed\window-1.0.0\AndroidManifest.xml:26:13-54
 71            android:required="false" />
-71-->[androidx.window:window:1.0.0] C:\Users\arthu\.gradle\caches\transforms-3\aafe0433bac29a521379e9dfed8948da\transformed\window-1.0.0\AndroidManifest.xml:27:13-37
+71-->[androidx.window:window:1.0.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\aafe0433bac29a521379e9dfed8948da\transformed\window-1.0.0\AndroidManifest.xml:27:13-37
 72        <uses-library
-72-->[androidx.window:window:1.0.0] C:\Users\arthu\.gradle\caches\transforms-3\aafe0433bac29a521379e9dfed8948da\transformed\window-1.0.0\AndroidManifest.xml:28:9-30:40
+72-->[androidx.window:window:1.0.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\aafe0433bac29a521379e9dfed8948da\transformed\window-1.0.0\AndroidManifest.xml:28:9-30:40
 73            android:name="androidx.window.sidecar"
-73-->[androidx.window:window:1.0.0] C:\Users\arthu\.gradle\caches\transforms-3\aafe0433bac29a521379e9dfed8948da\transformed\window-1.0.0\AndroidManifest.xml:29:13-51
+73-->[androidx.window:window:1.0.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\aafe0433bac29a521379e9dfed8948da\transformed\window-1.0.0\AndroidManifest.xml:29:13-51
 74            android:required="false" />
-74-->[androidx.window:window:1.0.0] C:\Users\arthu\.gradle\caches\transforms-3\aafe0433bac29a521379e9dfed8948da\transformed\window-1.0.0\AndroidManifest.xml:30:13-37
+74-->[androidx.window:window:1.0.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\aafe0433bac29a521379e9dfed8948da\transformed\window-1.0.0\AndroidManifest.xml:30:13-37
 75
 76        <receiver
-76-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthu\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+76-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
 77            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-77-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthu\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+77-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
 78            android:directBootAware="false"
-78-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthu\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+78-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
 79            android:enabled="true"
-79-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthu\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+79-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
 80            android:exported="true"
-80-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthu\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+80-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
 81            android:permission="android.permission.DUMP" >
-81-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthu\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
+81-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
 82            <intent-filter>
-82-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthu\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+82-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
 83                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-83-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthu\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
-83-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthu\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
+83-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
+83-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
 84            </intent-filter>
 85            <intent-filter>
-85-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthu\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+85-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
 86                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-86-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthu\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
-86-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthu\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
+86-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
+86-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
 87            </intent-filter>
 88            <intent-filter>
-88-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthu\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+88-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
 89                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-89-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthu\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
-89-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthu\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+89-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
+89-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
 90            </intent-filter>
 91            <intent-filter>
-91-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthu\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+91-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
 92                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-92-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthu\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
-92-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthu\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+92-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
+92-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\f9001b6f2e061a5ca66dbae764a45508\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
 93            </intent-filter>
 94        </receiver>
 95    </application>

@@ -13,9 +13,6 @@ interface AddressApiService {
         @Query("size") size: Int = 10
     ): Response<PageResponse<AddressResponse>>
 
-    @GET("addresses/{id}")
-    suspend fun getAddressById(@Path("id") id: Long): Response<AddressResponse>
-
     @POST("addresses")
     suspend fun createAddress(@Body request: CreateAddressRequest): Response<AddressResponse>
 
@@ -30,18 +27,4 @@ interface AddressApiService {
 
     @GET("cities/lookup")
     suspend fun lookupCep(@Query("cep") cep: String): Response<CepLookupResponse>
-
-    @GET("cities")
-    suspend fun getCities(
-        @Query("stateId") stateId: Long,
-        @Query("query") query: String,
-        @Query("page") page: Int = 0,
-        @Query("size") size: Int = 20
-    ): Response<PageResponse<CityResponse>>
-
-    @GET("states")
-    suspend fun getStates(
-        @Query("page") page: Int = 0,
-        @Query("size") size: Int = 30
-    ): Response<PageResponse<StateResponse>>
 }

@@ -7,11 +7,13 @@ import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.ecommerce.app.R
 import com.ecommerce.app.databinding.FragmentEnterCodeBinding
 import com.ecommerce.app.ui.auth.AuthViewModel
+import com.ecommerce.app.ui.customer.profile.security.SecurityViewModel
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hide
 import com.ecommerce.app.util.hideKeyboard
@@ -25,7 +27,8 @@ class EnterCodeFragment : Fragment() {
 
     private var _binding: FragmentEnterCodeBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: AuthViewModel by viewModels()
+    private val authViewModel: AuthViewModel by viewModels()
+    private val securityViewModel: SecurityViewModel by viewModels()
     private val args: EnterCodeFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -56,9 +59,16 @@ class EnterCodeFragment : Fragment() {
         }
 
         binding.btnSendCode.setOnClickListener {
+            hideKeyboard()
             val code = binding.etEnterCode.text.toString().trim()
+
             if (code.length == 6) {
-                viewModel.verifyResetCode(code)
+                when (args.mode) {
+                    "forgot_password" -> authViewModel.verifyResetCode(code)
+                    "verify_email" -> securityViewModel.confirmEmail(code)
+                    "change_email" -> securityViewModel.confirmEmailChange(code)
+                    "change_password" -> securityViewModel.confirmPasswordChange(code)
+                }
             } else {
                 setFieldError(requireContext(), binding.tilEnterCode, "Enter the 6-digit code")
             }
@@ -66,36 +76,79 @@ class EnterCodeFragment : Fragment() {
     }
 
     private fun observeState() {
-        viewModel.verifyResetCodeState.observe(viewLifecycleOwner) { result ->
-            when (result) {
-                is NetworkResult.Loading -> {
-                    binding.progressBar.show()
-                    binding.btnSendCode.isEnabled = false
+        when (args.mode) {
+            "forgot_password" -> {
+                authViewModel.verifyResetCodeState.observe(viewLifecycleOwner) { result ->
+                    handleResult(result)
                 }
-                is NetworkResult.Success -> {
-                    binding.progressBar.hide()
-                    binding.btnSendCode.isEnabled = true
-                    
-                    val code = binding.etEnterCode.text.toString().trim()
-                    
-                    when (args.mode) {
-                        "forgot_password" -> {
-                            val action = EnterCodeFragmentDirections
-                                .actionEnterCodeFragmentToResetPasswordFragment(args.email, code)
-                            findNavController().navigate(action)
-                        }
-                        "verify_email" -> {
-                            showToast("Email verified successfully!")
-                            findNavController().popBackStack(R.id.profileFragment, false)
-                        }
-                        else -> findNavController().popBackStack()
+            }
+            "verify_email" -> {
+                securityViewModel.confirmEmailState.observe(viewLifecycleOwner) { result ->
+                    handleResult(result)
+                }
+            }
+            "change_email" -> {
+                securityViewModel.confirmEmailChangeState.observe(viewLifecycleOwner) { result ->
+                    handleResult(result)
+                }
+            }
+            "change_password" -> {
+                securityViewModel.confirmPasswordChangeState.observe(viewLifecycleOwner) { result ->
+                    handleResult(result)
+                }
+            }
+        }
+    }
+
+    private fun handleResult(result: NetworkResult<String>) {
+        when (result) {
+            is NetworkResult.Loading -> {
+                binding.progressBar.show()
+                binding.btnSendCode.isEnabled = false
+            }
+
+            is NetworkResult.Success -> {
+                binding.progressBar.hide()
+                binding.btnSendCode.isEnabled = true
+
+                val code = binding.etEnterCode.text.toString().trim()
+
+                when (args.mode) {
+                    "forgot_password" -> {
+                        val action = EnterCodeFragmentDirections.actionEnterCodeFragmentToResetPasswordFragment(args.email, code)
+                        findNavController().navigate(action)
                     }
+
+                    "verify_email" -> {
+                        showToast("Email verified successfully!")
+                        findNavController().popBackStack()
+                    }
+
+                    "change_email", "change_password" -> {
+                        val message = if (args.mode == "change_email")
+                            "Email changed! Please login again with your new email."
+                        else
+                            "Password changed! Please login again with your new password."
+
+                        showToast(message)
+
+                        authViewModel.logout()
+
+                        val navOptions = NavOptions.Builder()
+                            .setPopUpTo(R.id.nav_graph, true)
+                            .build()
+
+                        findNavController().navigate(R.id.loginFragment, null, navOptions)
+                    }
+
+                    else -> findNavController().popBackStack()
                 }
-                is NetworkResult.Error -> {
-                    binding.progressBar.hide()
-                    binding.btnSendCode.isEnabled = true
-                    setFieldError(requireContext(), binding.tilEnterCode, result.message)
-                }
+            }
+
+            is NetworkResult.Error -> {
+                binding.progressBar.hide()
+                binding.btnSendCode.isEnabled = true
+                setFieldError(requireContext(), binding.tilEnterCode, result.message)
             }
         }
     }

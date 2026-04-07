@@ -16,6 +16,10 @@ class SecurityViewModel @Inject constructor(
     private val userRepository: UserRepository
 ) : ViewModel() {
 
+    init {
+        loadUserEmail()
+    }
+
     private val _deleteState = MutableLiveData<NetworkResult<Unit>>()
     val deleteState: LiveData<NetworkResult<Unit>> = _deleteState
 
@@ -73,6 +77,8 @@ class SecurityViewModel @Inject constructor(
 
     private val _confirmPasswordChangeState = MutableLiveData<NetworkResult<String>>()
     val confirmPasswordChangeState: LiveData<NetworkResult<String>> = _confirmPasswordChangeState
+    private val _userEmail = MutableLiveData<String?>()
+    val userEmail: LiveData<String?> = _userEmail
 
     fun requestPasswordChange(password: String) {
         viewModelScope.launch {
@@ -90,6 +96,14 @@ class SecurityViewModel @Inject constructor(
         }
     }
 
+    private fun loadUserEmail() {
+        viewModelScope.launch {
+            val result = userRepository.getCurrentUser()
+            if (result is NetworkResult.Success) {
+                _userEmail.value = result.data.email
+            }
+        }
+    }
     private val _verifyResetCodeState = MutableLiveData<NetworkResult<String>>()
     val verifyResetCodeState: LiveData<NetworkResult<String>> = _verifyResetCodeState
 

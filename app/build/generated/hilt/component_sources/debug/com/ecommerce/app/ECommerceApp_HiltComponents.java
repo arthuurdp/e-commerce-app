@@ -3,17 +3,6 @@ package com.ecommerce.app;
 import com.ecommerce.app.di.NetworkModule;
 import com.ecommerce.app.ui.MainActivity_GeneratedInjector;
 import com.ecommerce.app.ui.MainViewModel_HiltModules;
-import com.ecommerce.app.ui.admin.categories.AdminCategoriesFragment_GeneratedInjector;
-import com.ecommerce.app.ui.admin.categories.AdminCategoriesViewModel_HiltModules;
-import com.ecommerce.app.ui.admin.dashboard.AdminDashboardFragment_GeneratedInjector;
-import com.ecommerce.app.ui.admin.dashboard.AdminDashboardViewModel_HiltModules;
-import com.ecommerce.app.ui.admin.orders.AdminOrdersFragment_GeneratedInjector;
-import com.ecommerce.app.ui.admin.orders.AdminOrdersViewModel_HiltModules;
-import com.ecommerce.app.ui.admin.products.AdminEditProductFragment_GeneratedInjector;
-import com.ecommerce.app.ui.admin.products.AdminProductsFragment_GeneratedInjector;
-import com.ecommerce.app.ui.admin.products.AdminProductsViewModel_HiltModules;
-import com.ecommerce.app.ui.admin.users.AdminUsersFragment_GeneratedInjector;
-import com.ecommerce.app.ui.admin.users.AdminUsersViewModel_HiltModules;
 import com.ecommerce.app.ui.auth.AuthViewModel_HiltModules;
 import com.ecommerce.app.ui.auth.LoginFragment_GeneratedInjector;
 import com.ecommerce.app.ui.auth.RegisterFragment_GeneratedInjector;
@@ -201,11 +190,6 @@ public final class ECommerceApp_HiltComponents {
       modules = {
           AddAddressViewModel_HiltModules.KeyModule.class,
           AddressViewModel_HiltModules.KeyModule.class,
-          AdminCategoriesViewModel_HiltModules.KeyModule.class,
-          AdminDashboardViewModel_HiltModules.KeyModule.class,
-          AdminOrdersViewModel_HiltModules.KeyModule.class,
-          AdminProductsViewModel_HiltModules.KeyModule.class,
-          AdminUsersViewModel_HiltModules.KeyModule.class,
           AuthViewModel_HiltModules.KeyModule.class,
           CartViewModel_HiltModules.KeyModule.class,
           CheckoutViewModel_HiltModules.KeyModule.class,
@@ -259,11 +243,6 @@ public final class ECommerceApp_HiltComponents {
       modules = {
           AddAddressViewModel_HiltModules.BindsModule.class,
           AddressViewModel_HiltModules.BindsModule.class,
-          AdminCategoriesViewModel_HiltModules.BindsModule.class,
-          AdminDashboardViewModel_HiltModules.BindsModule.class,
-          AdminOrdersViewModel_HiltModules.BindsModule.class,
-          AdminProductsViewModel_HiltModules.BindsModule.class,
-          AdminUsersViewModel_HiltModules.BindsModule.class,
           AuthViewModel_HiltModules.BindsModule.class,
           CartViewModel_HiltModules.BindsModule.class,
           CheckoutViewModel_HiltModules.BindsModule.class,
@@ -301,13 +280,7 @@ public final class ECommerceApp_HiltComponents {
       modules = ViewWithFragmentCBuilderModule.class
   )
   @FragmentScoped
-  public abstract static class FragmentC implements AdminCategoriesFragment_GeneratedInjector,
-      AdminDashboardFragment_GeneratedInjector,
-      AdminOrdersFragment_GeneratedInjector,
-      AdminEditProductFragment_GeneratedInjector,
-      AdminProductsFragment_GeneratedInjector,
-      AdminUsersFragment_GeneratedInjector,
-      LoginFragment_GeneratedInjector,
+  public abstract static class FragmentC implements LoginFragment_GeneratedInjector,
       RegisterFragment_GeneratedInjector,
       ForgotPasswordEnterEmailFragment_GeneratedInjector,
       ForgotPasswordResetPasswordFragment_GeneratedInjector,

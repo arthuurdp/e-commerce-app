@@ -91,7 +91,6 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Items -->
         <TextView
             style="@style/App.Text.SectionTitle"
             android:text="Items" />

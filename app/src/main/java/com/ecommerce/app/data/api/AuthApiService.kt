@@ -12,7 +12,4 @@ interface AuthApiService {
 
     @POST("auth/register")
     suspend fun register(@Body request: RegisterRequest): Response<RegisterResponse>
-
-    @POST("auth/register/admin")
-    suspend fun registerAdmin(@Body request: RegisterRequest): Response<RegisterResponse>
 }

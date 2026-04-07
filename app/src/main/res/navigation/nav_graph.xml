@@ -177,8 +177,7 @@
         android:label="Checkout"
         tools:layout="@layout/fragment_checkout">
 
-        <!-- After placing the order, navigate to the waiting screen popping checkout
-             so the user cannot go back to re-submit -->
+
         <action
             android:id="@+id/action_checkoutFragment_to_paymentWaitingFragment"
             app:destination="@id/paymentWaitingFragment"
@@ -186,7 +185,6 @@
             app:popUpToInclusive="true" />
     </fragment>
 
-    <!-- Payment waiting screen — no back navigation allowed -->
     <fragment
         android:id="@+id/paymentWaitingFragment"
         android:name="com.ecommerce.app.ui.customer.orders.PaymentWaitingFragment"
@@ -197,12 +195,10 @@
             android:name="orderId"
             app:argType="long" />
 
-        <!-- Deep link from browser after Stripe success -->
         <deepLink
             android:id="@+id/deepLink_payment_success"
             app:uri="ecommerce://payment/success?orderId={orderId}" />
 
-        <!-- Deep link from browser after Stripe failure/cancel -->
         <deepLink
             android:id="@+id/deepLink_payment_failure"
             app:uri="ecommerce://payment/failure?orderId={orderId}" />

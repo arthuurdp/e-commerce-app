@@ -1,5 +1,5 @@
 package com.ecommerce.app.data.model.email
 
 data class ChangePasswordRequest(
-    val password: String
+    val newPassword: String
 )

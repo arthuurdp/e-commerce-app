@@ -33,7 +33,6 @@ class ProductDetailFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: ProductDetailViewModel by viewModels()
     private val securityViewModel: SecurityViewModel by viewModels()
-
     private var userEmail: String? = null
 
     override fun onCreateView(

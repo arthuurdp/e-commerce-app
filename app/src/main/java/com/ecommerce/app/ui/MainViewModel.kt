@@ -15,7 +15,6 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val tokenManager: TokenManager
 ) : ViewModel() {
-
     private val _startDestination = MutableStateFlow(R.id.loginFragment)
     val startDestination: StateFlow<Int> = _startDestination
 
@@ -28,7 +27,6 @@ class MainViewModel @Inject constructor(
                     tokenManager.clearToken()
                     R.id.loginFragment
                 }
-                tokenManager.getRole() == "ROLE_ADMIN" -> R.id.adminDashboardFragment
                 else -> R.id.homeFragment
             }
         }

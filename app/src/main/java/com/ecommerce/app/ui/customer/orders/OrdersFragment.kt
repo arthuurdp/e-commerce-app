@@ -63,7 +63,7 @@ class OrdersFragment : Fragment() {
             when (result) {
                 is NetworkResult.Loading -> {
                     binding.progressBar.show()
-                    binding.tvEmpty.hide()
+                    binding.tvEmptyOrders.hide()
                 }
                 is NetworkResult.Success -> {
                     binding.swipeRefresh.isRefreshing = false
@@ -71,17 +71,17 @@ class OrdersFragment : Fragment() {
                     val orders = result.data.content
                     ordersAdapter.submitList(orders)
                     if (orders.isEmpty()) {
-                        binding.tvEmpty.show()
+                        binding.tvEmptyOrders.show()
                         binding.rvOrders.hide()
                     } else {
-                        binding.tvEmpty.hide()
+                        binding.tvEmptyOrders.hide()
                         binding.rvOrders.show()
                     }
                 }
                 is NetworkResult.Error -> {
                     binding.swipeRefresh.isRefreshing = false
                     binding.progressBar.hide()
-                    binding.tvEmpty.show()
+                    binding.tvEmptyOrders.show()
                     binding.rvOrders.hide()
                     showToast(result.message)
                 }

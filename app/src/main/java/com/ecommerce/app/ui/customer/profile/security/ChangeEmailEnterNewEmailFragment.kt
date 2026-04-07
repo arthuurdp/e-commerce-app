@@ -60,7 +60,7 @@ class ChangeEmailEnterNewEmailFragment : Fragment() {
                     binding.btnSendCode.isEnabled = true
                     val action = ChangeEmailEnterNewEmailFragmentDirections
                         .actionChangeEmailFragmentToEnterCodeFragment(
-                            mode = "CHANGE_EMAIL",
+                            mode = "change_email",
                             email = binding.etNewEmail.text.toString().trim()
                         )
                     findNavController().navigate(action)

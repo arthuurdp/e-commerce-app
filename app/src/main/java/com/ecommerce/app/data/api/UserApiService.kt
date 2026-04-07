@@ -21,7 +21,4 @@ interface UserApiService {
         @Query("page") page: Int = 0,
         @Query("size") size: Int = 10
     ): Response<PageResponse<UserResponse>>
-
-    @GET("users/{id}")
-    suspend fun getUserById(@Path("id") id: Long): Response<UserResponse>
 }

@@ -109,7 +109,7 @@ class HomeFragment : Fragment() {
         viewModel.firstName.observe(viewLifecycleOwner) { result ->
             binding.tvFirstName.text = when (result) {
                 is NetworkResult.Success -> result.data
-                is NetworkResult.Error   -> ""
+                is NetworkResult.Error -> ""
                 is NetworkResult.Loading -> ""
             }
         }

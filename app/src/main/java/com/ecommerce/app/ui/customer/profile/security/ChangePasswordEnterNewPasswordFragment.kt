@@ -19,6 +19,7 @@ class ChangePasswordEnterNewPasswordFragment : Fragment() {
     private val viewModel: SecurityViewModel by viewModels()
     private var _binding: FragmentChangePasswordEnterNewPasswordBinding? = null
     private val binding get() = _binding!!
+    private var userEmail: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +35,10 @@ class ChangePasswordEnterNewPasswordFragment : Fragment() {
         binding.mainContainer.setOnClickListener { hideKeyboard() }
         binding.btnBack.setOnClickListener { findNavController().popBackStack() }
         binding.btnResetPassword.setOnClickListener { attemptSendCode() }
+
+        viewModel.userEmail.observe(viewLifecycleOwner) { email ->
+            userEmail = email
+        }
 
         observeState()
     }
@@ -60,8 +65,8 @@ class ChangePasswordEnterNewPasswordFragment : Fragment() {
                     binding.btnResetPassword.isEnabled = true
                     val action = ChangePasswordEnterNewPasswordFragmentDirections
                         .actionChangePasswordFragmentToEnterCodeFragment(
-                            mode = "CHANGE_PASSWORD",
-                            email = ""
+                            mode = "change_password",
+                            email = userEmail ?: ""
                         )
                     findNavController().navigate(action)
                 }

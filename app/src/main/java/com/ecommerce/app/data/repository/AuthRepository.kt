@@ -16,7 +16,4 @@ class AuthRepository @Inject constructor(private val api: AuthApiService) : Base
 
     suspend fun register(request: RegisterRequest): NetworkResult<RegisterResponse> =
         safeApiCall { api.register(request) }
-
-    suspend fun registerAdmin(request: RegisterRequest): NetworkResult<RegisterResponse> =
-        safeApiCall { api.registerAdmin(request) }
 }

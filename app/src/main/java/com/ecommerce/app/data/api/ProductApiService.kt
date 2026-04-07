@@ -29,10 +29,4 @@ interface ProductApiService {
 
     @DELETE("products/{id}")
     suspend fun deleteProduct(@Path("id") id: Long): Response<Unit>
-
-    @PATCH("products/{id}/main-image/{mainImageId}")
-    suspend fun setMainImage(
-        @Path("id") id: Long,
-        @Path("mainImageId") mainImageId: Long
-    ): Response<ProductDetailsResponse>
 }

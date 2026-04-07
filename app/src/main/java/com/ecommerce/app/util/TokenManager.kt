@@ -33,18 +33,10 @@ class TokenManager @Inject constructor(
     suspend fun getToken(): String? =
         context.dataStore.data.map { it[TOKEN_KEY] }.firstOrNull()
 
-    suspend fun saveRole(role: String) {
-        context.dataStore.edit { prefs ->
-            prefs[USER_ROLE_KEY] = role
-        }
-    }
-
     suspend fun getRole(): String? =
         context.dataStore.data.map { it[USER_ROLE_KEY] }.firstOrNull()
 
     suspend fun clearToken() {
         context.dataStore.edit { it.clear() }
     }
-
-    suspend fun isLoggedIn(): Boolean = !getToken().isNullOrBlank()
 }
