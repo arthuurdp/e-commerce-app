@@ -70,7 +70,6 @@
             android:paddingEnd="16dp"
             android:paddingBottom="10dp"
             android:text="Verify"
-            android:textColor="@color/purple"
             android:textSize="16sp"
             android:textStyle="bold" />
 

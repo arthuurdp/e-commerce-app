@@ -34,8 +34,8 @@ class CheckoutViewModel @Inject constructor(
     private val _freightState = MutableLiveData<NetworkResult<List<FreightResponse>>>()
     val freightState: LiveData<NetworkResult<List<FreightResponse>>> = _freightState
 
-    private val _checkoutState = MutableLiveData<NetworkResult<CheckoutResponse>>()
-    val checkoutState: LiveData<NetworkResult<CheckoutResponse>> = _checkoutState
+    private val _checkoutState = MutableLiveData<NetworkResult<CheckoutResponse>?>()
+    val checkoutState: LiveData<NetworkResult<CheckoutResponse>?> = _checkoutState
 
     fun loadInitialData() {
         viewModelScope.launch {
@@ -60,5 +60,9 @@ class CheckoutViewModel @Inject constructor(
             _checkoutState.value = NetworkResult.Loading
             _checkoutState.value = orderRepository.checkout(request)
         }
+    }
+
+    fun onCheckoutHandled() {
+        _checkoutState.value = null
     }
 }

@@ -177,7 +177,6 @@
         android:label="Checkout"
         tools:layout="@layout/fragment_checkout">
 
-
         <action
             android:id="@+id/action_checkoutFragment_to_paymentWaitingFragment"
             app:destination="@id/paymentWaitingFragment"

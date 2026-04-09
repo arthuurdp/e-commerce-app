@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.ecommerce.app-mergeDebugResources-52:/values-cs/values-cs.xml",
+            "outputFile": "com.ecommerce.app-mergeDebugResources-51:/values-cs/values-cs.xml",
             "map": [
                 {
                     "source": "C:\\Users\\arthur.dall\\.gradle\\caches\\transforms-3\\c513cbc8bc04ac469bad0d449606655b\\transformed\\material-1.11.0\\res\\values-cs\\values-cs.xml",

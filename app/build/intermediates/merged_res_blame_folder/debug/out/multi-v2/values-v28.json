@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.ecommerce.app-mergeDebugResources-52:/values-v28/values-v28.xml",
+            "outputFile": "com.ecommerce.app-mergeDebugResources-51:/values-v28/values-v28.xml",
             "map": [
                 {
                     "source": "C:\\Users\\arthur.dall\\.gradle\\caches\\transforms-3\\5822b5d87934affa863722b072178266\\transformed\\appcompat-1.6.1\\res\\values-v28\\values-v28.xml",

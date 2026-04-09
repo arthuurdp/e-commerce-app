@@ -90,12 +90,13 @@ class CartFragment : Fragment() {
 
     private fun observeAddressStatus() {
         viewModel.addressStatus.observe(viewLifecycleOwner) { result ->
+            result ?: return@observe
             when (result) {
                 is NetworkResult.Loading -> binding.progressBar.show()
                 is NetworkResult.Success -> {
                     binding.progressBar.hide()
-                    val hasAddresses = result.data
-                    if (hasAddresses) {
+                    viewModel.onAddressStatusHandled()
+                    if (result.data) {
                         findNavController().navigate(R.id.action_cartFragment_to_checkoutFragment)
                     } else {
                         showAddAddressDialog()
@@ -103,6 +104,7 @@ class CartFragment : Fragment() {
                 }
                 is NetworkResult.Error -> {
                     binding.progressBar.hide()
+                    viewModel.onAddressStatusHandled()
                     showToast(result.message)
                 }
             }

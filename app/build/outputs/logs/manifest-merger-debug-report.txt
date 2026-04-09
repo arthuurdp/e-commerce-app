@@ -58,7 +58,6 @@ MERGED from [androidx.core:core-ktx:1.12.0] C:\Users\arthur.dall\.gradle\caches\
 MERGED from [androidx.datastore:datastore-preferences:1.0.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\3775fd8eeb1deb030456480f445f1652\transformed\datastore-preferences-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.annotation:annotation-experimental:1.3.1] C:\Users\arthur.dall\.gradle\caches\transforms-3\a955999a72f23924f8dcf6dd95ede55c\transformed\annotation-experimental-1.3.1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.datastore:datastore:1.0.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\99639c8add8de14cbefc7a9294188e07\transformed\datastore-1.0.0\AndroidManifest.xml:17:1-24:12
-MERGED from [com.facebook.shimmer:shimmer:0.5.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\26ba40b32524234038f44a9d568cc5d3\transformed\shimmer-0.5.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\ed9ae38ffe24c37784941488fe56563e\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\ffb16bca561480ae12709c857fe77f8a\transformed\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\6bdd436b1b768df5f20df5c58a37047c\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -280,8 +279,6 @@ MERGED from [androidx.annotation:annotation-experimental:1.3.1] C:\Users\arthur.
 MERGED from [androidx.annotation:annotation-experimental:1.3.1] C:\Users\arthur.dall\.gradle\caches\transforms-3\a955999a72f23924f8dcf6dd95ede55c\transformed\annotation-experimental-1.3.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.datastore:datastore:1.0.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\99639c8add8de14cbefc7a9294188e07\transformed\datastore-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.datastore:datastore:1.0.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\99639c8add8de14cbefc7a9294188e07\transformed\datastore-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [com.facebook.shimmer:shimmer:0.5.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\26ba40b32524234038f44a9d568cc5d3\transformed\shimmer-0.5.0\AndroidManifest.xml:5:5-44
-MERGED from [com.facebook.shimmer:shimmer:0.5.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\26ba40b32524234038f44a9d568cc5d3\transformed\shimmer-0.5.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\ed9ae38ffe24c37784941488fe56563e\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\ed9ae38ffe24c37784941488fe56563e\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\arthur.dall\.gradle\caches\transforms-3\ffb16bca561480ae12709c857fe77f8a\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44

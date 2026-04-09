@@ -21,8 +21,8 @@ class CartViewModel @Inject constructor(
     private val _cartState = MutableLiveData<NetworkResult<CartResponse>>()
     val cartState: LiveData<NetworkResult<CartResponse>> = _cartState
 
-    private val _addressStatus = MutableLiveData<NetworkResult<Boolean>>()
-    val addressStatus: LiveData<NetworkResult<Boolean>> = _addressStatus
+    private val _addressStatus = MutableLiveData<NetworkResult<Boolean>?>()
+    val addressStatus: LiveData<NetworkResult<Boolean>?> = _addressStatus
 
     fun loadCart() {
         viewModelScope.launch {
@@ -30,18 +30,20 @@ class CartViewModel @Inject constructor(
             _cartState.value = cartRepository.getCart()
         }
     }
-
     fun checkAddressesBeforeCheckout() {
         viewModelScope.launch {
             _addressStatus.value = NetworkResult.Loading
             val result = addressRepository.getAddresses()
             if (result is NetworkResult.Success) {
-                val hasAddresses = result.data.content.isNotEmpty()
-                _addressStatus.value = NetworkResult.Success(hasAddresses)
+                _addressStatus.value = NetworkResult.Success(result.data.content.isNotEmpty())
             } else if (result is NetworkResult.Error) {
                 _addressStatus.value = NetworkResult.Error(result.message)
             }
         }
+    }
+
+    fun onAddressStatusHandled() {
+        _addressStatus.value = null
     }
 
     fun addToCart(productId: Long) {

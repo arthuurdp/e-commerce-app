@@ -13,13 +13,13 @@ color gray_light
 color gray_medium
 color light_purple_bg
 color nav_item_tint
+color navbar_bg
 color primary
 color primary_container
 color primary_dark
 color primary_light
 color purple
 color red
-color shimmer_placeholder
 color social_button_bg
 color status_canceled
 color status_delivered
@@ -79,9 +79,6 @@ drawable img_product_not_found
 drawable img_reset_password
 drawable img_verify_email
 drawable img_woman
-drawable skeleton_circle
-drawable skeleton_rounded
-drawable skeleton_rounded_small
 font poppins
 id action_addressListFragment_to_addAddressFragment
 id action_addressListFragment_to_editAddressFragment
@@ -230,6 +227,7 @@ id ordersFragment
 id paymentWaitingFragment
 id productDetailFragment
 id profileFragment
+id progressBar
 id progress_bar
 id registerFragment
 id resetPasswordFragment
@@ -242,7 +240,6 @@ id rv_search_results
 id scroll_view
 id searchFragment
 id securityFragment
-id shimmerLayout
 id spinner_address
 id spinner_freight
 id spinner_gender
@@ -277,7 +274,6 @@ id tv_cart_badge
 id tv_category
 id tv_category_emoji
 id tv_category_name
-id tv_category_tile_name
 id tv_current_email
 id tv_date
 id tv_description
@@ -311,7 +307,6 @@ id tv_subtotal
 id tv_title
 id tv_total
 id tv_unit_price
-id v_overlay
 id vp_banner
 id vp_product_images
 layout activity_main
@@ -343,19 +338,13 @@ layout fragment_security
 layout item_address
 layout item_banner
 layout item_cart
-layout item_category
+layout item_category_chip
 layout item_category_section
-layout item_category_tile
 layout item_order
 layout item_order_line
 layout item_product
 layout item_product_search
 layout item_user
-layout skeleton_banner
-layout skeleton_category_chip
-layout skeleton_category_item
-layout skeleton_product_card
-layout skeleton_product_row
 menu menu_customer_nav
 navigation nav_graph
 string action_settings

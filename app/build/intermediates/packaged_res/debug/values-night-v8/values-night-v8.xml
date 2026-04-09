@@ -10,6 +10,7 @@
     <color name="gray_light">#1E1E1E</color>
     <color name="gray_medium">#2C2C2C</color>
     <color name="light_purple_bg">#1A2E20</color>
+    <color name="navbar_bg">#F81B1B1B</color>
     <color name="primary">#1DB954</color>
     <color name="primary_container">#0D3320</color>
     <color name="primary_dark">#17913F</color>

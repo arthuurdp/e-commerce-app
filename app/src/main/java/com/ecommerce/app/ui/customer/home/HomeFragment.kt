@@ -1,11 +1,9 @@
 package com.ecommerce.app.ui.customer.home
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -81,7 +79,6 @@ class HomeFragment : Fragment() {
         binding.flCartContainer.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_cartFragment)
         }
-        binding.tvSeeMoreCategories.setOnClickListener { navigateToSearch() }
 
         viewModel.loadCategories()
         viewModel.loadCart()
@@ -150,15 +147,8 @@ class HomeFragment : Fragment() {
 
     private fun observeLoading() {
         viewModel.isLoading.observe(viewLifecycleOwner) { loading ->
-            if (loading) {
-                binding.shimmerLayout.startShimmer()
-                binding.shimmerLayout.isVisible = true
-                binding.contentLayout.isVisible = false
-            } else {
-                binding.shimmerLayout.stopShimmer()
-                binding.shimmerLayout.isVisible = false
-                binding.contentLayout.isVisible = true
-            }
+            binding.progressBar.isVisible = loading
+            binding.contentLayout.isVisible = !loading
         }
     }
 
@@ -171,7 +161,6 @@ class HomeFragment : Fragment() {
         val bannerAdapter = BannerAdapter(banners)
         binding.vpBanner.apply {
             adapter = bannerAdapter
-            offscreenPageLimit = 1
             clipChildren = false
             setPageTransformer { page, position ->
                 page.scaleY = 1 - 0.05f * kotlin.math.abs(position)
@@ -223,110 +212,16 @@ class HomeFragment : Fragment() {
         val container = binding.llCategoryTiles
         container.removeAllViews()
 
-        categories.chunked(2).forEachIndexed { rowIdx, pair ->
-            val row = buildRow(
-                left  = buildTile(pair[0], rowIdx * 2),
-                right = pair.getOrNull(1)?.let { buildTile(it, rowIdx * 2 + 1) }
-            )
-            container.addView(row)
-        }
-    }
-
-    private fun buildTile(category: CategoryResponse, colorIndex: Int): MaterialCardView {
-        return buildColoredTile(
-            label = category.name,
-            emoji = resolveEmoji(category.name),
-            colorInt = TILE_COLORS[colorIndex % TILE_COLORS.size],
-            onClick = { navigateToSearch(category.id) }
-        )
-    }
-
-    private fun buildColoredTile(
-        label: String,
-        emoji: String,
-        colorInt: Int,
-        onClick: () -> Unit
-    ): MaterialCardView {
-        val card = MaterialCardView(requireContext()).apply {
-            radius = 16.dp.toFloat()
-            cardElevation = 0f
-            setCardBackgroundColor(colorInt)
-            isClickable = true
-            isFocusable = true
-            foreground = requireContext()
-                .obtainStyledAttributes(intArrayOf(android.R.attr.selectableItemBackground))
-                .getDrawable(0)
-        }
-
-        val frame = FrameLayout(requireContext()).apply {
-            layoutParams = ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-            )
-        }
-
-        val scrim = View(requireContext()).apply {
-            layoutParams = ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-            )
-            setBackgroundColor(Color.parseColor("#1A000000"))
-        }
-
-        val nameView = TextView(requireContext()).apply {
-            text = label
-            setTextColor(Color.WHITE)
-            textSize = 13.5f
-            setTypeface(null, android.graphics.Typeface.BOLD)
-            setShadowLayer(4f, 0f, 1f, 0x66000000)
-            layoutParams = FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            ).apply {
-                gravity = android.view.Gravity.BOTTOM or android.view.Gravity.START
-                setMargins(12.dp, 0, 12.dp, 12.dp)
-            }
-        }
-
-        val emojiView = TextView(requireContext()).apply {
-            text = emoji
-            textSize = 28f
-            layoutParams = FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            ).apply {
-                gravity = android.view.Gravity.TOP or android.view.Gravity.END
-                setMargins(0, 8.dp, 10.dp, 0)
-            }
-        }
-
-        frame.addView(scrim)
-        frame.addView(nameView)
-        frame.addView(emojiView)
-        card.addView(frame)
-        card.setOnClickListener { onClick() }
-        return card
-    }
-
-    private fun buildRow(left: MaterialCardView, right: MaterialCardView?): LinearLayout {
-        return LinearLayout(requireContext()).apply {
-            orientation = LinearLayout.HORIZONTAL
-            layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            )
-
-            val leftParams = LinearLayout.LayoutParams(0, 90.dp, 1f).apply {
-                topMargin = 5.dp; bottomMargin = 5.dp
-            }
-            left.layoutParams = leftParams
-            addView(left)
-
-            val rightView: View = right ?: View(requireContext())
-            rightView.layoutParams = LinearLayout.LayoutParams(0, 90.dp, 1f).apply {
-                marginStart = 6.dp; topMargin = 5.dp; bottomMargin = 5.dp
-            }
-            addView(rightView)
+        categories.forEachIndexed { index, category ->
+            val chip = layoutInflater.inflate(R.layout.item_category_chip, container, false)
+            chip.findViewById<MaterialCardView>(R.id.card_category)
+                .setCardBackgroundColor(TILE_COLORS[index % TILE_COLORS.size])
+            chip.findViewById<TextView>(R.id.tv_category_emoji)
+                .text = resolveEmoji(category.name)
+            chip.findViewById<TextView>(R.id.tv_category_name)
+                .text = category.name
+            chip.setOnClickListener { navigateToSearch(category.id) }
+            container.addView(chip)
         }
     }
 

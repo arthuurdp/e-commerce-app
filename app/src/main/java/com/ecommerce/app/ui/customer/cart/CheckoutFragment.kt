@@ -3,6 +3,7 @@ package com.ecommerce.app.ui.customer.cart
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,7 +49,9 @@ class CheckoutFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnBack.setOnClickListener { findNavController().navigateUp() }
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         setupPaymentMethods()
         setupAddressSpinnerListener()
@@ -62,10 +65,18 @@ class CheckoutFragment : Fragment() {
         binding.btnPlaceOrder.setOnClickListener { placeOrder() }
     }
 
+    private data class PaymentMethod(val label: String, val value: String)
+
+    private val paymentMethods = listOf(
+        PaymentMethod("Cartão de Crédito", "CREDIT_CARD")
+    )
+
     private fun setupPaymentMethods() {
-        val methods = listOf("CREDIT_CARD")
+        val labels = paymentMethods.map { it.label }
         binding.spinnerPayment.adapter = ArrayAdapter(
-            requireContext(), android.R.layout.simple_spinner_dropdown_item, methods
+            requireContext(),
+            android.R.layout.simple_spinner_dropdown_item,
+            labels
         )
     }
 
@@ -153,7 +164,6 @@ class CheckoutFragment : Fragment() {
                         labels
                     )
 
-                    // Update cost summary whenever the user picks a different freight option
                     binding.spinnerFreight.onItemSelectedListener =
                         object : AdapterView.OnItemSelectedListener {
                             override fun onItemSelected(
@@ -179,6 +189,7 @@ class CheckoutFragment : Fragment() {
 
     private fun observeCheckout() {
         viewModel.checkoutState.observe(viewLifecycleOwner) { result ->
+            result ?: return@observe
             when (result) {
                 is NetworkResult.Loading -> {
                     binding.progressBar.show()
@@ -191,8 +202,9 @@ class CheckoutFragment : Fragment() {
                     val checkoutUrl = result.data.checkoutUrl
                     val orderId = result.data.orderId
 
-                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(checkoutUrl)))
+                    viewModel.onCheckoutHandled()
 
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(checkoutUrl)))
                     findNavController().navigate(
                         CheckoutFragmentDirections
                             .actionCheckoutFragmentToPaymentWaitingFragment(orderId)
@@ -201,6 +213,7 @@ class CheckoutFragment : Fragment() {
                 is NetworkResult.Error -> {
                     binding.progressBar.hide()
                     binding.btnPlaceOrder.isEnabled = true
+                    viewModel.onCheckoutHandled()
                     showToast(result.message)
                 }
             }
@@ -245,7 +258,7 @@ class CheckoutFragment : Fragment() {
             return
         }
         val selectedAddress = addresses[binding.spinnerAddress.selectedItemPosition]
-        val paymentMethod = binding.spinnerPayment.selectedItem.toString()
+        val paymentMethod = paymentMethods[binding.spinnerPayment.selectedItemPosition].value
 
         val selectedFreight = freightOptions.getOrNull(
             binding.spinnerFreight.selectedItemPosition

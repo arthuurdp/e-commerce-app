@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,7 +17,6 @@ import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import androidx.viewpager2.widget.ViewPager2;
 import com.ecommerce.app.R;
-import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.appbar.AppBarLayout;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -51,7 +51,7 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final LinearLayout llGreeting;
 
   @NonNull
-  public final ShimmerFrameLayout shimmerLayout;
+  public final ProgressBar progressBar;
 
   @NonNull
   public final SwipeRefreshLayout swipeRefresh;
@@ -72,7 +72,7 @@ public final class FragmentHomeBinding implements ViewBinding {
       @NonNull LinearLayout contentLayout, @NonNull FrameLayout flCartContainer,
       @NonNull ImageView ivCart, @NonNull LinearLayout llCategoriesContainer,
       @NonNull LinearLayout llCategoryTiles, @NonNull LinearLayout llDots,
-      @NonNull LinearLayout llGreeting, @NonNull ShimmerFrameLayout shimmerLayout,
+      @NonNull LinearLayout llGreeting, @NonNull ProgressBar progressBar,
       @NonNull SwipeRefreshLayout swipeRefresh, @NonNull TextView tvCartBadge,
       @NonNull TextView tvFirstName, @NonNull TextView tvSeeMoreCategories,
       @NonNull ViewPager2 vpBanner) {
@@ -85,7 +85,7 @@ public final class FragmentHomeBinding implements ViewBinding {
     this.llCategoryTiles = llCategoryTiles;
     this.llDots = llDots;
     this.llGreeting = llGreeting;
-    this.shimmerLayout = shimmerLayout;
+    this.progressBar = progressBar;
     this.swipeRefresh = swipeRefresh;
     this.tvCartBadge = tvCartBadge;
     this.tvFirstName = tvFirstName;
@@ -168,9 +168,9 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.shimmerLayout;
-      ShimmerFrameLayout shimmerLayout = ViewBindings.findChildViewById(rootView, id);
-      if (shimmerLayout == null) {
+      id = R.id.progressBar;
+      ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
+      if (progressBar == null) {
         break missingId;
       }
 
@@ -206,7 +206,7 @@ public final class FragmentHomeBinding implements ViewBinding {
 
       return new FragmentHomeBinding((CoordinatorLayout) rootView, appBar, contentLayout,
           flCartContainer, ivCart, llCategoriesContainer, llCategoryTiles, llDots, llGreeting,
-          shimmerLayout, swipeRefresh, tvCartBadge, tvFirstName, tvSeeMoreCategories, vpBanner);
+          progressBar, swipeRefresh, tvCartBadge, tvFirstName, tvSeeMoreCategories, vpBanner);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

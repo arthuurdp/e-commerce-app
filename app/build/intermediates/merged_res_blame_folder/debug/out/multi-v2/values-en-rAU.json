@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.ecommerce.app-mergeDebugResources-52:/values-en-rAU/values-en-rAU.xml",
+            "outputFile": "com.ecommerce.app-mergeDebugResources-51:/values-en-rAU/values-en-rAU.xml",
             "map": [
                 {
                     "source": "C:\\Users\\arthur.dall\\.gradle\\caches\\transforms-3\\fa7145e36d70ea9d0cac6f9315545d4c\\transformed\\navigation-ui-2.7.3\\res\\values-en-rAU\\values-en-rAU.xml",

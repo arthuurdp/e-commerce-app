@@ -6,12 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.ecommerce.app.databinding.FragmentOrderDetailBinding
-import com.ecommerce.app.databinding.ItemOrderLineBinding
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hide
 import com.ecommerce.app.util.show
@@ -37,6 +34,10 @@ class OrderDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         val itemAdapter = OrderItemAdapter()
         binding.rvItems.adapter = itemAdapter

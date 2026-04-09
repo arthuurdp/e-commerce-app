@@ -1070,26 +1070,6 @@ attr shapeAppearanceMediumComponent
 attr shapeAppearanceOverlay
 attr shapeAppearanceSmallComponent
 attr shapeCornerFamily
-attr shimmer_auto_start
-attr shimmer_base_alpha
-attr shimmer_base_color
-attr shimmer_clip_to_children
-attr shimmer_colored
-attr shimmer_direction
-attr shimmer_dropoff
-attr shimmer_duration
-attr shimmer_fixed_height
-attr shimmer_fixed_width
-attr shimmer_height_ratio
-attr shimmer_highlight_alpha
-attr shimmer_highlight_color
-attr shimmer_intensity
-attr shimmer_repeat_count
-attr shimmer_repeat_delay
-attr shimmer_repeat_mode
-attr shimmer_shape
-attr shimmer_tilt
-attr shimmer_width_ratio
 attr shortcutMatchRequired
 attr shouldRemoveExpandedCorners
 attr showAnimationBehavior
@@ -2146,6 +2126,7 @@ color mtrl_textinput_filled_box_default_background_color
 color mtrl_textinput_focused_box_stroke_color
 color mtrl_textinput_hovered_box_stroke_color
 color nav_item_tint
+color navbar_bg
 color notification_action_color_filter
 color notification_icon_bg_color
 color primary
@@ -2168,7 +2149,6 @@ color secondary_text_default_material_dark
 color secondary_text_default_material_light
 color secondary_text_disabled_material_dark
 color secondary_text_disabled_material_light
-color shimmer_placeholder
 color social_button_bg
 color status_canceled
 color status_delivered
@@ -3217,9 +3197,6 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
-drawable skeleton_circle
-drawable skeleton_rounded
-drawable skeleton_rounded_small
 drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
@@ -3368,7 +3345,6 @@ id bestChoice
 id blocking
 id bottom
 id bottom_nav_customer
-id bottom_to_top
 id bounce
 id bounceBoth
 id bounceEnd
@@ -3591,7 +3567,6 @@ id layout_no_results
 id layout_results
 id left
 id leftToRight
-id left_to_right
 id legacy
 id line1
 id line3
@@ -3734,24 +3709,21 @@ id postLayout
 id pressed
 id productDetailFragment
 id profileFragment
+id progressBar
 id progress_bar
 id progress_circular
 id progress_horizontal
-id radial
 id radio
 id ratio
 id rectangles
 id registerFragment
 id report_drawn
 id resetPasswordFragment
-id restart
-id reverse
 id reverseSawtooth
 id right
 id rightToLeft
 id right_icon
 id right_side
-id right_to_left
 id rounded
 id row_index_key
 id rtl
@@ -3789,7 +3761,6 @@ id selected
 id selection_type
 id sharedValueSet
 id sharedValueUnset
-id shimmerLayout
 id shortcut
 id showCustom
 id showHome
@@ -3892,7 +3863,6 @@ id title_template
 id toggle
 id top
 id topPanel
-id top_to_bottom
 id touch_outside
 id transitionToEnd
 id transitionToStart
@@ -3909,7 +3879,6 @@ id tv_cart_badge
 id tv_category
 id tv_category_emoji
 id tv_category_name
-id tv_category_tile_name
 id tv_current_email
 id tv_date
 id tv_description
@@ -3948,7 +3917,6 @@ id uniform
 id unlabeled
 id up
 id useLogo
-id v_overlay
 id vertical_only
 id view_offset_helper
 id view_transition
@@ -4131,9 +4099,8 @@ layout ime_secondary_split_test_activity
 layout item_address
 layout item_banner
 layout item_cart
-layout item_category
+layout item_category_chip
 layout item_category_section
-layout item_category_tile
 layout item_order
 layout item_order_line
 layout item_product
@@ -4199,11 +4166,6 @@ layout notification_template_part_time
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
-layout skeleton_banner
-layout skeleton_category_chip
-layout skeleton_category_item
-layout skeleton_product_card
-layout skeleton_product_row
 layout support_simple_spinner_dropdown_item
 menu menu_customer_nav
 navigation nav_graph
@@ -5686,7 +5648,6 @@ styleable SearchBar android_textAppearance android_text android_hint backgroundT
 styleable SearchView android_textAppearance android_focusable android_maxWidth android_text android_hint android_inputType android_imeOptions animateMenuItems animateNavigationIcon autoShowKeyboard backHandlingEnabled backgroundTint closeIcon commitIcon defaultQueryHint goIcon headerLayout hideNavigationIcon iconifiedByDefault layout queryBackground queryHint searchHintIcon searchIcon searchPrefixText submitBackground suggestionRowLayout useDrawerArrowDrawable voiceIcon
 styleable ShapeAppearance cornerFamily cornerFamilyBottomLeft cornerFamilyBottomRight cornerFamilyTopLeft cornerFamilyTopRight cornerSize cornerSizeBottomLeft cornerSizeBottomRight cornerSizeTopLeft cornerSizeTopRight
 styleable ShapeableImageView contentPadding contentPaddingBottom contentPaddingEnd contentPaddingLeft contentPaddingRight contentPaddingStart contentPaddingTop shapeAppearance shapeAppearanceOverlay strokeColor strokeWidth
-styleable ShimmerFrameLayout shimmer_auto_start shimmer_base_alpha shimmer_base_color shimmer_clip_to_children shimmer_colored shimmer_direction shimmer_dropoff shimmer_duration shimmer_fixed_height shimmer_fixed_width shimmer_height_ratio shimmer_highlight_alpha shimmer_highlight_color shimmer_intensity shimmer_repeat_count shimmer_repeat_delay shimmer_repeat_mode shimmer_shape shimmer_tilt shimmer_width_ratio
 styleable SideSheetBehavior_Layout android_maxWidth android_maxHeight android_elevation backgroundTint behavior_draggable coplanarSiblingViewId shapeAppearance shapeAppearanceOverlay
 styleable Slider android_enabled android_value android_stepSize android_valueFrom android_valueTo haloColor haloRadius labelBehavior labelStyle minTouchTargetSize thumbColor thumbElevation thumbRadius thumbStrokeColor thumbStrokeWidth tickColor tickColorActive tickColorInactive tickRadiusActive tickRadiusInactive tickVisible trackColor trackColorActive trackColorInactive trackHeight
 styleable Snackbar snackbarButtonStyle snackbarStyle snackbarTextViewStyle

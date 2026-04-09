@@ -10,6 +10,7 @@
     <color name="black">#0A2E1A</color>
     <color name="white">#FFFFFF</color>
     <color name="background">#F6F6F6</color>
+    <color name="navbar_bg">#F8F6F6F6</color>
     <color name="surface">#FFFFFF</color>
 
     <!-- ── Gray scale ─────────────────────────────────────────────────────── -->
@@ -31,5 +32,4 @@
     <color name="status_shipped">#1565C0</color>
     <color name="status_delivered">#17913F</color>
 
-    <color name="shimmer_placeholder">#E0E0E0</color>
 </resources>
