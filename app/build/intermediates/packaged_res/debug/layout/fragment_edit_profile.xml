@@ -30,11 +30,11 @@
 
             <TextView
                 style="@style/App.Text.PageTitle"
-                android:text="Edit " />
+                android:text="Editar " />
 
             <TextView
                 style="@style/App.Text.PageTitle.Accent"
-                android:text="Profile" />
+                android:text="Perfil" />
         </LinearLayout>
 
         <ProgressBar
@@ -48,11 +48,11 @@
 
         <TextView
             style="@style/App.Text.SectionTitle"
-            android:text="Personal Information" />
+            android:text="Informações Pessoais" />
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/App.TextInputLayout"
-            android:hint="First Name">
+            android:hint="Primeiro Nome">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_first_name"
@@ -64,7 +64,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/App.TextInputLayout"
-            android:hint="Last Name">
+            android:hint="Último Nome">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_last_name"
@@ -76,7 +76,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/App.TextInputLayout"
-            android:hint="Phone">
+            android:hint="Telefone">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_phone"
@@ -90,14 +90,14 @@
             android:id="@+id/btn_save"
             style="@style/App.Button.Primary"
             android:layout_marginBottom="32dp"
-            android:text="Save Changes" />
+            android:text="Salvar mudanças" />
 
         <View style="@style/App.Divider" />
 
         <TextView
             style="@style/App.Text.SectionTitle"
             android:layout_marginTop="8dp"
-            android:text="Account" />
+            android:text="Conta" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/btn_change_email"
@@ -128,7 +128,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Change Email"
+                        android:text="Alterar E-mail"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -177,7 +177,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Change Password"
+                        android:text="Alterar Senha"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -185,7 +185,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="A verification code will be sent"
+                        android:text="Um código de verificação será enviado."
                         android:textColor="@color/gray"
                         android:textSize="12sp" />
                 </LinearLayout>

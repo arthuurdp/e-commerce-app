@@ -29,11 +29,11 @@
 
             <TextView
                 style="@style/App.Text.PageTitle"
-                android:text="Order " />
+                android:text="Visão " />
 
             <TextView
                 style="@style/App.Text.PageTitle.Accent"
-                android:text="Summary" />
+                android:text="Geral" />
         </LinearLayout>
 
         <ProgressBar
@@ -60,7 +60,7 @@
         <TextView
             style="@style/App.Text.SectionTitle"
             android:layout_marginBottom="8dp"
-            android:text="Delivery Address" />
+            android:text="Endereço de Entrega" />
 
         <Spinner
             android:id="@+id/spinner_address"
@@ -85,7 +85,7 @@
         <TextView
             style="@style/App.Text.SectionTitle"
             android:layout_marginBottom="8dp"
-            android:text="Payment Method" />
+            android:text="Método de Pagamento" />
 
         <Spinner
             android:id="@+id/spinner_payment"
@@ -141,7 +141,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Shipping"
+                        android:text="Envio"
                         android:textColor="@color/gray"
                         android:textSize="14sp" />
 
@@ -191,7 +191,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_place_order"
             style="@style/App.Button.Primary"
-            android:text="Place Order" />
+            android:text="Ir para pagamento" />
 
     </LinearLayout>
 </ScrollView>

@@ -28,7 +28,7 @@ public final class FragmentChangePasswordEnterNewPasswordBinding implements View
   public final ImageButton btnBack;
 
   @NonNull
-  public final MaterialButton btnResetPassword;
+  public final MaterialButton btnSendCode;
 
   @NonNull
   public final TextInputEditText etNewPassword;
@@ -43,12 +43,12 @@ public final class FragmentChangePasswordEnterNewPasswordBinding implements View
   public final TextInputLayout tilNewPassword;
 
   private FragmentChangePasswordEnterNewPasswordBinding(@NonNull ScrollView rootView,
-      @NonNull ImageButton btnBack, @NonNull MaterialButton btnResetPassword,
+      @NonNull ImageButton btnBack, @NonNull MaterialButton btnSendCode,
       @NonNull TextInputEditText etNewPassword, @NonNull ImageView ivIllustration,
       @NonNull LinearLayout mainContainer, @NonNull TextInputLayout tilNewPassword) {
     this.rootView = rootView;
     this.btnBack = btnBack;
-    this.btnResetPassword = btnResetPassword;
+    this.btnSendCode = btnSendCode;
     this.etNewPassword = etNewPassword;
     this.ivIllustration = ivIllustration;
     this.mainContainer = mainContainer;
@@ -89,9 +89,9 @@ public final class FragmentChangePasswordEnterNewPasswordBinding implements View
         break missingId;
       }
 
-      id = R.id.btn_reset_password;
-      MaterialButton btnResetPassword = ViewBindings.findChildViewById(rootView, id);
-      if (btnResetPassword == null) {
+      id = R.id.btn_send_code;
+      MaterialButton btnSendCode = ViewBindings.findChildViewById(rootView, id);
+      if (btnSendCode == null) {
         break missingId;
       }
 
@@ -120,7 +120,7 @@ public final class FragmentChangePasswordEnterNewPasswordBinding implements View
       }
 
       return new FragmentChangePasswordEnterNewPasswordBinding((ScrollView) rootView, btnBack,
-          btnResetPassword, etNewPassword, ivIllustration, mainContainer, tilNewPassword);
+          btnSendCode, etNewPassword, ivIllustration, mainContainer, tilNewPassword);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

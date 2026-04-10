@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="18dp"
-        android:text="Verify your e-mail"
+        android:text="Verifique seu e-mail"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -28,7 +28,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="Você precisa verificar seu email antes de adicionar produtos ao carrinho."
+        android:text="Você precisa verificar seu e-mail antes de adicionar produtos ao carrinho."
         android:textColor="@color/gray"
         android:textSize="14sp" />
 
@@ -51,7 +51,7 @@
             android:paddingTop="10dp"
             android:paddingEnd="16dp"
             android:paddingBottom="10dp"
-            android:text="Cancelar"
+            android:text="Agora não"
             android:textColor="@color/gray"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -64,12 +64,13 @@
             android:background="@android:color/transparent"
             android:clickable="true"
             android:focusable="true"
-            android:textAlignment="center"
             android:paddingStart="16dp"
             android:paddingTop="10dp"
             android:paddingEnd="16dp"
             android:paddingBottom="10dp"
-            android:text="Verify"
+            android:text="Verificar"
+            android:textColor="@color/primary"
+            android:textAlignment="center"
             android:textSize="16sp"
             android:textStyle="bold" />
 

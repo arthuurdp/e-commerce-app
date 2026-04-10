@@ -106,7 +106,7 @@
 
                     <TextView
                         style="@style/App.TextView.Label"
-                        android:text="Edit Profile" />
+                        android:text="Editar Perfil" />
 
                     <ImageView
                         android:layout_width="16dp"
@@ -138,7 +138,7 @@
 
                     <TextView
                         style="@style/App.TextView.Label"
-                        android:text="My Addresses" />
+                        android:text="Meus Endereços" />
 
                     <ImageView
                         android:layout_width="16dp"
@@ -170,7 +170,7 @@
 
                     <TextView
                         style="@style/App.TextView.Label"
-                        android:text="My Orders" />
+                        android:text="Meus Pedidos" />
 
                     <ImageView
                         android:layout_width="16dp"
@@ -202,7 +202,7 @@
 
                     <TextView
                         style="@style/App.TextView.Label"
-                        android:text="Security" />
+                        android:text="Segurança" />
 
                     <ImageView
                         android:layout_width="16dp"
@@ -219,7 +219,7 @@
                 style="@style/App.Button.Destructive"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sign Out" />
+                android:text="Sair" />
         </LinearLayout>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

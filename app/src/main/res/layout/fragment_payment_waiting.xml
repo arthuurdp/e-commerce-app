@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Waiting for payment…"
+        android:text="Aguardando confirmação do pagamento..."
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -31,17 +31,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Complete the payment in your browser.\nThis screen will update automatically."
+        android:text="Finalize o pagamento no seu navegador.\nEsta tela será atualizada automaticamente."
         android:textColor="@color/gray"
         android:textSize="14sp"
         android:gravity="center"
-        android:lineSpacingMultiplier="1.4" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_view_orders"
-        style="@style/App.Button.Primary"
-        android:layout_marginTop="32dp"
-        android:text="View My Orders"
-        android:visibility="gone" />
+        android:lineSpacingMultiplier="1" />
 
 </LinearLayout>

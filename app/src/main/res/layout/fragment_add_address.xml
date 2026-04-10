@@ -29,11 +29,11 @@
 
             <TextView
                 style="@style/App.Text.PageTitle"
-                android:text="Add " />
+                android:text="Adicionar " />
 
             <TextView
                 style="@style/App.Text.PageTitle.Accent"
-                android:text="Address" />
+                android:text="Endereço" />
         </LinearLayout>
 
         <ProgressBar

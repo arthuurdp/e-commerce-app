@@ -19,8 +19,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="img_no_orders" />
-                            <entry key="sourceFile" value="C:\Users\arthur.dall\Desktop\img_no_orders.svg" />
+                            <entry key="outputName" value="img_payment_failure" />
+                            <entry key="sourceFile" value="C:\Users\arthur.dall\Desktop\img_payment_failure.svg" />
                           </map>
                         </option>
                       </PersistentState>

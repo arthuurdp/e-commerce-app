@@ -40,21 +40,21 @@
 
             <TextView
                 style="@style/App.Text.PageTitle"
-                android:text="New " />
+                android:text="Mudar " />
 
             <TextView
                 style="@style/App.Text.PageTitle.Accent"
-                android:text="Email" />
+                android:text="e-mail" />
         </LinearLayout>
 
         <TextView
             style="@style/App.Text.Subtitle"
-            android:text="Enter a email address to receive the verification code" />
+            android:text="Informe um e-mail para receber o código de verificação." />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_new_email"
             style="@style/App.TextInputLayout"
-            android:hint="Enter New Email"
+            android:hint="Digite o novo e-mail"
             app:startIconDrawable="@drawable/ic_email_outline">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -68,7 +68,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_send_code"
             style="@style/App.Button.Primary"
-            android:text="Send verification code" />
+            android:text="Enviar código" />
 
     </LinearLayout>
 </ScrollView>

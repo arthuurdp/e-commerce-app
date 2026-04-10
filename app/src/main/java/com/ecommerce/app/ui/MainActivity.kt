@@ -50,6 +50,12 @@ class MainActivity : AppCompatActivity() {
         setupKeyboardListener()
     }
 
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        navController.handleDeepLink(intent)
+    }
+
     private fun setupBottomNav() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
@@ -129,12 +135,6 @@ class MainActivity : AppCompatActivity() {
                 navController.currentDestination?.id?.let { handleBottomNavVisibility(it) }
             }
         }
-    }
-
-    override fun onNewIntent(intent: Intent) {
-        super.onNewIntent(intent)
-        setIntent(intent)
-        navController.handleDeepLink(intent)
     }
 
     private fun updateBottomNavScale(navView: BottomNavigationView, selectedId: Int) {

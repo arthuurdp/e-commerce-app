@@ -431,7 +431,28 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="paymentWaitingFragment">
+                  <entry key="paymentFailureFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="256" />
+                            <option name="y" value="12" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_paymentFailureFragment_to_cartFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="paymentSuccessFragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
@@ -442,27 +463,24 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_paymentWaitingFragment_to_checkoutFragment">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                            <entry key="action_paymentWaitingFragment_to_ordersFragment">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                            <entry key="deepLink_payment_failure">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                            <entry key="deepLink_payment_success">
+                            <entry key="action_paymentSuccessFragment_to_ordersFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="paymentWaitingFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>

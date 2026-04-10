@@ -33,11 +33,11 @@
 
             <TextView
                 style="@style/App.Text.PageTitle"
-                android:text="Create " />
+                android:text="Criar " />
 
             <TextView
                 style="@style/App.Text.PageTitle.Accent"
-                android:text="Account" />
+                android:text="Conta" />
         </LinearLayout>
 
         <LinearLayout
@@ -53,7 +53,7 @@
                 android:layout_weight="1"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="14dp"
-                android:hint="First Name">
+                android:hint="Primeiro Nome">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_first_name"
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginBottom="14dp"
-                android:hint="Last Name">
+                android:hint="Último Nome">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_last_name"
@@ -84,7 +84,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilEmail"
             style="@style/App.TextInputLayout"
-            android:hint="Email">
+            android:hint="E-mail">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_email"
@@ -97,7 +97,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilPassword"
             style="@style/App.TextInputLayout.Password"
-            android:hint="Password">
+            android:hint="Senha">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_password"
@@ -123,7 +123,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilPhone"
             style="@style/App.TextInputLayout"
-            android:hint="Phone ((00) 00000-0000)">
+            android:hint="Telefone (00) 00000-0000">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_phone"
@@ -136,7 +136,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilBirthDate"
             style="@style/App.TextInputLayout"
-            android:hint="Birth Date (yyyy-MM-dd)">
+            android:hint="Data de Nascimento (yyyy-MM-dd)">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_birth_date"
@@ -149,7 +149,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gender"
+            android:text="Gênero"
             android:textSize="13sp"
             android:textColor="@color/gray"
             android:layout_marginBottom="6dp" />
@@ -175,7 +175,7 @@
             style="@style/App.Button.Primary"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="20dp"
-            android:text="Create Account" />
+            android:text="Criar Conta" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -186,7 +186,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Already have an account? "
+                android:text="Já tem uma conta? "
                 android:textColor="@color/gray"
                 android:textSize="14sp" />
 
@@ -194,7 +194,7 @@
                 android:id="@+id/tv_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sign In"
+                android:text="Faça Login!"
                 android:textColor="@color/primary"
                 android:textSize="14sp"
                 android:textStyle="bold" />

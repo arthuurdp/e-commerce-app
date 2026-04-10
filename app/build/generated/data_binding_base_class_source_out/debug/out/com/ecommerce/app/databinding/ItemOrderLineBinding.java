@@ -4,20 +4,24 @@ package com.ecommerce.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.ecommerce.app.R;
+import com.google.android.material.card.MaterialCardView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
 
 public final class ItemOrderLineBinding implements ViewBinding {
   @NonNull
-  private final LinearLayout rootView;
+  private final MaterialCardView rootView;
+
+  @NonNull
+  public final ImageView ivProduct;
 
   @NonNull
   public final TextView tvProductName;
@@ -31,9 +35,11 @@ public final class ItemOrderLineBinding implements ViewBinding {
   @NonNull
   public final TextView tvUnitPrice;
 
-  private ItemOrderLineBinding(@NonNull LinearLayout rootView, @NonNull TextView tvProductName,
-      @NonNull TextView tvQty, @NonNull TextView tvSubtotal, @NonNull TextView tvUnitPrice) {
+  private ItemOrderLineBinding(@NonNull MaterialCardView rootView, @NonNull ImageView ivProduct,
+      @NonNull TextView tvProductName, @NonNull TextView tvQty, @NonNull TextView tvSubtotal,
+      @NonNull TextView tvUnitPrice) {
     this.rootView = rootView;
+    this.ivProduct = ivProduct;
     this.tvProductName = tvProductName;
     this.tvQty = tvQty;
     this.tvSubtotal = tvSubtotal;
@@ -42,7 +48,7 @@ public final class ItemOrderLineBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public LinearLayout getRoot() {
+  public MaterialCardView getRoot() {
     return rootView;
   }
 
@@ -67,6 +73,12 @@ public final class ItemOrderLineBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.iv_product;
+      ImageView ivProduct = ViewBindings.findChildViewById(rootView, id);
+      if (ivProduct == null) {
+        break missingId;
+      }
+
       id = R.id.tv_product_name;
       TextView tvProductName = ViewBindings.findChildViewById(rootView, id);
       if (tvProductName == null) {
@@ -91,8 +103,8 @@ public final class ItemOrderLineBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemOrderLineBinding((LinearLayout) rootView, tvProductName, tvQty, tvSubtotal,
-          tvUnitPrice);
+      return new ItemOrderLineBinding((MaterialCardView) rootView, ivProduct, tvProductName, tvQty,
+          tvSubtotal, tvUnitPrice);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

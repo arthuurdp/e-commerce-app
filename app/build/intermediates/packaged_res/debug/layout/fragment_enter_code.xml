@@ -41,11 +41,11 @@
 
             <TextView
                 style="@style/App.Text.PageTitle"
-                android:text="Enter " />
+                android:text="Digite o " />
 
             <TextView
                 style="@style/App.Text.PageTitle.Accent"
-                android:text="Code" />
+                android:text="Código" />
         </LinearLayout>
 
         <TextView
@@ -56,7 +56,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_enter_code"
             style="@style/App.TextInputLayout"
-            android:hint="Enter the 6-digit code"
+            android:hint="Digite o código"
             app:startIconDrawable="@drawable/ic_lock_outline">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -80,7 +80,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_send_code"
             style="@style/App.Button.Primary"
-            android:text="Confirm Code" />
+            android:text="Confirmar código" />
 
     </LinearLayout>
 </ScrollView>

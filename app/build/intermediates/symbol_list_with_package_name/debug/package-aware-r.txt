@@ -3117,9 +3117,10 @@ drawable img_forgot_password_enter_code
 drawable img_login
 drawable img_logo
 drawable img_male
-drawable img_man
 drawable img_no_addresses
 drawable img_no_orders
+drawable img_payment_failure
+drawable img_payment_success
 drawable img_product_added_to_cart
 drawable img_product_not_found
 drawable img_reset_password
@@ -3291,8 +3292,8 @@ id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
 id action_ordersFragment_to_orderDetailFragment
-id action_paymentWaitingFragment_to_checkoutFragment
-id action_paymentWaitingFragment_to_ordersFragment
+id action_paymentFailureFragment_to_cartFragment
+id action_paymentSuccessFragment_to_ordersFragment
 id action_productDetailFragment_to_enterCodeFragment
 id action_productDetailFragment_to_homeFragment
 id action_profileFragment_to_addressListFragment
@@ -3373,7 +3374,6 @@ id btn_reset_password
 id btn_save
 id btn_security
 id btn_send_code
-id btn_view_orders
 id buttonPanel
 id cache_measures
 id callMeasure
@@ -3428,8 +3428,6 @@ id date_picker_actions
 id decelerate
 id decelerateAndComplete
 id decor_content_parent
-id deepLink_payment_failure
-id deepLink_payment_success
 id default_activity_button
 id deltaRelative
 id dependency_ordering
@@ -3699,6 +3697,8 @@ id parent_matrix
 id password_toggle
 id path
 id pathRelative
+id paymentFailureFragment
+id paymentSuccessFragment
 id paymentWaitingFragment
 id peekHeight
 id percent
@@ -3903,7 +3903,6 @@ id tv_qty
 id tv_quantity
 id tv_register
 id tv_result_count
-id tv_role
 id tv_see_more_categories
 id tv_status
 id tv_stock
@@ -4088,6 +4087,8 @@ layout fragment_home
 layout fragment_login
 layout fragment_order_detail
 layout fragment_order_list
+layout fragment_payment_failure
+layout fragment_payment_success
 layout fragment_payment_waiting
 layout fragment_product_detail
 layout fragment_profile
@@ -4105,7 +4106,6 @@ layout item_order
 layout item_order_line
 layout item_product
 layout item_product_search
-layout item_user
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title
@@ -4236,7 +4236,6 @@ string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
 string forgot_password
 string forgot_password_subtitle
-string hello_blank_fragment
 string hide_bottom_view_on_scroll_behavior
 string icon_content_description
 string in

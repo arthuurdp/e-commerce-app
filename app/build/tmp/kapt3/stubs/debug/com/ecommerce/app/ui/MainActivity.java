@@ -40,6 +40,11 @@ public final class MainActivity extends androidx.appcompat.app.AppCompatActivity
     android.os.Bundle savedInstanceState) {
     }
     
+    @java.lang.Override()
+    protected void onNewIntent(@org.jetbrains.annotations.NotNull()
+    android.content.Intent intent) {
+    }
+    
     private final void setupBottomNav() {
     }
     
@@ -47,11 +52,6 @@ public final class MainActivity extends androidx.appcompat.app.AppCompatActivity
     }
     
     private final void setupKeyboardListener() {
-    }
-    
-    @java.lang.Override()
-    protected void onNewIntent(@org.jetbrains.annotations.NotNull()
-    android.content.Intent intent) {
     }
     
     private final void updateBottomNavScale(com.google.android.material.bottomnavigation.BottomNavigationView navView, int selectedId) {

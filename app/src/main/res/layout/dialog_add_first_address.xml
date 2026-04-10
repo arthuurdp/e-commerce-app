@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="18dp"
-        android:text="Nenhum endereço cadastrado!"
+        android:text="Nenhum endereço cadastrado"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -29,7 +29,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="Antes de prosseguir com a compra você deve cadastrar um endereço, deseja adicionar agora?"
+        android:text="Para continuar com a compra, é necessário cadastrar um endereço.\nDeseja adicionar agora?"
         android:textColor="@color/gray"
         android:textSize="14sp" />
 
@@ -52,7 +52,7 @@
             android:paddingTop="10dp"
             android:paddingEnd="16dp"
             android:paddingBottom="10dp"
-            android:text="Não"
+            android:text="Agora não"
             android:textColor="@color/gray"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -69,7 +69,7 @@
             android:paddingTop="10dp"
             android:paddingEnd="16dp"
             android:paddingBottom="10dp"
-            android:text="Sim"
+            android:text="Cadastrar"
             android:textAlignment="center"
             android:textColor="@color/primary"
             android:textSize="16sp"

@@ -52,8 +52,8 @@
 33-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:17:13-44
 34            android:exported="true"
 34-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:18:13-36
-35            android:launchMode="singleTask"
-35-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:19:13-44
+35            android:launchMode="singleTop"
+35-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:19:13-43
 36            android:windowSoftInputMode="adjustResize" >
 36-->C:\Users\arthur.dall\Desktop\Curso Java\e-commerce-app\app\src\main\AndroidManifest.xml:20:13-55
 37            <intent-filter android:autoVerify="false" >

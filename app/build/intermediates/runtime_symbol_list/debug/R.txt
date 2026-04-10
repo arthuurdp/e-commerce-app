@@ -3116,9 +3116,10 @@ int drawable img_forgot_password_enter_code 0x7f0700b9
 int drawable img_login 0x7f0700ba
 int drawable img_logo 0x7f0700bb
 int drawable img_male 0x7f0700bc
-int drawable img_man 0x7f0700bd
 int drawable img_no_addresses 0x7f0700be
 int drawable img_no_orders 0x7f0700bf
+int drawable img_payment_failure 0x7f070110
+int drawable img_payment_success 0x7f070111
 int drawable img_product_added_to_cart 0x7f0700c0
 int drawable img_product_not_found 0x7f0700c1
 int drawable img_reset_password 0x7f0700c2
@@ -3290,8 +3291,8 @@ int id action_mode_bar 0x7f090056
 int id action_mode_bar_stub 0x7f090057
 int id action_mode_close_button 0x7f090058
 int id action_ordersFragment_to_orderDetailFragment 0x7f090059
-int id action_paymentWaitingFragment_to_checkoutFragment 0x7f09005a
-int id action_paymentWaitingFragment_to_ordersFragment 0x7f09005b
+int id action_paymentFailureFragment_to_cartFragment 0x7f0902e0
+int id action_paymentSuccessFragment_to_ordersFragment 0x7f0902e1
 int id action_productDetailFragment_to_enterCodeFragment 0x7f09005c
 int id action_productDetailFragment_to_homeFragment 0x7f09005d
 int id action_profileFragment_to_addressListFragment 0x7f09005e
@@ -3372,7 +3373,6 @@ int id btn_reset_password 0x7f0900a8
 int id btn_save 0x7f0900a9
 int id btn_security 0x7f0900aa
 int id btn_send_code 0x7f0900ab
-int id btn_view_orders 0x7f0900ac
 int id buttonPanel 0x7f0900ad
 int id cache_measures 0x7f0900ae
 int id callMeasure 0x7f0900af
@@ -3427,8 +3427,6 @@ int id date_picker_actions 0x7f0900df
 int id decelerate 0x7f0900e0
 int id decelerateAndComplete 0x7f0900e1
 int id decor_content_parent 0x7f0900e2
-int id deepLink_payment_failure 0x7f0900e3
-int id deepLink_payment_success 0x7f0900e4
 int id default_activity_button 0x7f0900e5
 int id deltaRelative 0x7f0900e6
 int id dependency_ordering 0x7f0900e7
@@ -3698,6 +3696,8 @@ int id parent_matrix 0x7f0901ee
 int id password_toggle 0x7f0901ef
 int id path 0x7f0901f0
 int id pathRelative 0x7f0901f1
+int id paymentFailureFragment 0x7f0902e2
+int id paymentSuccessFragment 0x7f0902e3
 int id paymentWaitingFragment 0x7f0901f2
 int id peekHeight 0x7f0901f3
 int id percent 0x7f0901f4
@@ -3902,7 +3902,6 @@ int id tv_qty 0x7f0902ba
 int id tv_quantity 0x7f0902bb
 int id tv_register 0x7f0902bc
 int id tv_result_count 0x7f0902bd
-int id tv_role 0x7f0902be
 int id tv_see_more_categories 0x7f0902bf
 int id tv_status 0x7f0902c0
 int id tv_stock 0x7f0902c1
@@ -4087,6 +4086,8 @@ int layout fragment_home 0x7f0c003c
 int layout fragment_login 0x7f0c003d
 int layout fragment_order_detail 0x7f0c003e
 int layout fragment_order_list 0x7f0c003f
+int layout fragment_payment_failure 0x7f0c008f
+int layout fragment_payment_success 0x7f0c0090
 int layout fragment_payment_waiting 0x7f0c0040
 int layout fragment_product_detail 0x7f0c0041
 int layout fragment_profile 0x7f0c0042
@@ -4104,7 +4105,6 @@ int layout item_order 0x7f0c004d
 int layout item_order_line 0x7f0c004e
 int layout item_product 0x7f0c004f
 int layout item_product_search 0x7f0c0050
-int layout item_user 0x7f0c0051
 int layout m3_alert_dialog 0x7f0c0052
 int layout m3_alert_dialog_actions 0x7f0c0053
 int layout m3_alert_dialog_title 0x7f0c0054
@@ -4235,7 +4235,6 @@ int string fab_transformation_scrim_behavior 0x7f11003e
 int string fab_transformation_sheet_behavior 0x7f11003f
 int string forgot_password 0x7f110040
 int string forgot_password_subtitle 0x7f110041
-int string hello_blank_fragment 0x7f110042
 int string hide_bottom_view_on_scroll_behavior 0x7f110043
 int string icon_content_description 0x7f110044
 int string in 0x7f110045

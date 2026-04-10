@@ -34,7 +34,7 @@ class ChangePasswordEnterNewPasswordFragment : Fragment() {
 
         binding.mainContainer.setOnClickListener { hideKeyboard() }
         binding.btnBack.setOnClickListener { findNavController().popBackStack() }
-        binding.btnResetPassword.setOnClickListener { attemptSendCode() }
+        binding.btnSendCode.setOnClickListener { attemptSendCode() }
 
         viewModel.userEmail.observe(viewLifecycleOwner) { email ->
             userEmail = email
@@ -59,10 +59,10 @@ class ChangePasswordEnterNewPasswordFragment : Fragment() {
         viewModel.requestPasswordChangeState.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is NetworkResult.Loading -> {
-                    binding.btnResetPassword.isEnabled = false
+                    binding.btnSendCode.isEnabled = false
                 }
                 is NetworkResult.Success -> {
-                    binding.btnResetPassword.isEnabled = true
+                    binding.btnSendCode.isEnabled = true
                     val action = ChangePasswordEnterNewPasswordFragmentDirections
                         .actionChangePasswordFragmentToEnterCodeFragment(
                             mode = "change_password",
@@ -71,7 +71,7 @@ class ChangePasswordEnterNewPasswordFragment : Fragment() {
                     findNavController().navigate(action)
                 }
                 is NetworkResult.Error -> {
-                    binding.btnResetPassword.isEnabled = true
+                    binding.btnSendCode.isEnabled = true
                     val msg = result.fieldErrors?.get("password") ?: result.message
                     setFieldError(requireContext(), binding.tilNewPassword, msg)
                 }

@@ -71,9 +71,10 @@ drawable img_forgot_password_enter_code
 drawable img_login
 drawable img_logo
 drawable img_male
-drawable img_man
 drawable img_no_addresses
 drawable img_no_orders
+drawable img_payment_failure
+drawable img_payment_success
 drawable img_product_added_to_cart
 drawable img_product_not_found
 drawable img_reset_password
@@ -103,8 +104,8 @@ id action_loginFragment_to_forgotPasswordFragment
 id action_loginFragment_to_homeFragment
 id action_loginFragment_to_registerFragment
 id action_ordersFragment_to_orderDetailFragment
-id action_paymentWaitingFragment_to_checkoutFragment
-id action_paymentWaitingFragment_to_ordersFragment
+id action_paymentFailureFragment_to_cartFragment
+id action_paymentSuccessFragment_to_ordersFragment
 id action_productDetailFragment_to_enterCodeFragment
 id action_productDetailFragment_to_homeFragment
 id action_profileFragment_to_addressListFragment
@@ -153,7 +154,6 @@ id btn_reset_password
 id btn_save
 id btn_security
 id btn_send_code
-id btn_view_orders
 id card_category
 id card_change_email
 id card_change_password
@@ -165,8 +165,6 @@ id checkoutFragment
 id chip_group
 id chip_scroll_view
 id contentLayout
-id deepLink_payment_failure
-id deepLink_payment_success
 id editAddressFragment
 id editProfileFragment
 id enterCodeFragment
@@ -224,6 +222,8 @@ id nav_graph
 id nav_host_fragment
 id orderDetailFragment
 id ordersFragment
+id paymentFailureFragment
+id paymentSuccessFragment
 id paymentWaitingFragment
 id productDetailFragment
 id profileFragment
@@ -298,7 +298,6 @@ id tv_qty
 id tv_quantity
 id tv_register
 id tv_result_count
-id tv_role
 id tv_see_more_categories
 id tv_status
 id tv_stock
@@ -329,6 +328,8 @@ layout fragment_home
 layout fragment_login
 layout fragment_order_detail
 layout fragment_order_list
+layout fragment_payment_failure
+layout fragment_payment_success
 layout fragment_payment_waiting
 layout fragment_product_detail
 layout fragment_profile
@@ -344,7 +345,6 @@ layout item_order
 layout item_order_line
 layout item_product
 layout item_product_search
-layout item_user
 menu menu_customer_nav
 navigation nav_graph
 string action_settings
@@ -361,7 +361,6 @@ string error_fill_all_fields
 string error_network
 string forgot_password
 string forgot_password_subtitle
-string hello_blank_fragment
 string in
 string no_account
 string no_orders

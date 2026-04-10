@@ -29,7 +29,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="Você quer continuar navegando pelos nossos produtos?"
+        android:text="Deseja continuar navegando ou finalizar sua compra?"
         android:textColor="@color/gray"
         android:textSize="14sp" />
 
@@ -52,7 +52,7 @@
             android:paddingTop="10dp"
             android:paddingEnd="16dp"
             android:paddingBottom="10dp"
-            android:text="Não"
+            android:text="Finalizar"
             android:textColor="@color/gray"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -69,7 +69,7 @@
             android:paddingTop="10dp"
             android:paddingEnd="16dp"
             android:paddingBottom="10dp"
-            android:text="Sim"
+            android:text="Continuar"
             android:textAlignment="center"
             android:textColor="@color/primary"
             android:textSize="16sp"

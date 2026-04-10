@@ -36,11 +36,11 @@
 
             <TextView
                 style="@style/App.Text.PageTitle"
-                android:text="My " />
+                android:text="Meu " />
 
             <TextView
                 style="@style/App.Text.PageTitle.Accent"
-                android:text="Cart" />
+                android:text="Carrinho" />
         </LinearLayout>
         </LinearLayout>
 
@@ -84,7 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Your cart is empty"
+                android:text="Seu carrinho está vazio"
                 android:textColor="@color/gray"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -163,7 +163,7 @@
                     android:layout_height="50dp"
                     android:layout_weight="1"
                     android:layout_marginEnd="10dp"
-                    android:text="Clear" />
+                    android:text="Limpar" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_checkout"

@@ -186,33 +186,39 @@
 
     <fragment
         android:id="@+id/paymentWaitingFragment"
-        android:name="com.ecommerce.app.ui.customer.orders.PaymentWaitingFragment"
-        android:label="Payment"
-        tools:layout="@layout/fragment_payment_waiting">
-
+        android:name="com.ecommerce.app.ui.customer.payment.PaymentWaitingFragment"
+        android:label="Payment">
         <argument
             android:name="orderId"
             app:argType="long" />
+    </fragment>
 
+    <fragment
+        android:id="@+id/paymentSuccessFragment"
+        android:name="com.ecommerce.app.ui.customer.payment.PaymentSuccessFragment"
+        android:label="Payment">
+        <argument
+            android:name="orderId"
+            app:argType="long" />
         <deepLink
-            android:id="@+id/deepLink_payment_success"
             app:uri="ecommerce://payment/success?orderId={orderId}" />
+        <action
+            android:id="@+id/action_paymentSuccessFragment_to_ordersFragment"
+            app:destination="@id/ordersFragment" />
+    </fragment>
 
+    <fragment
+        android:id="@+id/paymentFailureFragment"
+        android:name="com.ecommerce.app.ui.customer.payment.PaymentFailureFragment"
+        android:label="Payment">
+        <argument
+            android:name="orderId"
+            app:argType="long" />
         <deepLink
-            android:id="@+id/deepLink_payment_failure"
             app:uri="ecommerce://payment/failure?orderId={orderId}" />
-
         <action
-            android:id="@+id/action_paymentWaitingFragment_to_ordersFragment"
-            app:destination="@id/ordersFragment"
-            app:popUpTo="@id/homeFragment"
-            app:popUpToInclusive="false" />
-
-        <action
-            android:id="@+id/action_paymentWaitingFragment_to_checkoutFragment"
-            app:destination="@id/checkoutFragment"
-            app:popUpTo="@id/cartFragment"
-            app:popUpToInclusive="false" />
+            android:id="@+id/action_paymentFailureFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
 
     <fragment
