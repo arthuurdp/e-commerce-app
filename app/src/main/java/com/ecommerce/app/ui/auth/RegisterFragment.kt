@@ -106,7 +106,7 @@ class RegisterFragment : Fragment() {
                 is NetworkResult.Success -> {
                     binding.progressBar.hide()
                     binding.btnRegister.isEnabled = true
-                    showToast("Account created! Please log in.")
+                    showToast("Conta criada! Faça o login.")
                     findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
                 }
                 is NetworkResult.Error -> {

@@ -63,15 +63,6 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    private suspend fun fetchFirstName() {
-        val result = userRepository.getCurrentUser()
-        _firstName.value = if (result is NetworkResult.Success) {
-            NetworkResult.Success(result.data.firstName + "!")
-        } else {
-            NetworkResult.Error("Error")
-        }
-    }
-
     fun loadProductsByCategories(categories: List<CategoryResponse>) {
         viewModelScope.launch {
             val results = categories
@@ -98,15 +89,14 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             _isLoading.value = true
 
-            // 1. Fetch categories first as products depend on them
             val categoriesDeferred = async { categoryRepository.getCategories() }
             val userDeferred = async { userRepository.getCurrentUser() }
             val cartDeferred = async { cartRepository.getCart() }
 
             val categoriesResult = categoriesDeferred.await()
-            _categoriesState.value = categoriesResult
+            val userResult = userDeferred.await()
+            val cartResult = cartDeferred.await()
 
-            // 2. If categories loaded, fetch products for each category
             if (categoriesResult is NetworkResult.Success) {
                 val categories = categoriesResult.data.content
                 val productsResults = categories.map { category ->
@@ -123,16 +113,13 @@ class HomeViewModel @Inject constructor(
                     .associate { it.first to (it.second as NetworkResult.Success).data.content }
             }
 
-            // 3. Set user info
-            val userResult = userDeferred.await()
+            _categoriesState.value = categoriesResult
             _firstName.value = if (userResult is NetworkResult.Success) {
                 NetworkResult.Success(userResult.data.firstName + "!")
             } else {
                 NetworkResult.Error("Error")
             }
-
-            // 4. Set cart info
-            _cartState.value = cartDeferred.await()
+            _cartState.value = cartResult
 
             _isLoading.value = false
         }

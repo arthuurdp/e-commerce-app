@@ -3890,6 +3890,7 @@ id tv_first_name
 id tv_forgot_password
 id tv_freight_cost
 id tv_freight_label
+id tv_hi
 id tv_item_count
 id tv_last_name
 id tv_login

@@ -87,6 +87,7 @@ class SearchFragment : Fragment() {
             binding.btnCancel.show()
             viewModel.search("", categoryId, force = true)
         }
+
     }
 
     private fun setupResultsList() {
@@ -114,6 +115,14 @@ class SearchFragment : Fragment() {
             if (hasFocus) {
                 showChipRow()
                 binding.btnCancel.show()
+                binding.layoutEmptyState.hide()
+                binding.progressBar.show()
+
+                viewModel.search(
+                    binding.etSearch.text?.toString() ?: "",
+                    categoryId = viewModel.selectedCategoryId,
+                    explicitSearch = true
+                )
             }
         }
 
@@ -193,7 +202,7 @@ class SearchFragment : Fragment() {
                 null -> showEmptyState()
 
                 is NetworkResult.Loading -> {
-
+                    binding.layoutEmptyState.hide()
                     binding.layoutResults.hide()
                     binding.layoutNoResults.hide()
                     binding.progressBar.show()
@@ -233,7 +242,10 @@ class SearchFragment : Fragment() {
         )
         allChip.setOnClickListener {
             selectChip(group, allChip)
-            viewModel.search(binding.etSearch.text?.toString() ?: "", categoryId = null)
+            viewModel.search(
+                binding.etSearch.text?.toString() ?: "",
+                categoryId = null,
+                explicitSearch = true)
         }
         group.addView(allChip)
 

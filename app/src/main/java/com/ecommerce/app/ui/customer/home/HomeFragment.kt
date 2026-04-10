@@ -80,12 +80,9 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_cartFragment)
         }
 
-        viewModel.loadCategories()
-        viewModel.loadCart()
-
         setupBanner()
         setupSwipeRefresh()
-        observeFirstName()
+        observeGreeting()
         observeCategories()
         observeProductsByCategory()
         observeCart()
@@ -104,12 +101,19 @@ class HomeFragment : Fragment() {
         navController.navigate(R.id.searchFragment, bundle, navOptions)
     }
 
-    private fun observeFirstName() {
+    private fun observeGreeting() {
         viewModel.firstName.observe(viewLifecycleOwner) { result ->
-            binding.tvFirstName.text = when (result) {
-                is NetworkResult.Success -> result.data
-                is NetworkResult.Error -> ""
-                is NetworkResult.Loading -> ""
+            when (result) {
+                is NetworkResult.Success -> {
+                    binding.tvHi.text = "Olá, "
+                    binding.tvFirstName.text = result.data
+                }
+                is NetworkResult.Error -> {
+                    binding.tvFirstName.text = ""
+                }
+                is NetworkResult.Loading -> {
+                    binding.tvFirstName.text = ""
+                }
             }
         }
     }
@@ -119,7 +123,6 @@ class HomeFragment : Fragment() {
             if (result is NetworkResult.Success) {
                 val categories = result.data.content
                 buildCategoryTiles(categories)
-                viewModel.loadProductsByCategories(categories)
             }
         }
     }
@@ -256,8 +259,7 @@ class HomeFragment : Fragment() {
 
     private fun setupSwipeRefresh() {
         binding.swipeRefresh.setOnRefreshListener {
-            viewModel.loadCategories()
-            viewModel.loadCart()
+            viewModel.loadAllData()
         }
     }
 

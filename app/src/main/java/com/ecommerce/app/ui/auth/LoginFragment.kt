@@ -73,11 +73,11 @@ class LoginFragment : Fragment() {
         setFieldError(requireContext(), binding.tilPassword, null)
 
         if (credential.isEmpty()) {
-            setFieldError(requireContext(), binding.tilEmail, "Enter your email or CPF")
+            setFieldError(requireContext(), binding.tilEmail, "Digite seu e-mail ou seu CPF")
             return
         }
         if (password.isEmpty()) {
-            setFieldError(requireContext(), binding.tilPassword, "Enter your password")
+            setFieldError(requireContext(), binding.tilPassword, "Digite sua senha")
             return
         }
 

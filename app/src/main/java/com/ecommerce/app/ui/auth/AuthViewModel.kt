@@ -32,12 +32,6 @@ class AuthViewModel @Inject constructor(
     private val _verifyResetCodeState = MutableLiveData<NetworkResult<String>>()
     val verifyResetCodeState: LiveData<NetworkResult<String>> = _verifyResetCodeState
 
-    private val _resetPasswordState = MutableLiveData<NetworkResult<String>>()
-    val resetPasswordState: LiveData<NetworkResult<String>> = _resetPasswordState
-
-    var isAdmin: Boolean = false
-        private set
-
     fun login(credential: String, password: String) {
         viewModelScope.launch {
             _loginState.value = NetworkResult.Loading
@@ -46,8 +40,6 @@ class AuthViewModel @Inject constructor(
                 is NetworkResult.Success -> {
                     val token = result.data.token
                     tokenManager.saveToken(token)
-
-                    isAdmin = false
                     _loginState.value = NetworkResult.Success(Unit)
                 }
                 is NetworkResult.Error -> _loginState.value = result

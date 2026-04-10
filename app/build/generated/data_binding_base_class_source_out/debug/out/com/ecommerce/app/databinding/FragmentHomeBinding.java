@@ -63,6 +63,9 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final TextView tvFirstName;
 
   @NonNull
+  public final TextView tvHi;
+
+  @NonNull
   public final TextView tvSeeMoreCategories;
 
   @NonNull
@@ -74,7 +77,7 @@ public final class FragmentHomeBinding implements ViewBinding {
       @NonNull LinearLayout llCategoryTiles, @NonNull LinearLayout llDots,
       @NonNull LinearLayout llGreeting, @NonNull ProgressBar progressBar,
       @NonNull SwipeRefreshLayout swipeRefresh, @NonNull TextView tvCartBadge,
-      @NonNull TextView tvFirstName, @NonNull TextView tvSeeMoreCategories,
+      @NonNull TextView tvFirstName, @NonNull TextView tvHi, @NonNull TextView tvSeeMoreCategories,
       @NonNull ViewPager2 vpBanner) {
     this.rootView = rootView;
     this.appBar = appBar;
@@ -89,6 +92,7 @@ public final class FragmentHomeBinding implements ViewBinding {
     this.swipeRefresh = swipeRefresh;
     this.tvCartBadge = tvCartBadge;
     this.tvFirstName = tvFirstName;
+    this.tvHi = tvHi;
     this.tvSeeMoreCategories = tvSeeMoreCategories;
     this.vpBanner = vpBanner;
   }
@@ -192,6 +196,12 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tv_hi;
+      TextView tvHi = ViewBindings.findChildViewById(rootView, id);
+      if (tvHi == null) {
+        break missingId;
+      }
+
       id = R.id.tv_see_more_categories;
       TextView tvSeeMoreCategories = ViewBindings.findChildViewById(rootView, id);
       if (tvSeeMoreCategories == null) {
@@ -206,7 +216,7 @@ public final class FragmentHomeBinding implements ViewBinding {
 
       return new FragmentHomeBinding((CoordinatorLayout) rootView, appBar, contentLayout,
           flCartContainer, ivCart, llCategoriesContainer, llCategoryTiles, llDots, llGreeting,
-          progressBar, swipeRefresh, tvCartBadge, tvFirstName, tvSeeMoreCategories, vpBanner);
+          progressBar, swipeRefresh, tvCartBadge, tvFirstName, tvHi, tvSeeMoreCategories, vpBanner);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

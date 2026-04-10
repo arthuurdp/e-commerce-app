@@ -45,15 +45,15 @@ class SearchViewModel @Inject constructor(
     fun search(
         query: String,
         categoryId: Long? = selectedCategoryId,
-        force: Boolean = false
+        force: Boolean = false,
+        explicitSearch: Boolean = false
     ) {
         val resolvedCategoryId = categoryId?.takeIf { it != -1L }
-
         selectedCategoryId = resolvedCategoryId
 
         searchJob?.cancel()
 
-        if (!force && query.isBlank() && resolvedCategoryId == null) {
+        if (!force && !explicitSearch && query.isBlank() && resolvedCategoryId == null) {
             _searchState.value = null
             return
         }
@@ -76,7 +76,6 @@ class SearchViewModel @Inject constructor(
 
     fun clearSearch() {
         searchJob?.cancel()
-        selectedCategoryId = null
         _searchState.value = null
     }
 }
