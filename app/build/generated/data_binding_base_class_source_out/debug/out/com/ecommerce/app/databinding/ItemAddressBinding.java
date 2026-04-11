@@ -33,16 +33,20 @@ public final class ItemAddressBinding implements ViewBinding {
   public final TextView tvAddressName;
 
   @NonNull
+  public final TextView tvAddressPostalCode;
+
+  @NonNull
   public final TextView tvAddressStreet;
 
   private ItemAddressBinding(@NonNull MaterialCardView rootView, @NonNull ImageView btnDelete,
       @NonNull ImageView btnEdit, @NonNull TextView tvAddressCity, @NonNull TextView tvAddressName,
-      @NonNull TextView tvAddressStreet) {
+      @NonNull TextView tvAddressPostalCode, @NonNull TextView tvAddressStreet) {
     this.rootView = rootView;
     this.btnDelete = btnDelete;
     this.btnEdit = btnEdit;
     this.tvAddressCity = tvAddressCity;
     this.tvAddressName = tvAddressName;
+    this.tvAddressPostalCode = tvAddressPostalCode;
     this.tvAddressStreet = tvAddressStreet;
   }
 
@@ -97,6 +101,12 @@ public final class ItemAddressBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tv_address_postal_code;
+      TextView tvAddressPostalCode = ViewBindings.findChildViewById(rootView, id);
+      if (tvAddressPostalCode == null) {
+        break missingId;
+      }
+
       id = R.id.tv_address_street;
       TextView tvAddressStreet = ViewBindings.findChildViewById(rootView, id);
       if (tvAddressStreet == null) {
@@ -104,7 +114,7 @@ public final class ItemAddressBinding implements ViewBinding {
       }
 
       return new ItemAddressBinding((MaterialCardView) rootView, btnDelete, btnEdit, tvAddressCity,
-          tvAddressName, tvAddressStreet);
+          tvAddressName, tvAddressPostalCode, tvAddressStreet);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

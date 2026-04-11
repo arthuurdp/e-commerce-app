@@ -24,16 +24,16 @@
         "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_change_password_enter_new_password.xml"
     },
     {
+        "merged": "com.ecommerce.app-mergeDebugResources-52:/layout/fragment_register.xml",
+        "source": "com.ecommerce.app-main-55:/layout/fragment_register.xml"
+    },
+    {
         "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-52:\\layout\\item_order_line.xml",
         "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\item_order_line.xml"
     },
     {
         "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-52:\\layout\\fragment_payment_success.xml",
         "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_payment_success.xml"
-    },
-    {
-        "merged": "com.ecommerce.app-mergeDebugResources-52:/layout/fragment_enter_code.xml",
-        "source": "com.ecommerce.app-main-55:/layout/fragment_enter_code.xml"
     },
     {
         "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-52:\\layout\\fragment_profile.xml",

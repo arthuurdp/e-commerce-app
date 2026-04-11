@@ -96,6 +96,10 @@
         "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_address_list.xml"
     },
     {
+        "merged": "com.ecommerce.app-merged_res-53:/layout_fragment_register.xml.flat",
+        "source": "com.ecommerce.app-main-55:/layout/fragment_register.xml"
+    },
+    {
         "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\drawable_ic_lock.xml.flat",
         "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\drawable\\ic_lock.xml"
     },
@@ -122,10 +126,6 @@
     {
         "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\layout_item_order.xml.flat",
         "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\item_order.xml"
-    },
-    {
-        "merged": "com.ecommerce.app-merged_res-53:/navigation_nav_graph.xml.flat",
-        "source": "com.ecommerce.app-main-55:/navigation/nav_graph.xml"
     },
     {
         "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\menu_menu_customer_nav.xml.flat",
@@ -264,16 +264,16 @@
         "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_order_list.xml"
     },
     {
+        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\layout_item_address.xml.flat",
+        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\item_address.xml"
+    },
+    {
         "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\color_nav_item_tint.xml.flat",
         "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\color\\nav_item_tint.xml"
     },
     {
         "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\layout_fragment_order_detail.xml.flat",
         "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_order_detail.xml"
-    },
-    {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\layout_item_address.xml.flat",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\item_address.xml"
     },
     {
         "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\drawable_bg_dot_inactive.xml.flat",

@@ -23,6 +23,7 @@ class AddressAdapter(
         holder.binding.tvAddressName.text = address.name
         holder.binding.tvAddressStreet.text = "${address.street}, ${address.number} - ${address.neighborhood}"
         holder.binding.tvAddressCity.text = "${address.city.name} / ${address.state.uf}"
+        holder.binding.tvAddressPostalCode.text = address.postalCode
         
         holder.binding.root.setOnClickListener { onEdit(address) }
         holder.binding.btnDelete.setOnClickListener { onDelete(address) }

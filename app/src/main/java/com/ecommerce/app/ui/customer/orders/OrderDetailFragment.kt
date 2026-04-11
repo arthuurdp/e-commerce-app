@@ -59,14 +59,13 @@ class OrderDetailFragment : Fragment() {
                         if (parts.size == 3) "${parts[2]}/${parts[1]}/${parts[0]}" else rawDate
                     } catch (e: Exception) { rawDate }
 
-                    // Localised status + colour-coded badge
                     val (label, colorRes) = when (order.status) {
-                        "PENDING"   -> "PENDENTE"  to R.color.status_pending
-                        "PAID"      -> "PAGO"      to R.color.status_paid
-                        "SHIPPED"   -> "ENVIADO"   to R.color.status_shipped
-                        "DELIVERED" -> "ENTREGUE"  to R.color.status_delivered
-                        "CANCELED"  -> "CANCELADO" to R.color.status_canceled
-                        else        -> order.status to R.color.gray
+                        "PENDING" -> "PENDENTE" to R.color.status_pending
+                        "PAID" -> "PAGO" to R.color.status_paid
+                        "SHIPPED" -> "ENVIADO" to R.color.status_shipped
+                        "DELIVERED" -> "ENTREGUE" to R.color.status_delivered
+                        "CANCELED" -> "CANCELADO" to R.color.status_canceled
+                        else -> order.status to R.color.gray
                     }
                     binding.tvStatus.text = label
                     binding.tvStatus.backgroundTintList =

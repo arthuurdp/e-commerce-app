@@ -3877,6 +3877,7 @@ int id transition_transform 0x7f09029c
 int id triangle 0x7f09029d
 int id tv_address_city 0x7f09029e
 int id tv_address_name 0x7f09029f
+int id tv_address_postal_code 0x7f0902e3
 int id tv_address_street 0x7f0902a0
 int id tv_cart_badge 0x7f0902a1
 int id tv_category 0x7f0902a2
