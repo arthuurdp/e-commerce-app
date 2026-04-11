@@ -1,9 +1,11 @@
 package com.ecommerce.app.ui.shared
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -21,6 +23,7 @@ import com.ecommerce.app.util.setFieldError
 import com.ecommerce.app.util.show
 import com.ecommerce.app.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Locale
 
 @AndroidEntryPoint
 class EnterCodeFragment : Fragment() {
@@ -30,6 +33,9 @@ class EnterCodeFragment : Fragment() {
     private val authViewModel: AuthViewModel by viewModels()
     private val securityViewModel: SecurityViewModel by viewModels()
     private val args: EnterCodeFragmentArgs by navArgs()
+
+    private var countDownTimer: CountDownTimer? = null
+    private val timerDuration = 60000L // 60 seconds
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,11 +50,13 @@ class EnterCodeFragment : Fragment() {
 
         setupUI()
         observeState()
+        startResendTimer()
+        setupOnBackPressed()
     }
 
     private fun setupUI() {
         binding.mainContainer.setOnClickListener { hideKeyboard() }
-        binding.btnBack.setOnClickListener { findNavController().popBackStack() }
+        binding.btnBack.setOnClickListener { navigateBack() }
 
         if (args.email.isNotEmpty()) {
             binding.tvSubtitle.text = getString(R.string.forgot_password_subtitle, args.email)
@@ -73,24 +81,82 @@ class EnterCodeFragment : Fragment() {
                 setFieldError(requireContext(), binding.tilEnterCode, "Enter the 6-digit code")
             }
         }
+
+        binding.tvResendCode.setOnClickListener {
+            resendCode()
+        }
+    }
+
+    private fun setupOnBackPressed() {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                navigateBack()
+            }
+        })
+    }
+
+    private fun navigateBack() {
+        when (args.mode) {
+            "forgot_password" -> findNavController().popBackStack(R.id.forgotPasswordFragment, false)
+            "verify_email" -> findNavController().popBackStack(R.id.loginFragment, false)
+            "change_email" -> findNavController().popBackStack(R.id.changeEmailFragment, false)
+            "change_password" -> findNavController().popBackStack(R.id.changePasswordFragment, false)
+            else -> findNavController().popBackStack()
+        }
+    }
+
+    private fun resendCode() {
+        when (args.mode) {
+            "forgot_password" -> authViewModel.forgotPassword(args.email)
+            "verify_email" -> securityViewModel.sendEmailVerification()
+            "change_email" -> securityViewModel.requestEmailChange(args.email)
+            "change_password" -> {
+                showToast("Please go back and re-enter your new password to resend.")
+                return 
+            }
+        }
+        startResendTimer()
+        showToast("Code resent to ${args.email}")
+    }
+
+    private fun startResendTimer() {
+        binding.tvResendCode.hide()
+        binding.tvTimer.show()
+
+        countDownTimer?.cancel()
+        countDownTimer = object : CountDownTimer(timerDuration, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                val secondsRemaining = millisUntilFinished / 1000
+                binding.tvTimer.text = String.format(Locale.getDefault(), "Reenviar em 00:%02d", secondsRemaining)
+            }
+
+            override fun onFinish() {
+                binding.tvTimer.hide()
+                binding.tvResendCode.show()
+            }
+        }.start()
     }
 
     private fun observeState() {
+        // Observe verification results
         when (args.mode) {
             "forgot_password" -> {
                 authViewModel.verifyResetCodeState.observe(viewLifecycleOwner) { result ->
                     handleResult(result)
                 }
+                authViewModel.forgotPasswordState.observe(viewLifecycleOwner) { /* Handled by resend toast */ }
             }
             "verify_email" -> {
                 securityViewModel.confirmEmailState.observe(viewLifecycleOwner) { result ->
                     handleResult(result)
                 }
+                securityViewModel.sendEmailVerificationState.observe(viewLifecycleOwner) { /* Handled by resend toast */ }
             }
             "change_email" -> {
                 securityViewModel.confirmEmailChangeState.observe(viewLifecycleOwner) { result ->
                     handleResult(result)
                 }
+                securityViewModel.requestEmailChangeState.observe(viewLifecycleOwner) { /* Handled by resend toast */ }
             }
             "change_password" -> {
                 securityViewModel.confirmPasswordChangeState.observe(viewLifecycleOwner) { result ->
@@ -155,6 +221,7 @@ class EnterCodeFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        countDownTimer?.cancel()
         _binding = null
     }
 }

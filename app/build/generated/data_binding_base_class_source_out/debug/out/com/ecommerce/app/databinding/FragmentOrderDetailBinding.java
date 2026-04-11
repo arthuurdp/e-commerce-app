@@ -5,25 +5,33 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.ecommerce.app.R;
+import com.google.android.material.appbar.AppBarLayout;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
 
 public final class FragmentOrderDetailBinding implements ViewBinding {
   @NonNull
-  private final ScrollView rootView;
+  private final CoordinatorLayout rootView;
+
+  @NonNull
+  public final AppBarLayout appBar;
 
   @NonNull
   public final ImageButton btnBack;
+
+  @NonNull
+  public final LinearLayout layoutOrderFooter;
 
   @NonNull
   public final ProgressBar progressBar;
@@ -43,11 +51,15 @@ public final class FragmentOrderDetailBinding implements ViewBinding {
   @NonNull
   public final TextView tvTotal;
 
-  private FragmentOrderDetailBinding(@NonNull ScrollView rootView, @NonNull ImageButton btnBack,
-      @NonNull ProgressBar progressBar, @NonNull RecyclerView rvItems, @NonNull TextView tvDate,
-      @NonNull TextView tvOrderId, @NonNull TextView tvStatus, @NonNull TextView tvTotal) {
+  private FragmentOrderDetailBinding(@NonNull CoordinatorLayout rootView,
+      @NonNull AppBarLayout appBar, @NonNull ImageButton btnBack,
+      @NonNull LinearLayout layoutOrderFooter, @NonNull ProgressBar progressBar,
+      @NonNull RecyclerView rvItems, @NonNull TextView tvDate, @NonNull TextView tvOrderId,
+      @NonNull TextView tvStatus, @NonNull TextView tvTotal) {
     this.rootView = rootView;
+    this.appBar = appBar;
     this.btnBack = btnBack;
+    this.layoutOrderFooter = layoutOrderFooter;
     this.progressBar = progressBar;
     this.rvItems = rvItems;
     this.tvDate = tvDate;
@@ -58,7 +70,7 @@ public final class FragmentOrderDetailBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public ScrollView getRoot() {
+  public CoordinatorLayout getRoot() {
     return rootView;
   }
 
@@ -83,9 +95,21 @@ public final class FragmentOrderDetailBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.app_bar;
+      AppBarLayout appBar = ViewBindings.findChildViewById(rootView, id);
+      if (appBar == null) {
+        break missingId;
+      }
+
       id = R.id.btn_back;
       ImageButton btnBack = ViewBindings.findChildViewById(rootView, id);
       if (btnBack == null) {
+        break missingId;
+      }
+
+      id = R.id.layout_order_footer;
+      LinearLayout layoutOrderFooter = ViewBindings.findChildViewById(rootView, id);
+      if (layoutOrderFooter == null) {
         break missingId;
       }
 
@@ -125,8 +149,8 @@ public final class FragmentOrderDetailBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentOrderDetailBinding((ScrollView) rootView, btnBack, progressBar, rvItems,
-          tvDate, tvOrderId, tvStatus, tvTotal);
+      return new FragmentOrderDetailBinding((CoordinatorLayout) rootView, appBar, btnBack,
+          layoutOrderFooter, progressBar, rvItems, tvDate, tvOrderId, tvStatus, tvTotal);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

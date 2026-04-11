@@ -33,7 +33,10 @@ class ChangeEmailEnterNewEmailFragment : Fragment() {
 
         binding.mainContainer.setOnClickListener { hideKeyboard() }
         binding.btnBack.setOnClickListener { findNavController().popBackStack() }
-        binding.btnSendCode.setOnClickListener { attemptSendCode() }
+        binding.btnSendCode.setOnClickListener {
+            attemptSendCode()
+            hideKeyboard()
+        }
 
         observeState()
     }

@@ -4,7 +4,7 @@
             "outputFile": "com.ecommerce.app-mergeDebugResources-51:/values-ldrtl-v17/values-ldrtl-v17.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\arthur.dall\\.gradle\\caches\\transforms-3\\c513cbc8bc04ac469bad0d449606655b\\transformed\\material-1.11.0\\res\\values-ldrtl-v17\\values-ldrtl-v17.xml",
+                    "source": "C:\\Users\\arthu\\.gradle\\caches\\transforms-3\\c513cbc8bc04ac469bad0d449606655b\\transformed\\material-1.11.0\\res\\values-ldrtl-v17\\values-ldrtl-v17.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

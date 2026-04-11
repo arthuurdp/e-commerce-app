@@ -5,11 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.ecommerce.app.data.model.order.OrderItemResponse
 import com.ecommerce.app.databinding.ItemOrderLineBinding
 import com.ecommerce.app.util.toCurrency
-import com.ecommerce.app.data.model.order.OrderItemResponse
 
 class OrderItemAdapter : ListAdapter<OrderItemResponse, OrderItemAdapter.VH>(Diff) {
+
     inner class VH(val binding: ItemOrderLineBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
@@ -18,8 +19,8 @@ class OrderItemAdapter : ListAdapter<OrderItemResponse, OrderItemAdapter.VH>(Dif
     override fun onBindViewHolder(holder: VH, position: Int) {
         val item = getItem(position)
         holder.binding.tvProductName.text = item.productName
-        holder.binding.tvQty.text = "× ${item.quantity}"
         holder.binding.tvUnitPrice.text = item.unitPrice.toCurrency()
+        holder.binding.tvQty.text = item.quantity.toString()
         holder.binding.tvSubtotal.text = item.subtotal.toCurrency()
     }
 

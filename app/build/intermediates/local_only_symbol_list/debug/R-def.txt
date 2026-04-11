@@ -41,6 +41,7 @@ drawable bg_dialog
 drawable bg_dot_active
 drawable bg_dot_inactive
 drawable bg_search_input
+drawable bg_status_badge
 drawable bg_upper_radius
 drawable divider_style
 drawable ic_arrow_back
@@ -63,6 +64,7 @@ drawable img_add_address
 drawable img_banner_1
 drawable img_banner_2
 drawable img_banner_3
+drawable img_banner_4
 drawable img_delete_account
 drawable img_empty_cart
 drawable img_female
@@ -106,6 +108,7 @@ id action_loginFragment_to_registerFragment
 id action_ordersFragment_to_orderDetailFragment
 id action_paymentFailureFragment_to_cartFragment
 id action_paymentSuccessFragment_to_ordersFragment
+id action_productDetailFragment_to_cartFragment
 id action_productDetailFragment_to_enterCodeFragment
 id action_productDetailFragment_to_homeFragment
 id action_profileFragment_to_addressListFragment
@@ -206,6 +209,7 @@ id iv_product
 id layout_cart_footer
 id layout_empty_state
 id layout_no_results
+id layout_order_footer
 id layout_results
 id ll_categories_container
 id ll_categories_grid
@@ -298,12 +302,13 @@ id tv_product_price
 id tv_qty
 id tv_quantity
 id tv_register
+id tv_resend_code
 id tv_result_count
-id tv_see_more_categories
 id tv_status
 id tv_stock
 id tv_subtitle
 id tv_subtotal
+id tv_timer
 id tv_title
 id tv_total
 id tv_unit_price

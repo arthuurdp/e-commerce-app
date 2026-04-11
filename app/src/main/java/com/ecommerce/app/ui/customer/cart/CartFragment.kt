@@ -78,7 +78,7 @@ class CartFragment : Fragment() {
                     binding.tvEmptyCart.visibility = if (hasItems) View.GONE else View.VISIBLE
 
                     binding.tvTotal.text = cart.total.toCurrency()
-                    binding.tvItemCount.text = "${cart.totalQuantity} items"
+                    binding.tvItemCount.text = "${cart.totalQuantity} ${if (cart.totalQuantity == 1) "item" else "itens"}"
                 }
                 is NetworkResult.Error -> {
                     binding.progressBar.hide()

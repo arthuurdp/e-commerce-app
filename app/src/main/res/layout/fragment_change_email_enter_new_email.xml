@@ -40,11 +40,11 @@
 
             <TextView
                 style="@style/App.Text.PageTitle"
-                android:text="Mudar " />
+                android:text="Alterar " />
 
             <TextView
                 style="@style/App.Text.PageTitle.Accent"
-                android:text="e-mail" />
+                android:text="E-mail" />
         </LinearLayout>
 
         <TextView

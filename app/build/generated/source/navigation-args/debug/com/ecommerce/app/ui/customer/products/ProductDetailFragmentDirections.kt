@@ -29,5 +29,8 @@ public class ProductDetailFragmentDirections private constructor() {
 
     public fun actionProductDetailFragmentToHomeFragment(): NavDirections =
         ActionOnlyNavDirections(R.id.action_productDetailFragment_to_homeFragment)
+
+    public fun actionProductDetailFragmentToCartFragment(): NavDirections =
+        ActionOnlyNavDirections(R.id.action_productDetailFragment_to_cartFragment)
   }
 }

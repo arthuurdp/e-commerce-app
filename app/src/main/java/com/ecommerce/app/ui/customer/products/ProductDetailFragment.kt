@@ -154,7 +154,7 @@ class ProductDetailFragment : Fragment() {
 
         dialog.findViewById<TextView>(R.id.btnCancel).setOnClickListener {
             dialog.dismiss()
-            findNavController().navigate(R.id.action_productDetailFragment_to_homeFragment)
+            findNavController().navigate(R.id.action_productDetailFragment_to_cartFragment)
         }
 
         dialog.findViewById<TextView>(R.id.btnConfirm).setOnClickListener {

@@ -80,6 +80,10 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_cartFragment)
         }
 
+        binding.llCategoryHeader.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+        }
+
         setupBanner()
         setupSwipeRefresh()
         observeGreeting()
@@ -159,7 +163,7 @@ class HomeFragment : Fragment() {
         val banners = listOf(
             BannerItem(R.drawable.img_banner_1),
             BannerItem(R.drawable.img_banner_2),
-            BannerItem(R.drawable.img_banner_3)
+            BannerItem(R.drawable.img_banner_3),
         )
         val bannerAdapter = BannerAdapter(banners)
         binding.vpBanner.apply {

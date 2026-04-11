@@ -48,13 +48,19 @@ public final class FragmentEnterCodeBinding implements ViewBinding {
   public final TextInputLayout tilEnterCode;
 
   @NonNull
+  public final TextView tvResendCode;
+
+  @NonNull
   public final TextView tvSubtitle;
+
+  @NonNull
+  public final TextView tvTimer;
 
   private FragmentEnterCodeBinding(@NonNull ScrollView rootView, @NonNull ImageButton btnBack,
       @NonNull MaterialButton btnSendCode, @NonNull TextInputEditText etEnterCode,
       @NonNull ImageView ivIllustration, @NonNull LinearLayout mainContainer,
       @NonNull ProgressBar progressBar, @NonNull TextInputLayout tilEnterCode,
-      @NonNull TextView tvSubtitle) {
+      @NonNull TextView tvResendCode, @NonNull TextView tvSubtitle, @NonNull TextView tvTimer) {
     this.rootView = rootView;
     this.btnBack = btnBack;
     this.btnSendCode = btnSendCode;
@@ -63,7 +69,9 @@ public final class FragmentEnterCodeBinding implements ViewBinding {
     this.mainContainer = mainContainer;
     this.progressBar = progressBar;
     this.tilEnterCode = tilEnterCode;
+    this.tvResendCode = tvResendCode;
     this.tvSubtitle = tvSubtitle;
+    this.tvTimer = tvTimer;
   }
 
   @Override
@@ -135,14 +143,27 @@ public final class FragmentEnterCodeBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tv_resend_code;
+      TextView tvResendCode = ViewBindings.findChildViewById(rootView, id);
+      if (tvResendCode == null) {
+        break missingId;
+      }
+
       id = R.id.tv_subtitle;
       TextView tvSubtitle = ViewBindings.findChildViewById(rootView, id);
       if (tvSubtitle == null) {
         break missingId;
       }
 
+      id = R.id.tv_timer;
+      TextView tvTimer = ViewBindings.findChildViewById(rootView, id);
+      if (tvTimer == null) {
+        break missingId;
+      }
+
       return new FragmentEnterCodeBinding((ScrollView) rootView, btnBack, btnSendCode, etEnterCode,
-          ivIllustration, mainContainer, progressBar, tilEnterCode, tvSubtitle);
+          ivIllustration, mainContainer, progressBar, tilEnterCode, tvResendCode, tvSubtitle,
+          tvTimer);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
