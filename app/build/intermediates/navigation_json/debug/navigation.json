@@ -21,12 +21,12 @@
             "mDescription": "nav_graph_home.xml"
           },
           "mSourcePosition": {
-            "mStartLine": 86,
+            "mStartLine": 90,
             "mStartColumn": 8,
-            "mStartOffset": 3037,
-            "mEndLine": 86,
+            "mStartOffset": 3183,
+            "mEndLine": 90,
             "mEndColumn": 76,
-            "mEndOffset": 3105
+            "mEndOffset": 3251
           }
         },
         "isAutoVerify": false,
@@ -45,12 +45,12 @@
             "mDescription": "nav_graph_home.xml"
           },
           "mSourcePosition": {
-            "mStartLine": 99,
+            "mStartLine": 103,
             "mStartColumn": 8,
-            "mStartOffset": 3557,
-            "mEndLine": 99,
+            "mStartOffset": 3703,
+            "mEndLine": 103,
             "mEndColumn": 76,
-            "mEndOffset": 3625
+            "mEndOffset": 3771
           }
         },
         "isAutoVerify": false,

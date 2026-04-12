@@ -3,7 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_home"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/homeFragment"
+    app:enterAnim="@anim/fade_in"
+    app:exitAnim="@anim/fade_out"
+    app:popEnterAnim="@anim/fade_in"
+    app:popExitAnim="@anim/fade_out">
 
     <fragment
         android:id="@+id/homeFragment"

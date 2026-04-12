@@ -85,6 +85,17 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavCustomer.setOnItemSelectedListener { item ->
             val currentDestParent = navController.currentDestination?.parent?.id
 
+            val tabAnimOptions = navOptions {
+                anim {
+                    enter = R.anim.fade_in
+                    exit = R.anim.fade_out
+                    popEnter = R.anim.fade_in
+                    popExit = R.anim.fade_out
+                }
+                launchSingleTop = true
+                restoreState = true
+            }
+
             when (item.itemId) {
                 R.id.nav_graph_home -> {
                     if (currentDestParent != R.id.nav_graph_home) {
@@ -92,6 +103,12 @@ class MainActivity : AppCompatActivity() {
                             R.id.nav_graph_home,
                             null,
                             navOptions {
+                                anim {
+                                    enter = R.anim.fade_in
+                                    exit = R.anim.fade_out
+                                    popEnter = R.anim.fade_in
+                                    popExit = R.anim.fade_out
+                                }
                                 popUpTo(R.id.nav_graph_main) { saveState = true }
                                 launchSingleTop = true
                                 restoreState = true
@@ -106,6 +123,12 @@ class MainActivity : AppCompatActivity() {
                             R.id.nav_graph_search,
                             null,
                             navOptions {
+                                anim {
+                                    enter = R.anim.fade_in
+                                    exit = R.anim.fade_out
+                                    popEnter = R.anim.fade_in
+                                    popExit = R.anim.fade_out
+                                }
                                 popUpTo(R.id.nav_graph_main) { saveState = true }
                                 launchSingleTop = true
                                 restoreState = true
@@ -120,6 +143,12 @@ class MainActivity : AppCompatActivity() {
                             R.id.nav_graph_profile,
                             null,
                             navOptions {
+                                anim {
+                                    enter = R.anim.fade_in
+                                    exit = R.anim.fade_out
+                                    popEnter = R.anim.fade_in
+                                    popExit = R.anim.fade_out
+                                }
                                 popUpTo(R.id.nav_graph_main) { saveState = true }
                                 launchSingleTop = true
                                 restoreState = true
@@ -132,7 +161,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // Sync bottom nav highlight when destination changes
         navController.addOnDestinationChangedListener { _, destination, _ ->
             val parentId = destination.parent?.id
             val itemId = when (parentId) {
@@ -145,7 +173,6 @@ class MainActivity : AppCompatActivity() {
                 if (binding.bottomNavCustomer.selectedItemId != it) {
                     binding.bottomNavCustomer.selectedItemId = it
                 }
-                // Hide bottom nav on sub-screens, show on root destinations
                 val isRootDestination = destination.id in setOf(
                     R.id.homeFragment, R.id.searchFragment, R.id.profileFragment
                 )
