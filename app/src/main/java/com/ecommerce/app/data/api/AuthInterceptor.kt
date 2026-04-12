@@ -20,20 +20,25 @@ class AuthInterceptor @Inject constructor(
         "products",
         "categories",
         "states",
-        "freights"
     )
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
         val path = request.url.encodedPath
 
+        android.util.Log.d("AuthInterceptor", "Path: $path")
+
         val isPublic = publicEndpoints.any { path.contains(it) }
+
+        android.util.Log.d("AuthInterceptor", "isPublic: $isPublic")
 
         if (isPublic) {
             return chain.proceed(request)
         }
 
         val token = runBlocking { tokenManager.getToken() }
+
+        android.util.Log.d("AuthInterceptor", "Token: $token")
 
         val authenticatedRequest = request.newBuilder().apply {
             if (!token.isNullOrBlank() && token != "null") {

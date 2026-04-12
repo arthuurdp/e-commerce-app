@@ -23,6 +23,6 @@ interface OrderApiService {
     @GET("orders/{orderId}/shipping")
     suspend fun getShipping(@Path("orderId") orderId: Long): Response<ShippingResponse>
 
-    @GET("freights")
+    @GET("cart/freight")
     suspend fun calculateFreight(@Query("postalCode") postalCode: String): Response<List<FreightResponse>>
 }

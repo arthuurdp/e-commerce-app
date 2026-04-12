@@ -101,14 +101,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun navigateToSearch(categoryId: Long? = null) {
-        // Switch to the search tab via the bottom nav
-        // This keeps both tabs independent with proper back stack
         requireActivity().findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(
             R.id.bottom_nav_customer
         ).selectedItemId = R.id.nav_graph_search
 
-        // Pass the categoryId to the search fragment via its NavController's back stack entry
-        // We do this after the tab switch so the search graph is active
+
         if (categoryId != null) {
             val navHostFragment = requireActivity().supportFragmentManager
                 .findFragmentById(R.id.nav_host_main) as? androidx.navigation.fragment.NavHostFragment

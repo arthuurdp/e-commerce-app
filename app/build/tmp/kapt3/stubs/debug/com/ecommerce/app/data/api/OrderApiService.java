@@ -35,7 +35,7 @@ public abstract interface OrderApiService {
     long orderId, @org.jetbrains.annotations.NotNull()
     kotlin.coroutines.Continuation<? super retrofit2.Response<com.ecommerce.app.data.model.shipping.ShippingResponse>> $completion);
     
-    @retrofit2.http.GET(value = "freights")
+    @retrofit2.http.GET(value = "cart/freight")
     @org.jetbrains.annotations.Nullable()
     public abstract java.lang.Object calculateFreight(@retrofit2.http.Query(value = "postalCode")
     @org.jetbrains.annotations.NotNull()

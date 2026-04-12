@@ -1,5 +1,6 @@
 package com.ecommerce.app.ui
 
+import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.ViewGroup
@@ -39,6 +40,12 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavCustomer.hide()
         setupKeyboardListener()
         observeSession()
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        navController.handleDeepLink(intent)
     }
 
     private fun observeSession() {
@@ -188,6 +195,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+
     private fun setupKeyboardListener() {
         binding.root.viewTreeObserver.addOnGlobalLayoutListener {
             val r = Rect()
@@ -203,19 +212,6 @@ class MainActivity : AppCompatActivity() {
                     binding.bottomNavCustomer.show()
                 }
             }
-        }
-    }
-
-    private fun updateBottomNavScale(navView: BottomNavigationView, selectedId: Int) {
-        val menuView = navView.getChildAt(0) as ViewGroup
-        for (i in 0 until menuView.childCount) {
-            val itemView = menuView.getChildAt(i)
-            val isSelected = navView.menu.getItem(i).itemId == selectedId
-            itemView.animate()
-                .scaleX(if (isSelected) 1.2f else 1.0f)
-                .scaleY(if (isSelected) 1.2f else 1.0f)
-                .setDuration(200)
-                .start()
         }
     }
 

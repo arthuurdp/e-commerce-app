@@ -86,6 +86,7 @@ class CheckoutFragment : Fragment() {
             override fun onItemSelected(parent: AdapterView<*>, v: View?, pos: Int, id: Long) {
                 val address = addresses.getOrNull(pos) ?: return
                 val postalCode = address.postalCode?.replace("-", "")?.trim().orEmpty()
+                android.util.Log.d("Checkout", "Selected address postalCode: '$postalCode' length: ${postalCode.length}")
                 if (postalCode.length == 8) viewModel.loadFreight(postalCode)
             }
             override fun onNothingSelected(parent: AdapterView<*>) {}

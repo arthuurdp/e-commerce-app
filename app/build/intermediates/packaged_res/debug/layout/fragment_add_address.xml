@@ -47,7 +47,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/App.TextInputLayout"
-            android:hint="Label (e.g. Home, Work)"
+            android:hint="Apelido (ex: Casa, Trabalho"
             android:id="@+id/til_label">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -60,7 +60,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_postalCode"
             style="@style/App.TextInputLayout"
-            android:hint="Postal Code (CEP)">
+            android:hint="Código Postal (CEP)">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_postal_code"
@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:layout_marginEnd="8dp"
-                android:hint="City">
+                android:hint="Cidade">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_city"
@@ -112,7 +112,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_street"
             style="@style/App.TextInputLayout"
-            android:hint="Street">
+            android:hint="Rua">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_street"
@@ -132,7 +132,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginEnd="8dp"
-                android:hint="Number">
+                android:hint="Número">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_number"
@@ -147,7 +147,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Complement">
+                android:hint="Complemento">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_complement"
@@ -160,7 +160,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_neighborhood"
             style="@style/App.TextInputLayout"
-            android:hint="Neighborhood">
+            android:hint="Bairro">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_neighborhood"
@@ -173,7 +173,7 @@
             android:id="@+id/btn_save"
             style="@style/App.Button.Primary"
             android:layout_marginTop="8dp"
-            android:text="Save Address" />
+            android:text="Salvar endereço" />
 
     </LinearLayout>
 </ScrollView>
