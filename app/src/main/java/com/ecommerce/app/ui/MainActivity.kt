@@ -82,11 +82,83 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupBottomNav() {
-        binding.bottomNavCustomer.selectedItemId = R.id.nav_graph_home
-        NavigationUI.setupWithNavController(
-            binding.bottomNavCustomer,
-            navController
-        )
+        binding.bottomNavCustomer.setOnItemSelectedListener { item ->
+            val currentDestParent = navController.currentDestination?.parent?.id
+
+            when (item.itemId) {
+                R.id.nav_graph_home -> {
+                    if (currentDestParent != R.id.nav_graph_home) {
+                        navController.navigate(
+                            R.id.nav_graph_home,
+                            null,
+                            navOptions {
+                                popUpTo(R.id.nav_graph_main) { saveState = true }
+                                launchSingleTop = true
+                                restoreState = true
+                            }
+                        )
+                    }
+                    true
+                }
+                R.id.nav_graph_search -> {
+                    if (currentDestParent != R.id.nav_graph_search) {
+                        navController.navigate(
+                            R.id.nav_graph_search,
+                            null,
+                            navOptions {
+                                popUpTo(R.id.nav_graph_main) { saveState = true }
+                                launchSingleTop = true
+                                restoreState = true
+                            }
+                        )
+                    }
+                    true
+                }
+                R.id.nav_graph_profile -> {
+                    if (currentDestParent != R.id.nav_graph_profile) {
+                        navController.navigate(
+                            R.id.nav_graph_profile,
+                            null,
+                            navOptions {
+                                popUpTo(R.id.nav_graph_main) { saveState = true }
+                                launchSingleTop = true
+                                restoreState = true
+                            }
+                        )
+                    }
+                    true
+                }
+                else -> false
+            }
+        }
+
+        // Sync bottom nav highlight when destination changes
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            val parentId = destination.parent?.id
+            val itemId = when (parentId) {
+                R.id.nav_graph_home -> R.id.nav_graph_home
+                R.id.nav_graph_search -> R.id.nav_graph_search
+                R.id.nav_graph_profile -> R.id.nav_graph_profile
+                else -> null
+            }
+            itemId?.let {
+                if (binding.bottomNavCustomer.selectedItemId != it) {
+                    binding.bottomNavCustomer.selectedItemId = it
+                }
+                // Hide bottom nav on sub-screens, show on root destinations
+                val isRootDestination = destination.id in setOf(
+                    R.id.homeFragment, R.id.searchFragment, R.id.profileFragment
+                )
+                if (isRootDestination && !isKeyboardVisible) {
+                    binding.bottomNavCustomer.show()
+                } else {
+                    binding.bottomNavCustomer.hide()
+                }
+            }
+            if (parentId == R.id.nav_graph_auth) {
+                binding.bottomNavCustomer.hide()
+            }
+        }
     }
 
     private fun setupKeyboardListener() {

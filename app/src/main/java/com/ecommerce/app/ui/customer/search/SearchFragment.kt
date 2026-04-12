@@ -75,19 +75,17 @@ class SearchFragment : Fragment() {
         observeSearch()
         viewModel.loadCategories()
 
-        val categoryId: Long =
-            findNavController().currentBackStackEntry
-                ?.savedStateHandle
-                ?.remove<Long>("categoryId")
-                ?: arguments?.getLong("categoryId", -1L)
-                ?: -1L
+        val categoryId = findNavController().currentBackStackEntry
+            ?.savedStateHandle
+            ?.remove<Long>("categoryId")
+            ?: arguments?.getLong("categoryId", -1L)
+            ?: -1L
 
         if (categoryId != -1L) {
             showChipRow()
             binding.btnCancel.show()
             viewModel.search("", categoryId, force = true)
         }
-
     }
 
     private fun setupResultsList() {

@@ -63,7 +63,7 @@ class ChangeEmailEnterNewEmailFragment : Fragment() {
                 is NetworkResult.Success -> {
                     binding.btnSendCode.isEnabled = true
                     findNavController().navigate(
-                        R.id.action_productDetailFragment_to_enterCodeFragment,
+                        R.id.action_changeEmailFragment_to_enterCodeFragment,
                         Bundle().apply {
                             putString("mode", "change_email")
                             putString("email", binding.etNewEmail.text.toString().trim())

@@ -18,10 +18,6 @@
         <action
             android:id="@+id/action_homeFragment_to_cartFragment"
             app:destination="@id/cartFragment" />
-
-        <action
-            android:id="@+id/action_homeFragment_to_searchFragment"
-            app:destination="@id/nav_graph_search" />
     </fragment>
 
     <fragment

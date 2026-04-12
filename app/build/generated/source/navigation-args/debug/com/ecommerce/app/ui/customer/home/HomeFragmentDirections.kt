@@ -30,8 +30,5 @@ public class HomeFragmentDirections private constructor() {
 
     public fun actionHomeFragmentToCartFragment(): NavDirections =
         ActionOnlyNavDirections(R.id.action_homeFragment_to_cartFragment)
-
-    public fun actionHomeFragmentToSearchFragment(): NavDirections =
-        ActionOnlyNavDirections(R.id.action_homeFragment_to_searchFragment)
   }
 }

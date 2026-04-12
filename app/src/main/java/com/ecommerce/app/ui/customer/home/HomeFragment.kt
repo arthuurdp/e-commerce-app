@@ -83,7 +83,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.llCategoryHeader.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+            navigateToSearch()
         }
 
         setupBanner()
@@ -101,15 +101,21 @@ class HomeFragment : Fragment() {
     }
 
     private fun navigateToSearch(categoryId: Long? = null) {
-        val navController = findNavController()
-        val navOptions = NavOptions.Builder()
-            .setLaunchSingleTop(true)
-            .setRestoreState(true)
-            .setPopUpTo(navController.graph.startDestinationId, inclusive = false, saveState = true)
-            .build()
+        // Switch to the search tab via the bottom nav
+        // This keeps both tabs independent with proper back stack
+        requireActivity().findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(
+            R.id.bottom_nav_customer
+        ).selectedItemId = R.id.nav_graph_search
 
-        val bundle = bundleOf("categoryId" to (categoryId ?: -1L))
-        navController.navigate(R.id.action_homeFragment_to_searchFragment, bundle, navOptions)
+        // Pass the categoryId to the search fragment via its NavController's back stack entry
+        // We do this after the tab switch so the search graph is active
+        if (categoryId != null) {
+            val navHostFragment = requireActivity().supportFragmentManager
+                .findFragmentById(R.id.nav_host_main) as? androidx.navigation.fragment.NavHostFragment
+            navHostFragment?.navController?.currentBackStackEntry
+                ?.savedStateHandle
+                ?.set("categoryId", categoryId)
+        }
     }
 
     private fun observeGreeting() {

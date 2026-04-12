@@ -3276,7 +3276,6 @@ int id action_enterCodeFragment_to_resetPasswordFragment 0x7f090045
 int id action_forgotPasswordFragment_to_enterCodeFragment 0x7f090046
 int id action_homeFragment_to_cartFragment 0x7f090047
 int id action_homeFragment_to_productDetailFragment 0x7f090048
-int id action_homeFragment_to_searchFragment 0x7f090049
 int id action_image 0x7f09004a
 int id action_loginFragment_to_forgotPasswordFragment 0x7f09004b
 int id action_loginFragment_to_registerFragment 0x7f09004c

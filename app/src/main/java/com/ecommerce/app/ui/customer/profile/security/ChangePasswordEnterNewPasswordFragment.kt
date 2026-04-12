@@ -69,7 +69,7 @@ class ChangePasswordEnterNewPasswordFragment : Fragment() {
                     binding.btnSendCode.isEnabled = true
 
                     findNavController().navigate(
-                        R.id.action_productDetailFragment_to_enterCodeFragment,
+                        R.id.action_changeEmailFragment_to_enterCodeFragment,
                         Bundle().apply {
                             putString("mode", "change_password")
                             putString("email", userEmail ?: "")

@@ -5,13 +5,10 @@ import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
+import androidx.lifecycle.ViewModelProvider
 import com.ecommerce.app.R
 import com.ecommerce.app.databinding.FragmentEnterCodeBinding
 import com.ecommerce.app.ui.auth.AuthViewModel
@@ -30,8 +27,14 @@ class EnterCodeFragment : Fragment() {
 
     private var _binding: FragmentEnterCodeBinding? = null
     private val binding get() = _binding!!
-    private val authViewModel: AuthViewModel by viewModels()
-    private val securityViewModel: SecurityViewModel by viewModels()
+
+    private val authViewModel: AuthViewModel by lazy {
+        ViewModelProvider(this)[AuthViewModel::class.java]
+    }
+    private val securityViewModel: SecurityViewModel by lazy {
+        ViewModelProvider(this)[SecurityViewModel::class.java]
+    }
+
     private val mode: String by lazy { arguments?.getString("mode") ?: "none" }
     private val email: String by lazy { arguments?.getString("email") ?: "" }
 
@@ -48,16 +51,17 @@ class EnterCodeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupUI()
         observeState()
         startResendTimer()
-        setupOnBackPressed()
     }
 
     private fun setupUI() {
         binding.mainContainer.setOnClickListener { hideKeyboard() }
-        binding.btnBack.setOnClickListener { navigateBack() }
+        binding.btnBack.setOnClickListener {
+            hideKeyboard()
+            findNavController().popBackStack()
+        }
 
         if (email.isNotEmpty()) {
             binding.tvSubtitle.text = getString(R.string.forgot_password_subtitle, email)
@@ -70,7 +74,6 @@ class EnterCodeFragment : Fragment() {
         binding.btnSendCode.setOnClickListener {
             hideKeyboard()
             val code = binding.etEnterCode.text.toString().trim()
-
             if (code.length == 6) {
                 when (mode) {
                     "forgot_password" -> authViewModel.verifyResetCode(code)
@@ -84,19 +87,6 @@ class EnterCodeFragment : Fragment() {
         }
 
         binding.tvResendCode.setOnClickListener { resendCode() }
-    }
-
-    private fun setupOnBackPressed() {
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() { navigateBack() }
-            }
-        )
-    }
-
-    private fun navigateBack() {
-        findNavController().popBackStack()
     }
 
     private fun resendCode() {
@@ -175,25 +165,22 @@ class EnterCodeFragment : Fragment() {
                             }
                         )
                     }
-
                     "verify_email" -> {
                         showToast("Email verified successfully!")
                         findNavController().popBackStack()
                     }
-
                     "change_email", "change_password" -> {
-                        val message = if (mode == "change_email") "Email changed! Please login again with your new email."
-                        else "Password changed! Please login again with your new password."
+                        val message = if (mode == "change_email")
+                            "Email changed! Please login again with your new email."
+                        else
+                            "Password changed! Please login again with your new password."
 
                         showToast(message)
                         authViewModel.logout()
-
                         findNavController().popBackStack(
-                            findNavController().graph.startDestinationId,
-                            false
+                            findNavController().graph.startDestinationId, false
                         )
                     }
-
                     else -> findNavController().popBackStack()
                 }
             }
