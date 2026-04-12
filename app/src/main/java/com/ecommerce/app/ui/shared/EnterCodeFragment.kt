@@ -32,10 +32,11 @@ class EnterCodeFragment : Fragment() {
     private val binding get() = _binding!!
     private val authViewModel: AuthViewModel by viewModels()
     private val securityViewModel: SecurityViewModel by viewModels()
-    private val args: EnterCodeFragmentArgs by navArgs()
+    private val mode: String by lazy { arguments?.getString("mode") ?: "none" }
+    private val email: String by lazy { arguments?.getString("email") ?: "" }
 
     private var countDownTimer: CountDownTimer? = null
-    private val timerDuration = 60000L // 60 seconds
+    private val timerDuration = 60000L
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,8 +59,8 @@ class EnterCodeFragment : Fragment() {
         binding.mainContainer.setOnClickListener { hideKeyboard() }
         binding.btnBack.setOnClickListener { navigateBack() }
 
-        if (args.email.isNotEmpty()) {
-            binding.tvSubtitle.text = getString(R.string.forgot_password_subtitle, args.email)
+        if (email.isNotEmpty()) {
+            binding.tvSubtitle.text = getString(R.string.forgot_password_subtitle, email)
         }
 
         binding.etEnterCode.doAfterTextChanged {
@@ -71,7 +72,7 @@ class EnterCodeFragment : Fragment() {
             val code = binding.etEnterCode.text.toString().trim()
 
             if (code.length == 6) {
-                when (args.mode) {
+                when (mode) {
                     "forgot_password" -> authViewModel.verifyResetCode(code)
                     "verify_email" -> securityViewModel.confirmEmail(code)
                     "change_email" -> securityViewModel.confirmEmailChange(code)
@@ -82,41 +83,34 @@ class EnterCodeFragment : Fragment() {
             }
         }
 
-        binding.tvResendCode.setOnClickListener {
-            resendCode()
-        }
+        binding.tvResendCode.setOnClickListener { resendCode() }
     }
 
     private fun setupOnBackPressed() {
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                navigateBack()
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() { navigateBack() }
             }
-        })
+        )
     }
 
     private fun navigateBack() {
-        when (args.mode) {
-            "forgot_password" -> findNavController().popBackStack(R.id.forgotPasswordFragment, false)
-            "verify_email" -> findNavController().popBackStack(R.id.loginFragment, false)
-            "change_email" -> findNavController().popBackStack(R.id.changeEmailFragment, false)
-            "change_password" -> findNavController().popBackStack(R.id.changePasswordFragment, false)
-            else -> findNavController().popBackStack()
-        }
+        findNavController().popBackStack()
     }
 
     private fun resendCode() {
-        when (args.mode) {
-            "forgot_password" -> authViewModel.forgotPassword(args.email)
+        when (mode) {
+            "forgot_password" -> authViewModel.forgotPassword(email)
             "verify_email" -> securityViewModel.sendEmailVerification()
-            "change_email" -> securityViewModel.requestEmailChange(args.email)
+            "change_email" -> securityViewModel.requestEmailChange(email)
             "change_password" -> {
                 showToast("Please go back and re-enter your new password to resend.")
-                return 
+                return
             }
         }
         startResendTimer()
-        showToast("Code resent to ${args.email}")
+        showToast("Code resent to $email")
     }
 
     private fun startResendTimer() {
@@ -127,9 +121,10 @@ class EnterCodeFragment : Fragment() {
         countDownTimer = object : CountDownTimer(timerDuration, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 val secondsRemaining = millisUntilFinished / 1000
-                binding.tvTimer.text = String.format(Locale.getDefault(), "Reenviar em 00:%02d", secondsRemaining)
+                binding.tvTimer.text = String.format(
+                    Locale.getDefault(), "Reenviar em 00:%02d", secondsRemaining
+                )
             }
-
             override fun onFinish() {
                 binding.tvTimer.hide()
                 binding.tvResendCode.show()
@@ -138,30 +133,21 @@ class EnterCodeFragment : Fragment() {
     }
 
     private fun observeState() {
-        // Observe verification results
-        when (args.mode) {
+        when (mode) {
             "forgot_password" -> {
-                authViewModel.verifyResetCodeState.observe(viewLifecycleOwner) { result ->
-                    handleResult(result)
-                }
-                authViewModel.forgotPasswordState.observe(viewLifecycleOwner) { /* Handled by resend toast */ }
+                authViewModel.verifyResetCodeState.observe(viewLifecycleOwner) { handleResult(it) }
+                authViewModel.forgotPasswordState.observe(viewLifecycleOwner) { }
             }
             "verify_email" -> {
-                securityViewModel.confirmEmailState.observe(viewLifecycleOwner) { result ->
-                    handleResult(result)
-                }
-                securityViewModel.sendEmailVerificationState.observe(viewLifecycleOwner) { /* Handled by resend toast */ }
+                securityViewModel.confirmEmailState.observe(viewLifecycleOwner) { handleResult(it) }
+                securityViewModel.sendEmailVerificationState.observe(viewLifecycleOwner) { }
             }
             "change_email" -> {
-                securityViewModel.confirmEmailChangeState.observe(viewLifecycleOwner) { result ->
-                    handleResult(result)
-                }
-                securityViewModel.requestEmailChangeState.observe(viewLifecycleOwner) { /* Handled by resend toast */ }
+                securityViewModel.confirmEmailChangeState.observe(viewLifecycleOwner) { handleResult(it) }
+                securityViewModel.requestEmailChangeState.observe(viewLifecycleOwner) { }
             }
             "change_password" -> {
-                securityViewModel.confirmPasswordChangeState.observe(viewLifecycleOwner) { result ->
-                    handleResult(result)
-                }
+                securityViewModel.confirmPasswordChangeState.observe(viewLifecycleOwner) { handleResult(it) }
             }
         }
     }
@@ -179,10 +165,15 @@ class EnterCodeFragment : Fragment() {
 
                 val code = binding.etEnterCode.text.toString().trim()
 
-                when (args.mode) {
+                when (mode) {
                     "forgot_password" -> {
-                        val action = EnterCodeFragmentDirections.actionEnterCodeFragmentToResetPasswordFragment(args.email, code)
-                        findNavController().navigate(action)
+                        findNavController().navigate(
+                            R.id.action_enterCodeFragment_to_resetPasswordFragment,
+                            Bundle().apply {
+                                putString("email", email)
+                                putString("code", code)
+                            }
+                        )
                     }
 
                     "verify_email" -> {
@@ -191,20 +182,16 @@ class EnterCodeFragment : Fragment() {
                     }
 
                     "change_email", "change_password" -> {
-                        val message = if (args.mode == "change_email")
-                            "Email changed! Please login again with your new email."
-                        else
-                            "Password changed! Please login again with your new password."
+                        val message = if (mode == "change_email") "Email changed! Please login again with your new email."
+                        else "Password changed! Please login again with your new password."
 
                         showToast(message)
-
                         authViewModel.logout()
 
-                        val navOptions = NavOptions.Builder()
-                            .setPopUpTo(R.id.nav_graph, true)
-                            .build()
-
-                        findNavController().navigate(R.id.loginFragment, null, navOptions)
+                        findNavController().popBackStack(
+                            findNavController().graph.startDestinationId,
+                            false
+                        )
                     }
 
                     else -> findNavController().popBackStack()

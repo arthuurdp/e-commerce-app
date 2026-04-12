@@ -128,12 +128,13 @@ class ProductDetailFragment : Fragment() {
         dialog.findViewById<TextView>(R.id.btnConfirm).setOnClickListener {
             securityViewModel.sendEmailVerification()
             dialog.dismiss()
-            val action = ProductDetailFragmentDirections
-                .actionProductDetailFragmentToEnterCodeFragment(
-                    mode = "verify_email",
-                    email = userEmail ?: ""
-                )
-            findNavController().navigate(action)
+            findNavController().navigate(
+                R.id.action_productDetailFragment_to_enterCodeFragment,
+                Bundle().apply {
+                    putString("mode", "verify_email")
+                    putString("email", userEmail ?: "")
+                }
+            )
         }
 
         dialog.show()
@@ -162,8 +163,6 @@ class ProductDetailFragment : Fragment() {
         }
         dialog.show()
     }
-
-
 
     private fun setupImageCarousel(imgs: List<ProductImageResponse>) {
         binding.vpProductImages.adapter = ProductItemAdapter(imgs)

@@ -20,7 +20,6 @@ class PaymentFailureFragment : Fragment() {
 
     private var _binding: FragmentPaymentFailureBinding? = null
     private val binding get() = _binding!!
-    private val args: PaymentFailureFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

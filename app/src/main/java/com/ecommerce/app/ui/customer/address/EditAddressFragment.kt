@@ -13,6 +13,7 @@ import com.ecommerce.app.data.model.address.AddressResponse
 import com.ecommerce.app.data.model.address.UpdateAddressRequest
 import com.ecommerce.app.databinding.FragmentEditAddressBinding
 import com.ecommerce.app.util.NetworkResult
+import com.ecommerce.app.util.getParcelableCompat
 import com.ecommerce.app.util.hide
 import com.ecommerce.app.util.show
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,7 +24,10 @@ class EditAddressFragment : Fragment() {
     private var _binding: FragmentEditAddressBinding? = null
     private val binding get() = _binding!!
     private val viewModel: AddressViewModel by viewModels()
-    private val args: EditAddressFragmentArgs by navArgs()
+
+    private val address: AddressResponse by lazy {
+        requireArguments().getParcelableCompat("address", AddressResponse::class.java)!!
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,8 +39,6 @@ class EditAddressFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val address = args.address
         setupUI(address)
         observeViewModel()
     }
@@ -65,15 +67,16 @@ class EditAddressFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            val request = UpdateAddressRequest(
-                name = name,
-                street = street,
-                number = numberStr.toIntOrNull(),
-                neighborhood = neighborhood,
-                complement = complement.ifEmpty { null }
+            viewModel.editAddress(
+                address.id,
+                UpdateAddressRequest(
+                    name = name,
+                    street = street,
+                    number = numberStr.toIntOrNull(),
+                    neighborhood = neighborhood,
+                    complement = complement.ifEmpty { null }
+                )
             )
-
-            viewModel.editAddress(address.id, request)
         }
     }
 

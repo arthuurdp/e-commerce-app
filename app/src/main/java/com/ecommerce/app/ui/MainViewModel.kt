@@ -15,19 +15,20 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val tokenManager: TokenManager
 ) : ViewModel() {
-    private val _startDestination = MutableStateFlow(R.id.loginFragment)
-    val startDestination: StateFlow<Int> = _startDestination
+
+    private val _isLoggedIn = MutableStateFlow<Boolean?>(null)
+    val isLoggedIn: StateFlow<Boolean?> = _isLoggedIn
 
     init {
         viewModelScope.launch {
             val token = tokenManager.getToken()
-            _startDestination.value = when {
-                token.isNullOrBlank() -> R.id.loginFragment
+            _isLoggedIn.value = when {
+                token.isNullOrBlank() -> false
                 JwtDecoder.isExpired(token) -> {
                     tokenManager.clearToken()
-                    R.id.loginFragment
+                    false
                 }
-                else -> R.id.homeFragment
+                else -> true
             }
         }
     }

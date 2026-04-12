@@ -24,7 +24,9 @@ class OrderDetailFragment : Fragment() {
     private var _binding: FragmentOrderDetailBinding? = null
     private val binding get() = _binding!!
     private val viewModel: OrderDetailViewModel by viewModels()
-    private val args: OrderDetailFragmentArgs by navArgs()
+    private val orderId: Long by lazy {
+        requireArguments().getLong("orderId")
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -81,7 +83,7 @@ class OrderDetailFragment : Fragment() {
             }
         }
 
-        viewModel.loadOrder(args.orderId)
+        viewModel.loadOrder(orderId)
     }
 
     override fun onDestroyView() {

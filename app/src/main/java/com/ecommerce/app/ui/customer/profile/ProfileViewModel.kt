@@ -24,12 +24,24 @@ class ProfileViewModel @Inject constructor(
     private val _updateState = MutableLiveData<NetworkResult<UserResponse>>()
     val updateState: LiveData<NetworkResult<UserResponse>> = _updateState
 
-    fun loadProfile() {
+    private var hasLoadedOnce = false
+
+    init {
+        loadProfile()
+    }
+
+    fun loadProfile(forceRefresh: Boolean = false) {
+        if (hasLoadedOnce && !forceRefresh) return
+
         viewModelScope.launch {
             _profileState.value = NetworkResult.Loading
             _profileState.value = userRepository.getCurrentUser()
+            hasLoadedOnce = true
         }
     }
+
+    fun refresh() = loadProfile(forceRefresh = true)
+
 
     fun updateProfile(firstName: String?, lastName: String?, phone: String?) {
         viewModelScope.launch {

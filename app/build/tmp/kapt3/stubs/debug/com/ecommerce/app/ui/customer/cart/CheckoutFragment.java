@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
+import com.ecommerce.app.R;
 import com.ecommerce.app.data.model.address.AddressResponse;
 import com.ecommerce.app.data.model.order.CheckoutRequest;
 import com.ecommerce.app.data.model.shipping.FreightResponse;

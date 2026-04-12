@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
+import com.ecommerce.app.R;
 import com.ecommerce.app.databinding.FragmentForgotPasswordBinding;
 import com.ecommerce.app.ui.auth.AuthViewModel;
 import com.ecommerce.app.util.NetworkResult;

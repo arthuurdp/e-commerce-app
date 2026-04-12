@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import com.ecommerce.app.R;
 import com.ecommerce.app.databinding.FragmentLoginBinding;
+import com.ecommerce.app.ui.MainActivity;
 import com.ecommerce.app.util.NetworkResult;
 import dagger.hilt.android.AndroidEntryPoint;
 

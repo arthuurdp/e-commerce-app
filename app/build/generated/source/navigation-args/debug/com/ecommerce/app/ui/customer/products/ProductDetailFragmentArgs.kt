@@ -10,7 +10,7 @@ import kotlin.jvm.JvmStatic
 
 public data class ProductDetailFragmentArgs(
   public val productId: Long,
-  public val email: String,
+  public val email: String = "",
 ) : NavArgs {
   public fun toBundle(): Bundle {
     val result = Bundle()
@@ -43,7 +43,7 @@ public data class ProductDetailFragmentArgs(
           throw IllegalArgumentException("Argument \"email\" is marked as non-null but was passed a null value.")
         }
       } else {
-        throw IllegalArgumentException("Required argument \"email\" is missing and does not have an android:defaultValue")
+        __email = ""
       }
       return ProductDetailFragmentArgs(__productId, __email)
     }
@@ -66,7 +66,7 @@ public data class ProductDetailFragmentArgs(
           throw IllegalArgumentException("Argument \"email\" is marked as non-null but was passed a null value")
         }
       } else {
-        throw IllegalArgumentException("Required argument \"email\" is missing and does not have an android:defaultValue")
+        __email = ""
       }
       return ProductDetailFragmentArgs(__productId, __email)
     }

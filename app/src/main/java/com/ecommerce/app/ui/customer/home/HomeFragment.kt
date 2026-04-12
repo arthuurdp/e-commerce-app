@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -21,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.ecommerce.app.R
 import com.ecommerce.app.data.model.category.CategoryResponse
+import com.ecommerce.app.data.model.product.HomeProductsResponse
 import com.ecommerce.app.data.model.product.ProductResponse
 import com.ecommerce.app.databinding.FragmentHomeBinding
 import com.ecommerce.app.ui.customer.products.ProductAdapter
@@ -63,7 +65,7 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: HomeViewModel by viewModels()
+    private val viewModel: HomeViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -93,6 +95,11 @@ class HomeFragment : Fragment() {
         observeLoading()
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.loadCart()
+    }
+
     private fun navigateToSearch(categoryId: Long? = null) {
         val navController = findNavController()
         val navOptions = NavOptions.Builder()
@@ -102,7 +109,7 @@ class HomeFragment : Fragment() {
             .build()
 
         val bundle = bundleOf("categoryId" to (categoryId ?: -1L))
-        navController.navigate(R.id.searchFragment, bundle, navOptions)
+        navController.navigate(R.id.action_homeFragment_to_searchFragment, bundle, navOptions)
     }
 
     private fun observeGreeting() {
@@ -232,18 +239,18 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun buildCategorySections(grouped: Map<CategoryResponse, List<ProductResponse>>) {
+    private fun buildCategorySections(groups: List<HomeProductsResponse>) {
         val container = binding.llCategoriesContainer
         container.removeAllViews()
 
-        grouped.forEach { (category, products) ->
+        groups.forEach { (category, products) ->
             if (products.isEmpty()) return@forEach
 
             val sectionView = layoutInflater.inflate(
                 R.layout.item_category_section, container, false
             )
             sectionView.findViewById<TextView>(R.id.tv_category_name).text = category.name
-            
+
             sectionView.findViewById<View>(R.id.ll_category_header).setOnClickListener {
                 navigateToSearch(category.id)
             }
@@ -263,7 +270,7 @@ class HomeFragment : Fragment() {
 
     private fun setupSwipeRefresh() {
         binding.swipeRefresh.setOnRefreshListener {
-            viewModel.loadAllData()
+            viewModel.refresh()
         }
     }
 

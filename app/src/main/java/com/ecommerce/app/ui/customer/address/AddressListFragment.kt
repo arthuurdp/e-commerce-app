@@ -41,8 +41,12 @@ class AddressListFragment : Fragment() {
 
         adapter = AddressAdapter(
             onEdit = { address ->
-                val action = AddressListFragmentDirections.actionAddressListFragmentToEditAddressFragment(address)
-                findNavController().navigate(action)
+                findNavController().navigate(
+                    R.id.action_addressListFragment_to_editAddressFragment,
+                    Bundle().apply {
+                        putParcelable("address", address)
+                    }
+                )
             },
             onDelete = { address -> viewModel.deleteAddress(address.id) }
         )

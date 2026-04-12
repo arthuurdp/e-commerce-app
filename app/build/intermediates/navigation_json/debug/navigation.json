@@ -1,6 +1,11 @@
 [
   {
-    "name": "nav_graph",
+    "name": "nav_graph_auth",
+    "navigationXmlIds": [],
+    "deepLinks": []
+  },
+  {
+    "name": "nav_graph_home",
     "navigationXmlIds": [],
     "deepLinks": [
       {
@@ -13,15 +18,15 @@
         "query": "orderId\u003d.*",
         "sourceFilePosition": {
           "mSourceFile": {
-            "mDescription": "nav_graph.xml"
+            "mDescription": "nav_graph_home.xml"
           },
           "mSourcePosition": {
-            "mStartLine": 206,
+            "mStartLine": 90,
             "mStartColumn": 8,
-            "mStartOffset": 7230,
-            "mEndLine": 207,
-            "mEndColumn": 70,
-            "mEndOffset": 7311
+            "mStartOffset": 3180,
+            "mEndLine": 90,
+            "mEndColumn": 76,
+            "mEndOffset": 3248
           }
         },
         "isAutoVerify": false,
@@ -37,20 +42,40 @@
         "query": "orderId\u003d.*",
         "sourceFilePosition": {
           "mSourceFile": {
-            "mDescription": "nav_graph.xml"
+            "mDescription": "nav_graph_home.xml"
           },
           "mSourcePosition": {
-            "mStartLine": 220,
+            "mStartLine": 103,
             "mStartColumn": 8,
-            "mStartOffset": 7763,
-            "mEndLine": 221,
-            "mEndColumn": 70,
-            "mEndOffset": 7844
+            "mStartOffset": 3700,
+            "mEndLine": 103,
+            "mEndColumn": 76,
+            "mEndOffset": 3768
           }
         },
         "isAutoVerify": false,
         "action": "android.intent.action.VIEW"
       }
     ]
+  },
+  {
+    "name": "nav_graph_main",
+    "navigationXmlIds": [
+      "nav_graph_auth",
+      "nav_graph_home",
+      "nav_graph_search",
+      "nav_graph_profile"
+    ],
+    "deepLinks": []
+  },
+  {
+    "name": "nav_graph_profile",
+    "navigationXmlIds": [],
+    "deepLinks": []
+  },
+  {
+    "name": "nav_graph_search",
+    "navigationXmlIds": [],
+    "deepLinks": []
   }
 ]

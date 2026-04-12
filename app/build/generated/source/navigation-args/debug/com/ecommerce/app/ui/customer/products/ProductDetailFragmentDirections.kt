@@ -24,13 +24,10 @@ public class ProductDetailFragmentDirections private constructor() {
   }
 
   public companion object {
-    public fun actionProductDetailFragmentToEnterCodeFragment(mode: String = "none", email: String =
-        ""): NavDirections = ActionProductDetailFragmentToEnterCodeFragment(mode, email)
-
-    public fun actionProductDetailFragmentToHomeFragment(): NavDirections =
-        ActionOnlyNavDirections(R.id.action_productDetailFragment_to_homeFragment)
-
     public fun actionProductDetailFragmentToCartFragment(): NavDirections =
         ActionOnlyNavDirections(R.id.action_productDetailFragment_to_cartFragment)
+
+    public fun actionProductDetailFragmentToEnterCodeFragment(mode: String = "none", email: String =
+        ""): NavDirections = ActionProductDetailFragmentToEnterCodeFragment(mode, email)
   }
 }

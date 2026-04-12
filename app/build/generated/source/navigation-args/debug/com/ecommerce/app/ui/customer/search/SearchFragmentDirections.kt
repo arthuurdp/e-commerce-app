@@ -10,7 +10,7 @@ import kotlin.String
 public class SearchFragmentDirections private constructor() {
   private data class ActionSearchFragmentToProductDetailFragment(
     public val productId: Long,
-    public val email: String,
+    public val email: String = "",
   ) : NavDirections {
     public override val actionId: Int = R.id.action_searchFragment_to_productDetailFragment
 
@@ -24,7 +24,7 @@ public class SearchFragmentDirections private constructor() {
   }
 
   public companion object {
-    public fun actionSearchFragmentToProductDetailFragment(productId: Long, email: String):
+    public fun actionSearchFragmentToProductDetailFragment(productId: Long, email: String = ""):
         NavDirections = ActionSearchFragmentToProductDetailFragment(productId, email)
   }
 }

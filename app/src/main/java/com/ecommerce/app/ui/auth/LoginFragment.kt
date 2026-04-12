@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.ecommerce.app.R
 import com.ecommerce.app.databinding.FragmentLoginBinding
+import com.ecommerce.app.ui.MainActivity
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hide
 import com.ecommerce.app.util.hideKeyboard
@@ -93,7 +94,7 @@ class LoginFragment : Fragment() {
                 is NetworkResult.Success -> {
                     binding.btnLogin.isEnabled = true
 
-                    findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                    (requireActivity() as MainActivity).showMainApp()
                 }
                 is NetworkResult.Error -> {
                     binding.btnLogin.isEnabled = true

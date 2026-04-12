@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.ecommerce.app.R
 import com.ecommerce.app.databinding.FragmentChangePasswordEnterNewPasswordBinding
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hideKeyboard
@@ -66,12 +67,14 @@ class ChangePasswordEnterNewPasswordFragment : Fragment() {
                 }
                 is NetworkResult.Success -> {
                     binding.btnSendCode.isEnabled = true
-                    val action = ChangePasswordEnterNewPasswordFragmentDirections
-                        .actionChangePasswordFragmentToEnterCodeFragment(
-                            mode = "change_password",
-                            email = userEmail ?: ""
-                        )
-                    findNavController().navigate(action)
+
+                    findNavController().navigate(
+                        R.id.action_productDetailFragment_to_enterCodeFragment,
+                        Bundle().apply {
+                            putString("mode", "change_password")
+                            putString("email", userEmail ?: "")
+                        }
+                    )
                 }
                 is NetworkResult.Error -> {
                     binding.btnSendCode.isEnabled = true

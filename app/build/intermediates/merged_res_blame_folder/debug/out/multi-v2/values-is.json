@@ -4,6 +4,23 @@
             "outputFile": "com.ecommerce.app-mergeDebugResources-51:/values-is/values-is.xml",
             "map": [
                 {
+                    "source": "C:\\Users\\arthu\\.gradle\\caches\\transforms-3\\51a1c7466766c02a808d17f7c8883145\\transformed\\navigation-ui-2.7.7\\res\\values-is\\values-is.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,158",
+                        "endColumns": "102,113",
+                        "endOffsets": "153,267"
+                    },
+                    "to": {
+                        "startLines": "107,108",
+                        "startColumns": "4,4",
+                        "startOffsets": "9011,9114",
+                        "endColumns": "102,113",
+                        "endOffsets": "9109,9223"
+                    }
+                },
+                {
                     "source": "C:\\Users\\arthu\\.gradle\\caches\\transforms-3\\6a18c43b25ea126ea6a81b668c172e8a\\transformed\\core-1.12.0\\res\\values-is\\values-is.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
@@ -54,23 +71,6 @@
                         "startOffsets": "320,420,517,629,714,815,929,1010,1089,1180,1273,1366,1460,1566,1659,1754,1849,1940,2034,2115,2225,2332,2429,2538,2638,2741,2896,9308",
                         "endColumns": "99,96,111,84,100,113,80,78,90,92,92,93,105,92,94,94,90,93,80,109,106,96,108,99,102,154,97,80",
                         "endOffsets": "415,512,624,709,810,924,1005,1084,1175,1268,1361,1455,1561,1654,1749,1844,1935,2029,2110,2220,2327,2424,2533,2633,2736,2891,2989,9384"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\arthu\\.gradle\\caches\\transforms-3\\fa7145e36d70ea9d0cac6f9315545d4c\\transformed\\navigation-ui-2.7.3\\res\\values-is\\values-is.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,158",
-                        "endColumns": "102,113",
-                        "endOffsets": "153,267"
-                    },
-                    "to": {
-                        "startLines": "107,108",
-                        "startColumns": "4,4",
-                        "startOffsets": "9011,9114",
-                        "endColumns": "102,113",
-                        "endOffsets": "9109,9223"
                     }
                 }
             ]

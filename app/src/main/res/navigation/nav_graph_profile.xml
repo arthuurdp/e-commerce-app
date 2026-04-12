@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_profile"
+    app:startDestination="@id/profileFragment">
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.ecommerce.app.ui.customer.profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile">
+
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_addressListFragment"
+            app:destination="@id/addressListFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_securityFragment"
+            app:destination="@id/securityFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_orderListFragment"
+            app:destination="@id/ordersFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_loginFragment"
+            app:destination="@id/nav_graph_auth"
+            app:popUpTo="@id/nav_graph_profile"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.ecommerce.app.ui.customer.profile.EditProfileFragment"
+        android:label="Edit Profile"
+        tools:layout="@layout/fragment_edit_profile">
+        <action
+            android:id="@+id/action_editProfileFragment_to_changeEmailFragment"
+            app:destination="@id/changeEmailFragment" />
+        <action
+            android:id="@+id/action_editProfileFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addressListFragment"
+        android:name="com.ecommerce.app.ui.customer.address.AddressListFragment"
+        android:label="My Addresses"
+        tools:layout="@layout/fragment_address_list">
+        <action
+            android:id="@+id/action_addressListFragment_to_addAddressFragment"
+            app:destination="@id/addAddressFragment" />
+        <action
+            android:id="@+id/action_addressListFragment_to_editAddressFragment"
+            app:destination="@id/editAddressFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addAddressFragment"
+        android:name="com.ecommerce.app.ui.customer.address.AddAddressFragment"
+        android:label="Add Address"
+        tools:layout="@layout/fragment_add_address" />
+
+    <fragment
+        android:id="@+id/editAddressFragment"
+        android:name="com.ecommerce.app.ui.customer.address.EditAddressFragment"
+        android:label="Edit Address"
+        tools:layout="@layout/fragment_edit_address">
+        <argument
+            android:name="address"
+            app:argType="com.ecommerce.app.data.model.address.AddressResponse" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/securityFragment"
+        android:name="com.ecommerce.app.ui.customer.profile.security.SecurityFragment"
+        android:label="Security"
+        tools:layout="@layout/fragment_security">
+        <action
+            android:id="@+id/action_securityFragment_to_changeEmailFragment"
+            app:destination="@id/changeEmailFragment" />
+        <action
+            android:id="@+id/action_securityFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
+        <action
+            android:id="@+id/action_securityFragment_to_loginFragment"
+            app:destination="@id/nav_graph_auth"
+            app:popUpTo="@id/nav_graph_profile"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/changeEmailFragment"
+        android:name="com.ecommerce.app.ui.customer.profile.security.ChangeEmailEnterNewEmailFragment"
+        android:label="Change Email"
+        tools:layout="@layout/fragment_change_email_enter_new_email">
+        <action
+            android:id="@+id/action_changeEmailFragment_to_enterCodeFragment"
+            app:destination="@id/enterCodeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.ecommerce.app.ui.customer.profile.security.ChangePasswordEnterNewPasswordFragment"
+        android:label="Change Password"
+        tools:layout="@layout/fragment_change_password_enter_new_password">
+        <action
+            android:id="@+id/action_changePasswordFragment_to_enterCodeFragment"
+            app:destination="@id/enterCodeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/enterCodeFragment"
+        android:name="com.ecommerce.app.ui.shared.EnterCodeFragment"
+        android:label="Enter Code"
+        tools:layout="@layout/fragment_enter_code">
+        <argument
+            android:name="mode"
+            android:defaultValue="none"
+            app:argType="string" />
+        <argument
+            android:name="email"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="com.ecommerce.app.ui.customer.orders.OrdersFragment"
+        android:label="My Orders"
+        tools:layout="@layout/fragment_order_list">
+        <action
+            android:id="@+id/action_ordersFragment_to_orderDetailFragment"
+            app:destination="@id/orderDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/orderDetailFragment"
+        android:name="com.ecommerce.app.ui.customer.orders.OrderDetailFragment"
+        android:label="Order Details"
+        tools:layout="@layout/fragment_order_detail">
+        <argument
+            android:name="orderId"
+            app:argType="long" />
+    </fragment>
+
+</navigation>

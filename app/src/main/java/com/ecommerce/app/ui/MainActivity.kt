@@ -1,19 +1,15 @@
 package com.ecommerce.app.ui
 
-import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.ViewGroup
-import android.view.WindowInsetsController
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
-import androidx.core.view.get
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.navOptions
 import com.ecommerce.app.R
 import com.ecommerce.app.databinding.ActivityMainBinding
 import com.ecommerce.app.util.hide
@@ -26,15 +22,10 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var navController: NavController
     private val viewModel: MainViewModel by viewModels()
+    private lateinit var navController: NavController
     private var isKeyboardVisible = false
-
-    private val customerRootDestinations = setOf(
-        R.id.homeFragment,
-        R.id.searchFragment,
-        R.id.profileFragment
-    )
+    private var bottomNavSetup = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,84 +33,60 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val navHostFragment = supportFragmentManager
-            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+            .findFragmentById(R.id.nav_host_main) as NavHostFragment
         navController = navHostFragment.navController
 
-        setupBottomNav()
-        observeSession()
+        binding.bottomNavCustomer.hide()
         setupKeyboardListener()
+        observeSession()
     }
 
-    override fun onNewIntent(intent: Intent) {
-        super.onNewIntent(intent)
-        setIntent(intent)
-        navController.handleDeepLink(intent)
+    private fun observeSession() {
+        lifecycleScope.launch {
+            viewModel.isLoggedIn.collect { isLoggedIn ->
+                isLoggedIn ?: return@collect
+                if (isLoggedIn) showMainApp() else showAuth()
+            }
+        }
+    }
+
+    private fun showAuth() {
+        binding.bottomNavCustomer.hide()
+        if (navController.currentDestination?.parent?.id != R.id.nav_graph_auth) {
+            navController.navigate(
+                R.id.nav_graph_auth,
+                null,
+                navOptions {
+                    popUpTo(R.id.nav_graph_main) { inclusive = true }
+                }
+            )
+        }
+    }
+
+    fun showMainApp() {
+        binding.bottomNavCustomer.show()
+        if (navController.currentDestination?.parent?.id == R.id.nav_graph_auth) {
+            navController.navigate(
+                R.id.nav_graph_home,
+                null,
+                navOptions {
+                    popUpTo(R.id.nav_graph_auth) { inclusive = true }
+                    launchSingleTop = true
+                }
+            )
+        }
+        if (!bottomNavSetup) {
+            setupBottomNav()
+            bottomNavSetup = true
+        }
     }
 
     private fun setupBottomNav() {
-
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            handleBottomNavVisibility(destination.id)
-            updateBottomNavScale(binding.bottomNavCustomer, destination.id)
-
-            if (destination.id in customerRootDestinations) {
-                binding.bottomNavCustomer.menu.findItem(destination.id)?.isChecked = true
-            }
-        }
-
-        binding.bottomNavCustomer.setOnItemSelectedListener { item ->
-            val currentId = navController.currentDestination?.id
-
-            if (currentId == item.itemId) return@setOnItemSelectedListener true
-
-            when (item.itemId) {
-                R.id.homeFragment -> {
-                    navController.navigate(
-                        R.id.homeFragment,
-                        null,
-                        androidx.navigation.NavOptions.Builder()
-                            .setPopUpTo(R.id.homeFragment, inclusive = false, saveState = false)
-                            .setLaunchSingleTop(true)
-                            .build()
-                    )
-                    true
-                }
-                R.id.searchFragment -> {
-                    navController.navigate(
-                        R.id.searchFragment,
-                        null,
-                        androidx.navigation.NavOptions.Builder()
-                            .setPopUpTo(R.id.homeFragment, inclusive = false, saveState = true)
-                            .setLaunchSingleTop(true)
-                            .setRestoreState(true)
-                            .build()
-                    )
-                    true
-                }
-                R.id.profileFragment -> {
-                    navController.navigate(
-                        R.id.profileFragment,
-                        null,
-                        androidx.navigation.NavOptions.Builder()
-                            .setPopUpTo(R.id.homeFragment, inclusive = false, saveState = true)
-                            .setLaunchSingleTop(true)
-                            .setRestoreState(true)
-                            .build()
-                    )
-                    true
-                }
-                else -> false
-            }
-        }
-    }
-
-    private fun handleBottomNavVisibility(currentDestinationId: Int) {
-        val isRootDestination = currentDestinationId in customerRootDestinations
-        if (isRootDestination && !isKeyboardVisible) {
-            binding.bottomNavCustomer.show()
-        } else {
-            binding.bottomNavCustomer.hide()
-        }
+        binding.bottomNavCustomer.selectedItemId = R.id.nav_graph_home
+        NavigationUI.setupWithNavController(
+            binding.bottomNavCustomer,
+            navController
+        )
     }
 
     private fun setupKeyboardListener() {
@@ -132,31 +99,24 @@ class MainActivity : AppCompatActivity() {
 
             if (currentlyVisible != isKeyboardVisible) {
                 isKeyboardVisible = currentlyVisible
-                navController.currentDestination?.id?.let { handleBottomNavVisibility(it) }
+                if (isKeyboardVisible) binding.bottomNavCustomer.hide()
+                else if (navController.currentDestination?.parent?.id != R.id.nav_graph_auth) {
+                    binding.bottomNavCustomer.show()
+                }
             }
         }
     }
 
     private fun updateBottomNavScale(navView: BottomNavigationView, selectedId: Int) {
-        val menuView = navView.get(0) as ViewGroup
+        val menuView = navView.getChildAt(0) as ViewGroup
         for (i in 0 until menuView.childCount) {
-            val itemView = menuView.get(i)
+            val itemView = menuView.getChildAt(i)
             val isSelected = navView.menu.getItem(i).itemId == selectedId
             itemView.animate()
                 .scaleX(if (isSelected) 1.2f else 1.0f)
                 .scaleY(if (isSelected) 1.2f else 1.0f)
                 .setDuration(200)
                 .start()
-        }
-    }
-
-    private fun observeSession() {
-        lifecycleScope.launch {
-            viewModel.startDestination.collect { destination ->
-                val navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
-                navGraph.setStartDestination(destination)
-                navController.graph = navGraph
-            }
         }
     }
 

@@ -2,6 +2,9 @@ package com.ecommerce.app.util
 
 import android.content.Context
 import android.content.res.ColorStateList
+import android.os.Build
+import android.os.Bundle
+import android.os.Parcelable
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
@@ -21,6 +24,15 @@ fun Fragment.hideKeyboard() {
     val view = activity?.currentFocus ?: view
     imm.hideSoftInputFromWindow(view?.windowToken, 0)
     view?.clearFocus()
+}
+
+fun <T : Parcelable> Bundle.getParcelableCompat(key: String, clazz: Class<T>): T? {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        getParcelable(key, clazz)
+    } else {
+        @Suppress("DEPRECATION")
+        getParcelable(key)
+    }
 }
 
 fun Double.toCurrency(): String = "R$ %.2f".format(this)

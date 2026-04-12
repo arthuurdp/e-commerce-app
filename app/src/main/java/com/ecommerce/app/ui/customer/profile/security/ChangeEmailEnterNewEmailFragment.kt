@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.ecommerce.app.R
 import com.ecommerce.app.databinding.FragmentChangeEmailEnterNewEmailBinding
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hideKeyboard
@@ -61,12 +62,13 @@ class ChangeEmailEnterNewEmailFragment : Fragment() {
                 }
                 is NetworkResult.Success -> {
                     binding.btnSendCode.isEnabled = true
-                    val action = ChangeEmailEnterNewEmailFragmentDirections
-                        .actionChangeEmailFragmentToEnterCodeFragment(
-                            mode = "change_email",
-                            email = binding.etNewEmail.text.toString().trim()
-                        )
-                    findNavController().navigate(action)
+                    findNavController().navigate(
+                        R.id.action_productDetailFragment_to_enterCodeFragment,
+                        Bundle().apply {
+                            putString("mode", "change_email")
+                            putString("email", binding.etNewEmail.text.toString().trim())
+                        }
+                    )
                 }
                 is NetworkResult.Error -> {
                     binding.btnSendCode.isEnabled = true

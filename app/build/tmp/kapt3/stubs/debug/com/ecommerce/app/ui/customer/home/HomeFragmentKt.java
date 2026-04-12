@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 import com.ecommerce.app.R;
 import com.ecommerce.app.data.model.category.CategoryResponse;
+import com.ecommerce.app.data.model.product.HomeProductsResponse;
 import com.ecommerce.app.data.model.product.ProductResponse;
 import com.ecommerce.app.databinding.FragmentHomeBinding;
 import com.ecommerce.app.ui.customer.products.ProductAdapter;

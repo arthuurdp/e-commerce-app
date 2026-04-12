@@ -8,6 +8,7 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.ecommerce.app.R
 import com.ecommerce.app.databinding.FragmentForgotPasswordBinding
 import com.ecommerce.app.ui.auth.AuthViewModel
 import com.ecommerce.app.util.NetworkResult
@@ -48,6 +49,7 @@ class ForgotPasswordEnterEmailFragment : Fragment() {
 
         binding.btnSendCode.setOnClickListener {
             attemptSendCode()
+            hideKeyboard()
         }
 
         observeStates()
@@ -72,12 +74,14 @@ class ForgotPasswordEnterEmailFragment : Fragment() {
                 is NetworkResult.Success -> {
                     binding.progressBar.hide()
                     val email = binding.etEmail.text.toString().trim()
-                    val action = ForgotPasswordEnterEmailFragmentDirections
-                        .actionForgotPasswordFragmentToEnterCodeFragment(
-                            mode = "forgot_password",
-                            email = email
-                        )
-                    findNavController().navigate(action)
+
+                    findNavController().navigate(
+                        R.id.action_forgotPasswordFragment_to_enterCodeFragment,
+                        Bundle().apply {
+                            putString("mode", "forgot_password")
+                            putString("email", email)
+                        }
+                    )
                 }
                 is NetworkResult.Error -> {
                     binding.progressBar.hide()

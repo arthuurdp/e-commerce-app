@@ -47,6 +47,8 @@ class ForgotPasswordResetPasswordFragment : Fragment() {
             } else {
                 setFieldError(requireContext(), binding.tilNewPassword, "Enter your new password")
             }
+
+            hideKeyboard()
         }
 
         observeViewModel()

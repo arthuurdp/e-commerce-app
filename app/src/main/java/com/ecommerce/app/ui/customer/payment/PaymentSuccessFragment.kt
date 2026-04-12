@@ -21,7 +21,6 @@ class PaymentSuccessFragment : Fragment() {
 
     private var _binding: FragmentPaymentSuccessBinding? = null
     private val binding get() = _binding!!
-    private val args: PaymentSuccessFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

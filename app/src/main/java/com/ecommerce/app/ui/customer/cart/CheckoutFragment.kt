@@ -13,6 +13,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.ecommerce.app.R
 import com.ecommerce.app.data.model.address.AddressResponse
 import com.ecommerce.app.data.model.order.CheckoutRequest
 import com.ecommerce.app.data.model.shipping.FreightResponse
@@ -206,8 +207,10 @@ class CheckoutFragment : Fragment() {
 
                     startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(checkoutUrl)))
                     findNavController().navigate(
-                        CheckoutFragmentDirections
-                            .actionCheckoutFragmentToPaymentWaitingFragment(orderId)
+                        R.id.action_checkoutFragment_to_paymentWaitingFragment,
+                        Bundle().apply {
+                            putLong("orderId", orderId)
+                        }
                     )
                 }
                 is NetworkResult.Error -> {

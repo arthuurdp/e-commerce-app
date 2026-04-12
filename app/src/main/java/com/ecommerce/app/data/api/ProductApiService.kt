@@ -15,6 +15,11 @@ interface ProductApiService {
         @Query("categoryIds") categoryIds: List<Long>? = null
     ): Response<PageResponse<ProductResponse>>
 
+    @GET("products/home")
+    suspend fun getHomeProducts(
+        @Query("productsPerCategory") productsPerCategory: Int = 10
+    ): Response<List<HomeProductsResponse>>
+
     @GET("products/{id}")
     suspend fun getProductById(@Path("id") id: Long): Response<ProductDetailsResponse>
 
