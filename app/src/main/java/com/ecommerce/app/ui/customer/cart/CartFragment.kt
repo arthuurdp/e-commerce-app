@@ -1,10 +1,14 @@
 package com.ecommerce.app.ui.customer.cart
 
 import android.app.AlertDialog
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -112,24 +116,28 @@ class CartFragment : Fragment() {
     }
 
     private fun showAddAddressDialog() {
-        val dialogView = layoutInflater.inflate(R.layout.dialog_add_first_address, null)
-        val builder = AlertDialog.Builder(requireContext(), R.style.App_Dialog_Rounded)
-            .setView(dialogView)
-            .setCancelable(true)
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.dialog_add_first_address)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.setLayout(
+            (resources.displayMetrics.widthPixels * 0.80).toInt(),
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
 
-        val dialog = builder.create()
-
-        dialogView.findViewById<TextView>(R.id.btnCancel).setOnClickListener {
+        dialog.findViewById<View>(R.id.btnCancel).setOnClickListener {
             dialog.dismiss()
         }
 
-        dialogView.findViewById<TextView>(R.id.btnConfirm).setOnClickListener {
+        dialog.findViewById<View>(R.id.btnConfirm).setOnClickListener {
             dialog.dismiss()
-            findNavController().navigate(R.id.addAddressFragment)
+            findNavController().navigate(R.id.action_cartFragment_to_addAddressFragment)
         }
 
         dialog.show()
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()

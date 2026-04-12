@@ -78,7 +78,7 @@ class SecurityFragment : Fragment() {
         dialog.setContentView(R.layout.dialog_delete_account)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.window?.setLayout(
-            (resources.displayMetrics.widthPixels * 0.85).toInt(),
+            (resources.displayMetrics.widthPixels * 0.80).toInt(),
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
 

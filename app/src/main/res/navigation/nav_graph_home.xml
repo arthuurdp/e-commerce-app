@@ -57,7 +57,18 @@
         <action
             android:id="@+id/action_cartFragment_to_checkoutFragment"
             app:destination="@id/checkoutFragment" />
+
+        <action
+            android:id="@+id/action_cartFragment_to_addAddressFragment"
+            app:destination="@id/addAddressFragment" />
+
     </fragment>
+
+    <fragment
+        android:id="@+id/addAddressFragment"
+        android:name="com.ecommerce.app.ui.customer.address.AddAddressFragment"
+        android:label="Add Address"
+        tools:layout="@layout/fragment_add_address" />
 
     <fragment
         android:id="@+id/checkoutFragment"

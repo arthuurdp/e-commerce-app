@@ -48,6 +48,10 @@
         "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_search.xml"
     },
     {
+        "merged": "com.ecommerce.app-mergeDebugResources-52:/layout/dialog_verify_email.xml",
+        "source": "com.ecommerce.app-main-55:/layout/dialog_verify_email.xml"
+    },
+    {
         "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-52:\\layout\\fragment_add_address.xml",
         "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_add_address.xml"
     },
@@ -92,16 +96,16 @@
         "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\item_category_chip.xml"
     },
     {
+        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-52:\\layout\\dialog_add_more_products.xml",
+        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\dialog_add_more_products.xml"
+    },
+    {
         "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-52:\\layout\\item_order.xml",
         "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\item_order.xml"
     },
     {
         "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-52:\\layout\\activity_main.xml",
         "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\activity_main.xml"
-    },
-    {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-52:\\layout\\dialog_add_more_products.xml",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\dialog_add_more_products.xml"
     },
     {
         "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-52:\\layout\\fragment_edit_address.xml",
@@ -146,9 +150,5 @@
     {
         "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-52:\\layout\\fragment_product_detail.xml",
         "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_product_detail.xml"
-    },
-    {
-        "merged": "com.ecommerce.app-mergeDebugResources-52:/layout/fragment_add_address.xml",
-        "source": "com.ecommerce.app-main-55:/layout/fragment_add_address.xml"
     }
 ]

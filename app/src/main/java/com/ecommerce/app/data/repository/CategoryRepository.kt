@@ -2,8 +2,6 @@ package com.ecommerce.app.data.repository
 
 import com.ecommerce.app.data.api.CategoryApiService
 import com.ecommerce.app.data.model.category.CategoryResponse
-import com.ecommerce.app.data.model.category.CreateCategoryRequest
-import com.ecommerce.app.data.model.category.UpdateCategoryRequest
 import com.ecommerce.app.data.model.util.PageResponse
 import com.ecommerce.app.util.NetworkResult
 import javax.inject.Inject

@@ -136,12 +136,12 @@
         "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\drawable\\img_female.xml"
     },
     {
-        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\color_nav_item_tint.xml.flat",
-        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\color\\nav_item_tint.xml"
-    },
-    {
         "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\layout_fragment_order_detail.xml.flat",
         "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_order_detail.xml"
+    },
+    {
+        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\color_nav_item_tint.xml.flat",
+        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\color\\nav_item_tint.xml"
     },
     {
         "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\drawable_bg_dot_inactive.xml.flat",
@@ -150,6 +150,10 @@
     {
         "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\layout_item_product_search.xml.flat",
         "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\item_product_search.xml"
+    },
+    {
+        "merged": "com.ecommerce.app-merged_res-53:/layout_dialog_verify_email.xml.flat",
+        "source": "com.ecommerce.app-main-55:/layout/dialog_verify_email.xml"
     },
     {
         "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\drawable_img_delete_account.xml.flat",
@@ -278,10 +282,6 @@
     {
         "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\layout_fragment_payment_waiting.xml.flat",
         "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_payment_waiting.xml"
-    },
-    {
-        "merged": "com.ecommerce.app-merged_res-53:/layout_fragment_add_address.xml.flat",
-        "source": "com.ecommerce.app-main-55:/layout/fragment_add_address.xml"
     },
     {
         "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\layout_item_category_chip.xml.flat",
