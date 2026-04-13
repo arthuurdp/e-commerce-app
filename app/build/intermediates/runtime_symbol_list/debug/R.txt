@@ -3371,8 +3371,10 @@ int id card_category 0x7f0900a2
 int id card_change_email 0x7f0900a3
 int id card_change_password 0x7f0900a4
 int id card_delete_account 0x7f0900a5
+int id card_order_summary 0x7f0902d9
 int id carryVelocity 0x7f0900a6
 int id cartFragment 0x7f0900a7
+int id category_container 0x7f0902dd
 int id center 0x7f0900a8
 int id centerCrop 0x7f0900a9
 int id centerInside 0x7f0900aa
@@ -3550,6 +3552,7 @@ int id labeled 0x7f090155
 int id layout 0x7f090156
 int id layout_cart_footer 0x7f090157
 int id layout_empty_state 0x7f090158
+int id layout_loading 0x7f0902da
 int id layout_no_results 0x7f090159
 int id layout_order_footer 0x7f09015a
 int id layout_results 0x7f09015b
@@ -3736,6 +3739,7 @@ int id scroll 0x7f09020f
 int id scrollIndicatorDown 0x7f090210
 int id scrollIndicatorUp 0x7f090211
 int id scrollView 0x7f090212
+int id scroll_content 0x7f0902db
 int id scroll_view 0x7f090213
 int id scrollable 0x7f090214
 int id searchFragment 0x7f090215
@@ -3893,6 +3897,7 @@ int id tv_name 0x7f0902ac
 int id tv_no_results_query 0x7f0902ad
 int id tv_order_id 0x7f0902ae
 int id tv_price 0x7f0902af
+int id tv_price_quantity 0x7f0902dc
 int id tv_product_name 0x7f0902b0
 int id tv_product_price 0x7f0902b1
 int id tv_qty 0x7f0902b2
@@ -4099,6 +4104,7 @@ int layout item_banner 0x7f0c004b
 int layout item_cart 0x7f0c004c
 int layout item_category_chip 0x7f0c004d
 int layout item_category_section 0x7f0c004e
+int layout item_checkout_image 0x7f0c0090
 int layout item_order 0x7f0c004f
 int layout item_order_line 0x7f0c0050
 int layout item_product 0x7f0c0051

@@ -148,7 +148,9 @@ id card_category
 id card_change_email
 id card_change_password
 id card_delete_account
+id card_order_summary
 id cartFragment
+id category_container
 id changeEmailFragment
 id changePasswordFragment
 id checkoutFragment
@@ -195,6 +197,7 @@ id iv_password_chevron
 id iv_product
 id layout_cart_footer
 id layout_empty_state
+id layout_loading
 id layout_no_results
 id layout_order_footer
 id layout_results
@@ -232,6 +235,7 @@ id rv_category_products
 id rv_items
 id rv_orders
 id rv_search_results
+id scroll_content
 id scroll_view
 id searchFragment
 id securityFragment
@@ -289,6 +293,7 @@ id tv_name
 id tv_no_results_query
 id tv_order_id
 id tv_price
+id tv_price_quantity
 id tv_product_name
 id tv_product_price
 id tv_qty
@@ -339,6 +344,7 @@ layout item_banner
 layout item_cart
 layout item_category_chip
 layout item_category_section
+layout item_checkout_image
 layout item_order
 layout item_order_line
 layout item_product

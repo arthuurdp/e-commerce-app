@@ -30,6 +30,9 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final AppBarLayout appBar;
 
   @NonNull
+  public final LinearLayout categoryContainer;
+
+  @NonNull
   public final LinearLayout contentLayout;
 
   @NonNull
@@ -75,15 +78,17 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final ViewPager2 vpBanner;
 
   private FragmentHomeBinding(@NonNull CoordinatorLayout rootView, @NonNull AppBarLayout appBar,
-      @NonNull LinearLayout contentLayout, @NonNull FrameLayout flCartContainer,
-      @NonNull ImageView ivCart, @NonNull LinearLayout llCategoriesContainer,
-      @NonNull LinearLayout llCategoryHeader, @NonNull LinearLayout llCategoryTiles,
-      @NonNull LinearLayout llDots, @NonNull LinearLayout llGreeting,
-      @NonNull ProgressBar progressBar, @NonNull SwipeRefreshLayout swipeRefresh,
-      @NonNull TextView tvCartBadge, @NonNull TextView tvCategoryName,
-      @NonNull TextView tvFirstName, @NonNull TextView tvHi, @NonNull ViewPager2 vpBanner) {
+      @NonNull LinearLayout categoryContainer, @NonNull LinearLayout contentLayout,
+      @NonNull FrameLayout flCartContainer, @NonNull ImageView ivCart,
+      @NonNull LinearLayout llCategoriesContainer, @NonNull LinearLayout llCategoryHeader,
+      @NonNull LinearLayout llCategoryTiles, @NonNull LinearLayout llDots,
+      @NonNull LinearLayout llGreeting, @NonNull ProgressBar progressBar,
+      @NonNull SwipeRefreshLayout swipeRefresh, @NonNull TextView tvCartBadge,
+      @NonNull TextView tvCategoryName, @NonNull TextView tvFirstName, @NonNull TextView tvHi,
+      @NonNull ViewPager2 vpBanner) {
     this.rootView = rootView;
     this.appBar = appBar;
+    this.categoryContainer = categoryContainer;
     this.contentLayout = contentLayout;
     this.flCartContainer = flCartContainer;
     this.ivCart = ivCart;
@@ -131,6 +136,12 @@ public final class FragmentHomeBinding implements ViewBinding {
       id = R.id.app_bar;
       AppBarLayout appBar = ViewBindings.findChildViewById(rootView, id);
       if (appBar == null) {
+        break missingId;
+      }
+
+      id = R.id.category_container;
+      LinearLayout categoryContainer = ViewBindings.findChildViewById(rootView, id);
+      if (categoryContainer == null) {
         break missingId;
       }
 
@@ -224,10 +235,10 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentHomeBinding((CoordinatorLayout) rootView, appBar, contentLayout,
-          flCartContainer, ivCart, llCategoriesContainer, llCategoryHeader, llCategoryTiles, llDots,
-          llGreeting, progressBar, swipeRefresh, tvCartBadge, tvCategoryName, tvFirstName, tvHi,
-          vpBanner);
+      return new FragmentHomeBinding((CoordinatorLayout) rootView, appBar, categoryContainer,
+          contentLayout, flCartContainer, ivCart, llCategoriesContainer, llCategoryHeader,
+          llCategoryTiles, llDots, llGreeting, progressBar, swipeRefresh, tvCartBadge,
+          tvCategoryName, tvFirstName, tvHi, vpBanner);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

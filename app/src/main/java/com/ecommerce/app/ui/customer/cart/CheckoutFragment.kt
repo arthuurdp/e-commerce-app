@@ -3,7 +3,6 @@ package com.ecommerce.app.ui.customer.cart
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,8 +12,10 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.ecommerce.app.R
 import com.ecommerce.app.data.model.address.AddressResponse
+import com.ecommerce.app.data.model.cart.CartResponse
 import com.ecommerce.app.data.model.order.CheckoutRequest
 import com.ecommerce.app.data.model.shipping.FreightResponse
 import com.ecommerce.app.databinding.FragmentCheckoutBinding
@@ -36,6 +37,7 @@ class CheckoutFragment : Fragment() {
     private var addresses = listOf<AddressResponse>()
     private var freightOptions = listOf<FreightResponse>()
     private var cartSubtotal = 0.0
+    private var initialFreightLoaded = false
 
     private val currencyFormat = NumberFormat.getCurrencyInstance(Locale("pt", "BR"))
 
@@ -50,20 +52,33 @@ class CheckoutFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnBack.setOnClickListener {
-            findNavController().popBackStack()
-        }
+        binding.layoutLoading.show()
+        binding.scrollContent.hide()
+
+        binding.btnBack.setOnClickListener { findNavController().popBackStack() }
 
         setupPaymentMethods()
         setupAddressSpinnerListener()
         observeCart()
         observeAddresses()
         observeFreight()
-        observeCheckout()
 
         viewModel.loadInitialData()
 
         binding.btnPlaceOrder.setOnClickListener { placeOrder() }
+    }
+    private fun checkIfInitialDataReady() {
+        val cartReady = viewModel.cartState.value is NetworkResult.Success
+                || viewModel.cartState.value is NetworkResult.Error
+        val addressReady = viewModel.addressesState.value is NetworkResult.Success
+                || viewModel.addressesState.value is NetworkResult.Error
+        val freightReady = viewModel.freightState.value is NetworkResult.Success
+                || viewModel.freightState.value is NetworkResult.Error
+
+        if (cartReady && addressReady && freightReady) {
+            binding.layoutLoading.hide()
+            binding.scrollContent.show()
+        }
     }
 
     private data class PaymentMethod(val label: String, val value: String)
@@ -86,8 +101,14 @@ class CheckoutFragment : Fragment() {
             override fun onItemSelected(parent: AdapterView<*>, v: View?, pos: Int, id: Long) {
                 val address = addresses.getOrNull(pos) ?: return
                 val postalCode = address.postalCode?.replace("-", "")?.trim().orEmpty()
-                android.util.Log.d("Checkout", "Selected address postalCode: '$postalCode' length: ${postalCode.length}")
-                if (postalCode.length == 8) viewModel.loadFreight(postalCode)
+                if (postalCode.length == 8) {
+                    viewModel.loadFreight(postalCode)
+                } else {
+                    if (!initialFreightLoaded) {
+                        initialFreightLoaded = true
+                        checkIfInitialDataReady()
+                    }
+                }
             }
             override fun onNothingSelected(parent: AdapterView<*>) {}
         }
@@ -96,16 +117,16 @@ class CheckoutFragment : Fragment() {
     private fun observeCart() {
         viewModel.cartState.observe(viewLifecycleOwner) { result ->
             when (result) {
-                is NetworkResult.Loading -> binding.progressBar.show()
+                is NetworkResult.Loading -> Unit
                 is NetworkResult.Success -> {
-                    binding.progressBar.hide()
                     cartSubtotal = result.data.total
                     buildOrderItemsView(result.data)
                     updateTotals()
+                    checkIfInitialDataReady()
                 }
                 is NetworkResult.Error -> {
-                    binding.progressBar.hide()
                     showToast(result.message)
+                    checkIfInitialDataReady()
                 }
             }
         }
@@ -114,25 +135,25 @@ class CheckoutFragment : Fragment() {
     private fun observeAddresses() {
         viewModel.addressesState.observe(viewLifecycleOwner) { result ->
             when (result) {
-                is NetworkResult.Loading -> binding.progressBar.show()
+                is NetworkResult.Loading -> Unit
                 is NetworkResult.Success -> {
-                    binding.progressBar.hide()
                     addresses = result.data.content
                     if (addresses.isEmpty()) {
                         showToast("Please add a delivery address first")
                         binding.btnPlaceOrder.isEnabled = false
-                        return@observe
+                    } else {
+                        val labels = addresses.map { "${it.name} — ${it.street}, ${it.number}" }
+                        binding.spinnerAddress.adapter = ArrayAdapter(
+                            requireContext(),
+                            android.R.layout.simple_spinner_dropdown_item,
+                            labels
+                        )
                     }
-                    val labels = addresses.map { "${it.name} — ${it.street}, ${it.number}" }
-                    binding.spinnerAddress.adapter = ArrayAdapter(
-                        requireContext(),
-                        android.R.layout.simple_spinner_dropdown_item,
-                        labels
-                    )
+                    checkIfInitialDataReady()
                 }
                 is NetworkResult.Error -> {
-                    binding.progressBar.hide()
                     showToast(result.message)
+                    checkIfInitialDataReady()
                 }
             }
         }
@@ -141,104 +162,71 @@ class CheckoutFragment : Fragment() {
     private fun observeFreight() {
         viewModel.freightState.observe(viewLifecycleOwner) { result ->
             when (result) {
-                is NetworkResult.Loading -> {
-                    binding.tvFreightLabel.hide()
-                    binding.spinnerFreight.hide()
-                    binding.tvFreightCost.text = "—"
-                    updateTotals()
-                }
+                is NetworkResult.Loading -> Unit
                 is NetworkResult.Success -> {
                     freightOptions = result.data
                     if (freightOptions.isEmpty()) {
                         binding.tvFreightLabel.hide()
                         binding.spinnerFreight.hide()
+                        binding.cardOrderSummary.hide()
+                        binding.btnPlaceOrder.hide()
                         binding.tvFreightCost.text = "—"
-                        updateTotals()
-                        return@observe
-                    }
-
-                    val labels = freightOptions.map {
-                        "${it.name} — ${currencyFormat.format(it.price)} (${it.deliveryDays}d)"
-                    }
-                    binding.spinnerFreight.adapter = ArrayAdapter(
-                        requireContext(),
-                        android.R.layout.simple_spinner_dropdown_item,
-                        labels
-                    )
-
-                    binding.spinnerFreight.onItemSelectedListener =
-                        object : AdapterView.OnItemSelectedListener {
-                            override fun onItemSelected(
-                                parent: AdapterView<*>, v: View?, pos: Int, id: Long
-                            ) { updateTotals() }
-                            override fun onNothingSelected(parent: AdapterView<*>) {}
+                    } else {
+                        val labels = freightOptions.map {
+                            "${it.name} — ${currencyFormat.format(it.price)} (${it.deliveryDays}d)"
                         }
-
-                    binding.tvFreightLabel.show()
-                    binding.spinnerFreight.show()
-                    updateTotals()
+                        binding.spinnerFreight.adapter = ArrayAdapter(
+                            requireContext(),
+                            android.R.layout.simple_spinner_dropdown_item,
+                            labels
+                        )
+                        binding.spinnerFreight.onItemSelectedListener =
+                            object : AdapterView.OnItemSelectedListener {
+                                override fun onItemSelected(
+                                    parent: AdapterView<*>, v: View?, pos: Int, id: Long
+                                ) { updateTotals() }
+                                override fun onNothingSelected(parent: AdapterView<*>) {}
+                            }
+                        binding.tvFreightLabel.show()
+                        binding.spinnerFreight.show()
+                        binding.cardOrderSummary.show()
+                        binding.btnPlaceOrder.show()
+                        updateTotals()
+                    }
+                    checkIfInitialDataReady()
                 }
                 is NetworkResult.Error -> {
                     freightOptions = emptyList()
                     binding.tvFreightLabel.hide()
                     binding.spinnerFreight.hide()
+                    binding.cardOrderSummary.hide()
+                    binding.btnPlaceOrder.hide()
                     binding.tvFreightCost.text = "—"
-                    updateTotals()
+                    checkIfInitialDataReady()
                 }
             }
         }
     }
 
-    private fun observeCheckout() {
-        viewModel.checkoutState.observe(viewLifecycleOwner) { result ->
-            result ?: return@observe
-            when (result) {
-                is NetworkResult.Loading -> {
-                    binding.progressBar.show()
-                    binding.btnPlaceOrder.isEnabled = false
-                }
-                is NetworkResult.Success -> {
-                    binding.progressBar.hide()
-                    binding.btnPlaceOrder.isEnabled = true
-
-                    val checkoutUrl = result.data.checkoutUrl
-                    val orderId = result.data.orderId
-
-                    viewModel.onCheckoutHandled()
-
-                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(checkoutUrl)))
-                    findNavController().navigate(
-                        R.id.action_checkoutFragment_to_paymentWaitingFragment,
-                        Bundle().apply {
-                            putLong("orderId", orderId)
-                        }
-                    )
-                }
-                is NetworkResult.Error -> {
-                    binding.progressBar.hide()
-                    binding.btnPlaceOrder.isEnabled = true
-                    viewModel.onCheckoutHandled()
-                    showToast(result.message)
-                }
-            }
-        }
-    }
-
-    private fun buildOrderItemsView(cart: com.ecommerce.app.data.model.cart.CartResponse) {
+    private fun buildOrderItemsView(cart: CartResponse) {
         val container = binding.llOrderItems
         container.removeAllViews()
         cart.items.forEach { item ->
-            val row = layoutInflater.inflate(
-                android.R.layout.simple_list_item_2, container, false
-            )
-            row.findViewById<TextView>(android.R.id.text1).apply {
-                text = "${item.quantity}× ${item.name}"
-                textSize = 14f
-            }
-            row.findViewById<TextView>(android.R.id.text2).apply {
-                text = currencyFormat.format(item.subtotal)
-                textSize = 13f
-            }
+            val row = layoutInflater.inflate(R.layout.item_checkout_image, container, false)
+
+            row.findViewById<TextView>(R.id.tv_name).text = "${item.name}"
+
+            row.findViewById<TextView>(R.id.tv_price_quantity).text =
+                "${item.quantity} × ${currencyFormat.format(item.price)}"
+
+            row.findViewById<TextView>(R.id.tv_subtotal).text =
+                currencyFormat.format(item.subtotal)
+
+            Glide.with(this)
+                .load(item.imageUrl)
+                .centerCrop()
+                .into(row.findViewById(R.id.iv_product))
+
             container.addView(row)
         }
     }
@@ -275,7 +263,8 @@ class CheckoutFragment : Fragment() {
         viewModel.checkout(
             CheckoutRequest(
                 addressId = selectedAddress.id,
-                paymentMethod = paymentMethod
+                paymentMethod = paymentMethod,
+                freightServiceId = selectedFreight?.serviceId ?: 0
             )
         )
     }

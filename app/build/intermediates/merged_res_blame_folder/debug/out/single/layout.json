@@ -48,10 +48,6 @@
         "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_search.xml"
     },
     {
-        "merged": "com.ecommerce.app-mergeDebugResources-52:/layout/dialog_verify_email.xml",
-        "source": "com.ecommerce.app-main-55:/layout/dialog_verify_email.xml"
-    },
-    {
         "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-52:\\layout\\fragment_add_address.xml",
         "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_add_address.xml"
     },
@@ -132,6 +128,10 @@
         "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_forgot_password.xml"
     },
     {
+        "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-52:\\layout\\item_checkout_image.xml",
+        "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\item_checkout_image.xml"
+    },
+    {
         "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-52:\\layout\\fragment_change_email_enter_new_email.xml",
         "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_change_email_enter_new_email.xml"
     },
@@ -142,6 +142,10 @@
     {
         "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-52:\\layout\\fragment_register.xml",
         "source": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_register.xml"
+    },
+    {
+        "merged": "com.ecommerce.app-mergeDebugResources-52:/layout/fragment_home.xml",
+        "source": "com.ecommerce.app-main-55:/layout/fragment_home.xml"
     },
     {
         "merged": "C:\\Users\\arthu\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-52:\\layout\\item_cart.xml",

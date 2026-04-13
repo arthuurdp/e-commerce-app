@@ -4,6 +4,7 @@ package com.ecommerce.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -12,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.ecommerce.app.R;
@@ -22,7 +24,7 @@ import java.lang.String;
 
 public final class FragmentCheckoutBinding implements ViewBinding {
   @NonNull
-  private final ScrollView rootView;
+  private final FrameLayout rootView;
 
   @NonNull
   public final ImageButton btnBack;
@@ -31,10 +33,19 @@ public final class FragmentCheckoutBinding implements ViewBinding {
   public final MaterialButton btnPlaceOrder;
 
   @NonNull
+  public final CardView cardOrderSummary;
+
+  @NonNull
+  public final LinearLayout layoutLoading;
+
+  @NonNull
   public final LinearLayout llOrderItems;
 
   @NonNull
   public final ProgressBar progressBar;
+
+  @NonNull
+  public final ScrollView scrollContent;
 
   @NonNull
   public final Spinner spinnerAddress;
@@ -57,17 +68,21 @@ public final class FragmentCheckoutBinding implements ViewBinding {
   @NonNull
   public final TextView tvTotal;
 
-  private FragmentCheckoutBinding(@NonNull ScrollView rootView, @NonNull ImageButton btnBack,
-      @NonNull MaterialButton btnPlaceOrder, @NonNull LinearLayout llOrderItems,
-      @NonNull ProgressBar progressBar, @NonNull Spinner spinnerAddress,
-      @NonNull Spinner spinnerFreight, @NonNull Spinner spinnerPayment,
-      @NonNull TextView tvFreightCost, @NonNull TextView tvFreightLabel,
-      @NonNull TextView tvSubtotal, @NonNull TextView tvTotal) {
+  private FragmentCheckoutBinding(@NonNull FrameLayout rootView, @NonNull ImageButton btnBack,
+      @NonNull MaterialButton btnPlaceOrder, @NonNull CardView cardOrderSummary,
+      @NonNull LinearLayout layoutLoading, @NonNull LinearLayout llOrderItems,
+      @NonNull ProgressBar progressBar, @NonNull ScrollView scrollContent,
+      @NonNull Spinner spinnerAddress, @NonNull Spinner spinnerFreight,
+      @NonNull Spinner spinnerPayment, @NonNull TextView tvFreightCost,
+      @NonNull TextView tvFreightLabel, @NonNull TextView tvSubtotal, @NonNull TextView tvTotal) {
     this.rootView = rootView;
     this.btnBack = btnBack;
     this.btnPlaceOrder = btnPlaceOrder;
+    this.cardOrderSummary = cardOrderSummary;
+    this.layoutLoading = layoutLoading;
     this.llOrderItems = llOrderItems;
     this.progressBar = progressBar;
+    this.scrollContent = scrollContent;
     this.spinnerAddress = spinnerAddress;
     this.spinnerFreight = spinnerFreight;
     this.spinnerPayment = spinnerPayment;
@@ -79,7 +94,7 @@ public final class FragmentCheckoutBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public ScrollView getRoot() {
+  public FrameLayout getRoot() {
     return rootView;
   }
 
@@ -116,6 +131,18 @@ public final class FragmentCheckoutBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.card_order_summary;
+      CardView cardOrderSummary = ViewBindings.findChildViewById(rootView, id);
+      if (cardOrderSummary == null) {
+        break missingId;
+      }
+
+      id = R.id.layout_loading;
+      LinearLayout layoutLoading = ViewBindings.findChildViewById(rootView, id);
+      if (layoutLoading == null) {
+        break missingId;
+      }
+
       id = R.id.ll_order_items;
       LinearLayout llOrderItems = ViewBindings.findChildViewById(rootView, id);
       if (llOrderItems == null) {
@@ -125,6 +152,12 @@ public final class FragmentCheckoutBinding implements ViewBinding {
       id = R.id.progress_bar;
       ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
       if (progressBar == null) {
+        break missingId;
+      }
+
+      id = R.id.scroll_content;
+      ScrollView scrollContent = ViewBindings.findChildViewById(rootView, id);
+      if (scrollContent == null) {
         break missingId;
       }
 
@@ -170,9 +203,9 @@ public final class FragmentCheckoutBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentCheckoutBinding((ScrollView) rootView, btnBack, btnPlaceOrder,
-          llOrderItems, progressBar, spinnerAddress, spinnerFreight, spinnerPayment, tvFreightCost,
-          tvFreightLabel, tvSubtotal, tvTotal);
+      return new FragmentCheckoutBinding((FrameLayout) rootView, btnBack, btnPlaceOrder,
+          cardOrderSummary, layoutLoading, llOrderItems, progressBar, scrollContent, spinnerAddress,
+          spinnerFreight, spinnerPayment, tvFreightCost, tvFreightLabel, tvSubtotal, tvTotal);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

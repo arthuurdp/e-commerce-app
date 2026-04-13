@@ -15,6 +15,7 @@ import com.ecommerce.app.data.repository.CartRepository
 import com.ecommerce.app.data.repository.OrderRepository
 import com.ecommerce.app.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -39,12 +40,28 @@ class CheckoutViewModel @Inject constructor(
 
     fun loadInitialData() {
         viewModelScope.launch {
-            _addressesState.value = NetworkResult.Loading
-            _addressesState.value = addressRepository.getAddresses()
-        }
-        viewModelScope.launch {
+            val cartDeferred = async { cartRepository.getCart() }
+            val addressDeferred = async { addressRepository.getAddresses() }
+
             _cartState.value = NetworkResult.Loading
-            _cartState.value = cartRepository.getCart()
+            _addressesState.value = NetworkResult.Loading
+
+            _cartState.value = cartDeferred.await()
+
+            val addressResult = addressDeferred.await()
+            _addressesState.value = addressResult
+
+            if (addressResult is NetworkResult.Success) {
+                val postalCode = addressResult.data.content
+                    .firstOrNull()?.postalCode?.replace("-", "")?.trim()
+                if (!postalCode.isNullOrBlank() && postalCode.length == 8) {
+                    loadFreight(postalCode)
+                } else {
+                    _freightState.value = NetworkResult.Success(emptyList())
+                }
+            } else {
+                _freightState.value = NetworkResult.Success(emptyList())
+            }
         }
     }
 
