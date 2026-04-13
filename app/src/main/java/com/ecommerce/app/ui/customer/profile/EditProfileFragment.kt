@@ -70,6 +70,7 @@ class EditProfileFragment : Fragment() {
 
     private fun observeUpdate() {
         viewModel.updateState.observe(viewLifecycleOwner) { result ->
+            result ?: return@observe
             when (result) {
                 is NetworkResult.Loading -> {
                     binding.progressBar.show()
@@ -79,12 +80,14 @@ class EditProfileFragment : Fragment() {
                     binding.progressBar.hide()
                     binding.btnSave.isEnabled = true
                     showToast("Profile updated!")
+                    viewModel.clearUpdateState()
                     findNavController().navigateUp()
                 }
                 is NetworkResult.Error -> {
                     binding.progressBar.hide()
                     binding.btnSave.isEnabled = true
                     showToast(result.message)
+                    viewModel.clearUpdateState()
                 }
             }
         }

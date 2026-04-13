@@ -90,14 +90,17 @@ class LoginFragment : Fragment() {
             when (result) {
                 is NetworkResult.Loading -> {
                     binding.btnLogin.isEnabled = false
+                    binding.layoutLoading.loadingOverlay.show()
                 }
                 is NetworkResult.Success -> {
                     binding.btnLogin.isEnabled = true
+                    binding.layoutLoading.loadingOverlay.hide()
 
                     (requireActivity() as MainActivity).showMainApp()
                 }
                 is NetworkResult.Error -> {
                     binding.btnLogin.isEnabled = true
+                    binding.layoutLoading.loadingOverlay.hide()
                     setFieldError(requireContext(), binding.tilEmail, result.message)
                     setFieldError(requireContext(), binding.tilPassword, result.message)
                 }

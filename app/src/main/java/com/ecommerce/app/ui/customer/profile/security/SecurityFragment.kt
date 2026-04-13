@@ -14,6 +14,8 @@ import androidx.navigation.fragment.findNavController
 import com.ecommerce.app.R
 import com.ecommerce.app.databinding.FragmentSecurityBinding
 import com.ecommerce.app.util.NetworkResult
+import com.ecommerce.app.util.hide
+import com.ecommerce.app.util.show
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -60,13 +62,18 @@ class SecurityFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.deleteState.observe(viewLifecycleOwner) { result ->
             when (result) {
-                is NetworkResult.Loading -> setDeleteAccountLoading(true)
+                is NetworkResult.Loading -> {
+                    setDeleteAccountLoading(true)
+                    binding.layoutLoading.loadingOverlay.show()
+                }
                 is NetworkResult.Success -> {
                     setDeleteAccountLoading(false)
+                    binding.layoutLoading.loadingOverlay.hide()
                     findNavController().navigate(R.id.action_securityFragment_to_loginFragment)
                 }
                 is NetworkResult.Error -> {
                     setDeleteAccountLoading(false)
+                    binding.layoutLoading.loadingOverlay.hide()
                 }
             }
         }

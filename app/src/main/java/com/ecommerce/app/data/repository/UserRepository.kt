@@ -5,6 +5,7 @@ import com.ecommerce.app.data.model.user.UpdateUserRequest
 import com.ecommerce.app.data.model.user.UserResponse
 import com.ecommerce.app.data.model.util.PageResponse
 import com.ecommerce.app.util.NetworkResult
+import okhttp3.MultipartBody
 import javax.inject.Inject
 
 class UserRepository @Inject constructor(private val api: UserApiService) : BaseRepository() {
@@ -17,6 +18,9 @@ class UserRepository @Inject constructor(private val api: UserApiService) : Base
     suspend fun deleteCurrentUser(): NetworkResult<Unit> =
         safeApiCall { api.deleteCurrentUser() }
 
-    suspend fun getAllUsers(page: Int = 0, size: Int = 10): NetworkResult<PageResponse<UserResponse>> =
-        safeApiCall { api.getAllUsers(page, size) }
+    suspend fun uploadProfilePicture(file: MultipartBody.Part): NetworkResult<UserResponse> =
+        safeApiCall { api.uploadProfilePicture(file) }
+
+    suspend fun deleteProfilePicture(): NetworkResult<UserResponse> =
+        safeApiCall { api.deleteProfilePicture() }
 }

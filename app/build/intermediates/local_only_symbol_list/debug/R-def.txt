@@ -210,6 +210,7 @@ id ll_greeting
 id ll_info
 id ll_order_items
 id ll_register
+id loadingOverlay
 id loginFragment
 id main_container
 id nav_graph_auth
@@ -349,6 +350,7 @@ layout item_order
 layout item_order_line
 layout item_product
 layout item_product_search
+layout layout_loading_overlay
 menu menu_customer_nav
 navigation nav_graph_auth
 navigation nav_graph_home
@@ -409,4 +411,5 @@ style App.Text.PageTitle.Accent
 style App.Text.Price
 style App.Text.SectionTitle
 style App.Text.Subtitle
+style CircleImageView
 style Theme.ECommerceApp

@@ -4,13 +4,13 @@ package com.ecommerce.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import androidx.viewpager2.widget.ViewPager2;
@@ -22,13 +22,16 @@ import java.lang.String;
 
 public final class FragmentProductDetailBinding implements ViewBinding {
   @NonNull
-  private final CoordinatorLayout rootView;
+  private final FrameLayout rootView;
 
   @NonNull
   public final MaterialButton btnAddToCart;
 
   @NonNull
   public final ImageButton btnBack;
+
+  @NonNull
+  public final LayoutLoadingOverlayBinding layoutLoading;
 
   @NonNull
   public final LinearLayout llDots;
@@ -54,14 +57,16 @@ public final class FragmentProductDetailBinding implements ViewBinding {
   @NonNull
   public final ViewPager2 vpProductImages;
 
-  private FragmentProductDetailBinding(@NonNull CoordinatorLayout rootView,
+  private FragmentProductDetailBinding(@NonNull FrameLayout rootView,
       @NonNull MaterialButton btnAddToCart, @NonNull ImageButton btnBack,
-      @NonNull LinearLayout llDots, @NonNull ProgressBar progressBar, @NonNull TextView tvCategory,
+      @NonNull LayoutLoadingOverlayBinding layoutLoading, @NonNull LinearLayout llDots,
+      @NonNull ProgressBar progressBar, @NonNull TextView tvCategory,
       @NonNull TextView tvDescription, @NonNull TextView tvName, @NonNull TextView tvPrice,
       @NonNull TextView tvStock, @NonNull ViewPager2 vpProductImages) {
     this.rootView = rootView;
     this.btnAddToCart = btnAddToCart;
     this.btnBack = btnBack;
+    this.layoutLoading = layoutLoading;
     this.llDots = llDots;
     this.progressBar = progressBar;
     this.tvCategory = tvCategory;
@@ -74,7 +79,7 @@ public final class FragmentProductDetailBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public CoordinatorLayout getRoot() {
+  public FrameLayout getRoot() {
     return rootView;
   }
 
@@ -110,6 +115,13 @@ public final class FragmentProductDetailBinding implements ViewBinding {
       if (btnBack == null) {
         break missingId;
       }
+
+      id = R.id.layout_loading;
+      View layoutLoading = ViewBindings.findChildViewById(rootView, id);
+      if (layoutLoading == null) {
+        break missingId;
+      }
+      LayoutLoadingOverlayBinding binding_layoutLoading = LayoutLoadingOverlayBinding.bind(layoutLoading);
 
       id = R.id.ll_dots;
       LinearLayout llDots = ViewBindings.findChildViewById(rootView, id);
@@ -159,9 +171,9 @@ public final class FragmentProductDetailBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentProductDetailBinding((CoordinatorLayout) rootView, btnAddToCart, btnBack,
-          llDots, progressBar, tvCategory, tvDescription, tvName, tvPrice, tvStock,
-          vpProductImages);
+      return new FragmentProductDetailBinding((FrameLayout) rootView, btnAddToCart, btnBack,
+          binding_layoutLoading, llDots, progressBar, tvCategory, tvDescription, tvName, tvPrice,
+          tvStock, vpProductImages);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

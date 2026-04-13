@@ -200,10 +200,13 @@ class SearchFragment : Fragment() {
                 null -> showEmptyState()
 
                 is NetworkResult.Loading -> {
-                    binding.layoutEmptyState.hide()
-                    binding.layoutResults.hide()
-                    binding.layoutNoResults.hide()
-                    binding.progressBar.show()
+                    // Only show progress bar if we don't have results or if we're not just filtering
+                    if (resultsAdapter.itemCount == 0) {
+                        binding.layoutEmptyState.hide()
+                        binding.layoutResults.hide()
+                        binding.layoutNoResults.hide()
+                        binding.progressBar.show()
+                    }
                 }
 
                 is NetworkResult.Success -> {
@@ -222,7 +225,9 @@ class SearchFragment : Fragment() {
 
                 is NetworkResult.Error -> {
                     binding.progressBar.hide()
-                    showNoResults()
+                    if (resultsAdapter.itemCount == 0) {
+                        showNoResults()
+                    }
                 }
             }
         }
@@ -239,11 +244,14 @@ class SearchFragment : Fragment() {
             accentColor = requireContext().getColor(R.color.primary)
         )
         allChip.setOnClickListener {
-            selectChip(group, allChip)
-            viewModel.search(
-                binding.etSearch.text?.toString() ?: "",
-                categoryId = null,
-                explicitSearch = true)
+            if (viewModel.selectedCategoryId != null) {
+                selectChip(group, allChip)
+                viewModel.search(
+                    binding.etSearch.text?.toString() ?: "",
+                    categoryId = null,
+                    explicitSearch = true
+                )
+            }
         }
         group.addView(allChip)
 
@@ -255,11 +263,13 @@ class SearchFragment : Fragment() {
                 accentColor = CATEGORY_COLORS[index % CATEGORY_COLORS.size]
             )
             chip.setOnClickListener {
-                selectChip(group, chip)
-                viewModel.search(
-                    binding.etSearch.text?.toString() ?: "",
-                    categoryId = category.id
-                )
+                if (viewModel.selectedCategoryId != category.id) {
+                    selectChip(group, chip)
+                    viewModel.search(
+                        binding.etSearch.text?.toString() ?: "",
+                        categoryId = category.id
+                    )
+                }
             }
             group.addView(chip)
         }
@@ -307,7 +317,8 @@ class SearchFragment : Fragment() {
             }
         }
         binding.chipScrollView.post {
-            binding.chipScrollView.smoothScrollTo(selected.left - dpToPx(16), 0)
+            val scrollX = selected.left - dpToPx(16)
+            binding.chipScrollView.smoothScrollTo(scrollX, 0)
         }
     }
 
@@ -442,26 +453,32 @@ class SearchFragment : Fragment() {
     }
 
     private fun showEmptyState() {
-        binding.layoutResults.hide()
-        binding.layoutNoResults.hide()
-        binding.progressBar.hide()
-        binding.layoutEmptyState.show()
+        if (binding.layoutEmptyState.visibility != View.VISIBLE) {
+            binding.layoutResults.hide()
+            binding.layoutNoResults.hide()
+            binding.progressBar.hide()
+            binding.layoutEmptyState.show()
+        }
     }
 
     private fun showResults() {
-        binding.layoutEmptyState.hide()
-        binding.layoutResults.show()
-        binding.layoutNoResults.hide()
-        binding.progressBar.hide()
+        if (binding.layoutResults.visibility != View.VISIBLE) {
+            binding.layoutEmptyState.hide()
+            binding.layoutResults.show()
+            binding.layoutNoResults.hide()
+            binding.progressBar.hide()
+        }
     }
 
     private fun showNoResults() {
-        binding.layoutEmptyState.hide()
-        binding.layoutResults.hide()
-        val query = binding.etSearch.text?.toString() ?: ""
-        binding.tvNoResultsQuery.text = if (query.isNotBlank()) "para \"$query\"" else ""
-        binding.layoutNoResults.show()
-        binding.progressBar.hide()
+        if (binding.layoutNoResults.visibility != View.VISIBLE) {
+            binding.layoutEmptyState.hide()
+            binding.layoutResults.hide()
+            val query = binding.etSearch.text?.toString() ?: ""
+            binding.tvNoResultsQuery.text = if (query.isBlank()) "" else "\"$query\""
+            binding.layoutNoResults.show()
+            binding.progressBar.hide()
+        }
     }
 
     private fun resolveEmoji(name: String): String {

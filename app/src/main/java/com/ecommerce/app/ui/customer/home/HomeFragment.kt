@@ -164,7 +164,7 @@ class HomeFragment : Fragment() {
 
     private fun observeLoading() {
         viewModel.isLoading.observe(viewLifecycleOwner) { loading ->
-            binding.progressBar.isVisible = loading
+            binding.layoutLoading.loadingOverlay.isVisible = loading
             binding.contentLayout.isVisible = !loading
         }
     }
@@ -180,7 +180,7 @@ class HomeFragment : Fragment() {
             adapter = bannerAdapter
             clipChildren = false
             setPageTransformer { page, position ->
-                page.scaleY = 1 - 0.05f * kotlin.math.abs(position)
+                page.scaleY = 1 - 0.10f * kotlin.math.abs(position)
                 page.alpha = 1 - 0.3f * kotlin.math.abs(position)
             }
         }

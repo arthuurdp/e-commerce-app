@@ -4,13 +4,13 @@ package com.ecommerce.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.widget.NestedScrollView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.ecommerce.app.R;
@@ -23,7 +23,7 @@ import java.lang.String;
 
 public final class FragmentLoginBinding implements ViewBinding {
   @NonNull
-  private final NestedScrollView rootView;
+  private final FrameLayout rootView;
 
   @NonNull
   public final MaterialButton btnLogin;
@@ -36,6 +36,9 @@ public final class FragmentLoginBinding implements ViewBinding {
 
   @NonNull
   public final ImageView ivIllustration;
+
+  @NonNull
+  public final LayoutLoadingOverlayBinding layoutLoading;
 
   @NonNull
   public final LinearLayout llRegister;
@@ -61,17 +64,19 @@ public final class FragmentLoginBinding implements ViewBinding {
   @NonNull
   public final LinearLayout tvTitle;
 
-  private FragmentLoginBinding(@NonNull NestedScrollView rootView, @NonNull MaterialButton btnLogin,
+  private FragmentLoginBinding(@NonNull FrameLayout rootView, @NonNull MaterialButton btnLogin,
       @NonNull TextInputEditText etCredential, @NonNull TextInputEditText etPassword,
-      @NonNull ImageView ivIllustration, @NonNull LinearLayout llRegister,
-      @NonNull ConstraintLayout mainContainer, @NonNull TextInputLayout tilEmail,
-      @NonNull TextInputLayout tilPassword, @NonNull TextView tvForgotPassword,
-      @NonNull TextView tvRegister, @NonNull TextView tvSubtitle, @NonNull LinearLayout tvTitle) {
+      @NonNull ImageView ivIllustration, @NonNull LayoutLoadingOverlayBinding layoutLoading,
+      @NonNull LinearLayout llRegister, @NonNull ConstraintLayout mainContainer,
+      @NonNull TextInputLayout tilEmail, @NonNull TextInputLayout tilPassword,
+      @NonNull TextView tvForgotPassword, @NonNull TextView tvRegister,
+      @NonNull TextView tvSubtitle, @NonNull LinearLayout tvTitle) {
     this.rootView = rootView;
     this.btnLogin = btnLogin;
     this.etCredential = etCredential;
     this.etPassword = etPassword;
     this.ivIllustration = ivIllustration;
+    this.layoutLoading = layoutLoading;
     this.llRegister = llRegister;
     this.mainContainer = mainContainer;
     this.tilEmail = tilEmail;
@@ -84,7 +89,7 @@ public final class FragmentLoginBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public NestedScrollView getRoot() {
+  public FrameLayout getRoot() {
     return rootView;
   }
 
@@ -132,6 +137,13 @@ public final class FragmentLoginBinding implements ViewBinding {
       if (ivIllustration == null) {
         break missingId;
       }
+
+      id = R.id.layout_loading;
+      View layoutLoading = ViewBindings.findChildViewById(rootView, id);
+      if (layoutLoading == null) {
+        break missingId;
+      }
+      LayoutLoadingOverlayBinding binding_layoutLoading = LayoutLoadingOverlayBinding.bind(layoutLoading);
 
       id = R.id.ll_register;
       LinearLayout llRegister = ViewBindings.findChildViewById(rootView, id);
@@ -181,8 +193,8 @@ public final class FragmentLoginBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentLoginBinding((NestedScrollView) rootView, btnLogin, etCredential,
-          etPassword, ivIllustration, llRegister, mainContainer, tilEmail, tilPassword,
+      return new FragmentLoginBinding((FrameLayout) rootView, btnLogin, etCredential, etPassword,
+          ivIllustration, binding_layoutLoading, llRegister, mainContainer, tilEmail, tilPassword,
           tvForgotPassword, tvRegister, tvSubtitle, tvTitle);
     }
     String missingId = rootView.getResources().getResourceName(id);

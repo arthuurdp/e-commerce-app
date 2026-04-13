@@ -59,14 +59,14 @@ class ProductDetailFragment : Fragment() {
     private fun observeProduct() {
         viewModel.product.observe(viewLifecycleOwner) { result ->
             when (result) {
-                is NetworkResult.Loading -> binding.progressBar.show()
+                is NetworkResult.Loading -> binding.layoutLoading.loadingOverlay.show()
                 is NetworkResult.Success -> {
-                    binding.progressBar.hide()
+                    binding.layoutLoading.loadingOverlay.hide()
                     bindProduct(result.data)
                 }
 
                 is NetworkResult.Error -> {
-                    binding.progressBar.hide()
+                    binding.layoutLoading.loadingOverlay.hide()
                     Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
                 }
             }
@@ -93,15 +93,18 @@ class ProductDetailFragment : Fragment() {
             when (result) {
                 is NetworkResult.Loading -> {
                     binding.btnAddToCart.isEnabled = false
+                    binding.layoutLoading.loadingOverlay.show()
                 }
 
                 is NetworkResult.Success -> {
                     binding.btnAddToCart.isEnabled = true
+                    binding.layoutLoading.loadingOverlay.hide()
                     showProductAddedToCartDialog()
                 }
 
                 is NetworkResult.Error -> {
                     binding.btnAddToCart.isEnabled = true
+                    binding.layoutLoading.loadingOverlay.hide()
                     showVerifyEmailDialog()
                 }
             }

@@ -4,10 +4,10 @@ package com.ecommerce.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,7 +21,7 @@ import java.lang.String;
 
 public final class FragmentSecurityBinding implements ViewBinding {
   @NonNull
-  private final ScrollView rootView;
+  private final FrameLayout rootView;
 
   @NonNull
   public final ImageButton btnBack;
@@ -51,14 +51,17 @@ public final class FragmentSecurityBinding implements ViewBinding {
   public final ImageView ivPasswordChevron;
 
   @NonNull
+  public final LayoutLoadingOverlayBinding layoutLoading;
+
+  @NonNull
   public final TextView tvCurrentEmail;
 
-  private FragmentSecurityBinding(@NonNull ScrollView rootView, @NonNull ImageButton btnBack,
+  private FragmentSecurityBinding(@NonNull FrameLayout rootView, @NonNull ImageButton btnBack,
       @NonNull MaterialCardView cardChangeEmail, @NonNull MaterialCardView cardChangePassword,
       @NonNull MaterialCardView cardDeleteAccount, @NonNull LinearLayout headerChangeEmail,
       @NonNull LinearLayout headerChangePassword, @NonNull LinearLayout headerDeleteAccount,
       @NonNull ImageView ivEmailChevron, @NonNull ImageView ivPasswordChevron,
-      @NonNull TextView tvCurrentEmail) {
+      @NonNull LayoutLoadingOverlayBinding layoutLoading, @NonNull TextView tvCurrentEmail) {
     this.rootView = rootView;
     this.btnBack = btnBack;
     this.cardChangeEmail = cardChangeEmail;
@@ -69,12 +72,13 @@ public final class FragmentSecurityBinding implements ViewBinding {
     this.headerDeleteAccount = headerDeleteAccount;
     this.ivEmailChevron = ivEmailChevron;
     this.ivPasswordChevron = ivPasswordChevron;
+    this.layoutLoading = layoutLoading;
     this.tvCurrentEmail = tvCurrentEmail;
   }
 
   @Override
   @NonNull
-  public ScrollView getRoot() {
+  public FrameLayout getRoot() {
     return rootView;
   }
 
@@ -153,15 +157,23 @@ public final class FragmentSecurityBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.layout_loading;
+      View layoutLoading = ViewBindings.findChildViewById(rootView, id);
+      if (layoutLoading == null) {
+        break missingId;
+      }
+      LayoutLoadingOverlayBinding binding_layoutLoading = LayoutLoadingOverlayBinding.bind(layoutLoading);
+
       id = R.id.tv_current_email;
       TextView tvCurrentEmail = ViewBindings.findChildViewById(rootView, id);
       if (tvCurrentEmail == null) {
         break missingId;
       }
 
-      return new FragmentSecurityBinding((ScrollView) rootView, btnBack, cardChangeEmail,
+      return new FragmentSecurityBinding((FrameLayout) rootView, btnBack, cardChangeEmail,
           cardChangePassword, cardDeleteAccount, headerChangeEmail, headerChangePassword,
-          headerDeleteAccount, ivEmailChevron, ivPasswordChevron, tvCurrentEmail);
+          headerDeleteAccount, ivEmailChevron, ivPasswordChevron, binding_layoutLoading,
+          tvCurrentEmail);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

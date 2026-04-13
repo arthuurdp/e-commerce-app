@@ -100,17 +100,17 @@ class RegisterFragment : Fragment() {
         viewModel.registerState.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is NetworkResult.Loading -> {
-                    binding.progressBar.show()
+                    binding.layoutLoading.loadingOverlay.show()
                     binding.btnRegister.isEnabled = false
                 }
                 is NetworkResult.Success -> {
-                    binding.progressBar.hide()
+                    binding.layoutLoading.loadingOverlay.hide()
                     binding.btnRegister.isEnabled = true
                     showToast("Conta criada! Faça o login.")
                     findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
                 }
                 is NetworkResult.Error -> {
-                    binding.progressBar.hide()
+                    binding.layoutLoading.loadingOverlay.hide()
                     binding.btnRegister.isEnabled = true
 
                     if (!result.fieldErrors.isNullOrEmpty()) {

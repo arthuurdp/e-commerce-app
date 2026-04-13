@@ -11,6 +11,7 @@ import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.TokenManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,8 +22,11 @@ class ProfileViewModel @Inject constructor(
     private val _profileState = MutableLiveData<NetworkResult<UserResponse>>()
     val profileState: LiveData<NetworkResult<UserResponse>> = _profileState
 
-    private val _updateState = MutableLiveData<NetworkResult<UserResponse>>()
-    val updateState: LiveData<NetworkResult<UserResponse>> = _updateState
+    private val _updateState = MutableLiveData<NetworkResult<UserResponse>?>()
+    val updateState: LiveData<NetworkResult<UserResponse>?> = _updateState
+
+    private val _profilePictureState = MutableLiveData<NetworkResult<UserResponse>?>()
+    val profilePictureState: LiveData<NetworkResult<UserResponse>?> = _profilePictureState
 
     private var hasLoadedOnce = false
 
@@ -46,11 +50,50 @@ class ProfileViewModel @Inject constructor(
     fun updateProfile(firstName: String?, lastName: String?, phone: String?) {
         viewModelScope.launch {
             _updateState.value = NetworkResult.Loading
-            _updateState.value = userRepository.updateCurrentUser(
+            val result = userRepository.updateCurrentUser(
                 UpdateUserRequest(firstName = firstName, lastName = lastName, phone = phone)
             )
+            _updateState.value = result
+            if (result is NetworkResult.Success) {
+                _profileState.value = result
+            }
         }
     }
+
+    fun uploadProfilePicture(file: MultipartBody.Part) {
+        viewModelScope.launch {
+            _profilePictureState.value = NetworkResult.Loading
+            val result = userRepository.uploadProfilePicture(file)
+            if (result is NetworkResult.Success) {
+                _profileState.value = result
+                _profilePictureState.value = NetworkResult.Success(result.data!!)
+            } else {
+                _profilePictureState.value = result
+            }
+        }
+    }
+
+    fun deleteProfilePicture() {
+        viewModelScope.launch {
+            _profilePictureState.value = NetworkResult.Loading
+            val result = userRepository.deleteProfilePicture()
+            if (result is NetworkResult.Success) {
+                _profileState.value = result
+                _profilePictureState.value = NetworkResult.Success(result.data!!)
+            } else {
+                _profilePictureState.value = result
+            }
+        }
+    }
+
+    fun clearProfilePictureState() {
+        _profilePictureState.value = null
+    }
+
+    fun clearUpdateState() {
+        _updateState.value = null
+    }
+
     fun logout() {
         viewModelScope.launch { tokenManager.clearToken() }
     }

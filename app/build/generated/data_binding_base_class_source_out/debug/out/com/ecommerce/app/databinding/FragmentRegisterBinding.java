@@ -4,10 +4,10 @@ package com.ecommerce.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -24,7 +24,7 @@ import java.lang.String;
 
 public final class FragmentRegisterBinding implements ViewBinding {
   @NonNull
-  private final ScrollView rootView;
+  private final FrameLayout rootView;
 
   @NonNull
   public final ImageButton btnBack;
@@ -52,6 +52,9 @@ public final class FragmentRegisterBinding implements ViewBinding {
 
   @NonNull
   public final TextInputEditText etPhone;
+
+  @NonNull
+  public final LayoutLoadingOverlayBinding layoutLoading;
 
   @NonNull
   public final LinearLayout mainContainer;
@@ -86,17 +89,17 @@ public final class FragmentRegisterBinding implements ViewBinding {
   @NonNull
   public final TextView tvLogin;
 
-  private FragmentRegisterBinding(@NonNull ScrollView rootView, @NonNull ImageButton btnBack,
+  private FragmentRegisterBinding(@NonNull FrameLayout rootView, @NonNull ImageButton btnBack,
       @NonNull MaterialButton btnRegister, @NonNull TextInputEditText etBirthDate,
       @NonNull TextInputEditText etCpf, @NonNull TextInputEditText etEmail,
       @NonNull TextInputEditText etFirstName, @NonNull TextInputEditText etLastName,
       @NonNull TextInputEditText etPassword, @NonNull TextInputEditText etPhone,
-      @NonNull LinearLayout mainContainer, @NonNull ProgressBar progressBar,
-      @NonNull Spinner spinnerGender, @NonNull TextInputLayout tilBirthDate,
-      @NonNull TextInputLayout tilCpf, @NonNull TextInputLayout tilEmail,
-      @NonNull TextInputLayout tilFirstName, @NonNull TextInputLayout tilLastName,
-      @NonNull TextInputLayout tilPassword, @NonNull TextInputLayout tilPhone,
-      @NonNull TextView tvLogin) {
+      @NonNull LayoutLoadingOverlayBinding layoutLoading, @NonNull LinearLayout mainContainer,
+      @NonNull ProgressBar progressBar, @NonNull Spinner spinnerGender,
+      @NonNull TextInputLayout tilBirthDate, @NonNull TextInputLayout tilCpf,
+      @NonNull TextInputLayout tilEmail, @NonNull TextInputLayout tilFirstName,
+      @NonNull TextInputLayout tilLastName, @NonNull TextInputLayout tilPassword,
+      @NonNull TextInputLayout tilPhone, @NonNull TextView tvLogin) {
     this.rootView = rootView;
     this.btnBack = btnBack;
     this.btnRegister = btnRegister;
@@ -107,6 +110,7 @@ public final class FragmentRegisterBinding implements ViewBinding {
     this.etLastName = etLastName;
     this.etPassword = etPassword;
     this.etPhone = etPhone;
+    this.layoutLoading = layoutLoading;
     this.mainContainer = mainContainer;
     this.progressBar = progressBar;
     this.spinnerGender = spinnerGender;
@@ -122,7 +126,7 @@ public final class FragmentRegisterBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public ScrollView getRoot() {
+  public FrameLayout getRoot() {
     return rootView;
   }
 
@@ -201,6 +205,13 @@ public final class FragmentRegisterBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.layout_loading;
+      View layoutLoading = ViewBindings.findChildViewById(rootView, id);
+      if (layoutLoading == null) {
+        break missingId;
+      }
+      LayoutLoadingOverlayBinding binding_layoutLoading = LayoutLoadingOverlayBinding.bind(layoutLoading);
+
       id = R.id.main_container;
       LinearLayout mainContainer = ViewBindings.findChildViewById(rootView, id);
       if (mainContainer == null) {
@@ -267,10 +278,10 @@ public final class FragmentRegisterBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentRegisterBinding((ScrollView) rootView, btnBack, btnRegister, etBirthDate,
-          etCpf, etEmail, etFirstName, etLastName, etPassword, etPhone, mainContainer, progressBar,
-          spinnerGender, tilBirthDate, tilCpf, tilEmail, tilFirstName, tilLastName, tilPassword,
-          tilPhone, tvLogin);
+      return new FragmentRegisterBinding((FrameLayout) rootView, btnBack, btnRegister, etBirthDate,
+          etCpf, etEmail, etFirstName, etLastName, etPassword, etPhone, binding_layoutLoading,
+          mainContainer, progressBar, spinnerGender, tilBirthDate, tilCpf, tilEmail, tilFirstName,
+          tilLastName, tilPassword, tilPhone, tvLogin);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

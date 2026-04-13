@@ -2,6 +2,7 @@ package com.ecommerce.app.data.api
 
 import com.ecommerce.app.data.model.user.*
 import com.ecommerce.app.data.model.util.PageResponse
+import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -16,9 +17,10 @@ interface UserApiService {
     @DELETE("users/me")
     suspend fun deleteCurrentUser(): Response<Unit>
 
-    @GET("users")
-    suspend fun getAllUsers(
-        @Query("page") page: Int = 0,
-        @Query("size") size: Int = 10
-    ): Response<PageResponse<UserResponse>>
+    @Multipart
+    @POST("users/me/profile-picture")
+    suspend fun uploadProfilePicture(@Part file: MultipartBody.Part): Response<UserResponse>
+
+    @DELETE("users/me/profile-picture")
+    suspend fun deleteProfilePicture(): Response<UserResponse>
 }

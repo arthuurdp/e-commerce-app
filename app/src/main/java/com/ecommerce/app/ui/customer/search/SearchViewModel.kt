@@ -49,6 +49,7 @@ class SearchViewModel @Inject constructor(
         explicitSearch: Boolean = false
     ) {
         val resolvedCategoryId = categoryId?.takeIf { it != -1L }
+        val categoryChanged = resolvedCategoryId != selectedCategoryId
         selectedCategoryId = resolvedCategoryId
 
         searchJob?.cancel()
@@ -59,7 +60,7 @@ class SearchViewModel @Inject constructor(
         }
 
         searchJob = viewModelScope.launch {
-            if (!force) delay(300)
+            if (!force && !categoryChanged) delay(300)
             _searchState.value = NetworkResult.Loading
             _searchState.value = productRepository.getProducts(
                 page = 0,

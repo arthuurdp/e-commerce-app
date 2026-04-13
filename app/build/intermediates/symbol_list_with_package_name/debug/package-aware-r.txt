@@ -3574,6 +3574,7 @@ id ll_greeting
 id ll_info
 id ll_order_items
 id ll_register
+id loadingOverlay
 id locale
 id loginFragment
 id ltr
@@ -4110,6 +4111,7 @@ layout item_order
 layout item_order_line
 layout item_product
 layout item_product_search
+layout layout_loading_overlay
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title
@@ -4691,6 +4693,7 @@ style Base_Widget_MaterialComponents_TextView
 style CardView
 style CardView_Dark
 style CardView_Light
+style CircleImageView
 style MaterialAlertDialog_Material3
 style MaterialAlertDialog_Material3_Animation
 style MaterialAlertDialog_Material3_Body_Text

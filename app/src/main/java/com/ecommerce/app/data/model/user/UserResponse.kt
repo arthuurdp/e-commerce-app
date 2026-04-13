@@ -8,5 +8,6 @@ data class UserResponse(
     val cpf: String,
     val phone: String,
     val birthDate: String,
-    val gender: String
+    val gender: String,
+    val profilePictureUrl: String? = null
 )

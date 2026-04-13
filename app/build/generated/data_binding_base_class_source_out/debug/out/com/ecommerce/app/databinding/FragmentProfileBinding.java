@@ -4,24 +4,23 @@ package com.ecommerce.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.widget.NestedScrollView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.ecommerce.app.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.imageview.ShapeableImageView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
 
 public final class FragmentProfileBinding implements ViewBinding {
   @NonNull
-  private final NestedScrollView rootView;
+  private final FrameLayout rootView;
 
   @NonNull
   public final MaterialCardView btnAddresses;
@@ -39,10 +38,10 @@ public final class FragmentProfileBinding implements ViewBinding {
   public final MaterialCardView btnSecurity;
 
   @NonNull
-  public final ImageView ivAvatar;
+  public final ShapeableImageView ivAvatar;
 
   @NonNull
-  public final ProgressBar progressBar;
+  public final LayoutLoadingOverlayBinding layoutLoading;
 
   @NonNull
   public final TextView tvEmail;
@@ -53,12 +52,12 @@ public final class FragmentProfileBinding implements ViewBinding {
   @NonNull
   public final TextView tvLastName;
 
-  private FragmentProfileBinding(@NonNull NestedScrollView rootView,
+  private FragmentProfileBinding(@NonNull FrameLayout rootView,
       @NonNull MaterialCardView btnAddresses, @NonNull MaterialCardView btnEditProfile,
       @NonNull MaterialButton btnLogout, @NonNull MaterialCardView btnOrders,
-      @NonNull MaterialCardView btnSecurity, @NonNull ImageView ivAvatar,
-      @NonNull ProgressBar progressBar, @NonNull TextView tvEmail, @NonNull TextView tvFirstName,
-      @NonNull TextView tvLastName) {
+      @NonNull MaterialCardView btnSecurity, @NonNull ShapeableImageView ivAvatar,
+      @NonNull LayoutLoadingOverlayBinding layoutLoading, @NonNull TextView tvEmail,
+      @NonNull TextView tvFirstName, @NonNull TextView tvLastName) {
     this.rootView = rootView;
     this.btnAddresses = btnAddresses;
     this.btnEditProfile = btnEditProfile;
@@ -66,7 +65,7 @@ public final class FragmentProfileBinding implements ViewBinding {
     this.btnOrders = btnOrders;
     this.btnSecurity = btnSecurity;
     this.ivAvatar = ivAvatar;
-    this.progressBar = progressBar;
+    this.layoutLoading = layoutLoading;
     this.tvEmail = tvEmail;
     this.tvFirstName = tvFirstName;
     this.tvLastName = tvLastName;
@@ -74,7 +73,7 @@ public final class FragmentProfileBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public NestedScrollView getRoot() {
+  public FrameLayout getRoot() {
     return rootView;
   }
 
@@ -130,16 +129,17 @@ public final class FragmentProfileBinding implements ViewBinding {
       }
 
       id = R.id.iv_avatar;
-      ImageView ivAvatar = ViewBindings.findChildViewById(rootView, id);
+      ShapeableImageView ivAvatar = ViewBindings.findChildViewById(rootView, id);
       if (ivAvatar == null) {
         break missingId;
       }
 
-      id = R.id.progress_bar;
-      ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
-      if (progressBar == null) {
+      id = R.id.layout_loading;
+      View layoutLoading = ViewBindings.findChildViewById(rootView, id);
+      if (layoutLoading == null) {
         break missingId;
       }
+      LayoutLoadingOverlayBinding binding_layoutLoading = LayoutLoadingOverlayBinding.bind(layoutLoading);
 
       id = R.id.tv_email;
       TextView tvEmail = ViewBindings.findChildViewById(rootView, id);
@@ -159,8 +159,8 @@ public final class FragmentProfileBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentProfileBinding((NestedScrollView) rootView, btnAddresses, btnEditProfile,
-          btnLogout, btnOrders, btnSecurity, ivAvatar, progressBar, tvEmail, tvFirstName,
+      return new FragmentProfileBinding((FrameLayout) rootView, btnAddresses, btnEditProfile,
+          btnLogout, btnOrders, btnSecurity, ivAvatar, binding_layoutLoading, tvEmail, tvFirstName,
           tvLastName);
     }
     String missingId = rootView.getResources().getResourceName(id);
