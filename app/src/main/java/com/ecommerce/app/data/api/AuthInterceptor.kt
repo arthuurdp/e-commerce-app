@@ -10,25 +10,31 @@ class AuthInterceptor @Inject constructor(
     private val tokenManager: TokenManager
 ) : Interceptor {
 
-    private val publicEndpoints = listOf(
+    private val publicGetEndpoints = listOf(
+        "products",
+        "categories",
+        "states",
+        "cities/lookup",
+    )
+
+    private val publicAnyMethodEndpoints = listOf(
         "auth/login",
         "auth/register",
         "auth/register/admin",
         "password/forgot",
         "password/reset",
         "password/set",
-        "products",
-        "categories",
-        "states",
     )
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
         val path = request.url.encodedPath
+        val method = request.method
 
-        android.util.Log.d("AuthInterceptor", "Path: $path")
+        android.util.Log.d("AuthInterceptor", "Path: $path, Method: $method")
 
-        val isPublic = publicEndpoints.any { path.contains(it) }
+        val isPublic = publicAnyMethodEndpoints.any { path.contains(it) } ||
+                (method == "GET" && publicGetEndpoints.any { path.contains(it) })
 
         android.util.Log.d("AuthInterceptor", "isPublic: $isPublic")
 

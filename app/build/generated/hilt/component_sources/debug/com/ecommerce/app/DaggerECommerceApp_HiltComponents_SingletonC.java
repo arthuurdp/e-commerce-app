@@ -12,27 +12,33 @@ import com.ecommerce.app.data.api.AuthInterceptor;
 import com.ecommerce.app.data.api.CartApiService;
 import com.ecommerce.app.data.api.CategoryApiService;
 import com.ecommerce.app.data.api.EmailApiService;
+import com.ecommerce.app.data.api.FavoriteApiService;
 import com.ecommerce.app.data.api.OrderApiService;
 import com.ecommerce.app.data.api.ProductApiService;
+import com.ecommerce.app.data.api.ReviewApiService;
 import com.ecommerce.app.data.api.UserApiService;
 import com.ecommerce.app.data.repository.AddressRepository;
 import com.ecommerce.app.data.repository.AuthRepository;
 import com.ecommerce.app.data.repository.CartRepository;
 import com.ecommerce.app.data.repository.CategoryRepository;
 import com.ecommerce.app.data.repository.EmailRepository;
+import com.ecommerce.app.data.repository.FavoriteRepository;
 import com.ecommerce.app.data.repository.OrderRepository;
 import com.ecommerce.app.data.repository.ProductRepository;
+import com.ecommerce.app.data.repository.ReviewRepository;
 import com.ecommerce.app.data.repository.UserRepository;
 import com.ecommerce.app.di.NetworkModule_ProvideAddressApiServiceFactory;
 import com.ecommerce.app.di.NetworkModule_ProvideAuthApiServiceFactory;
 import com.ecommerce.app.di.NetworkModule_ProvideCartApiServiceFactory;
 import com.ecommerce.app.di.NetworkModule_ProvideCategoryApiServiceFactory;
 import com.ecommerce.app.di.NetworkModule_ProvideEmailApiServiceFactory;
+import com.ecommerce.app.di.NetworkModule_ProvideFavoriteApiServiceFactory;
 import com.ecommerce.app.di.NetworkModule_ProvideLoggingInterceptorFactory;
 import com.ecommerce.app.di.NetworkModule_ProvideOkHttpClientFactory;
 import com.ecommerce.app.di.NetworkModule_ProvideOrderApiServiceFactory;
 import com.ecommerce.app.di.NetworkModule_ProvideProductApiServiceFactory;
 import com.ecommerce.app.di.NetworkModule_ProvideRetrofitFactory;
+import com.ecommerce.app.di.NetworkModule_ProvideReviewApiServiceFactory;
 import com.ecommerce.app.di.NetworkModule_ProvideUserApiServiceFactory;
 import com.ecommerce.app.ui.MainActivity;
 import com.ecommerce.app.ui.MainViewModel;
@@ -625,6 +631,14 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
       return new UserRepository(singletonCImpl.provideUserApiServiceProvider.get());
     }
 
+    private ReviewRepository reviewRepository() {
+      return new ReviewRepository(singletonCImpl.provideReviewApiServiceProvider.get());
+    }
+
+    private FavoriteRepository favoriteRepository() {
+      return new FavoriteRepository(singletonCImpl.provideFavoriteApiServiceProvider.get());
+    }
+
     @SuppressWarnings("unchecked")
     private void initialize(final SavedStateHandle savedStateHandleParam,
         final ViewModelLifecycle viewModelLifecycleParam) {
@@ -702,7 +716,7 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
           return (T) new OrdersViewModel(viewModelCImpl.orderRepository());
 
           case 9: // com.ecommerce.app.ui.customer.products.ProductDetailViewModel 
-          return (T) new ProductDetailViewModel(viewModelCImpl.productRepository(), viewModelCImpl.cartRepository(), viewModelCImpl.userRepository());
+          return (T) new ProductDetailViewModel(viewModelCImpl.productRepository(), viewModelCImpl.cartRepository(), viewModelCImpl.userRepository(), viewModelCImpl.reviewRepository(), viewModelCImpl.favoriteRepository());
 
           case 10: // com.ecommerce.app.ui.customer.profile.ProfileViewModel 
           return (T) new ProfileViewModel(viewModelCImpl.userRepository(), singletonCImpl.tokenManagerProvider.get());
@@ -821,6 +835,10 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
 
     private Provider<UserApiService> provideUserApiServiceProvider;
 
+    private Provider<ReviewApiService> provideReviewApiServiceProvider;
+
+    private Provider<FavoriteApiService> provideFavoriteApiServiceProvider;
+
     private SingletonCImpl(ApplicationContextModule applicationContextModuleParam) {
       this.applicationContextModule = applicationContextModuleParam;
       initialize(applicationContextModuleParam);
@@ -847,6 +865,8 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
       this.provideProductApiServiceProvider = DoubleCheck.provider(new SwitchingProvider<ProductApiService>(singletonCImpl, 11));
       this.provideCategoryApiServiceProvider = DoubleCheck.provider(new SwitchingProvider<CategoryApiService>(singletonCImpl, 12));
       this.provideUserApiServiceProvider = DoubleCheck.provider(new SwitchingProvider<UserApiService>(singletonCImpl, 13));
+      this.provideReviewApiServiceProvider = DoubleCheck.provider(new SwitchingProvider<ReviewApiService>(singletonCImpl, 14));
+      this.provideFavoriteApiServiceProvider = DoubleCheck.provider(new SwitchingProvider<FavoriteApiService>(singletonCImpl, 15));
     }
 
     @Override
@@ -923,6 +943,12 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
 
           case 13: // com.ecommerce.app.data.api.UserApiService 
           return (T) NetworkModule_ProvideUserApiServiceFactory.provideUserApiService(singletonCImpl.provideRetrofitProvider.get());
+
+          case 14: // com.ecommerce.app.data.api.ReviewApiService 
+          return (T) NetworkModule_ProvideReviewApiServiceFactory.provideReviewApiService(singletonCImpl.provideRetrofitProvider.get());
+
+          case 15: // com.ecommerce.app.data.api.FavoriteApiService 
+          return (T) NetworkModule_ProvideFavoriteApiServiceFactory.provideFavoriteApiService(singletonCImpl.provideRetrofitProvider.get());
 
           default: throw new AssertionError(id);
         }

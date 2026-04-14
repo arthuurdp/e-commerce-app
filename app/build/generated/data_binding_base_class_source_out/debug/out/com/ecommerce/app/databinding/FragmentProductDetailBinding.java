@@ -8,6 +8,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,19 +26,31 @@ public final class FragmentProductDetailBinding implements ViewBinding {
   private final FrameLayout rootView;
 
   @NonNull
+  public final MaterialButton btnAddReview;
+
+  @NonNull
   public final MaterialButton btnAddToCart;
 
   @NonNull
   public final ImageButton btnBack;
 
   @NonNull
+  public final ImageButton btnFavorite;
+
+  @NonNull
   public final LayoutLoadingOverlayBinding layoutLoading;
+
+  @NonNull
+  public final LinearLayout layoutRating;
 
   @NonNull
   public final LinearLayout llDots;
 
   @NonNull
   public final ProgressBar progressBar;
+
+  @NonNull
+  public final RatingBar ratingBarAvg;
 
   @NonNull
   public final TextView tvCategory;
@@ -52,27 +65,42 @@ public final class FragmentProductDetailBinding implements ViewBinding {
   public final TextView tvPrice;
 
   @NonNull
+  public final TextView tvRatingAvg;
+
+  @NonNull
+  public final TextView tvReviewsCount;
+
+  @NonNull
   public final TextView tvStock;
 
   @NonNull
   public final ViewPager2 vpProductImages;
 
   private FragmentProductDetailBinding(@NonNull FrameLayout rootView,
-      @NonNull MaterialButton btnAddToCart, @NonNull ImageButton btnBack,
-      @NonNull LayoutLoadingOverlayBinding layoutLoading, @NonNull LinearLayout llDots,
-      @NonNull ProgressBar progressBar, @NonNull TextView tvCategory,
+      @NonNull MaterialButton btnAddReview, @NonNull MaterialButton btnAddToCart,
+      @NonNull ImageButton btnBack, @NonNull ImageButton btnFavorite,
+      @NonNull LayoutLoadingOverlayBinding layoutLoading, @NonNull LinearLayout layoutRating,
+      @NonNull LinearLayout llDots, @NonNull ProgressBar progressBar,
+      @NonNull RatingBar ratingBarAvg, @NonNull TextView tvCategory,
       @NonNull TextView tvDescription, @NonNull TextView tvName, @NonNull TextView tvPrice,
-      @NonNull TextView tvStock, @NonNull ViewPager2 vpProductImages) {
+      @NonNull TextView tvRatingAvg, @NonNull TextView tvReviewsCount, @NonNull TextView tvStock,
+      @NonNull ViewPager2 vpProductImages) {
     this.rootView = rootView;
+    this.btnAddReview = btnAddReview;
     this.btnAddToCart = btnAddToCart;
     this.btnBack = btnBack;
+    this.btnFavorite = btnFavorite;
     this.layoutLoading = layoutLoading;
+    this.layoutRating = layoutRating;
     this.llDots = llDots;
     this.progressBar = progressBar;
+    this.ratingBarAvg = ratingBarAvg;
     this.tvCategory = tvCategory;
     this.tvDescription = tvDescription;
     this.tvName = tvName;
     this.tvPrice = tvPrice;
+    this.tvRatingAvg = tvRatingAvg;
+    this.tvReviewsCount = tvReviewsCount;
     this.tvStock = tvStock;
     this.vpProductImages = vpProductImages;
   }
@@ -104,6 +132,12 @@ public final class FragmentProductDetailBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btn_add_review;
+      MaterialButton btnAddReview = ViewBindings.findChildViewById(rootView, id);
+      if (btnAddReview == null) {
+        break missingId;
+      }
+
       id = R.id.btn_add_to_cart;
       MaterialButton btnAddToCart = ViewBindings.findChildViewById(rootView, id);
       if (btnAddToCart == null) {
@@ -116,12 +150,24 @@ public final class FragmentProductDetailBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btn_favorite;
+      ImageButton btnFavorite = ViewBindings.findChildViewById(rootView, id);
+      if (btnFavorite == null) {
+        break missingId;
+      }
+
       id = R.id.layout_loading;
       View layoutLoading = ViewBindings.findChildViewById(rootView, id);
       if (layoutLoading == null) {
         break missingId;
       }
       LayoutLoadingOverlayBinding binding_layoutLoading = LayoutLoadingOverlayBinding.bind(layoutLoading);
+
+      id = R.id.layout_rating;
+      LinearLayout layoutRating = ViewBindings.findChildViewById(rootView, id);
+      if (layoutRating == null) {
+        break missingId;
+      }
 
       id = R.id.ll_dots;
       LinearLayout llDots = ViewBindings.findChildViewById(rootView, id);
@@ -132,6 +178,12 @@ public final class FragmentProductDetailBinding implements ViewBinding {
       id = R.id.progress_bar;
       ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
       if (progressBar == null) {
+        break missingId;
+      }
+
+      id = R.id.rating_bar_avg;
+      RatingBar ratingBarAvg = ViewBindings.findChildViewById(rootView, id);
+      if (ratingBarAvg == null) {
         break missingId;
       }
 
@@ -159,6 +211,18 @@ public final class FragmentProductDetailBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tv_rating_avg;
+      TextView tvRatingAvg = ViewBindings.findChildViewById(rootView, id);
+      if (tvRatingAvg == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_reviews_count;
+      TextView tvReviewsCount = ViewBindings.findChildViewById(rootView, id);
+      if (tvReviewsCount == null) {
+        break missingId;
+      }
+
       id = R.id.tv_stock;
       TextView tvStock = ViewBindings.findChildViewById(rootView, id);
       if (tvStock == null) {
@@ -171,8 +235,9 @@ public final class FragmentProductDetailBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentProductDetailBinding((FrameLayout) rootView, btnAddToCart, btnBack,
-          binding_layoutLoading, llDots, progressBar, tvCategory, tvDescription, tvName, tvPrice,
+      return new FragmentProductDetailBinding((FrameLayout) rootView, btnAddReview, btnAddToCart,
+          btnBack, btnFavorite, binding_layoutLoading, layoutRating, llDots, progressBar,
+          ratingBarAvg, tvCategory, tvDescription, tvName, tvPrice, tvRatingAvg, tvReviewsCount,
           tvStock, vpProductImages);
     }
     String missingId = rootView.getResources().getResourceName(id);

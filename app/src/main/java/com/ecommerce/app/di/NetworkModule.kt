@@ -7,8 +7,10 @@ import com.ecommerce.app.data.api.AuthInterceptor
 import com.ecommerce.app.data.api.CartApiService
 import com.ecommerce.app.data.api.CategoryApiService
 import com.ecommerce.app.data.api.EmailApiService
+import com.ecommerce.app.data.api.FavoriteApiService
 import com.ecommerce.app.data.api.OrderApiService
 import com.ecommerce.app.data.api.ProductApiService
+import com.ecommerce.app.data.api.ReviewApiService
 import com.ecommerce.app.data.api.UserApiService
 import dagger.Module
 import dagger.Provides
@@ -93,4 +95,14 @@ object NetworkModule {
     @Provides
     fun provideProductApiService(retrofit: Retrofit): ProductApiService =
         retrofit.create(ProductApiService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideReviewApiService(retrofit: Retrofit): ReviewApiService =
+        retrofit.create(ReviewApiService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideFavoriteApiService(retrofit: Retrofit): FavoriteApiService =
+        retrofit.create(FavoriteApiService::class.java)
 }

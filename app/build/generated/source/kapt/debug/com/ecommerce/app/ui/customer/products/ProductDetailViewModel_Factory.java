@@ -1,7 +1,9 @@
 package com.ecommerce.app.ui.customer.products;
 
 import com.ecommerce.app.data.repository.CartRepository;
+import com.ecommerce.app.data.repository.FavoriteRepository;
 import com.ecommerce.app.data.repository.ProductRepository;
+import com.ecommerce.app.data.repository.ReviewRepository;
 import com.ecommerce.app.data.repository.UserRepository;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
@@ -30,28 +32,39 @@ public final class ProductDetailViewModel_Factory implements Factory<ProductDeta
 
   private final Provider<UserRepository> userRepositoryProvider;
 
+  private final Provider<ReviewRepository> reviewRepositoryProvider;
+
+  private final Provider<FavoriteRepository> favoriteRepositoryProvider;
+
   public ProductDetailViewModel_Factory(Provider<ProductRepository> productRepositoryProvider,
       Provider<CartRepository> cartRepositoryProvider,
-      Provider<UserRepository> userRepositoryProvider) {
+      Provider<UserRepository> userRepositoryProvider,
+      Provider<ReviewRepository> reviewRepositoryProvider,
+      Provider<FavoriteRepository> favoriteRepositoryProvider) {
     this.productRepositoryProvider = productRepositoryProvider;
     this.cartRepositoryProvider = cartRepositoryProvider;
     this.userRepositoryProvider = userRepositoryProvider;
+    this.reviewRepositoryProvider = reviewRepositoryProvider;
+    this.favoriteRepositoryProvider = favoriteRepositoryProvider;
   }
 
   @Override
   public ProductDetailViewModel get() {
-    return newInstance(productRepositoryProvider.get(), cartRepositoryProvider.get(), userRepositoryProvider.get());
+    return newInstance(productRepositoryProvider.get(), cartRepositoryProvider.get(), userRepositoryProvider.get(), reviewRepositoryProvider.get(), favoriteRepositoryProvider.get());
   }
 
   public static ProductDetailViewModel_Factory create(
       Provider<ProductRepository> productRepositoryProvider,
       Provider<CartRepository> cartRepositoryProvider,
-      Provider<UserRepository> userRepositoryProvider) {
-    return new ProductDetailViewModel_Factory(productRepositoryProvider, cartRepositoryProvider, userRepositoryProvider);
+      Provider<UserRepository> userRepositoryProvider,
+      Provider<ReviewRepository> reviewRepositoryProvider,
+      Provider<FavoriteRepository> favoriteRepositoryProvider) {
+    return new ProductDetailViewModel_Factory(productRepositoryProvider, cartRepositoryProvider, userRepositoryProvider, reviewRepositoryProvider, favoriteRepositoryProvider);
   }
 
   public static ProductDetailViewModel newInstance(ProductRepository productRepository,
-      CartRepository cartRepository, UserRepository userRepository) {
-    return new ProductDetailViewModel(productRepository, cartRepository, userRepository);
+      CartRepository cartRepository, UserRepository userRepository,
+      ReviewRepository reviewRepository, FavoriteRepository favoriteRepository) {
+    return new ProductDetailViewModel(productRepository, cartRepository, userRepository, reviewRepository, favoriteRepository);
   }
 }

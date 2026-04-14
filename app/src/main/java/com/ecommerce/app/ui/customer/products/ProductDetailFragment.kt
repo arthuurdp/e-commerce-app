@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.LinearLayout
+import android.widget.EditText
+import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -19,11 +21,13 @@ import androidx.viewpager2.widget.ViewPager2
 import androidx.navigation.fragment.findNavController
 import com.ecommerce.app.data.model.product.ProductDetailsResponse
 import com.ecommerce.app.data.model.product.ProductImageResponse
+import com.ecommerce.app.data.model.review.ReviewResponse
 import com.ecommerce.app.databinding.FragmentProductDetailBinding
 import com.ecommerce.app.ui.customer.profile.security.SecurityViewModel
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hide
 import com.ecommerce.app.util.show
+import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -50,6 +54,17 @@ class ProductDetailFragment : Fragment() {
         viewModel.loadProduct(productId)
         observeProduct()
         observeAddToCart()
+        observeReviews()
+        observeFavorite()
+        observeAddReview()
+
+        binding.btnFavorite.setOnClickListener {
+            viewModel.toggleFavorite(productId)
+        }
+
+        binding.btnAddReview.setOnClickListener {
+            showAddReviewDialog(productId)
+        }
 
         viewModel.userEmail.observe(viewLifecycleOwner) { email ->
             userEmail = email
@@ -111,6 +126,57 @@ class ProductDetailFragment : Fragment() {
         }
     }
 
+    private fun observeAddReview() {
+        viewModel.addReviewState.observe(viewLifecycleOwner) { result ->
+            if (result == null) return@observe
+
+            when (result) {
+                is NetworkResult.Loading -> binding.layoutLoading.loadingOverlay.show()
+                is NetworkResult.Success -> {
+                    binding.layoutLoading.loadingOverlay.hide()
+                    Toast.makeText(requireContext(), "Avaliação enviada com sucesso!", Toast.LENGTH_SHORT).show()
+                    viewModel.resetAddReviewState()
+                }
+                is NetworkResult.Error -> {
+                    binding.layoutLoading.loadingOverlay.hide()
+                    Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
+                    viewModel.resetAddReviewState()
+                }
+            }
+        }
+    }
+
+    private fun showAddReviewDialog(productId: Long) {
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.dialog_add_review)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.setLayout(
+            (resources.displayMetrics.widthPixels * 0.90).toInt(),
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+
+        val ratingBar = dialog.findViewById<RatingBar>(R.id.rating_bar_input)
+        val etComment = dialog.findViewById<EditText>(R.id.et_comment)
+        val btnSubmit = dialog.findViewById<MaterialButton>(R.id.btn_submit_review)
+        val btnCancel = dialog.findViewById<TextView>(R.id.btn_cancel_review)
+
+        btnCancel.setOnClickListener { dialog.dismiss() }
+
+        btnSubmit.setOnClickListener {
+            val rating = ratingBar.rating.toInt()
+            if (rating == 0) {
+                Toast.makeText(requireContext(), "Por favor, selecione uma nota", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            val comment = etComment.text.toString()
+            viewModel.addReview(productId, rating, comment.ifBlank { null })
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
     private fun showVerifyEmailDialog() {
         viewModel.resetAddToCartState()
 
@@ -141,6 +207,36 @@ class ProductDetailFragment : Fragment() {
         }
 
         dialog.show()
+    }
+
+    private fun observeFavorite() {
+        viewModel.isFavorite.observe(viewLifecycleOwner) { isFavorite ->
+            binding.btnFavorite.setImageResource(
+                if (isFavorite) R.drawable.ic_favorite_filled else R.drawable.ic_favorite_border
+            )
+        }
+
+        viewModel.favoriteState.observe(viewLifecycleOwner) { result ->
+            if (result is NetworkResult.Error) {
+                Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
+                viewModel.resetFavoriteState()
+            }
+        }
+    }
+
+    private fun observeReviews() {
+        viewModel.averageRating.observe(viewLifecycleOwner) { result ->
+            if (result is NetworkResult.Success) {
+                binding.tvRatingAvg.text = "%.1f".format(result.data)
+                binding.ratingBarAvg.rating = result.data.toFloat()
+            }
+        }
+
+        viewModel.reviews.observe(viewLifecycleOwner) { result ->
+            if (result is NetworkResult.Success) {
+                binding.tvReviewsCount.text = "(%d avaliações)".format(result.data.size)
+            }
+        }
     }
 
     private fun showProductAddedToCartDialog() {

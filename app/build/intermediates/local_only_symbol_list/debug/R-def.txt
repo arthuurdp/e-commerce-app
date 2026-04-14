@@ -39,6 +39,7 @@ color white
 drawable bg_bottom_nav
 drawable bg_bottom_radius
 drawable bg_circle_green
+drawable bg_circle_white
 drawable bg_dialog
 drawable bg_dot_active
 drawable bg_dot_inactive
@@ -52,6 +53,8 @@ drawable ic_cart
 drawable ic_edit
 drawable ic_email
 drawable ic_email_outline
+drawable ic_favorite_border
+drawable ic_favorite_filled
 drawable ic_home
 drawable ic_location
 drawable ic_lock
@@ -121,10 +124,12 @@ id app_bar
 id bottom_nav_customer
 id btnCancel
 id btnConfirm
+id btn_add_review
 id btn_add_to_cart
 id btn_addresses
 id btn_back
 id btn_cancel
+id btn_cancel_review
 id btn_change_email
 id btn_change_password
 id btn_checkout
@@ -133,6 +138,7 @@ id btn_decrement
 id btn_delete
 id btn_edit
 id btn_edit_profile
+id btn_favorite
 id btn_increment
 id btn_login
 id btn_logout
@@ -143,6 +149,7 @@ id btn_reset_password
 id btn_save
 id btn_security
 id btn_send_code
+id btn_submit_review
 id card_category
 id card_change_email
 id card_change_password
@@ -161,6 +168,7 @@ id editProfileFragment
 id enterCodeFragment
 id et_birth_date
 id et_city
+id et_comment
 id et_complement
 id et_cpf
 id et_credential
@@ -199,6 +207,7 @@ id layout_empty_state
 id layout_loading
 id layout_no_results
 id layout_order_footer
+id layout_rating
 id layout_results
 id ll_categories_container
 id ll_categories_grid
@@ -227,6 +236,8 @@ id productDetailFragment
 id profileFragment
 id progressBar
 id progress_bar
+id rating_bar_avg
+id rating_bar_input
 id registerFragment
 id resetPasswordFragment
 id rv_addresses
@@ -298,9 +309,11 @@ id tv_product_name
 id tv_product_price
 id tv_qty
 id tv_quantity
+id tv_rating_avg
 id tv_register
 id tv_resend_code
 id tv_result_count
+id tv_reviews_count
 id tv_status
 id tv_stock
 id tv_subtitle
@@ -314,6 +327,7 @@ id vp_product_images
 layout activity_main
 layout dialog_add_first_address
 layout dialog_add_more_products
+layout dialog_add_review
 layout dialog_delete_account
 layout dialog_verify_email
 layout fragment_add_address
