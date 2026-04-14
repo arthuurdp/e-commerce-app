@@ -48,6 +48,7 @@ drawable bg_status_badge
 drawable bg_upper_radius
 drawable divider_style
 drawable ic_arrow_back
+drawable ic_arrow_down
 drawable ic_arrow_right
 drawable ic_cart
 drawable ic_edit
@@ -124,11 +125,13 @@ id app_bar
 id bottom_nav_customer
 id btnCancel
 id btnConfirm
+id btn_add_comment
 id btn_add_review
 id btn_add_to_cart
 id btn_addresses
 id btn_back
 id btn_cancel
+id btn_cancel_comment
 id btn_cancel_review
 id btn_change_email
 id btn_change_password
@@ -149,6 +152,7 @@ id btn_reset_password
 id btn_save
 id btn_security
 id btn_send_code
+id btn_submit_comment
 id btn_submit_review
 id card_category
 id card_change_email
@@ -169,6 +173,7 @@ id enterCodeFragment
 id et_birth_date
 id et_city
 id et_comment
+id et_comment_input
 id et_complement
 id et_cpf
 id et_credential
@@ -197,6 +202,7 @@ id homeFragment
 id iv_avatar
 id iv_banner
 id iv_cart
+id iv_comments_toggle
 id iv_email_chevron
 id iv_illustration
 id iv_order_icon
@@ -213,6 +219,7 @@ id ll_categories_container
 id ll_categories_grid
 id ll_category_header
 id ll_category_tiles
+id ll_comments_header
 id ll_dots
 id ll_greeting
 id ll_info
@@ -236,6 +243,7 @@ id productDetailFragment
 id profileFragment
 id progressBar
 id progress_bar
+id progress_bar_comments
 id rating_bar_avg
 id rating_bar_input
 id registerFragment
@@ -243,6 +251,7 @@ id resetPasswordFragment
 id rv_addresses
 id rv_cart_items
 id rv_category_products
+id rv_comments
 id rv_items
 id rv_orders
 id rv_search_results
@@ -282,9 +291,10 @@ id tv_address_name
 id tv_address_postal_code
 id tv_address_street
 id tv_cart_badge
-id tv_category
 id tv_category_emoji
 id tv_category_name
+id tv_comments_count
+id tv_content
 id tv_current_email
 id tv_date
 id tv_description
@@ -301,6 +311,7 @@ id tv_item_count
 id tv_last_name
 id tv_login
 id tv_name
+id tv_no_comments
 id tv_no_results_query
 id tv_order_id
 id tv_price
@@ -315,16 +326,19 @@ id tv_resend_code
 id tv_result_count
 id tv_reviews_count
 id tv_status
-id tv_stock
+id tv_stock_quantity
+id tv_stock_status
 id tv_subtitle
 id tv_subtotal
 id tv_timer
 id tv_title
 id tv_total
 id tv_unit_price
+id tv_user_name
 id vp_banner
 id vp_product_images
 layout activity_main
+layout dialog_add_coment
 layout dialog_add_first_address
 layout dialog_add_more_products
 layout dialog_add_review
@@ -359,6 +373,7 @@ layout item_cart
 layout item_category_chip
 layout item_category_section
 layout item_checkout_image
+layout item_comment
 layout item_order
 layout item_order_line
 layout item_product

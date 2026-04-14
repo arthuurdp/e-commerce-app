@@ -8,8 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.LinearLayout
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
@@ -19,6 +19,8 @@ import androidx.fragment.app.viewModels
 import com.ecommerce.app.R
 import androidx.viewpager2.widget.ViewPager2
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.ecommerce.app.data.model.comment.CommentResponse
 import com.ecommerce.app.data.model.product.ProductDetailsResponse
 import com.ecommerce.app.data.model.product.ProductImageResponse
 import com.ecommerce.app.data.model.review.ReviewResponse
@@ -28,6 +30,8 @@ import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hide
 import com.ecommerce.app.util.show
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,7 +41,15 @@ class ProductDetailFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: ProductDetailViewModel by viewModels()
     private val securityViewModel: SecurityViewModel by viewModels()
+
     private var userEmail: String? = null
+    private var currentUserId: Long? = null
+    private var currentProductId: Long = 0L
+
+    private var commentsExpanded = true
+    private var hasComments = false
+
+    private lateinit var commentAdapter: CommentAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -47,29 +59,190 @@ class ProductDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val productId = arguments?.getLong("productId") ?: return
+        currentProductId = arguments?.getLong("productId") ?: return
 
         binding.btnBack.setOnClickListener { findNavController().popBackStack() }
+        binding.llCommentsHeader.setOnClickListener {
+            toggleComments()
+        }
 
-        viewModel.loadProduct(productId)
+        setupCommentsRecyclerView()
+
+        viewModel.loadProduct(currentProductId)
         observeProduct()
         observeAddToCart()
         observeReviews()
         observeFavorite()
         observeAddReview()
+        observeComments()
+        observeAddComment()
+        observeDeleteComment()
 
         binding.btnFavorite.setOnClickListener {
-            viewModel.toggleFavorite(productId)
+            viewModel.toggleFavorite(currentProductId)
         }
 
         binding.btnAddReview.setOnClickListener {
-            showAddReviewDialog(productId)
+            showAddReviewDialog(currentProductId)
+        }
+
+        binding.btnAddComment.setOnClickListener {
+            showAddCommentDialog(currentProductId)
         }
 
         viewModel.userEmail.observe(viewLifecycleOwner) { email ->
             userEmail = email
         }
+
+        viewModel.userId.observe(viewLifecycleOwner) { id ->
+            currentUserId = id
+        }
     }
+
+    // ── Comments ──────────────────────────────────────────────────────────────
+
+    private fun setupCommentsRecyclerView() {
+        commentAdapter = CommentAdapter(
+            currentUserId = currentUserId,
+            onDelete = { comment ->
+                viewModel.deleteComment(comment.id, currentProductId)
+            }
+        )
+        binding.rvComments.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = commentAdapter
+            isNestedScrollingEnabled = false
+        }
+    }
+
+    private fun observeComments() {
+        viewModel.commentsState.observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is NetworkResult.Loading -> binding.progressBarComments.show()
+                is NetworkResult.Success -> {
+                    binding.progressBarComments.hide()
+                    val comments = result.data
+                    hasComments = comments.isNotEmpty()
+
+                    commentAdapter = CommentAdapter(
+                        currentUserId = currentUserId,
+                        onDelete = { comment ->
+                            viewModel.deleteComment(comment.id, currentProductId)
+                        }
+                    )
+                    binding.rvComments.adapter = commentAdapter
+                    commentAdapter.submitList(comments)
+
+                    binding.tvCommentsCount.text = "${comments.size} ${if (comments.size == 1) "comentário" else "comentários"}"
+
+                    if (commentsExpanded) {
+                        if (hasComments) {
+                            binding.tvNoComments.hide()
+                            binding.rvComments.show()
+                        } else {
+                            binding.tvNoComments.show()
+                            binding.rvComments.hide()
+                        }
+                    }
+                }
+                is NetworkResult.Error -> {
+                    binding.progressBarComments.hide()
+                    if (commentsExpanded) binding.tvNoComments.show()
+                }
+            }
+        }
+    }
+
+    private fun toggleComments() {
+        commentsExpanded = !commentsExpanded
+
+        binding.ivCommentsToggle.animate()
+            .rotation(if (commentsExpanded) 0f else -90f)
+            .setDuration(200)
+            .start()
+
+        if (commentsExpanded) {
+            if (hasComments) {
+                binding.rvComments.show()
+                binding.tvNoComments.hide()
+            } else {
+                binding.tvNoComments.show()
+                binding.rvComments.hide()
+            }
+        } else {
+            binding.rvComments.hide()
+            binding.tvNoComments.hide()
+        }
+    }
+
+    private fun observeAddComment() {
+        viewModel.addCommentState.observe(viewLifecycleOwner) { result ->
+            if (result == null) return@observe
+            when (result) {
+                is NetworkResult.Loading -> binding.layoutLoading.loadingOverlay.show()
+                is NetworkResult.Success -> {
+                    binding.layoutLoading.loadingOverlay.hide()
+                    Toast.makeText(requireContext(), "Comentário adicionado!", Toast.LENGTH_SHORT).show()
+                    viewModel.resetAddCommentState()
+                }
+                is NetworkResult.Error -> {
+                    binding.layoutLoading.loadingOverlay.hide()
+                    Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
+                    viewModel.resetAddCommentState()
+                }
+            }
+        }
+    }
+
+    private fun observeDeleteComment() {
+        viewModel.deleteCommentState.observe(viewLifecycleOwner) { result ->
+            if (result == null) return@observe
+            when (result) {
+                is NetworkResult.Loading -> binding.layoutLoading.loadingOverlay.show()
+                is NetworkResult.Success -> {
+                    binding.layoutLoading.loadingOverlay.hide()
+                    Toast.makeText(requireContext(), "Comentário excluído.", Toast.LENGTH_SHORT).show()
+                    viewModel.resetDeleteCommentState()
+                }
+                is NetworkResult.Error -> {
+                    binding.layoutLoading.loadingOverlay.hide()
+                    Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
+                    viewModel.resetDeleteCommentState()
+                }
+            }
+        }
+    }
+
+    private fun showAddCommentDialog(productId: Long) {
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.dialog_add_coment)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.setLayout(
+            (resources.displayMetrics.widthPixels * 0.90).toInt(),
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+
+        val etComment = dialog.findViewById<EditText>(R.id.et_comment_input)
+        val btnSubmit = dialog.findViewById<MaterialButton>(R.id.btn_submit_comment)
+        val btnCancel = dialog.findViewById<TextView>(R.id.btn_cancel_comment)
+
+        btnCancel.setOnClickListener { dialog.dismiss() }
+
+        btnSubmit.setOnClickListener {
+            val content = etComment.text.toString().trim()
+            if (content.isEmpty()) {
+                Toast.makeText(requireContext(), "Digite um comentário", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            viewModel.addComment(productId, content)
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    // ── Product ───────────────────────────────────────────────────────────────
 
     private fun observeProduct() {
         viewModel.product.observe(viewLifecycleOwner) { result ->
@@ -79,7 +252,6 @@ class ProductDetailFragment : Fragment() {
                     binding.layoutLoading.loadingOverlay.hide()
                     bindProduct(result.data)
                 }
-
                 is NetworkResult.Error -> {
                     binding.layoutLoading.loadingOverlay.hide()
                     Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
@@ -92,31 +264,48 @@ class ProductDetailFragment : Fragment() {
         binding.tvName.text = p.name
         binding.tvDescription.text = p.description
         binding.tvPrice.text = "R$ %.2f".format(p.price)
-        binding.tvCategory.text = p.categories.joinToString(" · ") { it.name }
-
         setupImageCarousel(p.imgs)
+        bindStock(p.stock)
+        binding.btnAddToCart.setOnClickListener { viewModel.addToCart(p.id) }
+    }
 
-        binding.btnAddToCart.setOnClickListener {
-            viewModel.addToCart(p.id)
+    private fun bindStock(stock: Int) {
+        when {
+            stock <= 0 -> {
+                binding.tvStockStatus.text = "● Fora de Estoque"
+                binding.tvStockStatus.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+                binding.tvStockQuantity.visibility = View.GONE
+                binding.btnAddToCart.isEnabled = false
+                binding.btnAddToCart.alpha = 0.5f
+            }
+            stock <= 5 -> {
+                binding.tvStockStatus.text = "● Últimas unidades"
+                binding.tvStockStatus.setTextColor(ContextCompat.getColor(requireContext(), R.color.warning))
+                binding.tvStockQuantity.visibility = View.VISIBLE
+                binding.tvStockQuantity.text = "Apenas $stock disponíveis"
+            }
+            else -> {
+                binding.tvStockStatus.text = "● Em Estoque"
+                binding.tvStockStatus.setTextColor(ContextCompat.getColor(requireContext(), R.color.primary))
+                binding.tvStockQuantity.visibility = View.VISIBLE
+                binding.tvStockQuantity.text = "$stock disponíveis"
+            }
         }
     }
 
     private fun observeAddToCart() {
         viewModel.addToCartState.observe(viewLifecycleOwner) { result ->
             if (result == null) return@observe
-
             when (result) {
                 is NetworkResult.Loading -> {
                     binding.btnAddToCart.isEnabled = false
                     binding.layoutLoading.loadingOverlay.show()
                 }
-
                 is NetworkResult.Success -> {
                     binding.btnAddToCart.isEnabled = true
                     binding.layoutLoading.loadingOverlay.hide()
                     showProductAddedToCartDialog()
                 }
-
                 is NetworkResult.Error -> {
                     binding.btnAddToCart.isEnabled = true
                     binding.layoutLoading.loadingOverlay.hide()
@@ -129,7 +318,6 @@ class ProductDetailFragment : Fragment() {
     private fun observeAddReview() {
         viewModel.addReviewState.observe(viewLifecycleOwner) { result ->
             if (result == null) return@observe
-
             when (result) {
                 is NetworkResult.Loading -> binding.layoutLoading.loadingOverlay.show()
                 is NetworkResult.Success -> {
@@ -263,10 +451,11 @@ class ProductDetailFragment : Fragment() {
         dialog.show()
     }
 
+    // ── Image carousel ────────────────────────────────────────────────────────
+
     private fun setupImageCarousel(imgs: List<ProductImageResponse>) {
         binding.vpProductImages.adapter = ProductItemAdapter(imgs)
         setupDots(imgs.size)
-
         binding.vpProductImages.registerOnPageChangeCallback(
             object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) = updateDots(position, imgs.size)

@@ -6,12 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import androidx.viewpager2.widget.ViewPager2;
@@ -26,6 +28,9 @@ public final class FragmentProductDetailBinding implements ViewBinding {
   private final FrameLayout rootView;
 
   @NonNull
+  public final MaterialButton btnAddComment;
+
+  @NonNull
   public final MaterialButton btnAddReview;
 
   @NonNull
@@ -38,10 +43,16 @@ public final class FragmentProductDetailBinding implements ViewBinding {
   public final ImageButton btnFavorite;
 
   @NonNull
+  public final ImageView ivCommentsToggle;
+
+  @NonNull
   public final LayoutLoadingOverlayBinding layoutLoading;
 
   @NonNull
   public final LinearLayout layoutRating;
+
+  @NonNull
+  public final LinearLayout llCommentsHeader;
 
   @NonNull
   public final LinearLayout llDots;
@@ -50,16 +61,25 @@ public final class FragmentProductDetailBinding implements ViewBinding {
   public final ProgressBar progressBar;
 
   @NonNull
+  public final ProgressBar progressBarComments;
+
+  @NonNull
   public final RatingBar ratingBarAvg;
 
   @NonNull
-  public final TextView tvCategory;
+  public final RecyclerView rvComments;
+
+  @NonNull
+  public final TextView tvCommentsCount;
 
   @NonNull
   public final TextView tvDescription;
 
   @NonNull
   public final TextView tvName;
+
+  @NonNull
+  public final TextView tvNoComments;
 
   @NonNull
   public final TextView tvPrice;
@@ -71,37 +91,50 @@ public final class FragmentProductDetailBinding implements ViewBinding {
   public final TextView tvReviewsCount;
 
   @NonNull
-  public final TextView tvStock;
+  public final TextView tvStockQuantity;
+
+  @NonNull
+  public final TextView tvStockStatus;
 
   @NonNull
   public final ViewPager2 vpProductImages;
 
   private FragmentProductDetailBinding(@NonNull FrameLayout rootView,
-      @NonNull MaterialButton btnAddReview, @NonNull MaterialButton btnAddToCart,
-      @NonNull ImageButton btnBack, @NonNull ImageButton btnFavorite,
+      @NonNull MaterialButton btnAddComment, @NonNull MaterialButton btnAddReview,
+      @NonNull MaterialButton btnAddToCart, @NonNull ImageButton btnBack,
+      @NonNull ImageButton btnFavorite, @NonNull ImageView ivCommentsToggle,
       @NonNull LayoutLoadingOverlayBinding layoutLoading, @NonNull LinearLayout layoutRating,
-      @NonNull LinearLayout llDots, @NonNull ProgressBar progressBar,
-      @NonNull RatingBar ratingBarAvg, @NonNull TextView tvCategory,
-      @NonNull TextView tvDescription, @NonNull TextView tvName, @NonNull TextView tvPrice,
-      @NonNull TextView tvRatingAvg, @NonNull TextView tvReviewsCount, @NonNull TextView tvStock,
-      @NonNull ViewPager2 vpProductImages) {
+      @NonNull LinearLayout llCommentsHeader, @NonNull LinearLayout llDots,
+      @NonNull ProgressBar progressBar, @NonNull ProgressBar progressBarComments,
+      @NonNull RatingBar ratingBarAvg, @NonNull RecyclerView rvComments,
+      @NonNull TextView tvCommentsCount, @NonNull TextView tvDescription, @NonNull TextView tvName,
+      @NonNull TextView tvNoComments, @NonNull TextView tvPrice, @NonNull TextView tvRatingAvg,
+      @NonNull TextView tvReviewsCount, @NonNull TextView tvStockQuantity,
+      @NonNull TextView tvStockStatus, @NonNull ViewPager2 vpProductImages) {
     this.rootView = rootView;
+    this.btnAddComment = btnAddComment;
     this.btnAddReview = btnAddReview;
     this.btnAddToCart = btnAddToCart;
     this.btnBack = btnBack;
     this.btnFavorite = btnFavorite;
+    this.ivCommentsToggle = ivCommentsToggle;
     this.layoutLoading = layoutLoading;
     this.layoutRating = layoutRating;
+    this.llCommentsHeader = llCommentsHeader;
     this.llDots = llDots;
     this.progressBar = progressBar;
+    this.progressBarComments = progressBarComments;
     this.ratingBarAvg = ratingBarAvg;
-    this.tvCategory = tvCategory;
+    this.rvComments = rvComments;
+    this.tvCommentsCount = tvCommentsCount;
     this.tvDescription = tvDescription;
     this.tvName = tvName;
+    this.tvNoComments = tvNoComments;
     this.tvPrice = tvPrice;
     this.tvRatingAvg = tvRatingAvg;
     this.tvReviewsCount = tvReviewsCount;
-    this.tvStock = tvStock;
+    this.tvStockQuantity = tvStockQuantity;
+    this.tvStockStatus = tvStockStatus;
     this.vpProductImages = vpProductImages;
   }
 
@@ -132,6 +165,12 @@ public final class FragmentProductDetailBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btn_add_comment;
+      MaterialButton btnAddComment = ViewBindings.findChildViewById(rootView, id);
+      if (btnAddComment == null) {
+        break missingId;
+      }
+
       id = R.id.btn_add_review;
       MaterialButton btnAddReview = ViewBindings.findChildViewById(rootView, id);
       if (btnAddReview == null) {
@@ -156,6 +195,12 @@ public final class FragmentProductDetailBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.iv_comments_toggle;
+      ImageView ivCommentsToggle = ViewBindings.findChildViewById(rootView, id);
+      if (ivCommentsToggle == null) {
+        break missingId;
+      }
+
       id = R.id.layout_loading;
       View layoutLoading = ViewBindings.findChildViewById(rootView, id);
       if (layoutLoading == null) {
@@ -166,6 +211,12 @@ public final class FragmentProductDetailBinding implements ViewBinding {
       id = R.id.layout_rating;
       LinearLayout layoutRating = ViewBindings.findChildViewById(rootView, id);
       if (layoutRating == null) {
+        break missingId;
+      }
+
+      id = R.id.ll_comments_header;
+      LinearLayout llCommentsHeader = ViewBindings.findChildViewById(rootView, id);
+      if (llCommentsHeader == null) {
         break missingId;
       }
 
@@ -181,15 +232,27 @@ public final class FragmentProductDetailBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.progress_bar_comments;
+      ProgressBar progressBarComments = ViewBindings.findChildViewById(rootView, id);
+      if (progressBarComments == null) {
+        break missingId;
+      }
+
       id = R.id.rating_bar_avg;
       RatingBar ratingBarAvg = ViewBindings.findChildViewById(rootView, id);
       if (ratingBarAvg == null) {
         break missingId;
       }
 
-      id = R.id.tv_category;
-      TextView tvCategory = ViewBindings.findChildViewById(rootView, id);
-      if (tvCategory == null) {
+      id = R.id.rv_comments;
+      RecyclerView rvComments = ViewBindings.findChildViewById(rootView, id);
+      if (rvComments == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_comments_count;
+      TextView tvCommentsCount = ViewBindings.findChildViewById(rootView, id);
+      if (tvCommentsCount == null) {
         break missingId;
       }
 
@@ -202,6 +265,12 @@ public final class FragmentProductDetailBinding implements ViewBinding {
       id = R.id.tv_name;
       TextView tvName = ViewBindings.findChildViewById(rootView, id);
       if (tvName == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_no_comments;
+      TextView tvNoComments = ViewBindings.findChildViewById(rootView, id);
+      if (tvNoComments == null) {
         break missingId;
       }
 
@@ -223,9 +292,15 @@ public final class FragmentProductDetailBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.tv_stock;
-      TextView tvStock = ViewBindings.findChildViewById(rootView, id);
-      if (tvStock == null) {
+      id = R.id.tv_stock_quantity;
+      TextView tvStockQuantity = ViewBindings.findChildViewById(rootView, id);
+      if (tvStockQuantity == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_stock_status;
+      TextView tvStockStatus = ViewBindings.findChildViewById(rootView, id);
+      if (tvStockStatus == null) {
         break missingId;
       }
 
@@ -235,10 +310,11 @@ public final class FragmentProductDetailBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentProductDetailBinding((FrameLayout) rootView, btnAddReview, btnAddToCart,
-          btnBack, btnFavorite, binding_layoutLoading, layoutRating, llDots, progressBar,
-          ratingBarAvg, tvCategory, tvDescription, tvName, tvPrice, tvRatingAvg, tvReviewsCount,
-          tvStock, vpProductImages);
+      return new FragmentProductDetailBinding((FrameLayout) rootView, btnAddComment, btnAddReview,
+          btnAddToCart, btnBack, btnFavorite, ivCommentsToggle, binding_layoutLoading, layoutRating,
+          llCommentsHeader, llDots, progressBar, progressBarComments, ratingBarAvg, rvComments,
+          tvCommentsCount, tvDescription, tvName, tvNoComments, tvPrice, tvRatingAvg,
+          tvReviewsCount, tvStockQuantity, tvStockStatus, vpProductImages);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

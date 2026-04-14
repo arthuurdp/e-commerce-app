@@ -6,6 +6,7 @@ import com.ecommerce.app.data.api.AuthApiService
 import com.ecommerce.app.data.api.AuthInterceptor
 import com.ecommerce.app.data.api.CartApiService
 import com.ecommerce.app.data.api.CategoryApiService
+import com.ecommerce.app.data.api.CommentApiService
 import com.ecommerce.app.data.api.EmailApiService
 import com.ecommerce.app.data.api.FavoriteApiService
 import com.ecommerce.app.data.api.OrderApiService
@@ -105,4 +106,9 @@ object NetworkModule {
     @Provides
     fun provideFavoriteApiService(retrofit: Retrofit): FavoriteApiService =
         retrofit.create(FavoriteApiService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideCommentApiService(retrofit: Retrofit): CommentApiService =
+        retrofit.create(CommentApiService::class.java)
 }

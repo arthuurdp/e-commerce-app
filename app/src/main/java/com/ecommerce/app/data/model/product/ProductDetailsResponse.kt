@@ -10,10 +10,10 @@ data class ProductDetailsResponse(
     val name: String,
     val description: String,
     val price: Double,
+    val stock: Int,
     val imgs: List<ProductImageResponse>,
     val weight: Double,
     val width: Int,
     val height: Int,
-    val length: Int,
-    val categories: List<CategoryResponse>
+    val length: Int
 ) : Parcelable
