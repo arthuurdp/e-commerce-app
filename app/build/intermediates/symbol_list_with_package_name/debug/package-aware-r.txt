@@ -3112,7 +3112,6 @@ drawable img_add_address
 drawable img_banner_1
 drawable img_banner_2
 drawable img_banner_3
-drawable img_banner_4
 drawable img_delete_account
 drawable img_empty_cart
 drawable img_female

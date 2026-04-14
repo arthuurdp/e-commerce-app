@@ -3,14 +3,11 @@ package com.ecommerce.app.ui;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.view.ViewGroup;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.NavigationUI;
 import com.ecommerce.app.R;
 import com.ecommerce.app.databinding.ActivityMainBinding;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @dagger.hilt.android.AndroidEntryPoint()

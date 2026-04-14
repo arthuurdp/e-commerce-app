@@ -37,15 +37,12 @@ private val CATEGORY_COLORS = listOf(
 )
 
 private val CATEGORY_EMOJIS = mapOf(
-    "lanche" to "🍔", "burger" to "🍔", "pizza" to "🍕",
-    "sushi" to "🍣", "japonesa" to "🍣", "bebida" to "🥤", "drink" to "🥤",
-    "doce" to "🍰", "sobremesa" to "🍰", "bolo" to "🍰",
-    "mercado" to "🛒", "hortifruti" to "🥦", "farmácia" to "💊", "farmacia" to "💊",
-    "açaí" to "🫐", "acai" to "🫐", "fit" to "💪", "saudável" to "🥗", "saudavel" to "🥗",
-    "mexicana" to "🌮", "tacos" to "🌮", "italiana" to "🍝", "massa" to "🍝",
-    "frango" to "🍗", "chicken" to "🍗", "peixe" to "🐟", "frutos" to "🦞",
-    "vegano" to "🌱", "vegetariano" to "🌿", "gourmet" to "⭐",
-    "chinesa" to "🥡", "árabe" to "🥙", "arabe" to "🥙",
+    "mouse" to "🖱️", "mouses" to "🖱️",
+    "teclado" to "⌨️", "teclados" to "⌨️",
+    "headset" to "🎧", "headsets" to "🎧",
+    "mousepad" to "🟩", "mousepads" to "🟩",
+    "monitor" to "🖥️", "monitores" to "🖥️",
+    "controle" to "🎮", "controles" to "🎮"
 )
 
 @AndroidEntryPoint

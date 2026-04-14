@@ -21,7 +21,6 @@ class TokenManager @Inject constructor(
 ) {
     companion object {
         private val TOKEN_KEY = stringPreferencesKey("jwt_token")
-        private val USER_ROLE_KEY = stringPreferencesKey("user_role")
     }
 
     suspend fun saveToken(token: String) {
@@ -32,9 +31,6 @@ class TokenManager @Inject constructor(
 
     suspend fun getToken(): String? =
         context.dataStore.data.map { it[TOKEN_KEY] }.firstOrNull()
-
-    suspend fun getRole(): String? =
-        context.dataStore.data.map { it[USER_ROLE_KEY] }.firstOrNull()
 
     suspend fun clearToken() {
         context.dataStore.edit { it.clear() }

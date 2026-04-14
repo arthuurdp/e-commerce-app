@@ -42,22 +42,12 @@ private val TILE_COLORS = listOf(
 )
 
 private val CATEGORY_EMOJIS = mapOf(
-    "lanche" to "🍔", "burger" to "🍔",
-    "pizza" to "🍕",
-    "sushi" to "🍣", "japonesa" to "🍣",
-    "bebida" to "🥤",
-    "doce" to "🍰", "sobremesa" to "🍰", "bolo" to "🎂",
-    "mercado" to "🛒",
-    "farmácia" to "💊", "farmacia" to "💊",
-    "açaí" to "🫐", "acai" to "🫐",
-    "fit" to "💪", "saudável" to "🥗",
-    "mexicana" to "🌮",
-    "italiana" to "🍝",
-    "frango" to "🍗",
-    "vegano" to "🌱",
-    "gourmet" to "⭐",
-    "chinesa" to "🥡",
-    "árabe" to "🥙",
+    "mouse" to "🖱️", "mouses" to "🖱️",
+    "teclado" to "⌨️", "teclados" to "⌨️",
+    "headset" to "🎧", "headsets" to "🎧",
+    "mousepad" to "🟩", "mousepads" to "🟩",
+    "monitor" to "🖥️", "monitores" to "🖥️",
+    "controle" to "🎮", "controles" to "🎮"
 )
 
 @AndroidEntryPoint

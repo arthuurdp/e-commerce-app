@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -62,6 +63,7 @@ class CheckoutFragment : Fragment() {
         observeCart()
         observeAddresses()
         observeFreight()
+        observeCheckout()
 
         viewModel.loadInitialData()
 
@@ -203,6 +205,40 @@ class CheckoutFragment : Fragment() {
                     binding.btnPlaceOrder.hide()
                     binding.tvFreightCost.text = "—"
                     checkIfInitialDataReady()
+                }
+            }
+        }
+    }
+
+    private fun observeCheckout() {
+        viewModel.checkoutState.observe(viewLifecycleOwner) { result ->
+            result ?: return@observe
+
+            when (result) {
+                is NetworkResult.Loading -> {
+                    binding.btnPlaceOrder.isEnabled = false
+                    binding.layoutLoading.show()
+                    binding.scrollContent.hide()
+                }
+                is NetworkResult.Success -> {
+                    val checkoutUrl = result.data.checkoutUrl
+                    val orderId = result.data.orderId
+
+                    viewModel.onCheckoutHandled()
+
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(checkoutUrl)))
+
+                    findNavController().navigate(
+                        R.id.action_checkoutFragment_to_paymentWaitingFragment,
+                        bundleOf("orderId" to orderId)
+                    )
+                }
+                is NetworkResult.Error -> {
+                    binding.btnPlaceOrder.isEnabled = true
+                    binding.layoutLoading.hide()
+                    binding.scrollContent.show()
+                    viewModel.onCheckoutHandled()
+                    showToast(result.message)
                 }
             }
         }

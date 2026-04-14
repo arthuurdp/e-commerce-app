@@ -3,19 +3,16 @@ package com.ecommerce.app.ui
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
-import android.view.ViewGroup
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
 import androidx.navigation.navOptions
 import com.ecommerce.app.R
 import com.ecommerce.app.databinding.ActivityMainBinding
 import com.ecommerce.app.util.hide
 import com.ecommerce.app.util.show
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
