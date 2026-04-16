@@ -67,6 +67,9 @@ class ProfileFragment : Fragment() {
         binding.btnSecurity.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_securityFragment)
         }
+        binding.btnMyActivity.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_notificationsFragment)
+        }
         binding.btnLogout.setOnClickListener {
             viewModel.logout()
             findNavController().navigate(R.id.action_profileFragment_to_loginFragment)

@@ -31,6 +31,8 @@ import com.ecommerce.app.ui.customer.products.ProductDetailViewModel_HiltModules
 import com.ecommerce.app.ui.customer.profile.EditProfileFragment_GeneratedInjector;
 import com.ecommerce.app.ui.customer.profile.ProfileFragment_GeneratedInjector;
 import com.ecommerce.app.ui.customer.profile.ProfileViewModel_HiltModules;
+import com.ecommerce.app.ui.customer.profile.activity.NotificationsFragment_GeneratedInjector;
+import com.ecommerce.app.ui.customer.profile.activity.NotificationsViewModel_HiltModules;
 import com.ecommerce.app.ui.customer.profile.security.ChangeEmailEnterNewEmailFragment_GeneratedInjector;
 import com.ecommerce.app.ui.customer.profile.security.ChangePasswordEnterNewPasswordFragment_GeneratedInjector;
 import com.ecommerce.app.ui.customer.profile.security.SecurityFragment_GeneratedInjector;
@@ -200,6 +202,7 @@ public final class ECommerceApp_HiltComponents {
           HiltWrapper_SavedStateHandleModule.class,
           HomeViewModel_HiltModules.KeyModule.class,
           MainViewModel_HiltModules.KeyModule.class,
+          NotificationsViewModel_HiltModules.KeyModule.class,
           OrderDetailViewModel_HiltModules.KeyModule.class,
           OrdersViewModel_HiltModules.KeyModule.class,
           ProductDetailViewModel_HiltModules.KeyModule.class,
@@ -249,6 +252,7 @@ public final class ECommerceApp_HiltComponents {
           HiltWrapper_HiltViewModelFactory_ViewModelModule.class,
           HomeViewModel_HiltModules.BindsModule.class,
           MainViewModel_HiltModules.BindsModule.class,
+          NotificationsViewModel_HiltModules.BindsModule.class,
           OrderDetailViewModel_HiltModules.BindsModule.class,
           OrdersViewModel_HiltModules.BindsModule.class,
           ProductDetailViewModel_HiltModules.BindsModule.class,
@@ -297,6 +301,7 @@ public final class ECommerceApp_HiltComponents {
       ProductDetailFragment_GeneratedInjector,
       EditProfileFragment_GeneratedInjector,
       ProfileFragment_GeneratedInjector,
+      NotificationsFragment_GeneratedInjector,
       ChangeEmailEnterNewEmailFragment_GeneratedInjector,
       ChangePasswordEnterNewPasswordFragment_GeneratedInjector,
       SecurityFragment_GeneratedInjector,

@@ -12,6 +12,7 @@ import com.ecommerce.app.data.api.FavoriteApiService
 import com.ecommerce.app.data.api.OrderApiService
 import com.ecommerce.app.data.api.ProductApiService
 import com.ecommerce.app.data.api.ReviewApiService
+import com.ecommerce.app.data.api.UserActivityApiService
 import com.ecommerce.app.data.api.UserApiService
 import dagger.Module
 import dagger.Provides
@@ -111,4 +112,9 @@ object NetworkModule {
     @Provides
     fun provideCommentApiService(retrofit: Retrofit): CommentApiService =
         retrofit.create(CommentApiService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideUserActivityApiService(retrofit: Retrofit): UserActivityApiService =
+        retrofit.create(UserActivityApiService::class.java)
 }

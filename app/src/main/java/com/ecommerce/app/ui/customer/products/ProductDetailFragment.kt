@@ -20,7 +20,6 @@ import com.ecommerce.app.R
 import androidx.viewpager2.widget.ViewPager2
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ecommerce.app.data.model.comment.CommentResponse
 import com.ecommerce.app.data.model.product.ProductDetailsResponse
 import com.ecommerce.app.data.model.product.ProductImageResponse
 import com.ecommerce.app.data.model.review.ReviewResponse
@@ -47,9 +46,9 @@ class ProductDetailFragment : Fragment() {
     private var currentProductId: Long = 0L
 
     private var commentsExpanded = true
-    private var hasComments = false
+    private var hasReviewsWithComments = false
 
-    private lateinit var commentAdapter: CommentAdapter
+    private lateinit var reviewsAdapter: ProductReviewsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -63,10 +62,10 @@ class ProductDetailFragment : Fragment() {
 
         binding.btnBack.setOnClickListener { findNavController().popBackStack() }
         binding.llCommentsHeader.setOnClickListener {
-            toggleComments()
+            toggleReviews()
         }
 
-        setupCommentsRecyclerView()
+        setupReviewsRecyclerView()
 
         viewModel.loadProduct(currentProductId)
         observeProduct()
@@ -74,9 +73,6 @@ class ProductDetailFragment : Fragment() {
         observeReviews()
         observeFavorite()
         observeAddReview()
-        observeComments()
-        observeAddComment()
-        observeDeleteComment()
 
         binding.btnFavorite.setOnClickListener {
             viewModel.toggleFavorite(currentProductId)
@@ -84,10 +80,6 @@ class ProductDetailFragment : Fragment() {
 
         binding.btnAddReview.setOnClickListener {
             showAddReviewDialog(currentProductId)
-        }
-
-        binding.btnAddComment.setOnClickListener {
-            showAddCommentDialog(currentProductId)
         }
 
         viewModel.userEmail.observe(viewLifecycleOwner) { email ->
@@ -99,44 +91,63 @@ class ProductDetailFragment : Fragment() {
         }
     }
 
-    // ── Comments ──────────────────────────────────────────────────────────────
+    // ── Reviews ───────────────────────────────────────────────────────────────
 
-    private fun setupCommentsRecyclerView() {
-        commentAdapter = CommentAdapter(
-            currentUserId = currentUserId,
-            onDelete = { comment ->
-                viewModel.deleteComment(comment.id, currentProductId)
-            }
-        )
+    private fun setupReviewsRecyclerView() {
+        reviewsAdapter = ProductReviewsAdapter()
         binding.rvComments.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = commentAdapter
+            adapter = reviewsAdapter
             isNestedScrollingEnabled = false
         }
     }
 
-    private fun observeComments() {
-        viewModel.commentsState.observe(viewLifecycleOwner) { result ->
+    private fun toggleReviews() {
+        commentsExpanded = !commentsExpanded
+
+        binding.ivCommentsToggle.animate()
+            .rotation(if (commentsExpanded) 0f else -90f)
+            .setDuration(200)
+            .start()
+
+        if (commentsExpanded) {
+            if (hasReviewsWithComments) {
+                binding.rvComments.show()
+                binding.tvNoComments.hide()
+            } else {
+                binding.tvNoComments.show()
+                binding.rvComments.hide()
+            }
+        } else {
+            binding.rvComments.hide()
+            binding.tvNoComments.hide()
+        }
+    }
+
+    private fun observeReviews() {
+        viewModel.averageRating.observe(viewLifecycleOwner) { result ->
+            if (result is NetworkResult.Success) {
+                binding.tvRatingAvg.text = "%.1f".format(result.data)
+                binding.ratingBarAvg.rating = result.data.toFloat()
+            }
+        }
+
+        viewModel.reviews.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is NetworkResult.Loading -> binding.progressBarComments.show()
                 is NetworkResult.Success -> {
                     binding.progressBarComments.hide()
-                    val comments = result.data
-                    hasComments = comments.isNotEmpty()
+                    val allReviews = result.data
+                    val reviewsWithComments = allReviews.filter { it.comment != null }
+                    
+                    hasReviewsWithComments = reviewsWithComments.isNotEmpty()
+                    reviewsAdapter.submitList(reviewsWithComments)
 
-                    commentAdapter = CommentAdapter(
-                        currentUserId = currentUserId,
-                        onDelete = { comment ->
-                            viewModel.deleteComment(comment.id, currentProductId)
-                        }
-                    )
-                    binding.rvComments.adapter = commentAdapter
-                    commentAdapter.submitList(comments)
-
-                    binding.tvCommentsCount.text = "${comments.size} ${if (comments.size == 1) "comentário" else "comentários"}"
+                    binding.tvCommentsCount.text = "${reviewsWithComments.size} ${if (reviewsWithComments.size == 1) "avaliação" else "avaliações"}"
+                    binding.tvReviewsCount.text = "(%d avaliações)".format(allReviews.size)
 
                     if (commentsExpanded) {
-                        if (hasComments) {
+                        if (hasReviewsWithComments) {
                             binding.tvNoComments.hide()
                             binding.rvComments.show()
                         } else {
@@ -151,95 +162,6 @@ class ProductDetailFragment : Fragment() {
                 }
             }
         }
-    }
-
-    private fun toggleComments() {
-        commentsExpanded = !commentsExpanded
-
-        binding.ivCommentsToggle.animate()
-            .rotation(if (commentsExpanded) 0f else -90f)
-            .setDuration(200)
-            .start()
-
-        if (commentsExpanded) {
-            if (hasComments) {
-                binding.rvComments.show()
-                binding.tvNoComments.hide()
-            } else {
-                binding.tvNoComments.show()
-                binding.rvComments.hide()
-            }
-        } else {
-            binding.rvComments.hide()
-            binding.tvNoComments.hide()
-        }
-    }
-
-    private fun observeAddComment() {
-        viewModel.addCommentState.observe(viewLifecycleOwner) { result ->
-            if (result == null) return@observe
-            when (result) {
-                is NetworkResult.Loading -> binding.layoutLoading.loadingOverlay.show()
-                is NetworkResult.Success -> {
-                    binding.layoutLoading.loadingOverlay.hide()
-                    Toast.makeText(requireContext(), "Comentário adicionado!", Toast.LENGTH_SHORT).show()
-                    viewModel.resetAddCommentState()
-                }
-                is NetworkResult.Error -> {
-                    binding.layoutLoading.loadingOverlay.hide()
-                    Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
-                    viewModel.resetAddCommentState()
-                }
-            }
-        }
-    }
-
-    private fun observeDeleteComment() {
-        viewModel.deleteCommentState.observe(viewLifecycleOwner) { result ->
-            if (result == null) return@observe
-            when (result) {
-                is NetworkResult.Loading -> binding.layoutLoading.loadingOverlay.show()
-                is NetworkResult.Success -> {
-                    binding.layoutLoading.loadingOverlay.hide()
-                    Toast.makeText(requireContext(), "Comentário excluído.", Toast.LENGTH_SHORT).show()
-                    viewModel.resetDeleteCommentState()
-                }
-                is NetworkResult.Error -> {
-                    binding.layoutLoading.loadingOverlay.hide()
-                    Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
-                    viewModel.resetDeleteCommentState()
-                }
-            }
-        }
-    }
-
-    private fun showAddCommentDialog(productId: Long) {
-        val dialog = Dialog(requireContext())
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.dialog_add_coment)
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.window?.setLayout(
-            (resources.displayMetrics.widthPixels * 0.90).toInt(),
-            ViewGroup.LayoutParams.WRAP_CONTENT
-        )
-
-        val etComment = dialog.findViewById<EditText>(R.id.et_comment_input)
-        val btnSubmit = dialog.findViewById<MaterialButton>(R.id.btn_submit_comment)
-        val btnCancel = dialog.findViewById<TextView>(R.id.btn_cancel_comment)
-
-        btnCancel.setOnClickListener { dialog.dismiss() }
-
-        btnSubmit.setOnClickListener {
-            val content = etComment.text.toString().trim()
-            if (content.isEmpty()) {
-                Toast.makeText(requireContext(), "Digite um comentário", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-            viewModel.addComment(productId, content)
-            dialog.dismiss()
-        }
-
-        dialog.show()
     }
 
     // ── Product ───────────────────────────────────────────────────────────────
@@ -412,20 +334,6 @@ class ProductDetailFragment : Fragment() {
         }
     }
 
-    private fun observeReviews() {
-        viewModel.averageRating.observe(viewLifecycleOwner) { result ->
-            if (result is NetworkResult.Success) {
-                binding.tvRatingAvg.text = "%.1f".format(result.data)
-                binding.ratingBarAvg.rating = result.data.toFloat()
-            }
-        }
-
-        viewModel.reviews.observe(viewLifecycleOwner) { result ->
-            if (result is NetworkResult.Success) {
-                binding.tvReviewsCount.text = "(%d avaliações)".format(result.data.size)
-            }
-        }
-    }
 
     private fun showProductAddedToCartDialog() {
         viewModel.resetAddToCartState()

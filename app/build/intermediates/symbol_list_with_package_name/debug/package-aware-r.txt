@@ -3105,6 +3105,7 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable ic_my_activity
 drawable ic_order
 drawable ic_pencil
 drawable ic_search
@@ -3291,6 +3292,7 @@ id action_menu_presenter
 id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
+id action_notificationsFragment_to_productDetailFragment
 id action_ordersFragment_to_orderDetailFragment
 id action_paymentFailureFragment_to_cartFragment
 id action_paymentSuccessFragment_to_ordersFragment
@@ -3299,6 +3301,7 @@ id action_productDetailFragment_to_enterCodeFragment
 id action_profileFragment_to_addressListFragment
 id action_profileFragment_to_editProfileFragment
 id action_profileFragment_to_loginFragment
+id action_profileFragment_to_notificationsFragment
 id action_profileFragment_to_orderListFragment
 id action_profileFragment_to_securityFragment
 id action_registerFragment_to_loginFragment
@@ -3345,7 +3348,6 @@ id bounceEnd
 id bounceStart
 id btnCancel
 id btnConfirm
-id btn_add_comment
 id btn_add_review
 id btn_add_to_cart
 id btn_addresses
@@ -3365,6 +3367,7 @@ id btn_favorite
 id btn_increment
 id btn_login
 id btn_logout
+id btn_my_activity
 id btn_orders
 id btn_place_order
 id btn_register
@@ -3399,7 +3402,12 @@ id changePasswordFragment
 id checkbox
 id checked
 id checkoutFragment
+id chip_all
+id chip_comments
+id chip_favorites
 id chip_group
+id chip_group_filters
+id chip_reviews
 id chip_scroll_view
 id chronometer
 id circle_center
@@ -3560,6 +3568,7 @@ id iv_illustration
 id iv_order_icon
 id iv_password_chevron
 id iv_product
+id iv_remove
 id jumpToEnd
 id jumpToStart
 id labeled
@@ -3680,6 +3689,7 @@ id north
 id notification_background
 id notification_main_column
 id notification_main_column_container
+id notificationsFragment
 id off
 id on
 id onInterceptTouchReturnSwipe
@@ -3732,6 +3742,7 @@ id radio
 id rating_bar_avg
 id rating_bar_input
 id ratio
+id rb_rating
 id rectangles
 id registerFragment
 id report_drawn
@@ -3744,6 +3755,7 @@ id right_side
 id rounded
 id row_index_key
 id rtl
+id rv_activities
 id rv_addresses
 id rv_cart_items
 id rv_category_products
@@ -3898,12 +3910,14 @@ id tv_address_street
 id tv_cart_badge
 id tv_category_emoji
 id tv_category_name
+id tv_comment
 id tv_comments_count
 id tv_content
 id tv_current_email
 id tv_date
 id tv_description
 id tv_email
+id tv_empty
 id tv_empty_addresses
 id tv_empty_cart
 id tv_empty_orders
@@ -3921,6 +3935,7 @@ id tv_no_results_query
 id tv_order_id
 id tv_price
 id tv_price_quantity
+id tv_product_description
 id tv_product_name
 id tv_product_price
 id tv_qty
@@ -4116,6 +4131,7 @@ layout fragment_forgot_password
 layout fragment_forgot_password_reset_password
 layout fragment_home
 layout fragment_login
+layout fragment_notifications
 layout fragment_order_detail
 layout fragment_order_list
 layout fragment_payment_failure
@@ -4135,10 +4151,12 @@ layout item_category_chip
 layout item_category_section
 layout item_checkout_image
 layout item_comment
+layout item_favorite
 layout item_order
 layout item_order_line
 layout item_product
 layout item_product_search
+layout item_review
 layout layout_loading_overlay
 layout m3_alert_dialog
 layout m3_alert_dialog_actions

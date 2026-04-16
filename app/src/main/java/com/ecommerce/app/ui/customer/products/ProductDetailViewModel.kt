@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ecommerce.app.data.model.cart.CartItemResponse
+import com.ecommerce.app.data.model.comment.CommentRequest
 import com.ecommerce.app.data.model.comment.CommentResponse
 import com.ecommerce.app.data.model.product.ProductDetailsResponse
 import com.ecommerce.app.data.model.review.ReviewRequest
@@ -133,7 +134,10 @@ class ProductDetailViewModel @Inject constructor(
     fun addReview(productId: Long, rating: Int, comment: String?) {
         viewModelScope.launch {
             _addReviewState.value = NetworkResult.Loading
-            val request = ReviewRequest(productId, rating, comment)
+            val commentRequest = comment?.let {
+                if (it.isNotBlank()) CommentRequest(productId, it) else null
+            }
+            val request = ReviewRequest(productId, rating, commentRequest)
             val result = reviewRepository.createReview(request)
             _addReviewState.value = result
             if (result is NetworkResult.Success) {

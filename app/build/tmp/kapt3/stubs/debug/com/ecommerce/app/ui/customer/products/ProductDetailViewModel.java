@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import com.ecommerce.app.data.model.cart.CartItemResponse;
+import com.ecommerce.app.data.model.comment.CommentRequest;
 import com.ecommerce.app.data.model.comment.CommentResponse;
 import com.ecommerce.app.data.model.product.ProductDetailsResponse;
 import com.ecommerce.app.data.model.review.ReviewRequest;

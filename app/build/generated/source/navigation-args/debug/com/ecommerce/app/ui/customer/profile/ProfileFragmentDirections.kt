@@ -20,5 +20,8 @@ public class ProfileFragmentDirections private constructor() {
 
     public fun actionProfileFragmentToLoginFragment(): NavDirections =
         ActionOnlyNavDirections(R.id.action_profileFragment_to_loginFragment)
+
+    public fun actionProfileFragmentToNotificationsFragment(): NavDirections =
+        ActionOnlyNavDirections(R.id.action_profileFragment_to_notificationsFragment)
   }
 }

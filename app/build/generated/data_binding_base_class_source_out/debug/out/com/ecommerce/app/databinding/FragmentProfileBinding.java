@@ -32,6 +32,9 @@ public final class FragmentProfileBinding implements ViewBinding {
   public final MaterialButton btnLogout;
 
   @NonNull
+  public final MaterialCardView btnMyActivity;
+
+  @NonNull
   public final MaterialCardView btnOrders;
 
   @NonNull
@@ -54,14 +57,15 @@ public final class FragmentProfileBinding implements ViewBinding {
 
   private FragmentProfileBinding(@NonNull FrameLayout rootView,
       @NonNull MaterialCardView btnAddresses, @NonNull MaterialCardView btnEditProfile,
-      @NonNull MaterialButton btnLogout, @NonNull MaterialCardView btnOrders,
-      @NonNull MaterialCardView btnSecurity, @NonNull ShapeableImageView ivAvatar,
-      @NonNull LayoutLoadingOverlayBinding layoutLoading, @NonNull TextView tvEmail,
-      @NonNull TextView tvFirstName, @NonNull TextView tvLastName) {
+      @NonNull MaterialButton btnLogout, @NonNull MaterialCardView btnMyActivity,
+      @NonNull MaterialCardView btnOrders, @NonNull MaterialCardView btnSecurity,
+      @NonNull ShapeableImageView ivAvatar, @NonNull LayoutLoadingOverlayBinding layoutLoading,
+      @NonNull TextView tvEmail, @NonNull TextView tvFirstName, @NonNull TextView tvLastName) {
     this.rootView = rootView;
     this.btnAddresses = btnAddresses;
     this.btnEditProfile = btnEditProfile;
     this.btnLogout = btnLogout;
+    this.btnMyActivity = btnMyActivity;
     this.btnOrders = btnOrders;
     this.btnSecurity = btnSecurity;
     this.ivAvatar = ivAvatar;
@@ -116,6 +120,12 @@ public final class FragmentProfileBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btn_my_activity;
+      MaterialCardView btnMyActivity = ViewBindings.findChildViewById(rootView, id);
+      if (btnMyActivity == null) {
+        break missingId;
+      }
+
       id = R.id.btn_orders;
       MaterialCardView btnOrders = ViewBindings.findChildViewById(rootView, id);
       if (btnOrders == null) {
@@ -160,8 +170,8 @@ public final class FragmentProfileBinding implements ViewBinding {
       }
 
       return new FragmentProfileBinding((FrameLayout) rootView, btnAddresses, btnEditProfile,
-          btnLogout, btnOrders, btnSecurity, ivAvatar, binding_layoutLoading, tvEmail, tvFirstName,
-          tvLastName);
+          btnLogout, btnMyActivity, btnOrders, btnSecurity, ivAvatar, binding_layoutLoading,
+          tvEmail, tvFirstName, tvLastName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

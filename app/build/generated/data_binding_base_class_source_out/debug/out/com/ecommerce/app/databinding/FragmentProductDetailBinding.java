@@ -28,9 +28,6 @@ public final class FragmentProductDetailBinding implements ViewBinding {
   private final FrameLayout rootView;
 
   @NonNull
-  public final MaterialButton btnAddComment;
-
-  @NonNull
   public final MaterialButton btnAddReview;
 
   @NonNull
@@ -100,19 +97,18 @@ public final class FragmentProductDetailBinding implements ViewBinding {
   public final ViewPager2 vpProductImages;
 
   private FragmentProductDetailBinding(@NonNull FrameLayout rootView,
-      @NonNull MaterialButton btnAddComment, @NonNull MaterialButton btnAddReview,
-      @NonNull MaterialButton btnAddToCart, @NonNull ImageButton btnBack,
-      @NonNull ImageButton btnFavorite, @NonNull ImageView ivCommentsToggle,
-      @NonNull LayoutLoadingOverlayBinding layoutLoading, @NonNull LinearLayout layoutRating,
-      @NonNull LinearLayout llCommentsHeader, @NonNull LinearLayout llDots,
-      @NonNull ProgressBar progressBar, @NonNull ProgressBar progressBarComments,
-      @NonNull RatingBar ratingBarAvg, @NonNull RecyclerView rvComments,
-      @NonNull TextView tvCommentsCount, @NonNull TextView tvDescription, @NonNull TextView tvName,
-      @NonNull TextView tvNoComments, @NonNull TextView tvPrice, @NonNull TextView tvRatingAvg,
-      @NonNull TextView tvReviewsCount, @NonNull TextView tvStockQuantity,
-      @NonNull TextView tvStockStatus, @NonNull ViewPager2 vpProductImages) {
+      @NonNull MaterialButton btnAddReview, @NonNull MaterialButton btnAddToCart,
+      @NonNull ImageButton btnBack, @NonNull ImageButton btnFavorite,
+      @NonNull ImageView ivCommentsToggle, @NonNull LayoutLoadingOverlayBinding layoutLoading,
+      @NonNull LinearLayout layoutRating, @NonNull LinearLayout llCommentsHeader,
+      @NonNull LinearLayout llDots, @NonNull ProgressBar progressBar,
+      @NonNull ProgressBar progressBarComments, @NonNull RatingBar ratingBarAvg,
+      @NonNull RecyclerView rvComments, @NonNull TextView tvCommentsCount,
+      @NonNull TextView tvDescription, @NonNull TextView tvName, @NonNull TextView tvNoComments,
+      @NonNull TextView tvPrice, @NonNull TextView tvRatingAvg, @NonNull TextView tvReviewsCount,
+      @NonNull TextView tvStockQuantity, @NonNull TextView tvStockStatus,
+      @NonNull ViewPager2 vpProductImages) {
     this.rootView = rootView;
-    this.btnAddComment = btnAddComment;
     this.btnAddReview = btnAddReview;
     this.btnAddToCart = btnAddToCart;
     this.btnBack = btnBack;
@@ -165,12 +161,6 @@ public final class FragmentProductDetailBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.btn_add_comment;
-      MaterialButton btnAddComment = ViewBindings.findChildViewById(rootView, id);
-      if (btnAddComment == null) {
-        break missingId;
-      }
-
       id = R.id.btn_add_review;
       MaterialButton btnAddReview = ViewBindings.findChildViewById(rootView, id);
       if (btnAddReview == null) {
@@ -310,8 +300,8 @@ public final class FragmentProductDetailBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentProductDetailBinding((FrameLayout) rootView, btnAddComment, btnAddReview,
-          btnAddToCart, btnBack, btnFavorite, ivCommentsToggle, binding_layoutLoading, layoutRating,
+      return new FragmentProductDetailBinding((FrameLayout) rootView, btnAddReview, btnAddToCart,
+          btnBack, btnFavorite, ivCommentsToggle, binding_layoutLoading, layoutRating,
           llCommentsHeader, llDots, progressBar, progressBarComments, ratingBarAvg, rvComments,
           tvCommentsCount, tvDescription, tvName, tvNoComments, tvPrice, tvRatingAvg,
           tvReviewsCount, tvStockQuantity, tvStockStatus, vpProductImages);

@@ -17,6 +17,7 @@ import com.ecommerce.app.data.api.FavoriteApiService;
 import com.ecommerce.app.data.api.OrderApiService;
 import com.ecommerce.app.data.api.ProductApiService;
 import com.ecommerce.app.data.api.ReviewApiService;
+import com.ecommerce.app.data.api.UserActivityApiService;
 import com.ecommerce.app.data.api.UserApiService;
 import com.ecommerce.app.data.repository.AddressRepository;
 import com.ecommerce.app.data.repository.AuthRepository;
@@ -28,6 +29,7 @@ import com.ecommerce.app.data.repository.FavoriteRepository;
 import com.ecommerce.app.data.repository.OrderRepository;
 import com.ecommerce.app.data.repository.ProductRepository;
 import com.ecommerce.app.data.repository.ReviewRepository;
+import com.ecommerce.app.data.repository.UserActivityRepository;
 import com.ecommerce.app.data.repository.UserRepository;
 import com.ecommerce.app.di.NetworkModule_ProvideAddressApiServiceFactory;
 import com.ecommerce.app.di.NetworkModule_ProvideAuthApiServiceFactory;
@@ -42,6 +44,7 @@ import com.ecommerce.app.di.NetworkModule_ProvideOrderApiServiceFactory;
 import com.ecommerce.app.di.NetworkModule_ProvideProductApiServiceFactory;
 import com.ecommerce.app.di.NetworkModule_ProvideRetrofitFactory;
 import com.ecommerce.app.di.NetworkModule_ProvideReviewApiServiceFactory;
+import com.ecommerce.app.di.NetworkModule_ProvideUserActivityApiServiceFactory;
 import com.ecommerce.app.di.NetworkModule_ProvideUserApiServiceFactory;
 import com.ecommerce.app.ui.MainActivity;
 import com.ecommerce.app.ui.MainViewModel;
@@ -84,6 +87,9 @@ import com.ecommerce.app.ui.customer.profile.EditProfileFragment;
 import com.ecommerce.app.ui.customer.profile.ProfileFragment;
 import com.ecommerce.app.ui.customer.profile.ProfileViewModel;
 import com.ecommerce.app.ui.customer.profile.ProfileViewModel_HiltModules_KeyModule_ProvideFactory;
+import com.ecommerce.app.ui.customer.profile.activity.NotificationsFragment;
+import com.ecommerce.app.ui.customer.profile.activity.NotificationsViewModel;
+import com.ecommerce.app.ui.customer.profile.activity.NotificationsViewModel_HiltModules_KeyModule_ProvideFactory;
 import com.ecommerce.app.ui.customer.profile.security.ChangeEmailEnterNewEmailFragment;
 import com.ecommerce.app.ui.customer.profile.security.ChangePasswordEnterNewPasswordFragment;
 import com.ecommerce.app.ui.customer.profile.security.SecurityFragment;
@@ -472,6 +478,10 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
     }
 
     @Override
+    public void injectNotificationsFragment(NotificationsFragment arg0) {
+    }
+
+    @Override
     public void injectChangeEmailEnterNewEmailFragment(ChangeEmailEnterNewEmailFragment arg0) {
     }
 
@@ -548,7 +558,7 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
 
     @Override
     public Set<String> getViewModelKeys() {
-      return SetBuilder.<String>newSetBuilder(13).add(AddAddressViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(AddressViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(AuthViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(CartViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(CheckoutViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(HomeViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(MainViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(OrderDetailViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(OrdersViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(ProductDetailViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(ProfileViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(SearchViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(SecurityViewModel_HiltModules_KeyModule_ProvideFactory.provide()).build();
+      return SetBuilder.<String>newSetBuilder(14).add(AddAddressViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(AddressViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(AuthViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(CartViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(CheckoutViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(HomeViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(MainViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(NotificationsViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(OrderDetailViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(OrdersViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(ProductDetailViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(ProfileViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(SearchViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(SecurityViewModel_HiltModules_KeyModule_ProvideFactory.provide()).build();
     }
 
     @Override
@@ -587,6 +597,8 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
     private Provider<HomeViewModel> homeViewModelProvider;
 
     private Provider<MainViewModel> mainViewModelProvider;
+
+    private Provider<NotificationsViewModel> notificationsViewModelProvider;
 
     private Provider<OrderDetailViewModel> orderDetailViewModelProvider;
 
@@ -634,12 +646,16 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
       return new UserRepository(singletonCImpl.provideUserApiServiceProvider.get());
     }
 
-    private ReviewRepository reviewRepository() {
-      return new ReviewRepository(singletonCImpl.provideReviewApiServiceProvider.get());
+    private UserActivityRepository userActivityRepository() {
+      return new UserActivityRepository(singletonCImpl.provideUserActivityApiServiceProvider.get());
     }
 
     private FavoriteRepository favoriteRepository() {
       return new FavoriteRepository(singletonCImpl.provideFavoriteApiServiceProvider.get());
+    }
+
+    private ReviewRepository reviewRepository() {
+      return new ReviewRepository(singletonCImpl.provideReviewApiServiceProvider.get());
     }
 
     private CommentRepository commentRepository() {
@@ -656,17 +672,18 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
       this.checkoutViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 4);
       this.homeViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 5);
       this.mainViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 6);
-      this.orderDetailViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 7);
-      this.ordersViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 8);
-      this.productDetailViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 9);
-      this.profileViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 10);
-      this.searchViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 11);
-      this.securityViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 12);
+      this.notificationsViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 7);
+      this.orderDetailViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 8);
+      this.ordersViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 9);
+      this.productDetailViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 10);
+      this.profileViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 11);
+      this.searchViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 12);
+      this.securityViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 13);
     }
 
     @Override
     public Map<String, javax.inject.Provider<ViewModel>> getHiltViewModelMap() {
-      return MapBuilder.<String, javax.inject.Provider<ViewModel>>newMapBuilder(13).put("com.ecommerce.app.ui.customer.address.AddAddressViewModel", ((Provider) addAddressViewModelProvider)).put("com.ecommerce.app.ui.customer.address.AddressViewModel", ((Provider) addressViewModelProvider)).put("com.ecommerce.app.ui.auth.AuthViewModel", ((Provider) authViewModelProvider)).put("com.ecommerce.app.ui.customer.cart.CartViewModel", ((Provider) cartViewModelProvider)).put("com.ecommerce.app.ui.customer.cart.CheckoutViewModel", ((Provider) checkoutViewModelProvider)).put("com.ecommerce.app.ui.customer.home.HomeViewModel", ((Provider) homeViewModelProvider)).put("com.ecommerce.app.ui.MainViewModel", ((Provider) mainViewModelProvider)).put("com.ecommerce.app.ui.customer.orders.OrderDetailViewModel", ((Provider) orderDetailViewModelProvider)).put("com.ecommerce.app.ui.customer.orders.OrdersViewModel", ((Provider) ordersViewModelProvider)).put("com.ecommerce.app.ui.customer.products.ProductDetailViewModel", ((Provider) productDetailViewModelProvider)).put("com.ecommerce.app.ui.customer.profile.ProfileViewModel", ((Provider) profileViewModelProvider)).put("com.ecommerce.app.ui.customer.search.SearchViewModel", ((Provider) searchViewModelProvider)).put("com.ecommerce.app.ui.customer.profile.security.SecurityViewModel", ((Provider) securityViewModelProvider)).build();
+      return MapBuilder.<String, javax.inject.Provider<ViewModel>>newMapBuilder(14).put("com.ecommerce.app.ui.customer.address.AddAddressViewModel", ((Provider) addAddressViewModelProvider)).put("com.ecommerce.app.ui.customer.address.AddressViewModel", ((Provider) addressViewModelProvider)).put("com.ecommerce.app.ui.auth.AuthViewModel", ((Provider) authViewModelProvider)).put("com.ecommerce.app.ui.customer.cart.CartViewModel", ((Provider) cartViewModelProvider)).put("com.ecommerce.app.ui.customer.cart.CheckoutViewModel", ((Provider) checkoutViewModelProvider)).put("com.ecommerce.app.ui.customer.home.HomeViewModel", ((Provider) homeViewModelProvider)).put("com.ecommerce.app.ui.MainViewModel", ((Provider) mainViewModelProvider)).put("com.ecommerce.app.ui.customer.profile.activity.NotificationsViewModel", ((Provider) notificationsViewModelProvider)).put("com.ecommerce.app.ui.customer.orders.OrderDetailViewModel", ((Provider) orderDetailViewModelProvider)).put("com.ecommerce.app.ui.customer.orders.OrdersViewModel", ((Provider) ordersViewModelProvider)).put("com.ecommerce.app.ui.customer.products.ProductDetailViewModel", ((Provider) productDetailViewModelProvider)).put("com.ecommerce.app.ui.customer.profile.ProfileViewModel", ((Provider) profileViewModelProvider)).put("com.ecommerce.app.ui.customer.search.SearchViewModel", ((Provider) searchViewModelProvider)).put("com.ecommerce.app.ui.customer.profile.security.SecurityViewModel", ((Provider) securityViewModelProvider)).build();
     }
 
     @Override
@@ -716,22 +733,25 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
           case 6: // com.ecommerce.app.ui.MainViewModel 
           return (T) new MainViewModel(singletonCImpl.tokenManagerProvider.get());
 
-          case 7: // com.ecommerce.app.ui.customer.orders.OrderDetailViewModel 
+          case 7: // com.ecommerce.app.ui.customer.profile.activity.NotificationsViewModel 
+          return (T) new NotificationsViewModel(viewModelCImpl.userActivityRepository(), viewModelCImpl.favoriteRepository());
+
+          case 8: // com.ecommerce.app.ui.customer.orders.OrderDetailViewModel 
           return (T) new OrderDetailViewModel(viewModelCImpl.orderRepository());
 
-          case 8: // com.ecommerce.app.ui.customer.orders.OrdersViewModel 
+          case 9: // com.ecommerce.app.ui.customer.orders.OrdersViewModel 
           return (T) new OrdersViewModel(viewModelCImpl.orderRepository());
 
-          case 9: // com.ecommerce.app.ui.customer.products.ProductDetailViewModel 
+          case 10: // com.ecommerce.app.ui.customer.products.ProductDetailViewModel 
           return (T) new ProductDetailViewModel(viewModelCImpl.productRepository(), viewModelCImpl.cartRepository(), viewModelCImpl.userRepository(), viewModelCImpl.reviewRepository(), viewModelCImpl.favoriteRepository(), viewModelCImpl.commentRepository());
 
-          case 10: // com.ecommerce.app.ui.customer.profile.ProfileViewModel 
+          case 11: // com.ecommerce.app.ui.customer.profile.ProfileViewModel 
           return (T) new ProfileViewModel(viewModelCImpl.userRepository(), singletonCImpl.tokenManagerProvider.get());
 
-          case 11: // com.ecommerce.app.ui.customer.search.SearchViewModel 
+          case 12: // com.ecommerce.app.ui.customer.search.SearchViewModel 
           return (T) new SearchViewModel(viewModelCImpl.productRepository(), viewModelCImpl.categoryRepository());
 
-          case 12: // com.ecommerce.app.ui.customer.profile.security.SecurityViewModel 
+          case 13: // com.ecommerce.app.ui.customer.profile.security.SecurityViewModel 
           return (T) new SecurityViewModel(singletonCImpl.emailRepositoryProvider.get(), viewModelCImpl.userRepository());
 
           default: throw new AssertionError(id);
@@ -842,9 +862,11 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
 
     private Provider<UserApiService> provideUserApiServiceProvider;
 
-    private Provider<ReviewApiService> provideReviewApiServiceProvider;
+    private Provider<UserActivityApiService> provideUserActivityApiServiceProvider;
 
     private Provider<FavoriteApiService> provideFavoriteApiServiceProvider;
+
+    private Provider<ReviewApiService> provideReviewApiServiceProvider;
 
     private Provider<CommentApiService> provideCommentApiServiceProvider;
 
@@ -874,9 +896,10 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
       this.provideProductApiServiceProvider = DoubleCheck.provider(new SwitchingProvider<ProductApiService>(singletonCImpl, 11));
       this.provideCategoryApiServiceProvider = DoubleCheck.provider(new SwitchingProvider<CategoryApiService>(singletonCImpl, 12));
       this.provideUserApiServiceProvider = DoubleCheck.provider(new SwitchingProvider<UserApiService>(singletonCImpl, 13));
-      this.provideReviewApiServiceProvider = DoubleCheck.provider(new SwitchingProvider<ReviewApiService>(singletonCImpl, 14));
+      this.provideUserActivityApiServiceProvider = DoubleCheck.provider(new SwitchingProvider<UserActivityApiService>(singletonCImpl, 14));
       this.provideFavoriteApiServiceProvider = DoubleCheck.provider(new SwitchingProvider<FavoriteApiService>(singletonCImpl, 15));
-      this.provideCommentApiServiceProvider = DoubleCheck.provider(new SwitchingProvider<CommentApiService>(singletonCImpl, 16));
+      this.provideReviewApiServiceProvider = DoubleCheck.provider(new SwitchingProvider<ReviewApiService>(singletonCImpl, 16));
+      this.provideCommentApiServiceProvider = DoubleCheck.provider(new SwitchingProvider<CommentApiService>(singletonCImpl, 17));
     }
 
     @Override
@@ -954,13 +977,16 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
           case 13: // com.ecommerce.app.data.api.UserApiService 
           return (T) NetworkModule_ProvideUserApiServiceFactory.provideUserApiService(singletonCImpl.provideRetrofitProvider.get());
 
-          case 14: // com.ecommerce.app.data.api.ReviewApiService 
-          return (T) NetworkModule_ProvideReviewApiServiceFactory.provideReviewApiService(singletonCImpl.provideRetrofitProvider.get());
+          case 14: // com.ecommerce.app.data.api.UserActivityApiService 
+          return (T) NetworkModule_ProvideUserActivityApiServiceFactory.provideUserActivityApiService(singletonCImpl.provideRetrofitProvider.get());
 
           case 15: // com.ecommerce.app.data.api.FavoriteApiService 
           return (T) NetworkModule_ProvideFavoriteApiServiceFactory.provideFavoriteApiService(singletonCImpl.provideRetrofitProvider.get());
 
-          case 16: // com.ecommerce.app.data.api.CommentApiService 
+          case 16: // com.ecommerce.app.data.api.ReviewApiService 
+          return (T) NetworkModule_ProvideReviewApiServiceFactory.provideReviewApiService(singletonCImpl.provideRetrofitProvider.get());
+
+          case 17: // com.ecommerce.app.data.api.CommentApiService 
           return (T) NetworkModule_ProvideCommentApiServiceFactory.provideCommentApiService(singletonCImpl.provideRetrofitProvider.get());
 
           default: throw new AssertionError(id);

@@ -1,8 +1,11 @@
 package com.ecommerce.app.data.repository
 
 import com.ecommerce.app.data.api.ReviewApiService
+import com.ecommerce.app.data.model.comment.CommentResponse
+import com.ecommerce.app.data.model.review.AddCommentToReviewRequest
 import com.ecommerce.app.data.model.review.ReviewRequest
 import com.ecommerce.app.data.model.review.ReviewResponse
+import com.ecommerce.app.data.model.review.UpdateReviewRequest
 import com.ecommerce.app.util.NetworkResult
 import javax.inject.Inject
 
@@ -12,6 +15,18 @@ class ReviewRepository @Inject constructor(
 
     suspend fun createReview(reviewRequest: ReviewRequest): NetworkResult<ReviewResponse> {
         return safeApiCall { reviewApiService.createReview(reviewRequest) }
+    }
+
+    suspend fun updateReview(reviewId: Long, reviewRequest: UpdateReviewRequest): NetworkResult<ReviewResponse> {
+        return safeApiCall { reviewApiService.updateReview(reviewId, reviewRequest) }
+    }
+
+    suspend fun deleteReview(reviewId: Long): NetworkResult<Unit> {
+        return safeApiCall { reviewApiService.deleteReview(reviewId) }
+    }
+
+    suspend fun addCommentToReview(reviewId: Long, request: AddCommentToReviewRequest): NetworkResult<CommentResponse> {
+        return safeApiCall { reviewApiService.addCommentToReview(reviewId, request) }
     }
 
     suspend fun getProductReviews(productId: Long): NetworkResult<List<ReviewResponse>> {

@@ -248,7 +248,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Comentários"
+                                    android:text="Avaliações"
                                     android:textColor="@color/black"
                                     android:textSize="15sp"
                                     android:textStyle="bold" />
@@ -267,23 +267,12 @@
                                 android:id="@+id/tv_comments_count"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="0 comentários"
+                                android:text="0 avaliações"
                                 android:textColor="@color/gray"
                                 android:textSize="12sp"
                                 android:layout_marginTop="2dp" />
 
                         </LinearLayout>
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btn_add_comment"
-                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="36dp"
-                            android:text="Comentar"
-                            android:textSize="12sp"
-                            app:strokeColor="@color/primary"
-                            android:textColor="@color/primary"
-                            app:cornerRadius="20dp" />
 
                     </LinearLayout>
 
@@ -304,7 +293,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:paddingVertical="16dp"
-                        android:text="Nenhum comentário ainda. Seja o primeiro!"
+                        android:text="Nenhuma avaliação com comentário ainda."
                         android:textColor="@color/gray"
                         android:textSize="13sp"
                         android:visibility="gone" />
@@ -316,7 +305,7 @@
                         android:layout_height="wrap_content"
                         android:nestedScrollingEnabled="false"
                         android:visibility="gone"
-                        tools:listitem="@layout/item_comment" />
+                        tools:listitem="@layout/item_review" />
 
                 </LinearLayout>
 
