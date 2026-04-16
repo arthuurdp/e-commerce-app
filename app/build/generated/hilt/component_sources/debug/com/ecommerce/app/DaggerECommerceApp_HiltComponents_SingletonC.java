@@ -734,7 +734,7 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
           return (T) new MainViewModel(singletonCImpl.tokenManagerProvider.get());
 
           case 7: // com.ecommerce.app.ui.customer.profile.activity.NotificationsViewModel 
-          return (T) new NotificationsViewModel(viewModelCImpl.userActivityRepository(), viewModelCImpl.favoriteRepository());
+          return (T) new NotificationsViewModel(viewModelCImpl.userActivityRepository(), viewModelCImpl.favoriteRepository(), viewModelCImpl.reviewRepository(), viewModelCImpl.commentRepository());
 
           case 8: // com.ecommerce.app.ui.customer.orders.OrderDetailViewModel 
           return (T) new OrderDetailViewModel(viewModelCImpl.orderRepository());

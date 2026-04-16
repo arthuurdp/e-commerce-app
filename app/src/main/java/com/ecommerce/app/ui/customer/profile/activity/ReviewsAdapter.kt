@@ -6,41 +6,48 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.ecommerce.app.data.model.review.ReviewResponse
-import com.ecommerce.app.databinding.ItemCommentBinding
+import com.ecommerce.app.databinding.DialogReviewOptionsBinding
+import com.ecommerce.app.databinding.ItemActivityReviewBinding
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class ReviewsAdapter(
-    private val onItemClick: (ReviewResponse) -> Unit
+    private val onEditClick: (ReviewResponse) -> Unit,
+    private val onDeleteClick: (ReviewResponse) -> Unit,
 ) : ListAdapter<ReviewResponse, ReviewsAdapter.ReviewViewHolder>(DiffCallback) {
 
-    inner class ReviewViewHolder(private val binding: ItemCommentBinding) :
+    inner class ReviewViewHolder(private val binding: ItemActivityReviewBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(review: ReviewResponse) {
-            binding.tvUserName.text = "Avaliação - ${review.rating} ${if (review.rating == 1) "(1 estrela)" else "(${review.rating} estrelas)"}"
-            binding.tvContent.text = review.comment?.content ?: "Sem comentário"
+            binding.tvUserName.text = review.userName
+            binding.rbRating.rating = review.rating.toFloat()
+            binding.tvComment.text = review.comment?.content ?: "Sem comentário"
             binding.tvDate.text = try {
-                val datePart = review.createdAt.take(10)
-                val parts = datePart.split("-")
-                if (parts.size == 3) "${parts[2]}/${parts[1]}/${parts[0]}" else datePart
-            } catch (e: Exception) {
-                review.createdAt.take(10)
-            }
-            
-            binding.btnDelete.visibility = android.view.View.GONE
-            binding.root.setOnClickListener { onItemClick(review) }
+                val parts = review.createdAt.take(10).split("-")
+                if (parts.size == 3) "${parts[2]}/${parts[1]}/${parts[0]}" else review.createdAt.take(10)
+            } catch (e: Exception) { review.createdAt.take(10) }
+
+            binding.ibMore.setOnClickListener { showOptionsDialog(review) }
+        }
+
+        private fun showOptionsDialog(review: ReviewResponse) {
+            val context = binding.root.context
+            val dialog = BottomSheetDialog(context)
+            val dialogBinding = DialogReviewOptionsBinding.inflate(LayoutInflater.from(context))
+
+            dialogBinding.btnEdit.setOnClickListener { onEditClick(review); dialog.dismiss() }
+            dialogBinding.btnDelete.setOnClickListener { onDeleteClick(review); dialog.dismiss() }
+            dialogBinding.btnCancel.setOnClickListener { dialog.dismiss() }
+
+            dialog.setContentView(dialogBinding.root)
+            dialog.show()
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReviewViewHolder {
-        val binding = ItemCommentBinding.inflate(
-            LayoutInflater.from(parent.context), parent, false
-        )
-        return ReviewViewHolder(binding)
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        ReviewViewHolder(ItemActivityReviewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
-    override fun onBindViewHolder(holder: ReviewViewHolder, position: Int) {
-        holder.bind(getItem(position))
-    }
+    override fun onBindViewHolder(holder: ReviewViewHolder, position: Int) = holder.bind(getItem(position))
 
     companion object DiffCallback : DiffUtil.ItemCallback<ReviewResponse>() {
         override fun areItemsTheSame(old: ReviewResponse, new: ReviewResponse) = old.id == new.id

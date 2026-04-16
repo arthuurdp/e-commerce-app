@@ -12,10 +12,6 @@ class CommentRepository @Inject constructor(
 ) : BaseRepository() {
 
     suspend fun createComment(productId: Long, content: String): NetworkResult<CommentResponse> {
-        // Since CommentApiService no longer has createComment (it's handled by ReviewApiService or during Review creation),
-        // and if it was supposed to be a standalone comment on a review, it should use reviewApiService.addCommentToReview.
-        // However, looking at the backend, standalone comments without a review don't seem to exist.
-        // For now, I'll return an error or we need to rethink this if it's used somewhere.
         return NetworkResult.Error("Standalone comments are not supported. Use ReviewApiService.addCommentToReview instead.")
     }
 

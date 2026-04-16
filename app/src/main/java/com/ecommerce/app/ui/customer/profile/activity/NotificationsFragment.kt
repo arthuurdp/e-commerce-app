@@ -1,21 +1,29 @@
 package com.ecommerce.app.ui.customer.profile.activity
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.widget.RatingBar
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ecommerce.app.R
+import com.ecommerce.app.data.model.review.ReviewResponse
 import com.ecommerce.app.databinding.FragmentNotificationsBinding
 import com.ecommerce.app.ui.customer.products.CommentAdapter
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hide
 import com.ecommerce.app.util.show
 import com.ecommerce.app.util.showToast
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputEditText
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,47 +32,121 @@ class NotificationsFragment : Fragment() {
     private var _binding: FragmentNotificationsBinding? = null
     private val binding get() = _binding!!
     private val viewModel: NotificationsViewModel by viewModels()
-    
+
     private val notificationsAdapter = NotificationsAdapter()
-    private val reviewsAdapter by lazy { ReviewsAdapter { /* Handle click */ } }
-    private val commentsAdapter by lazy { CommentAdapter(null) { /* Handle delete */ } }
+    private val reviewsAdapter by lazy {
+        ReviewsAdapter(
+            onEditClick = { review -> showEditReviewDialog(review) },
+            onDeleteClick = { review -> viewModel.deleteReview(review.id) },
+        )
+    }
+    private val commentsAdapter by lazy { CommentAdapter(null) {} }
     private val favoritesAdapter by lazy {
         FavoriteAdapter(
             onItemClick = { product ->
-                val bundle = Bundle().apply {
-                    putLong("productId", product.id)
-                }
                 findNavController().navigate(
                     R.id.action_notificationsFragment_to_productDetailFragment,
-                    bundle
+                    Bundle().apply { putLong("productId", product.id) }
                 )
             },
-            onRemoveClick = { product ->
-                viewModel.removeFavorite(product.id)
-            }
+            onRemoveClick = { product -> viewModel.removeFavorite(product.id) }
         )
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.btnBack.setOnClickListener {
-            findNavController().popBackStack()
-        }
-
+        binding.btnBack.setOnClickListener { findNavController().popBackStack() }
         setupRecyclerView()
         setupFilters()
         setupSwipeRefresh()
         observeData()
         observeRemoval()
+        observeReviewActions()
+    }
+
+    private fun showEditReviewDialog(review: ReviewResponse) {
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.dialog_add_review)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.setLayout(
+            (resources.displayMetrics.widthPixels * 0.90).toInt(),
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+
+        val title = dialog.findViewById<TextView>(R.id.tv_review_title)
+        val ratingBar = dialog.findViewById<RatingBar>(R.id.rating_bar_input)
+        val commentInput = dialog.findViewById<TextInputEditText>(R.id.et_comment)
+        val btnSubmit = dialog.findViewById<MaterialButton>(R.id.btn_submit_review)
+        val btnCancel = dialog.findViewById<TextView>(R.id.btn_cancel_review)
+
+        title.text = "Editar avaliação"
+        ratingBar.rating = review.rating.toFloat()
+        commentInput.setText(review.comment?.content.orEmpty())
+        btnSubmit.text = "Salvar alterações"
+
+        btnCancel.setOnClickListener { dialog.dismiss() }
+        btnSubmit.setOnClickListener {
+            val rating = ratingBar.rating.toInt()
+            val updatedComment = commentInput.text?.toString()?.trim().orEmpty()
+            val currentComment = review.comment?.content?.trim().orEmpty()
+
+            if (rating == 0) {
+                showToast("Por favor, selecione uma nota")
+                return@setOnClickListener
+            }
+
+            if (rating == review.rating && updatedComment == currentComment) {
+                showToast("Nenhuma alteração para salvar")
+                return@setOnClickListener
+            }
+
+            viewModel.editReview(review, rating, updatedComment)
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    private fun observeReviewActions() {
+        viewModel.editReviewResult.observe(viewLifecycleOwner) { result ->
+            if (result == null) return@observe
+            when (result) {
+                is NetworkResult.Loading -> binding.progressBar.show()
+                is NetworkResult.Success -> {
+                    binding.progressBar.hide()
+                    showToast("Avaliação atualizada!")
+                    viewModel.resetEditReview()
+                }
+                is NetworkResult.Error -> {
+                    binding.progressBar.hide()
+                    showToast(result.message)
+                    viewModel.resetEditReview()
+                }
+            }
+        }
+
+        viewModel.deleteReviewResult.observe(viewLifecycleOwner) { result ->
+            if (result == null) return@observe
+            when (result) {
+                is NetworkResult.Loading -> binding.progressBar.show()
+                is NetworkResult.Success -> {
+                    binding.progressBar.hide()
+                    showToast("Avaliação excluída.")
+                    viewModel.resetDeleteReview()
+                }
+                is NetworkResult.Error -> {
+                    binding.progressBar.hide()
+                    showToast(result.message)
+                    viewModel.resetDeleteReview()
+                }
+            }
+        }
     }
 
     private fun observeRemoval() {
@@ -100,7 +182,6 @@ class NotificationsFragment : Fragment() {
     private fun updateAdapterAndLoadData(checkedId: Int) {
         binding.rvActivities.adapter = null
         binding.tvEmpty.hide()
-        
         when (checkedId) {
             R.id.chip_all -> {
                 binding.rvActivities.layoutManager = LinearLayoutManager(requireContext())
@@ -117,11 +198,6 @@ class NotificationsFragment : Fragment() {
                 binding.rvActivities.adapter = reviewsAdapter
                 viewModel.loadMyReviews()
             }
-            R.id.chip_comments -> {
-                binding.rvActivities.layoutManager = LinearLayoutManager(requireContext())
-                binding.rvActivities.adapter = commentsAdapter
-                viewModel.loadMyComments()
-            }
         }
     }
 
@@ -132,7 +208,6 @@ class NotificationsFragment : Fragment() {
                 R.id.chip_all -> viewModel.loadRecentActivity()
                 R.id.chip_favorites -> viewModel.loadMyFavorites()
                 R.id.chip_reviews -> viewModel.loadMyReviews()
-                R.id.chip_comments -> viewModel.loadMyComments()
             }
             binding.swipeRefresh.isRefreshing = false
         }
@@ -141,33 +216,17 @@ class NotificationsFragment : Fragment() {
     private fun observeData() {
         viewModel.recentActivity.observe(viewLifecycleOwner) { result ->
             if (binding.chipGroupFilters.checkedChipId == R.id.chip_all) {
-                handleResult(result) { data ->
-                    notificationsAdapter.submitList(data)
-                }
+                handleResult(result) { notificationsAdapter.submitList(it) }
             }
         }
-
         viewModel.myReviews.observe(viewLifecycleOwner) { result ->
             if (binding.chipGroupFilters.checkedChipId == R.id.chip_reviews) {
-                handleResult(result) { data ->
-                    reviewsAdapter.submitList(data)
-                }
+                handleResult(result) { reviewsAdapter.submitList(it) }
             }
         }
-
-        viewModel.myComments.observe(viewLifecycleOwner) { result ->
-            if (binding.chipGroupFilters.checkedChipId == R.id.chip_comments) {
-                handleResult(result) { data ->
-                    commentsAdapter.submitList(data)
-                }
-            }
-        }
-
         viewModel.myFavorites.observe(viewLifecycleOwner) { result ->
             if (binding.chipGroupFilters.checkedChipId == R.id.chip_favorites) {
-                handleResult(result) { data ->
-                    favoritesAdapter.submitList(data.toList())
-                }
+                handleResult(result) { favoritesAdapter.submitList(it.toList()) }
             }
         }
     }

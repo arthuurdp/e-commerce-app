@@ -3101,6 +3101,7 @@ drawable ic_lock_outline
 drawable ic_m3_chip_check
 drawable ic_m3_chip_checked_circle
 drawable ic_m3_chip_close
+drawable ic_more_vert
 drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
@@ -3277,7 +3278,9 @@ id action_changePasswordFragment_to_enterCodeFragment
 id action_checkoutFragment_to_paymentWaitingFragment
 id action_container
 id action_context_bar
+id action_delete
 id action_divider
+id action_edit
 id action_editProfileFragment_to_changeEmailFragment
 id action_editProfileFragment_to_changePasswordFragment
 id action_enterCodeFragment_to_resetPasswordFragment
@@ -3403,7 +3406,6 @@ id checkbox
 id checked
 id checkoutFragment
 id chip_all
-id chip_comments
 id chip_favorites
 id chip_group
 id chip_group_filters
@@ -3544,6 +3546,7 @@ id homeAsUp
 id homeFragment
 id honorRequest
 id horizontal_only
+id ib_more
 id icon
 id icon_group
 id ifRoom
@@ -3568,7 +3571,6 @@ id iv_illustration
 id iv_order_icon
 id iv_password_chevron
 id iv_product
-id iv_remove
 id jumpToEnd
 id jumpToStart
 id labeled
@@ -3944,6 +3946,7 @@ id tv_rating_avg
 id tv_register
 id tv_resend_code
 id tv_result_count
+id tv_review_title
 id tv_reviews_count
 id tv_status
 id tv_stock_quantity
@@ -4117,6 +4120,7 @@ layout dialog_add_first_address
 layout dialog_add_more_products
 layout dialog_add_review
 layout dialog_delete_account
+layout dialog_review_options
 layout dialog_verify_email
 layout fragment_add_address
 layout fragment_address_list
@@ -4144,6 +4148,7 @@ layout fragment_search
 layout fragment_security
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
+layout item_activity_review
 layout item_address
 layout item_banner
 layout item_cart
@@ -4220,6 +4225,7 @@ layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
 menu menu_customer_nav
+menu menu_review_options
 navigation nav_graph_auth
 navigation nav_graph_home
 navigation nav_graph_main

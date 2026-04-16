@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.ecommerce.app.data.model.notification.NotificationResponse
-import com.ecommerce.app.databinding.ItemCommentBinding // Using item_comment as base for simplicity, might need item_notification
+import com.ecommerce.app.databinding.ItemCommentBinding
 
 class NotificationsAdapter : ListAdapter<NotificationResponse, NotificationsAdapter.ViewHolder>(DiffCallback) {
 
@@ -14,8 +14,7 @@ class NotificationsAdapter : ListAdapter<NotificationResponse, NotificationsAdap
         fun bind(item: NotificationResponse) {
             binding.tvUserName.text = "Sistema"
             binding.tvContent.text = item.message
-            binding.tvDate.text = item.createdAt // Date formatting could be better
-            // No avatar for system notifications for now
+            binding.tvDate.text = item.createdAt
             binding.btnDelete.visibility = android.view.View.GONE
         }
     }

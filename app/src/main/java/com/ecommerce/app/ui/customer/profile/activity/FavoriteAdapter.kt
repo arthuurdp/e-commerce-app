@@ -32,7 +32,6 @@ class FavoriteAdapter(
                 .into(binding.ivProduct)
 
             binding.root.setOnClickListener { onItemClick(product) }
-            binding.ivRemove.setOnClickListener { onRemoveClick(product) }
         }
     }
 

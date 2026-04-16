@@ -20,8 +20,8 @@
         android:padding="10dp">
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp">
 
@@ -83,17 +83,6 @@
                     android:layout_width="0dp"
                     android:layout_height="1dp"
                     android:layout_weight="1" />
-
-                <ImageView
-                    android:id="@+id/iv_remove"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_trash"
-                    app:tint="@color/red"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="Remove from favorites" />
 
             </LinearLayout>
         </LinearLayout>

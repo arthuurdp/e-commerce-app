@@ -22,7 +22,7 @@
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:paddingTop="16dp"
-            android:paddingBottom="16dp">
+            android:paddingBottom="10dp">
 
             <ImageButton
                 android:id="@+id/btn_back"
@@ -60,32 +60,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:text="Tudo" />
+                android:text="Notificações"/>
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_favorites"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Favoritos" />
+                android:text="Favoritos"/>
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_reviews"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Avaliações" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_comments"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Comentários" />
+                android:text="Avaliações"/>
 
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
-
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
