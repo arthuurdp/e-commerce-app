@@ -4,7 +4,7 @@ package com.ecommerce.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,7 +17,7 @@ import java.lang.String;
 
 public final class DialogVerifyEmailBinding implements ViewBinding {
   @NonNull
-  private final LinearLayout rootView;
+  private final FrameLayout rootView;
 
   @NonNull
   public final TextView btnCancel;
@@ -25,7 +25,7 @@ public final class DialogVerifyEmailBinding implements ViewBinding {
   @NonNull
   public final TextView btnConfirm;
 
-  private DialogVerifyEmailBinding(@NonNull LinearLayout rootView, @NonNull TextView btnCancel,
+  private DialogVerifyEmailBinding(@NonNull FrameLayout rootView, @NonNull TextView btnCancel,
       @NonNull TextView btnConfirm) {
     this.rootView = rootView;
     this.btnCancel = btnCancel;
@@ -34,7 +34,7 @@ public final class DialogVerifyEmailBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public LinearLayout getRoot() {
+  public FrameLayout getRoot() {
     return rootView;
   }
 
@@ -71,7 +71,7 @@ public final class DialogVerifyEmailBinding implements ViewBinding {
         break missingId;
       }
 
-      return new DialogVerifyEmailBinding((LinearLayout) rootView, btnCancel, btnConfirm);
+      return new DialogVerifyEmailBinding((FrameLayout) rootView, btnCancel, btnConfirm);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

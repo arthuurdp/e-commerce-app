@@ -16,6 +16,10 @@ class UserActivityRepository @Inject constructor(
         return safeApiCall { userActivityApiService.getRecentActivity() }
     }
 
+    suspend fun clearRecentActivity(): NetworkResult<Unit> {
+        return safeApiCall { userActivityApiService.clearRecentActivity() }
+    }
+
     suspend fun getMyReviews(): NetworkResult<List<ReviewResponse>> {
         return safeApiCall { userActivityApiService.getMyReviews() }
     }

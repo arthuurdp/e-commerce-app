@@ -138,7 +138,7 @@ class ProductDetailViewModel @Inject constructor(
                 if (it.isNotBlank()) CommentRequest(productId, it) else null
             }
             val request = ReviewRequest(productId, rating, commentRequest)
-            val result = reviewRepository.createReview(request)
+            val result = reviewRepository.createReview(productId, request)
             _addReviewState.value = result
             if (result is NetworkResult.Success) {
                 loadReviews(productId)

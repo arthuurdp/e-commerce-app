@@ -30,32 +30,32 @@
                 android:src="@drawable/img_male"
                 app:shapeAppearanceOverlay="@style/CircleImageView" />
 
-            <RatingBar
-                android:id="@+id/rb_rating"
-                style="?android:attr/ratingBarStyleSmall"
+            <TextView
+                android:id="@+id/tv_user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/iv_avatar"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="2dp"
-                android:isIndicator="true"
-                android:numStars="5"
-                android:progressTint="@color/primary"
-                android:stepSize="1" />
-
-            <TextView
-                android:id="@+id/tv_user_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/rb_rating"
-                android:layout_toEndOf="@id/iv_avatar"
-                android:layout_marginStart="10dp"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:maxLines="1"
                 android:ellipsize="end"
                 tools:text="USER NAME" />
+
+            <RatingBar
+                android:id="@+id/rb_rating"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_user_name"
+                android:layout_toEndOf="@id/iv_avatar"
+                android:layout_marginStart="10dp"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:progressTint="@color/primary"
+                android:stepSize="1" />
 
             <ImageButton
                 android:id="@+id/ib_more"
@@ -65,7 +65,9 @@
                 android:layout_marginEnd="-2dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Opções"
-                android:src="@drawable/ic_more_vert" app:tint="@color/gray"/>
+                android:src="@drawable/ic_more_vert"
+                app:tint="@color/gray"/>
+
             <TextView
                 android:id="@+id/tv_date"
                 android:layout_width="wrap_content"

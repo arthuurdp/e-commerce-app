@@ -48,6 +48,9 @@ class NotificationsViewModel @Inject constructor(
     private val _deleteReviewResult = MutableLiveData<NetworkResult<Unit>?>()
     val deleteReviewResult: LiveData<NetworkResult<Unit>?> = _deleteReviewResult
 
+    private val _clearActivityState = MutableLiveData<NetworkResult<Unit>?>()
+    val clearActivityState: LiveData<NetworkResult<Unit>?> = _clearActivityState
+
     init {
         loadRecentActivity()
     }
@@ -57,6 +60,21 @@ class NotificationsViewModel @Inject constructor(
             _recentActivity.value = NetworkResult.Loading
             _recentActivity.value = userActivityRepository.getRecentActivity()
         }
+    }
+
+    fun clearRecentActivity() {
+        viewModelScope.launch {
+            _clearActivityState.value = NetworkResult.Loading
+            val result = userActivityRepository.clearRecentActivity()
+            _clearActivityState.value = result
+            if (result is NetworkResult.Success) {
+                loadRecentActivity()
+            }
+        }
+    }
+
+    fun resetClearActivityState() {
+        _clearActivityState.value = null
     }
 
     fun loadMyReviews() {
@@ -77,17 +95,6 @@ class NotificationsViewModel @Inject constructor(
         viewModelScope.launch {
             _myFavorites.value = NetworkResult.Loading
             _myFavorites.value = userActivityRepository.getMyFavorites()
-        }
-    }
-
-    fun removeFavorite(productId: Long) {
-        viewModelScope.launch {
-            _removeFavoriteResult.value = NetworkResult.Loading
-            val result = favoriteRepository.removeFavorite(productId)
-            _removeFavoriteResult.value = result
-            if (result is NetworkResult.Success) {
-                loadMyFavorites()
-            }
         }
     }
 

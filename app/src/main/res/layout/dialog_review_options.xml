@@ -3,61 +3,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_dialog"
+    android:background="@drawable/bg_upper_radius"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="20dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="24dp"
-        android:text="Opções"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:layout_marginBottom="16dp"
+        android:background="@color/gray_medium" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_edit"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:gravity="start|center_vertical"
         android:text="Editar avaliação"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:icon="@drawable/ic_pencil"
-        app:iconPadding="12dp"
-        app:iconTint="@color/black" />
+        app:iconPadding="16dp"
+        app:iconSize="24dp"
+        app:iconTint="@color/primary"
+        app:rippleColor="@color/primary_light" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginVertical="8dp"
-        android:background="@color/gray_medium" />
+        android:background="@color/gray_light" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_delete"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:gravity="start|center_vertical"
         android:text="Excluir avaliação"
         android:textColor="@color/error"
         android:textSize="16sp"
         app:icon="@drawable/ic_trash"
-        app:iconPadding="12dp"
-        app:iconTint="@color/error" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_cancel"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Cancelar"
-        android:textColor="@color/gray"
-        app:strokeColor="@color/gray_medium" />
+        app:iconPadding="16dp"
+        app:iconSize="24dp"
+        app:iconTint="@color/error"
+        app:rippleColor="#FEECEB" />
 
 </LinearLayout>

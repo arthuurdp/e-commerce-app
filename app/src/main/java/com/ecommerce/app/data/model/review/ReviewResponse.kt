@@ -6,6 +6,7 @@ data class ReviewResponse(
     val id: Long,
     val userId: Long,
     val userName: String,
+    val userProfilePictureUrl: String?,
     val productId: Long,
     val rating: Int,
     val comment: CommentResponse?,

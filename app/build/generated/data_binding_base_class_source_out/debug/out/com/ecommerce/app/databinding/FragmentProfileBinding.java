@@ -8,11 +8,11 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.ecommerce.app.R;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.imageview.ShapeableImageView;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -23,28 +23,16 @@ public final class FragmentProfileBinding implements ViewBinding {
   private final FrameLayout rootView;
 
   @NonNull
-  public final MaterialCardView btnAddresses;
-
-  @NonNull
-  public final MaterialCardView btnEditProfile;
-
-  @NonNull
   public final MaterialButton btnLogout;
-
-  @NonNull
-  public final MaterialCardView btnMyActivity;
-
-  @NonNull
-  public final MaterialCardView btnOrders;
-
-  @NonNull
-  public final MaterialCardView btnSecurity;
 
   @NonNull
   public final ShapeableImageView ivAvatar;
 
   @NonNull
   public final LayoutLoadingOverlayBinding layoutLoading;
+
+  @NonNull
+  public final RecyclerView rvProfileOptions;
 
   @NonNull
   public final TextView tvEmail;
@@ -55,21 +43,15 @@ public final class FragmentProfileBinding implements ViewBinding {
   @NonNull
   public final TextView tvLastName;
 
-  private FragmentProfileBinding(@NonNull FrameLayout rootView,
-      @NonNull MaterialCardView btnAddresses, @NonNull MaterialCardView btnEditProfile,
-      @NonNull MaterialButton btnLogout, @NonNull MaterialCardView btnMyActivity,
-      @NonNull MaterialCardView btnOrders, @NonNull MaterialCardView btnSecurity,
+  private FragmentProfileBinding(@NonNull FrameLayout rootView, @NonNull MaterialButton btnLogout,
       @NonNull ShapeableImageView ivAvatar, @NonNull LayoutLoadingOverlayBinding layoutLoading,
-      @NonNull TextView tvEmail, @NonNull TextView tvFirstName, @NonNull TextView tvLastName) {
+      @NonNull RecyclerView rvProfileOptions, @NonNull TextView tvEmail,
+      @NonNull TextView tvFirstName, @NonNull TextView tvLastName) {
     this.rootView = rootView;
-    this.btnAddresses = btnAddresses;
-    this.btnEditProfile = btnEditProfile;
     this.btnLogout = btnLogout;
-    this.btnMyActivity = btnMyActivity;
-    this.btnOrders = btnOrders;
-    this.btnSecurity = btnSecurity;
     this.ivAvatar = ivAvatar;
     this.layoutLoading = layoutLoading;
+    this.rvProfileOptions = rvProfileOptions;
     this.tvEmail = tvEmail;
     this.tvFirstName = tvFirstName;
     this.tvLastName = tvLastName;
@@ -102,39 +84,9 @@ public final class FragmentProfileBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.btn_addresses;
-      MaterialCardView btnAddresses = ViewBindings.findChildViewById(rootView, id);
-      if (btnAddresses == null) {
-        break missingId;
-      }
-
-      id = R.id.btn_edit_profile;
-      MaterialCardView btnEditProfile = ViewBindings.findChildViewById(rootView, id);
-      if (btnEditProfile == null) {
-        break missingId;
-      }
-
       id = R.id.btn_logout;
       MaterialButton btnLogout = ViewBindings.findChildViewById(rootView, id);
       if (btnLogout == null) {
-        break missingId;
-      }
-
-      id = R.id.btn_my_activity;
-      MaterialCardView btnMyActivity = ViewBindings.findChildViewById(rootView, id);
-      if (btnMyActivity == null) {
-        break missingId;
-      }
-
-      id = R.id.btn_orders;
-      MaterialCardView btnOrders = ViewBindings.findChildViewById(rootView, id);
-      if (btnOrders == null) {
-        break missingId;
-      }
-
-      id = R.id.btn_security;
-      MaterialCardView btnSecurity = ViewBindings.findChildViewById(rootView, id);
-      if (btnSecurity == null) {
         break missingId;
       }
 
@@ -150,6 +102,12 @@ public final class FragmentProfileBinding implements ViewBinding {
         break missingId;
       }
       LayoutLoadingOverlayBinding binding_layoutLoading = LayoutLoadingOverlayBinding.bind(layoutLoading);
+
+      id = R.id.rv_profile_options;
+      RecyclerView rvProfileOptions = ViewBindings.findChildViewById(rootView, id);
+      if (rvProfileOptions == null) {
+        break missingId;
+      }
 
       id = R.id.tv_email;
       TextView tvEmail = ViewBindings.findChildViewById(rootView, id);
@@ -169,9 +127,8 @@ public final class FragmentProfileBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentProfileBinding((FrameLayout) rootView, btnAddresses, btnEditProfile,
-          btnLogout, btnMyActivity, btnOrders, btnSecurity, ivAvatar, binding_layoutLoading,
-          tvEmail, tvFirstName, tvLastName);
+      return new FragmentProfileBinding((FrameLayout) rootView, btnLogout, ivAvatar,
+          binding_layoutLoading, rvProfileOptions, tvEmail, tvFirstName, tvLastName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

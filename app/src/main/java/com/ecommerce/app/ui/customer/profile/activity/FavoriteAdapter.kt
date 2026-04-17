@@ -12,8 +12,7 @@ import com.ecommerce.app.databinding.ItemFavoriteBinding
 import com.ecommerce.app.util.toCurrency
 
 class FavoriteAdapter(
-    private val onItemClick: (ProductResponse) -> Unit,
-    private val onRemoveClick: (ProductResponse) -> Unit
+    private val onItemClick: (ProductResponse) -> Unit
 ) : ListAdapter<ProductResponse, FavoriteAdapter.FavoriteViewHolder>(DiffCallback) {
 
     inner class FavoriteViewHolder(private val binding: ItemFavoriteBinding) :
@@ -22,7 +21,7 @@ class FavoriteAdapter(
         fun bind(product: ProductResponse) {
             binding.tvProductName.text = product.name
             binding.tvProductDescription.text = product.description
-            binding.tvPrice.text = product.price.toCurrency()
+            binding.tvSeeProduct.setOnClickListener { onItemClick(product) }
 
             Glide.with(binding.ivProduct)
                 .load(product.mainImage)

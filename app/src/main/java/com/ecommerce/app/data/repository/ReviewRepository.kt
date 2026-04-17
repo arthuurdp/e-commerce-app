@@ -13,8 +13,8 @@ class ReviewRepository @Inject constructor(
     private val reviewApiService: ReviewApiService
 ) : BaseRepository() {
 
-    suspend fun createReview(reviewRequest: ReviewRequest): NetworkResult<ReviewResponse> {
-        return safeApiCall { reviewApiService.createReview(reviewRequest) }
+    suspend fun createReview(productId: Long, reviewRequest: ReviewRequest): NetworkResult<ReviewResponse> {
+        return safeApiCall { reviewApiService.createReview(productId, reviewRequest) }
     }
 
     suspend fun updateReview(reviewId: Long, reviewRequest: UpdateReviewRequest): NetworkResult<ReviewResponse> {

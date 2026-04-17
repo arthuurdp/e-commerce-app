@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.ecommerce.app.data.model.address.AddressResponse
 import com.ecommerce.app.databinding.ItemAddressBinding
+import com.ecommerce.app.util.DialogUtils
 
 class AddressAdapter(
     private val onEdit: (AddressResponse) -> Unit,
@@ -26,7 +27,16 @@ class AddressAdapter(
         holder.binding.tvAddressPostalCode.text = address.postalCode
         
         holder.binding.root.setOnClickListener { onEdit(address) }
-        holder.binding.btnDelete.setOnClickListener { onDelete(address) }
+        holder.binding.ibMore.setOnClickListener {
+            DialogUtils.showOptionsDialog(
+                context = holder.binding.root.context,
+                item = address,
+                editLabel = "Editar endereço",
+                deleteLabel = "Excluir endereço",
+                onEditClick = onEdit,
+                onDeleteClick = onDelete
+            )
+        }
     }
 
     object Diff : DiffUtil.ItemCallback<AddressResponse>() {

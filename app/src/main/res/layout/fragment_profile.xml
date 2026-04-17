@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -96,173 +97,19 @@
             android:paddingEnd="16dp"
             android:paddingBottom="24dp">
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/btn_edit_profile"
-                style="@style/App.Card.Action"
-                android:layout_marginBottom="10dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="14dp"
-                        android:src="@drawable/ic_pencil"
-                        app:tint="@color/primary" />
-
-                    <TextView
-                        style="@style/App.TextView.Label"
-                        android:text="Editar Perfil" />
-
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/ic_arrow_right"
-                        app:tint="@color/gray" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/btn_addresses"
-                style="@style/App.Card.Action"
-                android:layout_marginBottom="10dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="14dp"
-                        android:src="@drawable/ic_location"
-                        app:tint="@color/primary" />
-
-                    <TextView
-                        style="@style/App.TextView.Label"
-                        android:text="Meus Endereços" />
-
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/ic_arrow_right"
-                        app:tint="@color/gray" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/btn_orders"
-                style="@style/App.Card.Action"
-                android:layout_marginBottom="10dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="14dp"
-                        android:src="@drawable/ic_order"
-                        app:tint="@color/primary" />
-
-                    <TextView
-                        style="@style/App.TextView.Label"
-                        android:text="Meus Pedidos" />
-
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/ic_arrow_right"
-                        app:tint="@color/gray" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/btn_my_activity"
-                style="@style/App.Card.Action"
-                android:layout_marginBottom="10dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="14dp"
-                        android:src="@drawable/ic_my_activity"
-                        app:tint="@color/primary" />
-
-                    <TextView
-                        style="@style/App.TextView.Label"
-                        android:text="Minha Atividade" />
-
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/ic_arrow_right"
-                        app:tint="@color/gray" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/btn_security"
-                style="@style/App.Card.Action"
-                android:layout_marginBottom="10dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="14dp"
-                        android:src="@drawable/ic_lock"
-                        app:tint="@color/primary" />
-
-                    <TextView
-                        style="@style/App.TextView.Label"
-                        android:text="Segurança" />
-
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/ic_arrow_right"
-                        app:tint="@color/gray" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <View style="@style/App.Divider" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_profile_options"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/item_profile_option" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_logout"
                 style="@style/App.Button.Destructive"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="Sair" />
         </LinearLayout>
     </LinearLayout>

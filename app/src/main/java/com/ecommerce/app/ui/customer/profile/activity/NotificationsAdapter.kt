@@ -5,23 +5,29 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.ecommerce.app.R
 import com.ecommerce.app.data.model.notification.NotificationResponse
-import com.ecommerce.app.databinding.ItemCommentBinding
+import com.ecommerce.app.databinding.ItemNotificationBinding
 
 class NotificationsAdapter : ListAdapter<NotificationResponse, NotificationsAdapter.ViewHolder>(DiffCallback) {
 
-    class ViewHolder(private val binding: ItemCommentBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: ItemNotificationBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: NotificationResponse) {
-            binding.tvUserName.text = "Sistema"
-            binding.tvContent.text = item.message
-            binding.tvDate.text = item.createdAt
-            binding.btnDelete.visibility = android.view.View.GONE
+            binding.tvNotificationContent.text = item.message ?: ""
+            
+            val imageRes = when (item.type?.lowercase() ?: "") {
+                "review" -> R.drawable.img_notification_review
+                "comment" -> R.drawable.img_notification_comment
+                "favorite" -> R.drawable.img_notification_favorite
+                else -> R.drawable.img_notification_comment
+            }
+            binding.ivNotificationImage.setImageResource(imageRes)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            ItemCommentBinding.inflate(
+            ItemNotificationBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false

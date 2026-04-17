@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:padding="24dp"
+    android:background="@drawable/bg_dialog">
 
     <TextView
         android:id="@+id/tv_review_title"
@@ -30,10 +31,10 @@
         android:stepSize="1.0" />
 
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/App.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:background="@drawable/bg_dialog"
         android:hint="Seu comentário (opcional)">
 
         <com.google.android.material.textfield.TextInputEditText

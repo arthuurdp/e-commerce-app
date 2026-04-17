@@ -9,8 +9,9 @@ import retrofit2.Response
 import retrofit2.http.*
 
 interface ReviewApiService {
-    @POST("products/reviews")
+    @POST("products/{productId}/reviews")
     suspend fun createReview(
+        @Path("productId") productId: Long,
         @Body reviewRequest: ReviewRequest
     ): Response<ReviewResponse>
 

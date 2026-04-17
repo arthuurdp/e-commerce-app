@@ -5,10 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.signature.ObjectKey
 import com.ecommerce.app.data.model.review.ReviewResponse
-import com.ecommerce.app.databinding.DialogReviewOptionsBinding
 import com.ecommerce.app.databinding.ItemActivityReviewBinding
-import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.ecommerce.app.util.DialogUtils
 
 class ReviewsAdapter(
     private val onEditClick: (ReviewResponse) -> Unit,
@@ -27,20 +29,22 @@ class ReviewsAdapter(
                 if (parts.size == 3) "${parts[2]}/${parts[1]}/${parts[0]}" else review.createdAt.take(10)
             } catch (e: Exception) { review.createdAt.take(10) }
 
-            binding.ibMore.setOnClickListener { showOptionsDialog(review) }
-        }
+            if (review.userProfilePictureUrl != null) {
+                Glide.with(binding.root.context)
+                    .load(review.userProfilePictureUrl)
+                    .signature(ObjectKey(System.currentTimeMillis() / (1000 * 60)))
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(binding.ivAvatar)
+            }
 
-        private fun showOptionsDialog(review: ReviewResponse) {
-            val context = binding.root.context
-            val dialog = BottomSheetDialog(context)
-            val dialogBinding = DialogReviewOptionsBinding.inflate(LayoutInflater.from(context))
-
-            dialogBinding.btnEdit.setOnClickListener { onEditClick(review); dialog.dismiss() }
-            dialogBinding.btnDelete.setOnClickListener { onDeleteClick(review); dialog.dismiss() }
-            dialogBinding.btnCancel.setOnClickListener { dialog.dismiss() }
-
-            dialog.setContentView(dialogBinding.root)
-            dialog.show()
+            binding.ibMore.setOnClickListener {
+                DialogUtils.showOptionsDialog(
+                    context = binding.root.context,
+                    item = review,
+                    onEditClick = onEditClick,
+                    onDeleteClick = onDeleteClick
+                )
+            }
         }
     }
 

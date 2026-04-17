@@ -13,11 +13,11 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ecommerce.app.R
 import com.ecommerce.app.data.model.review.ReviewResponse
 import com.ecommerce.app.databinding.FragmentNotificationsBinding
-import com.ecommerce.app.ui.customer.products.CommentAdapter
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hide
 import com.ecommerce.app.util.show
@@ -40,7 +40,6 @@ class NotificationsFragment : Fragment() {
             onDeleteClick = { review -> viewModel.deleteReview(review.id) },
         )
     }
-    private val commentsAdapter by lazy { CommentAdapter(null) {} }
     private val favoritesAdapter by lazy {
         FavoriteAdapter(
             onItemClick = { product ->
@@ -49,7 +48,6 @@ class NotificationsFragment : Fragment() {
                     Bundle().apply { putLong("productId", product.id) }
                 )
             },
-            onRemoveClick = { product -> viewModel.removeFavorite(product.id) }
         )
     }
 
@@ -67,6 +65,11 @@ class NotificationsFragment : Fragment() {
         observeData()
         observeRemoval()
         observeReviewActions()
+        observeClearActivity()
+
+        binding.btnClearAll.setOnClickListener {
+            viewModel.clearRecentActivity()
+        }
     }
 
     private fun showEditReviewDialog(review: ReviewResponse) {
@@ -111,6 +114,25 @@ class NotificationsFragment : Fragment() {
         }
 
         dialog.show()
+    }
+
+    private fun observeClearActivity() {
+        viewModel.clearActivityState.observe(viewLifecycleOwner) { result ->
+            if (result == null) return@observe
+            when (result) {
+                is NetworkResult.Loading -> binding.progressBar.show()
+                is NetworkResult.Success -> {
+                    binding.progressBar.hide()
+                    showToast("Notificações limpas!")
+                    viewModel.resetClearActivityState()
+                }
+                is NetworkResult.Error -> {
+                    binding.progressBar.hide()
+                    showToast(result.message)
+                    viewModel.resetClearActivityState()
+                }
+            }
+        }
     }
 
     private fun observeReviewActions() {
@@ -166,9 +188,12 @@ class NotificationsFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
+        val divider = DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
+
         binding.rvActivities.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = notificationsAdapter
+            addItemDecoration(divider)
         }
     }
 
@@ -184,16 +209,19 @@ class NotificationsFragment : Fragment() {
         binding.tvEmpty.hide()
         when (checkedId) {
             R.id.chip_all -> {
+                binding.btnClearAll.show()
                 binding.rvActivities.layoutManager = LinearLayoutManager(requireContext())
                 binding.rvActivities.adapter = notificationsAdapter
                 viewModel.loadRecentActivity()
             }
             R.id.chip_favorites -> {
+                binding.btnClearAll.hide()
                 binding.rvActivities.layoutManager = LinearLayoutManager(requireContext())
                 binding.rvActivities.adapter = favoritesAdapter
                 viewModel.loadMyFavorites()
             }
             R.id.chip_reviews -> {
+                binding.btnClearAll.hide()
                 binding.rvActivities.layoutManager = LinearLayoutManager(requireContext())
                 binding.rvActivities.adapter = reviewsAdapter
                 viewModel.loadMyReviews()

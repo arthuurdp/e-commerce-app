@@ -5,6 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.signature.ObjectKey
 import com.ecommerce.app.data.model.review.ReviewResponse
 import com.ecommerce.app.databinding.ItemReviewBinding
 
@@ -25,9 +28,14 @@ class ProductReviewsAdapter : ListAdapter<ReviewResponse, ProductReviewsAdapter.
             } catch (e: Exception) {
                 review.createdAt.take(10)
             }
-            
-            // In a real app, you'd load the avatar here using Glide or Coil
-            // binding.ivAvatar.load(review.comment?.userProfilePicture)
+
+            if (review.userProfilePictureUrl != null) {
+                Glide.with(binding.root.context)
+                    .load(review.userProfilePictureUrl)
+                    .signature(ObjectKey(System.currentTimeMillis() / (1000 * 60)))
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(binding.ivAvatar)
+            }
         }
     }
 

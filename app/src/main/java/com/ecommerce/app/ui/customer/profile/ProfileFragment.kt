@@ -11,11 +11,14 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.signature.ObjectKey
 import com.ecommerce.app.R
 import com.ecommerce.app.databinding.FragmentProfileBinding
+import com.ecommerce.app.util.DialogUtils
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hide
 import com.ecommerce.app.util.show
@@ -31,6 +34,7 @@ class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private val viewModel: ProfileViewModel by activityViewModels()
+    private lateinit var profileOptionsAdapter: ProfileOptionsAdapter
 
     private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
         uri?.let { uploadImage(it) }
@@ -50,30 +54,43 @@ class ProfileFragment : Fragment() {
         observeProfile()
         observeProfilePicture()
         viewModel.loadProfile()
+        setupRecyclerView()
 
         binding.ivAvatar.setOnClickListener {
             showImageOptions()
         }
 
-        binding.btnEditProfile.setOnClickListener {
-            findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment)
-        }
-        binding.btnAddresses.setOnClickListener {
-            findNavController().navigate(R.id.action_profileFragment_to_addressListFragment)
-        }
-        binding.btnOrders.setOnClickListener {
-            findNavController().navigate(R.id.action_profileFragment_to_orderListFragment)
-        }
-        binding.btnSecurity.setOnClickListener {
-            findNavController().navigate(R.id.action_profileFragment_to_securityFragment)
-        }
-        binding.btnMyActivity.setOnClickListener {
-            findNavController().navigate(R.id.action_profileFragment_to_notificationsFragment)
-        }
         binding.btnLogout.setOnClickListener {
             viewModel.logout()
             findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
         }
+    }
+
+    private fun setupRecyclerView() {
+        profileOptionsAdapter = ProfileOptionsAdapter { option ->
+            when (option.id) {
+                1 -> findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment)
+                2 -> findNavController().navigate(R.id.action_profileFragment_to_addressListFragment)
+                3 -> findNavController().navigate(R.id.action_profileFragment_to_orderListFragment)
+                4 -> findNavController().navigate(R.id.action_profileFragment_to_notificationsFragment)
+                5 -> findNavController().navigate(R.id.action_profileFragment_to_securityFragment)
+            }
+        }
+
+        binding.rvProfileOptions.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = profileOptionsAdapter
+            addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
+        }
+
+        val options = listOf(
+            ProfileOption(1, R.drawable.ic_pencil, "Editar Perfil"),
+            ProfileOption(2, R.drawable.ic_location, "Meus Endereços"),
+            ProfileOption(3, R.drawable.ic_order, "Meus Pedidos"),
+            ProfileOption(4, R.drawable.ic_my_activity, "Minha Atividade"),
+            ProfileOption(5, R.drawable.ic_lock, "Segurança")
+        )
+        profileOptionsAdapter.submitList(options)
     }
 
     private fun observeProfile() {
@@ -96,7 +113,7 @@ class ProfileFragment : Fragment() {
                     if (user.profilePictureUrl != null) {
                         Glide.with(this)
                             .load(user.profilePictureUrl)
-                            .signature(ObjectKey(System.currentTimeMillis() / (1000 * 60))) // Refresh cache every minute
+                            .signature(ObjectKey(System.currentTimeMillis() / (1000 * 60)))
                             .diskCacheStrategy(DiskCacheStrategy.ALL)
                             .placeholder(placeholderRes)
                             .error(placeholderRes)
@@ -133,16 +150,14 @@ class ProfileFragment : Fragment() {
     }
 
     private fun showImageOptions() {
-        val options = arrayOf("Change Picture", "Remove Picture")
-        AlertDialog.Builder(requireContext())
-            .setTitle("Profile Picture")
-            .setItems(options) { _, which ->
-                when (which) {
-                    0 -> pickImageLauncher.launch("image/*")
-                    1 -> viewModel.deleteProfilePicture()
-                }
-            }
-            .show()
+        DialogUtils.showOptionsDialog(
+            context = requireContext(),
+            item = Unit,
+            editLabel = "Alterar foto",
+            deleteLabel = "Remover foto",
+            onEditClick = { pickImageLauncher.launch("image/*") },
+            onDeleteClick = { viewModel.deleteProfilePicture() }
+        )
     }
 
     private fun uploadImage(uri: Uri) {
