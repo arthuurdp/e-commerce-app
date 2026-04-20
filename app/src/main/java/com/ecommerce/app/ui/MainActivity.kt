@@ -201,9 +201,15 @@ class MainActivity : AppCompatActivity() {
 
             if (currentlyVisible != isKeyboardVisible) {
                 isKeyboardVisible = currentlyVisible
-                if (isKeyboardVisible) binding.bottomNavCustomer.hide()
-                else if (navController.currentDestination?.parent?.id != R.id.nav_graph_auth) {
-                    binding.bottomNavCustomer.show()
+                if (isKeyboardVisible) {
+                    binding.bottomNavCustomer.hide()
+                } else {
+                    val isRootDestination = navController.currentDestination?.id in setOf(
+                        R.id.homeFragment, R.id.searchFragment, R.id.profileFragment
+                    )
+                    if (isRootDestination) {
+                        binding.bottomNavCustomer.show()
+                    }
                 }
             }
         }

@@ -65,6 +65,7 @@ class SearchFragment : Fragment() {
         setupSearchBar()
         observeCategories()
         observeSearch()
+        hideKeyboardOnClick()
         viewModel.loadCategories()
 
         val categoryId = findNavController().currentBackStackEntry
@@ -144,9 +145,23 @@ class SearchFragment : Fragment() {
         binding.chipScrollView.animate()
             .alpha(0f)
             .translationY(-8f.dpToPx())
-            .setDuration(180)
+            .setDuration(200)
             .withEndAction { binding.chipScrollView.hide() }
             .start()
+    }
+
+    private fun hideKeyboardOnClick() {
+        val clickListener = View.OnClickListener {
+            hideKeyboard()
+            binding.etSearch.clearFocus()
+        }
+
+        binding.root.setOnClickListener(clickListener)
+        binding.scrollView.setOnClickListener(clickListener)
+        binding.scrollContent.setOnClickListener(clickListener)
+        binding.layoutEmptyState.setOnClickListener(clickListener)
+        binding.layoutResults.setOnClickListener(clickListener)
+        binding.layoutNoResults.setOnClickListener(clickListener)
     }
 
     private fun observeCategories() {

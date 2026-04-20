@@ -84,20 +84,20 @@
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\drawable\\img_product_not_found.xml"
     },
     {
-        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\drawable_img_woman.xml.flat",
-        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\drawable\\img_woman.xml"
-    },
-    {
-        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\layout_fragment_forgot_password.xml.flat",
-        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_forgot_password.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\drawable_img_banner_1.jpg.flat",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\drawable\\img_banner_1.jpg"
     },
     {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\drawable_ic_lock.xml.flat",
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\drawable\\ic_lock.xml"
     },
     {
-        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\drawable_img_banner_1.jpg.flat",
-        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\drawable\\img_banner_1.jpg"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\layout_fragment_forgot_password.xml.flat",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_forgot_password.xml"
+    },
+    {
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\drawable_img_woman.xml.flat",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\drawable\\img_woman.xml"
     },
     {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\layout_fragment_profile.xml.flat",
@@ -112,12 +112,12 @@
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\dialog_add_more_products.xml"
     },
     {
-        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\layout_fragment_edit_profile.xml.flat",
-        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_edit_profile.xml"
-    },
-    {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\drawable_ic_email.xml.flat",
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\drawable\\ic_email.xml"
+    },
+    {
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\layout_fragment_edit_profile.xml.flat",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_edit_profile.xml"
     },
     {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\drawable_ic_email_outline.xml.flat",
@@ -136,20 +136,20 @@
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\drawable\\img_no_addresses.xml"
     },
     {
-        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\drawable_ic_favorite_border.xml.flat",
-        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\drawable\\ic_favorite_border.xml"
-    },
-    {
-        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\drawable_bg_search_input.xml.flat",
-        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\drawable\\bg_search_input.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\drawable_img_delete_account.xml.flat",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\drawable\\img_delete_account.xml"
     },
     {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\layout_item_review.xml.flat",
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\item_review.xml"
     },
     {
-        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\drawable_img_delete_account.xml.flat",
-        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\drawable\\img_delete_account.xml"
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\drawable_bg_search_input.xml.flat",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\drawable\\bg_search_input.xml"
+    },
+    {
+        "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\drawable_ic_favorite_border.xml.flat",
+        "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\drawable\\ic_favorite_border.xml"
     },
     {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\drawable_ic_arrow_back.xml.flat",
@@ -276,10 +276,6 @@
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\fragment_login.xml"
     },
     {
-        "merged": "com.ecommerce.app-merged_res-53:/layout_fragment_add_address.xml.flat",
-        "source": "com.ecommerce.app-main-55:/layout/fragment_add_address.xml"
-    },
-    {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\drawable_ic_favorite_filled.xml.flat",
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\drawable\\ic_favorite_filled.xml"
     },
@@ -330,6 +326,10 @@
     {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\drawable_img_payment_success.xml.flat",
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\drawable\\img_payment_success.xml"
+    },
+    {
+        "merged": "com.ecommerce.app-merged_res-53:/layout_fragment_search.xml.flat",
+        "source": "com.ecommerce.app-main-55:/layout/fragment_search.xml"
     },
     {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-merged_res-53:\\layout_item_activity_review.xml.flat",

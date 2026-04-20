@@ -50,7 +50,7 @@
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent"
                         android:gravity="center_vertical"
-                        android:hint="O que vai pedir hoje?"
+                        android:hint="O que vai procurar hoje?"
                         android:textColorHint="@color/gray"
                         android:imeOptions="actionSearch"
                         android:inputType="text"
@@ -105,12 +105,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:overScrollMode="never"
+        android:clickable="true"
+        android:focusable="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
+            android:id="@+id/scroll_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true"
             android:paddingBottom="96dp">
 
             <LinearLayout

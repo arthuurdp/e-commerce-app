@@ -66,6 +66,9 @@ public final class FragmentSearchBinding implements ViewBinding {
   public final RecyclerView rvSearchResults;
 
   @NonNull
+  public final LinearLayout scrollContent;
+
+  @NonNull
   public final NestedScrollView scrollView;
 
   @NonNull
@@ -83,9 +86,9 @@ public final class FragmentSearchBinding implements ViewBinding {
       @NonNull ImageView ivIllustration, @NonNull LinearLayout layoutEmptyState,
       @NonNull LinearLayout layoutNoResults, @NonNull LinearLayout layoutResults,
       @NonNull LinearLayout llCategoriesGrid, @NonNull ProgressBar progressBar,
-      @NonNull RecyclerView rvSearchResults, @NonNull NestedScrollView scrollView,
-      @NonNull TextInputLayout tilSearch, @NonNull TextView tvNoResultsQuery,
-      @NonNull TextView tvResultCount) {
+      @NonNull RecyclerView rvSearchResults, @NonNull LinearLayout scrollContent,
+      @NonNull NestedScrollView scrollView, @NonNull TextInputLayout tilSearch,
+      @NonNull TextView tvNoResultsQuery, @NonNull TextView tvResultCount) {
     this.rootView = rootView;
     this.appBar = appBar;
     this.btnCancel = btnCancel;
@@ -99,6 +102,7 @@ public final class FragmentSearchBinding implements ViewBinding {
     this.llCategoriesGrid = llCategoriesGrid;
     this.progressBar = progressBar;
     this.rvSearchResults = rvSearchResults;
+    this.scrollContent = scrollContent;
     this.scrollView = scrollView;
     this.tilSearch = tilSearch;
     this.tvNoResultsQuery = tvNoResultsQuery;
@@ -204,6 +208,12 @@ public final class FragmentSearchBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.scroll_content;
+      LinearLayout scrollContent = ViewBindings.findChildViewById(rootView, id);
+      if (scrollContent == null) {
+        break missingId;
+      }
+
       id = R.id.scroll_view;
       NestedScrollView scrollView = ViewBindings.findChildViewById(rootView, id);
       if (scrollView == null) {
@@ -230,8 +240,8 @@ public final class FragmentSearchBinding implements ViewBinding {
 
       return new FragmentSearchBinding((CoordinatorLayout) rootView, appBar, btnCancel, chipGroup,
           chipScrollView, etSearch, ivIllustration, layoutEmptyState, layoutNoResults,
-          layoutResults, llCategoriesGrid, progressBar, rvSearchResults, scrollView, tilSearch,
-          tvNoResultsQuery, tvResultCount);
+          layoutResults, llCategoriesGrid, progressBar, rvSearchResults, scrollContent, scrollView,
+          tilSearch, tvNoResultsQuery, tvResultCount);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -92,10 +92,6 @@
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\item_address.xml"
     },
     {
-        "merged": "com.ecommerce.app-mergeDebugResources-52:/layout/fragment_add_address.xml",
-        "source": "com.ecommerce.app-main-55:/layout/fragment_add_address.xml"
-    },
-    {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-52:\\layout\\item_product_search.xml",
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\item_product_search.xml"
     },
@@ -150,6 +146,10 @@
     {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-52:\\layout\\item_cart.xml",
         "source": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-main-55:\\layout\\item_cart.xml"
+    },
+    {
+        "merged": "com.ecommerce.app-mergeDebugResources-52:/layout/fragment_search.xml",
+        "source": "com.ecommerce.app-main-55:/layout/fragment_search.xml"
     },
     {
         "merged": "C:\\Users\\arthur.dall\\.gradle\\daemon\\8.5\\com.ecommerce.app-mergeDebugResources-52:\\layout\\fragment_notifications.xml",
