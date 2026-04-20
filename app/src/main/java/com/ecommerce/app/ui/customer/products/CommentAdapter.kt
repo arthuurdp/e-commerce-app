@@ -7,10 +7,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.ecommerce.app.BuildConfig
 import com.ecommerce.app.R
 import com.ecommerce.app.data.model.comment.CommentResponse
 import com.ecommerce.app.databinding.ItemCommentBinding
-
+import com.ecommerce.app.util.formatDate
 
 class CommentAdapter(
     private val currentUserId: Long?,
@@ -23,18 +24,19 @@ class CommentAdapter(
         fun bind(comment: CommentResponse) {
             binding.tvUserName.text = comment.userName
             binding.tvContent.text = comment.content
+            binding.tvDate.text = comment.createdAt.formatDate()
 
-            binding.tvDate.text = try {
-                val datePart = comment.createdAt.take(10)
-                val parts = datePart.split("-")
-                if (parts.size == 3) "${parts[2]}/${parts[1]}/${parts[0]}" else datePart
-            } catch (e: Exception) {
-                comment.createdAt.take(10)
-            }
+            val rawUrl = comment.userProfilePicture
 
-            if (!comment.userProfilePicture.isNullOrBlank()) {
+            if (!rawUrl.isNullOrBlank()) {
+                val finalUrl = if (rawUrl.startsWith("http")) {
+                    rawUrl
+                } else {
+                    "${BuildConfig.BASE_URL}/uploads/$rawUrl"
+                }
+
                 Glide.with(binding.ivAvatar)
-                    .load(comment.userProfilePicture)
+                    .load(finalUrl)
                     .placeholder(R.drawable.img_male)
                     .error(R.drawable.img_male)
                     .into(binding.ivAvatar)

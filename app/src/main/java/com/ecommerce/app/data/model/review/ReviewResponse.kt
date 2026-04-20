@@ -8,6 +8,8 @@ data class ReviewResponse(
     val userName: String,
     val userProfilePictureUrl: String?,
     val productId: Long,
+    val productName: String? = null,
+    val productMainImage: String? = null,
     val rating: Int,
     val comment: CommentResponse?,
     val createdAt: String

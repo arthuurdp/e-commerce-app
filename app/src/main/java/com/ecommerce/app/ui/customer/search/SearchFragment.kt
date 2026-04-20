@@ -9,21 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ecommerce.app.R
 import com.ecommerce.app.data.model.category.CategoryResponse
 import com.ecommerce.app.databinding.FragmentSearchBinding
 import com.ecommerce.app.ui.customer.products.ProductSearchAdapter
-import com.ecommerce.app.util.NetworkResult
-import com.ecommerce.app.util.hide
-import com.ecommerce.app.util.hideKeyboard
-import com.ecommerce.app.util.show
+import com.ecommerce.app.util.*
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
@@ -93,15 +88,9 @@ class SearchFragment : Fragment() {
             )
         }
         binding.rvSearchResults.apply {
-            val layoutManager = LinearLayoutManager(requireContext())
-            this.layoutManager = layoutManager
+            layoutManager = LinearLayoutManager(requireContext())
             adapter = resultsAdapter
-
-            val divider = DividerItemDecoration(requireContext(), layoutManager.orientation)
-            ContextCompat.getDrawable(requireContext(), R.drawable.divider_style)?.let {
-                divider.setDrawable(it)
-            }
-            this.addItemDecoration(divider)
+            addDivider()
         }
     }
 

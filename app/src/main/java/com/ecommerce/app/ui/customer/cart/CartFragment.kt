@@ -15,11 +15,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.ecommerce.app.R
 import com.ecommerce.app.databinding.FragmentCartBinding
-import com.ecommerce.app.util.NetworkResult
-import com.ecommerce.app.util.hide
-import com.ecommerce.app.util.show
-import com.ecommerce.app.util.showToast
-import com.ecommerce.app.util.toCurrency
+import com.ecommerce.app.util.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -65,7 +61,10 @@ class CartFragment : Fragment() {
             onIncrement = { productId -> viewModel.addToCart(productId) },
             onDecrement = { productId -> viewModel.removeFromCart(productId) }
         )
-        binding.rvCartItems.adapter = cartAdapter
+        binding.rvCartItems.apply {
+            adapter = cartAdapter
+            addDivider()
+        }
     }
 
     private fun observeCart() {

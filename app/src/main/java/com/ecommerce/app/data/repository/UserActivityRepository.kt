@@ -31,4 +31,8 @@ class UserActivityRepository @Inject constructor(
     suspend fun getMyFavorites(): NetworkResult<Set<ProductResponse>> {
         return safeApiCall { userActivityApiService.getMyFavorites() }
     }
+
+    suspend fun markAsRead(id: Long): NetworkResult<Unit> {
+        return safeApiCall { userActivityApiService.markAsRead(id) }
+    }
 }

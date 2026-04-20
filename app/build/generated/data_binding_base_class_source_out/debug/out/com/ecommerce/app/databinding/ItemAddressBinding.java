@@ -5,20 +5,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.ecommerce.app.R;
-import com.google.android.material.card.MaterialCardView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
 
 public final class ItemAddressBinding implements ViewBinding {
   @NonNull
-  private final MaterialCardView rootView;
+  private final LinearLayout rootView;
 
   @NonNull
   public final ImageButton ibMore;
@@ -35,7 +35,7 @@ public final class ItemAddressBinding implements ViewBinding {
   @NonNull
   public final TextView tvAddressStreet;
 
-  private ItemAddressBinding(@NonNull MaterialCardView rootView, @NonNull ImageButton ibMore,
+  private ItemAddressBinding(@NonNull LinearLayout rootView, @NonNull ImageButton ibMore,
       @NonNull TextView tvAddressCity, @NonNull TextView tvAddressName,
       @NonNull TextView tvAddressPostalCode, @NonNull TextView tvAddressStreet) {
     this.rootView = rootView;
@@ -48,7 +48,7 @@ public final class ItemAddressBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public MaterialCardView getRoot() {
+  public LinearLayout getRoot() {
     return rootView;
   }
 
@@ -103,8 +103,8 @@ public final class ItemAddressBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemAddressBinding((MaterialCardView) rootView, ibMore, tvAddressCity,
-          tvAddressName, tvAddressPostalCode, tvAddressStreet);
+      return new ItemAddressBinding((LinearLayout) rootView, ibMore, tvAddressCity, tvAddressName,
+          tvAddressPostalCode, tvAddressStreet);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -11,7 +11,6 @@ import com.ecommerce.app.data.model.review.AddCommentToReviewRequest
 import com.ecommerce.app.data.model.review.ReviewResponse
 import com.ecommerce.app.data.model.review.UpdateReviewRequest
 import com.ecommerce.app.data.repository.CommentRepository
-import com.ecommerce.app.data.repository.FavoriteRepository
 import com.ecommerce.app.data.repository.ReviewRepository
 import com.ecommerce.app.data.repository.UserActivityRepository
 import com.ecommerce.app.util.NetworkResult
@@ -22,7 +21,6 @@ import javax.inject.Inject
 @HiltViewModel
 class NotificationsViewModel @Inject constructor(
     private val userActivityRepository: UserActivityRepository,
-    private val favoriteRepository: FavoriteRepository,
     private val reviewRepository: ReviewRepository,
     private val commentRepository: CommentRepository
 ) : ViewModel() {
@@ -175,4 +173,13 @@ class NotificationsViewModel @Inject constructor(
 
     fun resetEditReview() { _editReviewResult.value = null }
     fun resetDeleteReview() { _deleteReviewResult.value = null }
+
+    fun markAsRead(id: Long) {
+        viewModelScope.launch {
+            val result = userActivityRepository.markAsRead(id)
+            if (result is NetworkResult.Success) {
+                loadRecentActivity()
+            }
+        }
+    }
 }

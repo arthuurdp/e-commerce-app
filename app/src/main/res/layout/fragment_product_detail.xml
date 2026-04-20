@@ -22,7 +22,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <!-- Image carousel -->
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="280dp">
@@ -43,10 +42,15 @@
 
                     <ImageButton
                         android:id="@+id/btn_back"
-                        style="@style/App.BackButton"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_margin="12dp"
+                        android:background="@drawable/bg_circle_white"
                         android:elevation="4dp"
-                        android:padding="8dp" />
+                        android:padding="8dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_arrow_back"
+                        app:tint="@color/primary" />
 
                     <ImageButton
                         android:id="@+id/btn_favorite"
@@ -71,7 +75,6 @@
 
                 </FrameLayout>
 
-                <!-- Content card -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -82,7 +85,6 @@
                     android:paddingEnd="20dp"
                     android:paddingBottom="8dp">
 
-                    <!-- Name + Price -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -140,7 +142,6 @@
 
                     </LinearLayout>
 
-                    <!-- Rating -->
                     <LinearLayout
                         android:id="@+id/layout_rating"
                         android:layout_width="wrap_content"
@@ -182,7 +183,6 @@
 
                     <View style="@style/App.Divider" />
 
-                    <!-- Description -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -202,14 +202,12 @@
 
                     <View style="@style/App.Divider" />
 
-                    <!-- Stock + Add to cart -->
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_add_to_cart"
                         style="@style/App.Button.Primary"
                         android:text="Adicionar ao carrinho" />
 
-                    <!-- Review button -->
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_add_review"
                         style="@style/Widget.MaterialComponents.Button.TextButton"
@@ -220,8 +218,6 @@
                         android:textColor="@color/primary" />
 
                     <View style="@style/App.Divider" />
-
-                    <!-- ── Comments section ─────────────────────────────────── -->
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -276,7 +272,6 @@
 
                     </LinearLayout>
 
-                    <!-- Comments loading -->
                     <ProgressBar
                         android:id="@+id/progress_bar_comments"
                         android:layout_width="wrap_content"
@@ -286,7 +281,6 @@
                         android:indeterminateTint="@color/primary"
                         android:visibility="gone" />
 
-                    <!-- Empty state -->
                     <TextView
                         android:id="@+id/tv_no_comments"
                         android:layout_width="match_parent"
@@ -298,7 +292,6 @@
                         android:textSize="13sp"
                         android:visibility="gone" />
 
-                    <!-- Comments list (non-scrollable, nested inside NestedScrollView) -->
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_comments"
                         android:layout_width="match_parent"

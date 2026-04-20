@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.ecommerce.app.R;
 import com.ecommerce.app.databinding.FragmentOrderListBinding;
-import com.ecommerce.app.util.NetworkResult;
+import com.ecommerce.app.util.*;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @dagger.hilt.android.AndroidEntryPoint()

@@ -37,14 +37,16 @@ color text_input_stroke_color
 color warning
 color white
 drawable bg_bottom_nav
-drawable bg_bottom_radius
 drawable bg_circle_green
 drawable bg_circle_white
+drawable bg_comment_bubble
 drawable bg_dialog
 drawable bg_dot_active
 drawable bg_dot_inactive
+drawable bg_review
 drawable bg_search_input
 drawable bg_status_badge
+drawable bg_status_pill
 drawable bg_upper_radius
 drawable divider_style
 drawable ic_arrow_back
@@ -92,6 +94,7 @@ drawable img_product_not_found
 drawable img_reset_password
 drawable img_verify_email
 drawable img_woman
+drawable unread_dot
 font poppins
 id action_addressListFragment_to_addAddressFragment
 id action_addressListFragment_to_editAddressFragment
@@ -206,6 +209,7 @@ id header_change_password
 id header_delete_account
 id homeFragment
 id ib_more
+id iv_arrow
 id iv_avatar
 id iv_banner
 id iv_cart
@@ -259,6 +263,7 @@ id rating_bar_input
 id rb_rating
 id registerFragment
 id resetPasswordFragment
+id root_layout
 id rv_activities
 id rv_addresses
 id rv_cart_items
@@ -329,6 +334,7 @@ id tv_name
 id tv_no_comments
 id tv_no_results_query
 id tv_notification_content
+id tv_notification_date
 id tv_order_id
 id tv_price
 id tv_price_quantity
@@ -354,6 +360,8 @@ id tv_title
 id tv_total
 id tv_unit_price
 id tv_user_name
+id view_status_bar
+id view_unread_dot
 id vp_banner
 id vp_product_images
 layout activity_main

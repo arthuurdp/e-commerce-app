@@ -7,35 +7,47 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.signature.ObjectKey
+import com.ecommerce.app.BuildConfig
+import com.ecommerce.app.R
 import com.ecommerce.app.data.model.review.ReviewResponse
 import com.ecommerce.app.databinding.ItemActivityReviewBinding
 import com.ecommerce.app.util.DialogUtils
+import com.ecommerce.app.util.formatDate
+import kotlin.text.isNullOrEmpty
+import kotlin.text.startsWith
+import kotlin.text.uppercase
 
 class ReviewsAdapter(
     private val onEditClick: (ReviewResponse) -> Unit,
     private val onDeleteClick: (ReviewResponse) -> Unit,
+    private val onSeeProductClick: (Long) -> Unit,
 ) : ListAdapter<ReviewResponse, ReviewsAdapter.ReviewViewHolder>(DiffCallback) {
 
     inner class ReviewViewHolder(private val binding: ItemActivityReviewBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(review: ReviewResponse) {
-            binding.tvUserName.text = review.userName
+            binding.tvProductName.text = review.productName?.uppercase() ?: "PRODUTO #${review.productId}"
             binding.rbRating.rating = review.rating.toFloat()
-            binding.tvComment.text = review.comment?.content ?: "Sem comentário"
-            binding.tvDate.text = try {
-                val parts = review.createdAt.take(10).split("-")
-                if (parts.size == 3) "${parts[2]}/${parts[1]}/${parts[0]}" else review.createdAt.take(10)
-            } catch (e: Exception) { review.createdAt.take(10) }
+            binding.tvDate.text = review.createdAt.formatDate()
 
-            if (review.userProfilePictureUrl != null) {
-                Glide.with(binding.root.context)
-                    .load(review.userProfilePictureUrl)
-                    .signature(ObjectKey(System.currentTimeMillis() / (1000 * 60)))
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(binding.ivAvatar)
+            val profileUrl = review.userProfilePictureUrl
+            val finalUrl = if (profileUrl.isNullOrEmpty()) {
+                null
+            } else if (profileUrl.startsWith("http")) {
+                profileUrl
+            } else {
+                "${BuildConfig.BASE_URL}/uploads/$profileUrl"
             }
+
+            Glide.with(binding.root.context)
+                .load(finalUrl)
+                .placeholder(R.drawable.img_male)
+                .error(R.drawable.img_male)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(binding.ivAvatar)
+
+            binding.tvComment.text = review.comment?.content ?: "Sem comentário"
 
             binding.ibMore.setOnClickListener {
                 DialogUtils.showOptionsDialog(
@@ -44,6 +56,14 @@ class ReviewsAdapter(
                     onEditClick = onEditClick,
                     onDeleteClick = onDeleteClick
                 )
+            }
+
+            binding.tvSeeProduct.setOnClickListener {
+                onSeeProductClick(review.productId)
+            }
+
+            binding.root.setOnClickListener {
+                onSeeProductClick(review.productId)
             }
         }
     }

@@ -6,15 +6,11 @@
     <style name="App.TextView" />
     <style name="App.Button" />
 
-    <!-- ══════════════════════════════════════════════════════════════════════
-         TEXT INPUT
-    ══════════════════════════════════════════════════════════════════════════ -->
-
     <style name="App.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
-        <item name="boxCornerRadiusTopStart">12dp</item>
-        <item name="boxCornerRadiusTopEnd">12dp</item>
-        <item name="boxCornerRadiusBottomStart">12dp</item>
-        <item name="boxCornerRadiusBottomEnd">12dp</item>
+        <item name="boxCornerRadiusTopStart">20dp</item>
+        <item name="boxCornerRadiusTopEnd">20dp</item>
+        <item name="boxCornerRadiusBottomStart">20dp</item>
+        <item name="boxCornerRadiusBottomEnd">20dp</item>
         <item name="boxStrokeColor">@color/text_input_stroke_color</item>
         <item name="hintTextColor">@color/text_input_hint_color</item>
         <item name="startIconTint">@color/text_input_icon_tint</item>
@@ -36,10 +32,6 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/black</item>
     </style>
-
-    <!-- ══════════════════════════════════════════════════════════════════════
-         BUTTONS
-    ══════════════════════════════════════════════════════════════════════════ -->
 
     <style name="App.Button.Primary" parent="Widget.MaterialComponents.Button">
         <item name="android:layout_width">match_parent</item>
@@ -75,10 +67,6 @@
         <item name="rippleColor">@color/primary_dark</item>
     </style>
 
-    <!-- ══════════════════════════════════════════════════════════════════════
-         CARDS
-    ══════════════════════════════════════════════════════════════════════════ -->
-
     <style name="App.Card" parent="Widget.MaterialComponents.CardView">
         <item name="cardCornerRadius">16dp</item>
         <item name="cardElevation">0dp</item>
@@ -103,10 +91,6 @@
         <item name="android:layout_height">64dp</item>
         <item name="android:layout_width">match_parent</item>
     </style>
-
-    <!-- ══════════════════════════════════════════════════════════════════════
-         TYPOGRAPHY
-    ══════════════════════════════════════════════════════════════════════════ -->
 
     <style name="App.Text.PageTitle">
         <item name="android:layout_width">wrap_content</item>
@@ -162,17 +146,10 @@
         <item name="android:textColor">@color/primary</item>
     </style>
 
-    <!-- ══════════════════════════════════════════════════════════════════════
-         DIALOGS
-    ══════════════════════════════════════════════════════════════════════════ -->
 
     <style name="App.Dialog.Rounded" parent="Theme.MaterialComponents.Light.Dialog.Alert">
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
-
-    <!-- ══════════════════════════════════════════════════════════════════════
-         MISC
-    ══════════════════════════════════════════════════════════════════════════ -->
 
     <style name="App.Divider">
         <item name="android:layout_width">match_parent</item>

@@ -13,7 +13,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import com.ecommerce.app.R;
 import com.ecommerce.app.databinding.FragmentCartBinding;
-import com.ecommerce.app.util.NetworkResult;
+import com.ecommerce.app.util.*;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @dagger.hilt.android.AndroidEntryPoint()

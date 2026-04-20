@@ -24,6 +24,7 @@ import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hide
 import com.ecommerce.app.util.show
 import com.ecommerce.app.util.showToast
+import com.ecommerce.app.util.toImageUrl
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.NumberFormat
 import java.util.Locale
@@ -259,7 +260,7 @@ class CheckoutFragment : Fragment() {
                 currencyFormat.format(item.subtotal)
 
             Glide.with(this)
-                .load(item.imageUrl)
+                .load(item.imageUrl.toImageUrl())
                 .centerCrop()
                 .into(row.findViewById(R.id.iv_product))
 

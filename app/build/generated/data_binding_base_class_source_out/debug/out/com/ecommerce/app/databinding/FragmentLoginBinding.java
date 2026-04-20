@@ -59,9 +59,6 @@ public final class FragmentLoginBinding implements ViewBinding {
   public final TextView tvRegister;
 
   @NonNull
-  public final TextView tvSubtitle;
-
-  @NonNull
   public final LinearLayout tvTitle;
 
   private FragmentLoginBinding(@NonNull FrameLayout rootView, @NonNull MaterialButton btnLogin,
@@ -70,7 +67,7 @@ public final class FragmentLoginBinding implements ViewBinding {
       @NonNull LinearLayout llRegister, @NonNull ConstraintLayout mainContainer,
       @NonNull TextInputLayout tilEmail, @NonNull TextInputLayout tilPassword,
       @NonNull TextView tvForgotPassword, @NonNull TextView tvRegister,
-      @NonNull TextView tvSubtitle, @NonNull LinearLayout tvTitle) {
+      @NonNull LinearLayout tvTitle) {
     this.rootView = rootView;
     this.btnLogin = btnLogin;
     this.etCredential = etCredential;
@@ -83,7 +80,6 @@ public final class FragmentLoginBinding implements ViewBinding {
     this.tilPassword = tilPassword;
     this.tvForgotPassword = tvForgotPassword;
     this.tvRegister = tvRegister;
-    this.tvSubtitle = tvSubtitle;
     this.tvTitle = tvTitle;
   }
 
@@ -181,12 +177,6 @@ public final class FragmentLoginBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.tv_subtitle;
-      TextView tvSubtitle = ViewBindings.findChildViewById(rootView, id);
-      if (tvSubtitle == null) {
-        break missingId;
-      }
-
       id = R.id.tv_title;
       LinearLayout tvTitle = ViewBindings.findChildViewById(rootView, id);
       if (tvTitle == null) {
@@ -195,7 +185,7 @@ public final class FragmentLoginBinding implements ViewBinding {
 
       return new FragmentLoginBinding((FrameLayout) rootView, btnLogin, etCredential, etPassword,
           ivIllustration, binding_layoutLoading, llRegister, mainContainer, tilEmail, tilPassword,
-          tvForgotPassword, tvRegister, tvSubtitle, tvTitle);
+          tvForgotPassword, tvRegister, tvTitle);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

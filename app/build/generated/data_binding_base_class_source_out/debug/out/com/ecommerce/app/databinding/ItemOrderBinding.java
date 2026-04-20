@@ -5,20 +5,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.ecommerce.app.R;
-import com.google.android.material.card.MaterialCardView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
 
 public final class ItemOrderBinding implements ViewBinding {
   @NonNull
-  private final MaterialCardView rootView;
+  private final LinearLayout rootView;
 
   @NonNull
   public final ImageView ivOrderIcon;
@@ -38,9 +38,12 @@ public final class ItemOrderBinding implements ViewBinding {
   @NonNull
   public final TextView tvTotal;
 
-  private ItemOrderBinding(@NonNull MaterialCardView rootView, @NonNull ImageView ivOrderIcon,
+  @NonNull
+  public final View viewStatusBar;
+
+  private ItemOrderBinding(@NonNull LinearLayout rootView, @NonNull ImageView ivOrderIcon,
       @NonNull TextView tvDate, @NonNull TextView tvItemCount, @NonNull TextView tvOrderId,
-      @NonNull TextView tvStatus, @NonNull TextView tvTotal) {
+      @NonNull TextView tvStatus, @NonNull TextView tvTotal, @NonNull View viewStatusBar) {
     this.rootView = rootView;
     this.ivOrderIcon = ivOrderIcon;
     this.tvDate = tvDate;
@@ -48,11 +51,12 @@ public final class ItemOrderBinding implements ViewBinding {
     this.tvOrderId = tvOrderId;
     this.tvStatus = tvStatus;
     this.tvTotal = tvTotal;
+    this.viewStatusBar = viewStatusBar;
   }
 
   @Override
   @NonNull
-  public MaterialCardView getRoot() {
+  public LinearLayout getRoot() {
     return rootView;
   }
 
@@ -113,8 +117,14 @@ public final class ItemOrderBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemOrderBinding((MaterialCardView) rootView, ivOrderIcon, tvDate, tvItemCount,
-          tvOrderId, tvStatus, tvTotal);
+      id = R.id.view_status_bar;
+      View viewStatusBar = ViewBindings.findChildViewById(rootView, id);
+      if (viewStatusBar == null) {
+        break missingId;
+      }
+
+      return new ItemOrderBinding((LinearLayout) rootView, ivOrderIcon, tvDate, tvItemCount,
+          tvOrderId, tvStatus, tvTotal, viewStatusBar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -10,11 +10,23 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.ecommerce.app.BuildConfig
 import com.ecommerce.app.R
 import com.google.android.material.textfield.TextInputLayout
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 fun View.show() { visibility = View.VISIBLE }
 fun View.hide() { visibility = View.GONE }
+
+fun RecyclerView.addDivider() {
+    val divider = DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
+    addItemDecoration(divider)
+}
 
 fun Fragment.showToast(message: String) =
     Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
@@ -37,6 +49,27 @@ fun <T : Parcelable> Bundle.getParcelableCompat(key: String, clazz: Class<T>): T
 
 fun Double.toCurrency(): String = "R$ %.2f".format(this)
 
+fun String?.toImageUrl(): String? {
+    if (this.isNullOrBlank()) return null
+    return if (this.startsWith("http")) {
+        this
+    } else {
+        "${BuildConfig.BASE_URL}/uploads/$this"
+    }
+}
+
+fun String?.formatDate(): String {
+    if (this.isNullOrBlank()) return ""
+    return try {
+        val inputFormatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME
+        val outputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy 'às' HH:mm", Locale("pt", "BR"))
+        val parsed = LocalDateTime.parse(this, inputFormatter)
+        parsed.format(outputFormatter)
+    } catch (e: Exception) {
+        this
+    }
+}
+
 fun setFieldError(context: Context, layout: TextInputLayout, message: String?) {
     val hasError = message != null
 
@@ -51,7 +84,7 @@ fun setFieldError(context: Context, layout: TextInputLayout, message: String?) {
     val color = if (hasError) {
         ContextCompat.getColor(context, R.color.red)
     } else {
-        ContextCompat.getColor(context, R.color.purple)
+        ContextCompat.getColor(context, R.color.primary)
     }
 
     layout.setStartIconTintList(ColorStateList.valueOf(color))

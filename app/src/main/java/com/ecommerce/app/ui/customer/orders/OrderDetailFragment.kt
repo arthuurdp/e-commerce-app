@@ -11,11 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.ecommerce.app.R
 import com.ecommerce.app.databinding.FragmentOrderDetailBinding
-import com.ecommerce.app.util.NetworkResult
-import com.ecommerce.app.util.hide
-import com.ecommerce.app.util.show
-import com.ecommerce.app.util.showToast
-import com.ecommerce.app.util.toCurrency
+import com.ecommerce.app.util.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -42,7 +38,10 @@ class OrderDetailFragment : Fragment() {
         binding.btnBack.setOnClickListener { findNavController().popBackStack() }
 
         val itemAdapter = OrderItemAdapter()
-        binding.rvItems.adapter = itemAdapter
+        binding.rvItems.apply {
+            adapter = itemAdapter
+            addDivider()
+        }
 
         viewModel.orderState.observe(viewLifecycleOwner) { result ->
             when (result) {
@@ -54,12 +53,7 @@ class OrderDetailFragment : Fragment() {
 
                     binding.tvOrderId.text = "Pedido #${order.id}"
                     binding.tvTotal.text = order.total.toCurrency()
-
-                    val rawDate = order.createdAt.take(10)
-                    binding.tvDate.text = try {
-                        val parts = rawDate.split("-")
-                        if (parts.size == 3) "${parts[2]}/${parts[1]}/${parts[0]}" else rawDate
-                    } catch (e: Exception) { rawDate }
+                    binding.tvDate.text = order.createdAt.formatDate()
 
                     val (label, colorRes) = when (order.status) {
                         "PENDING" -> "PENDENTE" to R.color.status_pending

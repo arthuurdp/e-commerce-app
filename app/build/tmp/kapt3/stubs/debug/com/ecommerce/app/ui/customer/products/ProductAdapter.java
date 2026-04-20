@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
+import com.ecommerce.app.BuildConfig;
 import com.ecommerce.app.R;
 import com.ecommerce.app.data.model.product.ProductResponse;
 import com.ecommerce.app.databinding.ItemProductBinding;

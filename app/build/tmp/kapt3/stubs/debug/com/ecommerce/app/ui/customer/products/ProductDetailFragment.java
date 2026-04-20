@@ -20,13 +20,10 @@ import androidx.viewpager2.widget.ViewPager2;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.ecommerce.app.data.model.product.ProductDetailsResponse;
 import com.ecommerce.app.data.model.product.ProductImageResponse;
-import com.ecommerce.app.data.model.review.ReviewResponse;
 import com.ecommerce.app.databinding.FragmentProductDetailBinding;
 import com.ecommerce.app.ui.customer.profile.security.SecurityViewModel;
-import com.ecommerce.app.util.NetworkResult;
+import com.ecommerce.app.util.*;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @dagger.hilt.android.AndroidEntryPoint()

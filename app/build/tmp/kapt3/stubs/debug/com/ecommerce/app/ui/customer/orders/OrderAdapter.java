@@ -1,7 +1,9 @@
 package com.ecommerce.app.ui.customer.orders;
 
+import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -55,7 +57,7 @@ public final class OrderAdapter extends androidx.recyclerview.widget.ListAdapter
         }
     }
     
-    @kotlin.Metadata(mv = {1, 9, 0}, k = 1, xi = 48, d1 = {"\u0000\u001e\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\b\u0086\u0004\u0018\u00002\u00020\u0001B\r\u0012\u0006\u0010\u0002\u001a\u00020\u0003\u00a2\u0006\u0002\u0010\u0004J\u000e\u0010\u0005\u001a\u00020\u00062\u0006\u0010\u0007\u001a\u00020\bR\u000e\u0010\u0002\u001a\u00020\u0003X\u0082\u0004\u00a2\u0006\u0002\n\u0000\u00a8\u0006\t"}, d2 = {"Lcom/ecommerce/app/ui/customer/orders/OrderAdapter$OrderViewHolder;", "Landroidx/recyclerview/widget/RecyclerView$ViewHolder;", "binding", "Lcom/ecommerce/app/databinding/ItemOrderBinding;", "(Lcom/ecommerce/app/ui/customer/orders/OrderAdapter;Lcom/ecommerce/app/databinding/ItemOrderBinding;)V", "bind", "", "order", "Lcom/ecommerce/app/data/model/order/OrderResponse;", "app_debug"})
+    @kotlin.Metadata(mv = {1, 9, 0}, k = 1, xi = 48, d1 = {"\u0000.\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\u0010\b\n\u0000\n\u0002\u0010\u000e\n\u0000\b\u0086\u0004\u0018\u00002\u00020\u0001B\r\u0012\u0006\u0010\u0002\u001a\u00020\u0003\u00a2\u0006\u0002\u0010\u0004J\u000e\u0010\u0005\u001a\u00020\u00062\u0006\u0010\u0007\u001a\u00020\bJ\u001e\u0010\t\u001a\u000e\u0012\u0004\u0012\u00020\u000b\u0012\u0004\u0012\u00020\u000b0\n2\b\u0010\f\u001a\u0004\u0018\u00010\rH\u0002R\u000e\u0010\u0002\u001a\u00020\u0003X\u0082\u0004\u00a2\u0006\u0002\n\u0000\u00a8\u0006\u000e"}, d2 = {"Lcom/ecommerce/app/ui/customer/orders/OrderAdapter$OrderViewHolder;", "Landroidx/recyclerview/widget/RecyclerView$ViewHolder;", "binding", "Lcom/ecommerce/app/databinding/ItemOrderBinding;", "(Lcom/ecommerce/app/ui/customer/orders/OrderAdapter;Lcom/ecommerce/app/databinding/ItemOrderBinding;)V", "bind", "", "order", "Lcom/ecommerce/app/data/model/order/OrderResponse;", "statusMeta", "Lkotlin/Pair;", "", "status", "", "app_debug"})
     public final class OrderViewHolder extends androidx.recyclerview.widget.RecyclerView.ViewHolder {
         @org.jetbrains.annotations.NotNull()
         private final com.ecommerce.app.databinding.ItemOrderBinding binding = null;
@@ -67,6 +69,10 @@ public final class OrderAdapter extends androidx.recyclerview.widget.ListAdapter
         
         public final void bind(@org.jetbrains.annotations.NotNull()
         com.ecommerce.app.data.model.order.OrderResponse order) {
+        }
+        
+        private final kotlin.Pair<java.lang.Integer, java.lang.Integer> statusMeta(java.lang.String status) {
+            return null;
         }
     }
 }

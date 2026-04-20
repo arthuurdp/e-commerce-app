@@ -11,10 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ecommerce.app.R
 import com.ecommerce.app.databinding.FragmentOrderListBinding
-import com.ecommerce.app.util.NetworkResult
-import com.ecommerce.app.util.hide
-import com.ecommerce.app.util.show
-import com.ecommerce.app.util.showToast
+import com.ecommerce.app.util.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -46,6 +43,7 @@ class OrdersFragment : Fragment() {
         binding.rvOrders.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = ordersAdapter
+            addDivider()
         }
 
         binding.swipeRefresh.setOnRefreshListener { viewModel.loadOrders() }

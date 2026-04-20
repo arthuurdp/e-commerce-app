@@ -5,6 +5,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ecommerce.app.data.model.product.ProductImageResponse
+import com.ecommerce.app.util.toImageUrl
 
 class ProductItemAdapter(
     private val imgs: List<ProductImageResponse>
@@ -25,7 +26,7 @@ class ProductItemAdapter(
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         Glide.with(holder.imageView)
-            .load(imgs[position].url)
+            .load(imgs[position].url.toImageUrl())
             .into(holder.imageView)
     }
 

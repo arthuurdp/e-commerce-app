@@ -13,15 +13,11 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ecommerce.app.R
 import com.ecommerce.app.data.model.review.ReviewResponse
 import com.ecommerce.app.databinding.FragmentNotificationsBinding
-import com.ecommerce.app.util.NetworkResult
-import com.ecommerce.app.util.hide
-import com.ecommerce.app.util.show
-import com.ecommerce.app.util.showToast
+import com.ecommerce.app.util.*
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,11 +29,21 @@ class NotificationsFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: NotificationsViewModel by viewModels()
 
-    private val notificationsAdapter = NotificationsAdapter()
+    private val notificationsAdapter = NotificationsAdapter { notification ->
+        if (notification.read == false) {
+            viewModel.markAsRead(notification.id)
+        }
+    }
     private val reviewsAdapter by lazy {
         ReviewsAdapter(
             onEditClick = { review -> showEditReviewDialog(review) },
             onDeleteClick = { review -> viewModel.deleteReview(review.id) },
+            onSeeProductClick = { productId ->
+                findNavController().navigate(
+                    R.id.action_notificationsFragment_to_productDetailFragment,
+                    Bundle().apply { putLong("productId", productId) }
+                )
+            }
         )
     }
     private val favoritesAdapter by lazy {
@@ -59,6 +65,11 @@ class NotificationsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnBack.setOnClickListener { findNavController().popBackStack() }
+
+        binding.btnClearAll.setOnClickListener {
+            viewModel.clearRecentActivity()
+        }
+
         setupRecyclerView()
         setupFilters()
         setupSwipeRefresh()
@@ -66,10 +77,6 @@ class NotificationsFragment : Fragment() {
         observeRemoval()
         observeReviewActions()
         observeClearActivity()
-
-        binding.btnClearAll.setOnClickListener {
-            viewModel.clearRecentActivity()
-        }
     }
 
     private fun showEditReviewDialog(review: ReviewResponse) {
@@ -188,12 +195,10 @@ class NotificationsFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        val divider = DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
-
         binding.rvActivities.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = notificationsAdapter
-            addItemDecoration(divider)
+            addDivider()
         }
     }
 

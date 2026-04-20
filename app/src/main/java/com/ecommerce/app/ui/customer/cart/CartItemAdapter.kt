@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.ecommerce.app.BuildConfig
 import com.ecommerce.app.R
 import com.ecommerce.app.data.model.cart.CartItemResponse
 import com.ecommerce.app.databinding.ItemCartBinding
@@ -25,8 +26,17 @@ class CartItemAdapter(
             binding.tvQuantity.text = item.quantity.toString()
             binding.tvSubtotal.text = item.subtotal.toCurrency()
 
+            val imageUrl = item.imageUrl
+            val finalUrl = if (imageUrl.isNullOrEmpty()) {
+                null
+            } else if (imageUrl.startsWith("http")) {
+                imageUrl
+            } else {
+                "${BuildConfig.BASE_URL}/uploads/$imageUrl"
+            }
+
             Glide.with(binding.ivProduct)
-                .load(item.imageUrl)
+                .load(finalUrl)
                 .placeholder(R.drawable.img_logo)
                 .error(R.drawable.img_logo)
                 .centerCrop()

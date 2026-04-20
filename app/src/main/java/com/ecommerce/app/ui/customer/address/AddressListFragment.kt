@@ -10,10 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ecommerce.app.R
 import com.ecommerce.app.databinding.FragmentAddressListBinding
-import com.ecommerce.app.util.NetworkResult
-import com.ecommerce.app.util.hide
-import com.ecommerce.app.util.show
-import com.ecommerce.app.util.showToast
+import com.ecommerce.app.util.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -51,15 +48,11 @@ class AddressListFragment : Fragment() {
             onDelete = { address -> viewModel.deleteAddress(address.id) }
         )
 
-        binding.rvAddresses.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = this@AddressListFragment.adapter
-        }
-
         binding.fabAddAddress.setOnClickListener {
             findNavController().navigate(R.id.action_addressListFragment_to_addAddressFragment)
         }
 
+        setupRecyclerView()
         observeAddresses()
         observeDelete()
         viewModel.loadAddresses()
@@ -105,6 +98,14 @@ class AddressListFragment : Fragment() {
                     binding.progressBar.hide()
                 }
             }
+        }
+    }
+
+    private fun setupRecyclerView() {
+        binding.rvAddresses.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = this@AddressListFragment.adapter
+            addDivider()
         }
     }
 

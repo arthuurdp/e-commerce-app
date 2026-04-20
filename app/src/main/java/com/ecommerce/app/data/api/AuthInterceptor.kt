@@ -13,8 +13,7 @@ class AuthInterceptor @Inject constructor(
     private val publicGetEndpoints = listOf(
         "products",
         "categories",
-        "states",
-        "cities/lookup",
+        "states"
     )
 
     private val publicAnyMethodEndpoints = listOf(

@@ -3052,14 +3052,16 @@ drawable abc_vector_test
 drawable avd_hide_password
 drawable avd_show_password
 drawable bg_bottom_nav
-drawable bg_bottom_radius
 drawable bg_circle_green
 drawable bg_circle_white
+drawable bg_comment_bubble
 drawable bg_dialog
 drawable bg_dot_active
 drawable bg_dot_inactive
+drawable bg_review
 drawable bg_search_input
 drawable bg_status_badge
+drawable bg_status_pill
 drawable bg_upper_radius
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
@@ -3213,6 +3215,7 @@ drawable notify_panel_notification_icon_bg
 drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+drawable unread_dot
 font poppins
 id ALT
 id BOTTOM_END
@@ -3558,6 +3561,7 @@ id inward
 id is_pooling_container_tag
 id italic
 id item_touch_helper_previous_elevation
+id iv_arrow
 id iv_avatar
 id iv_banner
 id iv_cart
@@ -3752,6 +3756,7 @@ id right
 id rightToLeft
 id right_icon
 id right_side
+id root_layout
 id rounded
 id row_index_key
 id rtl
@@ -3934,6 +3939,7 @@ id tv_name
 id tv_no_comments
 id tv_no_results_query
 id tv_notification_content
+id tv_notification_date
 id tv_order_id
 id tv_price
 id tv_price_quantity
@@ -3966,11 +3972,13 @@ id up
 id useLogo
 id vertical_only
 id view_offset_helper
+id view_status_bar
 id view_transition
 id view_tree_lifecycle_owner
 id view_tree_on_back_pressed_dispatcher_owner
 id view_tree_saved_state_registry_owner
 id view_tree_view_model_store_owner
+id view_unread_dot
 id visible
 id visible_removing_fragment_view_tag
 id vp_banner

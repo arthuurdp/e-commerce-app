@@ -51,16 +51,6 @@
                 android:text="Sessão" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_subtitle"
-            style="@style/App.Text.Subtitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="Informe suas credenciais corretamente para continuar."
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_email"
@@ -68,11 +58,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="E-mail ou CPF"
+            android:hint="Email ou CPF"
             app:startIconDrawable="@drawable/ic_email_outline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_subtitle">
+            app:layout_constraintTop_toBottomOf="@id/tv_title">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_credential"

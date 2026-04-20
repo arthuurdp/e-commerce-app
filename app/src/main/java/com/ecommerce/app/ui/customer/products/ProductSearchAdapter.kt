@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.ecommerce.app.BuildConfig
 import com.ecommerce.app.R
 import com.ecommerce.app.data.model.product.ProductResponse
 import com.ecommerce.app.databinding.ItemProductSearchBinding
@@ -23,8 +24,17 @@ class ProductSearchAdapter(
             binding.tvDescription.text = product.description
             binding.tvPrice.text = product.price.toCurrency()
 
+            val imageUrl = product.mainImage
+            val finalUrl = if (imageUrl.isNullOrEmpty()) {
+                null
+            } else if (imageUrl.startsWith("http")) {
+                imageUrl
+            } else {
+                "${BuildConfig.BASE_URL}/uploads/$imageUrl"
+            }
+
             Glide.with(binding.ivProduct)
-                .load(product.mainImage)
+                .load(finalUrl)
                 .placeholder(R.drawable.img_logo)
                 .error(R.drawable.img_logo)
                 .centerCrop()

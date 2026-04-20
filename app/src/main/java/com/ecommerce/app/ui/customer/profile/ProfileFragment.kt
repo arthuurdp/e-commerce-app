@@ -7,22 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.signature.ObjectKey
+import com.ecommerce.app.BuildConfig
 import com.ecommerce.app.R
 import com.ecommerce.app.databinding.FragmentProfileBinding
-import com.ecommerce.app.util.DialogUtils
-import com.ecommerce.app.util.NetworkResult
-import com.ecommerce.app.util.hide
-import com.ecommerce.app.util.show
-import com.ecommerce.app.util.showToast
+import com.ecommerce.app.util.*
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -80,7 +75,7 @@ class ProfileFragment : Fragment() {
         binding.rvProfileOptions.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = profileOptionsAdapter
-            addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
+            addDivider()
         }
 
         val options = listOf(
@@ -110,9 +105,15 @@ class ProfileFragment : Fragment() {
                         R.drawable.img_female
                     }
 
-                    if (user.profilePictureUrl != null) {
+                    if (!user.profilePictureUrl.isNullOrEmpty()) {
+                        val finalUrl = if (user.profilePictureUrl.startsWith("http")) {
+                            user.profilePictureUrl
+                        } else {
+                            "${BuildConfig.BASE_URL}/uploads/${user.profilePictureUrl}"
+                        }
+
                         Glide.with(this)
-                            .load(user.profilePictureUrl)
+                            .load(finalUrl)
                             .signature(ObjectKey(System.currentTimeMillis() / (1000 * 60)))
                             .diskCacheStrategy(DiskCacheStrategy.ALL)
                             .placeholder(placeholderRes)
@@ -138,6 +139,7 @@ class ProfileFragment : Fragment() {
                 is NetworkResult.Success -> {
                     binding.layoutLoading.loadingOverlay.hide()
                     showToast("Profile picture updated")
+                    viewModel.loadProfile()
                     viewModel.clearProfilePictureState()
                 }
                 is NetworkResult.Error -> {
