@@ -3121,6 +3121,7 @@ int drawable img_banner_2 0x7f0700bc
 int drawable img_banner_3 0x7f0700bd
 int drawable img_delete_account 0x7f0700be
 int drawable img_empty_cart 0x7f0700bf
+int drawable img_empty_notifications 0x7f07011e
 int drawable img_female 0x7f0700c0
 int drawable img_forgot_password 0x7f0700c1
 int drawable img_forgot_password_enter_code 0x7f0700c2
@@ -3597,6 +3598,7 @@ int id ll_category_header 0x7f090179
 int id ll_category_tiles 0x7f09017a
 int id ll_comments_header 0x7f09017b
 int id ll_dots 0x7f09017c
+int id ll_empty_notifications 0x7f090308
 int id ll_greeting 0x7f09017d
 int id ll_info 0x7f09017e
 int id ll_order_items 0x7f09017f
@@ -3883,11 +3885,14 @@ int id til_complement 0x7f090297
 int id til_email 0x7f090298
 int id til_enter_code 0x7f090299
 int id til_label 0x7f09029a
+int id til_name 0x7f090309
 int id til_neighborhood 0x7f09029b
 int id til_new_email 0x7f09029c
 int id til_new_password 0x7f09029d
+int id til_nickname 0x7f09030a
 int id til_number 0x7f09029e
 int id til_password 0x7f09029f
+int id til_phone 0x7f09030b
 int id til_postalCode 0x7f0902a0
 int id til_search 0x7f0902a1
 int id til_street 0x7f0902a2
@@ -3922,7 +3927,6 @@ int id tv_current_email 0x7f0902be
 int id tv_date 0x7f0902bf
 int id tv_description 0x7f0902c0
 int id tv_email 0x7f0902c1
-int id tv_empty 0x7f0902c2
 int id tv_empty_addresses 0x7f0902c3
 int id tv_empty_cart 0x7f0902c4
 int id tv_empty_orders 0x7f0902c5

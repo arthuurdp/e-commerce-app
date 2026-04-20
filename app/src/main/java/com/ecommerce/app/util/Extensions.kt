@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ecommerce.app.BuildConfig
 import com.ecommerce.app.R
 import com.google.android.material.textfield.TextInputLayout
+import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale
@@ -58,7 +59,7 @@ fun String?.toImageUrl(): String? {
     }
 }
 
-fun String?.formatDate(): String {
+fun String?.formatDateTime(): String {
     if (this.isNullOrBlank()) return ""
     return try {
         val inputFormatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME
@@ -67,6 +68,20 @@ fun String?.formatDate(): String {
         parsed.format(outputFormatter)
     } catch (e: Exception) {
         this
+    }
+}
+
+fun String.toApiDateOrNull(): String? {
+    return try {
+        val inputFormat = SimpleDateFormat("dd-MM-yyyy", Locale("pt", "BR"))
+        val outputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+
+        inputFormat.isLenient = false
+
+        val date = inputFormat.parse(this) ?: return null
+        outputFormat.format(date)
+    } catch (e: Exception) {
+        null
     }
 }
 

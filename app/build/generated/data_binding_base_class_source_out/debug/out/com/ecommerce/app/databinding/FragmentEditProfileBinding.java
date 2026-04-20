@@ -16,6 +16,7 @@ import com.ecommerce.app.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -49,13 +50,24 @@ public final class FragmentEditProfileBinding implements ViewBinding {
   public final ProgressBar progressBar;
 
   @NonNull
+  public final TextInputLayout tilName;
+
+  @NonNull
+  public final TextInputLayout tilNickname;
+
+  @NonNull
+  public final TextInputLayout tilPhone;
+
+  @NonNull
   public final TextView tvCurrentEmail;
 
   private FragmentEditProfileBinding(@NonNull ScrollView rootView, @NonNull ImageButton btnBack,
       @NonNull MaterialCardView btnChangeEmail, @NonNull MaterialCardView btnChangePassword,
       @NonNull MaterialButton btnSave, @NonNull TextInputEditText etFirstName,
       @NonNull TextInputEditText etLastName, @NonNull TextInputEditText etPhone,
-      @NonNull ProgressBar progressBar, @NonNull TextView tvCurrentEmail) {
+      @NonNull ProgressBar progressBar, @NonNull TextInputLayout tilName,
+      @NonNull TextInputLayout tilNickname, @NonNull TextInputLayout tilPhone,
+      @NonNull TextView tvCurrentEmail) {
     this.rootView = rootView;
     this.btnBack = btnBack;
     this.btnChangeEmail = btnChangeEmail;
@@ -65,6 +77,9 @@ public final class FragmentEditProfileBinding implements ViewBinding {
     this.etLastName = etLastName;
     this.etPhone = etPhone;
     this.progressBar = progressBar;
+    this.tilName = tilName;
+    this.tilNickname = tilNickname;
+    this.tilPhone = tilPhone;
     this.tvCurrentEmail = tvCurrentEmail;
   }
 
@@ -143,6 +158,24 @@ public final class FragmentEditProfileBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.til_name;
+      TextInputLayout tilName = ViewBindings.findChildViewById(rootView, id);
+      if (tilName == null) {
+        break missingId;
+      }
+
+      id = R.id.til_nickname;
+      TextInputLayout tilNickname = ViewBindings.findChildViewById(rootView, id);
+      if (tilNickname == null) {
+        break missingId;
+      }
+
+      id = R.id.til_phone;
+      TextInputLayout tilPhone = ViewBindings.findChildViewById(rootView, id);
+      if (tilPhone == null) {
+        break missingId;
+      }
+
       id = R.id.tv_current_email;
       TextView tvCurrentEmail = ViewBindings.findChildViewById(rootView, id);
       if (tvCurrentEmail == null) {
@@ -150,8 +183,8 @@ public final class FragmentEditProfileBinding implements ViewBinding {
       }
 
       return new FragmentEditProfileBinding((ScrollView) rootView, btnBack, btnChangeEmail,
-          btnChangePassword, btnSave, etFirstName, etLastName, etPhone, progressBar,
-          tvCurrentEmail);
+          btnChangePassword, btnSave, etFirstName, etLastName, etPhone, progressBar, tilName,
+          tilNickname, tilPhone, tvCurrentEmail);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

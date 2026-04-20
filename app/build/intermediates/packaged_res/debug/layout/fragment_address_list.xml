@@ -72,18 +72,18 @@
             android:visibility="gone">
 
             <ImageView
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="175dp"
+                android:layout_height="175dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/img_no_addresses" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Nenhum endereço encontrado"
+                android:layout_marginTop="14dp"
+                android:text="Nenhum endereço foi encontrado"
                 android:textColor="@color/gray"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
         </LinearLayout>
 

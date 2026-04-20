@@ -10,7 +10,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.signature.ObjectKey
 import com.ecommerce.app.data.model.review.ReviewResponse
 import com.ecommerce.app.databinding.ItemReviewBinding
-import com.ecommerce.app.util.formatDate
+import com.ecommerce.app.util.formatDateTime
 
 class ProductReviewsAdapter : ListAdapter<ReviewResponse, ProductReviewsAdapter.ReviewViewHolder>(DiffCallback) {
 
@@ -21,7 +21,7 @@ class ProductReviewsAdapter : ListAdapter<ReviewResponse, ProductReviewsAdapter.
             binding.tvUserName.text = review.userName
             binding.rbRating.rating = review.rating.toFloat()
             binding.tvComment.text = review.comment?.content
-            binding.tvDate.text = review.createdAt.formatDate()
+            binding.tvDate.text = review.createdAt.formatDateTime()
 
             if (review.userProfilePictureUrl != null) {
                 Glide.with(binding.root.context)

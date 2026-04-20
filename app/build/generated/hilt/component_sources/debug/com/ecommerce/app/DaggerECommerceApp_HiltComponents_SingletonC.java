@@ -65,9 +65,9 @@ import com.ecommerce.app.ui.customer.address.EditAddressFragment;
 import com.ecommerce.app.ui.customer.cart.CartFragment;
 import com.ecommerce.app.ui.customer.cart.CartViewModel;
 import com.ecommerce.app.ui.customer.cart.CartViewModel_HiltModules_KeyModule_ProvideFactory;
-import com.ecommerce.app.ui.customer.cart.CheckoutFragment;
-import com.ecommerce.app.ui.customer.cart.CheckoutViewModel;
-import com.ecommerce.app.ui.customer.cart.CheckoutViewModel_HiltModules_KeyModule_ProvideFactory;
+import com.ecommerce.app.ui.customer.cart.checkout.CheckoutFragment;
+import com.ecommerce.app.ui.customer.cart.checkout.CheckoutViewModel;
+import com.ecommerce.app.ui.customer.cart.checkout.CheckoutViewModel_HiltModules_KeyModule_ProvideFactory;
 import com.ecommerce.app.ui.customer.home.HomeFragment;
 import com.ecommerce.app.ui.customer.home.HomeViewModel;
 import com.ecommerce.app.ui.customer.home.HomeViewModel_HiltModules_KeyModule_ProvideFactory;
@@ -683,7 +683,7 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
 
     @Override
     public Map<String, javax.inject.Provider<ViewModel>> getHiltViewModelMap() {
-      return MapBuilder.<String, javax.inject.Provider<ViewModel>>newMapBuilder(14).put("com.ecommerce.app.ui.customer.address.AddAddressViewModel", ((Provider) addAddressViewModelProvider)).put("com.ecommerce.app.ui.customer.address.AddressViewModel", ((Provider) addressViewModelProvider)).put("com.ecommerce.app.ui.auth.AuthViewModel", ((Provider) authViewModelProvider)).put("com.ecommerce.app.ui.customer.cart.CartViewModel", ((Provider) cartViewModelProvider)).put("com.ecommerce.app.ui.customer.cart.CheckoutViewModel", ((Provider) checkoutViewModelProvider)).put("com.ecommerce.app.ui.customer.home.HomeViewModel", ((Provider) homeViewModelProvider)).put("com.ecommerce.app.ui.MainViewModel", ((Provider) mainViewModelProvider)).put("com.ecommerce.app.ui.customer.profile.activity.NotificationsViewModel", ((Provider) notificationsViewModelProvider)).put("com.ecommerce.app.ui.customer.orders.OrderDetailViewModel", ((Provider) orderDetailViewModelProvider)).put("com.ecommerce.app.ui.customer.orders.OrdersViewModel", ((Provider) ordersViewModelProvider)).put("com.ecommerce.app.ui.customer.products.ProductDetailViewModel", ((Provider) productDetailViewModelProvider)).put("com.ecommerce.app.ui.customer.profile.ProfileViewModel", ((Provider) profileViewModelProvider)).put("com.ecommerce.app.ui.customer.search.SearchViewModel", ((Provider) searchViewModelProvider)).put("com.ecommerce.app.ui.customer.profile.security.SecurityViewModel", ((Provider) securityViewModelProvider)).build();
+      return MapBuilder.<String, javax.inject.Provider<ViewModel>>newMapBuilder(14).put("com.ecommerce.app.ui.customer.address.AddAddressViewModel", ((Provider) addAddressViewModelProvider)).put("com.ecommerce.app.ui.customer.address.AddressViewModel", ((Provider) addressViewModelProvider)).put("com.ecommerce.app.ui.auth.AuthViewModel", ((Provider) authViewModelProvider)).put("com.ecommerce.app.ui.customer.cart.CartViewModel", ((Provider) cartViewModelProvider)).put("com.ecommerce.app.ui.customer.cart.checkout.CheckoutViewModel", ((Provider) checkoutViewModelProvider)).put("com.ecommerce.app.ui.customer.home.HomeViewModel", ((Provider) homeViewModelProvider)).put("com.ecommerce.app.ui.MainViewModel", ((Provider) mainViewModelProvider)).put("com.ecommerce.app.ui.customer.profile.activity.NotificationsViewModel", ((Provider) notificationsViewModelProvider)).put("com.ecommerce.app.ui.customer.orders.OrderDetailViewModel", ((Provider) orderDetailViewModelProvider)).put("com.ecommerce.app.ui.customer.orders.OrdersViewModel", ((Provider) ordersViewModelProvider)).put("com.ecommerce.app.ui.customer.products.ProductDetailViewModel", ((Provider) productDetailViewModelProvider)).put("com.ecommerce.app.ui.customer.profile.ProfileViewModel", ((Provider) profileViewModelProvider)).put("com.ecommerce.app.ui.customer.search.SearchViewModel", ((Provider) searchViewModelProvider)).put("com.ecommerce.app.ui.customer.profile.security.SecurityViewModel", ((Provider) securityViewModelProvider)).build();
     }
 
     @Override
@@ -724,7 +724,7 @@ public final class DaggerECommerceApp_HiltComponents_SingletonC {
           case 3: // com.ecommerce.app.ui.customer.cart.CartViewModel 
           return (T) new CartViewModel(viewModelCImpl.cartRepository(), viewModelCImpl.addressRepository());
 
-          case 4: // com.ecommerce.app.ui.customer.cart.CheckoutViewModel 
+          case 4: // com.ecommerce.app.ui.customer.cart.checkout.CheckoutViewModel 
           return (T) new CheckoutViewModel(viewModelCImpl.orderRepository(), viewModelCImpl.addressRepository(), viewModelCImpl.cartRepository());
 
           case 5: // com.ecommerce.app.ui.customer.home.HomeViewModel 

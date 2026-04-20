@@ -76,6 +76,7 @@ drawable img_banner_2
 drawable img_banner_3
 drawable img_delete_account
 drawable img_empty_cart
+drawable img_empty_notifications
 drawable img_female
 drawable img_forgot_password
 drawable img_forgot_password_enter_code
@@ -234,6 +235,7 @@ id ll_category_header
 id ll_category_tiles
 id ll_comments_header
 id ll_dots
+id ll_empty_notifications
 id ll_greeting
 id ll_info
 id ll_order_items
@@ -295,11 +297,14 @@ id til_complement
 id til_email
 id til_enter_code
 id til_label
+id til_name
 id til_neighborhood
 id til_new_email
 id til_new_password
+id til_nickname
 id til_number
 id til_password
+id til_phone
 id til_postalCode
 id til_search
 id til_street
@@ -318,7 +323,6 @@ id tv_current_email
 id tv_date
 id tv_description
 id tv_email
-id tv_empty
 id tv_empty_addresses
 id tv_empty_cart
 id tv_empty_orders

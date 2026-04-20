@@ -30,8 +30,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navHostFragment = supportFragmentManager
-            .findFragmentById(R.id.nav_host_main) as NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_main) as NavHostFragment
         navController = navHostFragment.navController
 
         binding.bottomNavCustomer.hide()
@@ -191,8 +190,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-
 
     private fun setupKeyboardListener() {
         binding.root.viewTreeObserver.addOnGlobalLayoutListener {

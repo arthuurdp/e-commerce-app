@@ -1,4 +1,4 @@
-package com.ecommerce.app.ui.customer.cart
+package com.ecommerce.app.ui.customer.cart.checkout
 
 import android.content.Intent
 import android.net.Uri

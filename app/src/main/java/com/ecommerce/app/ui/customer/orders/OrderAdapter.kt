@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ecommerce.app.R
 import com.ecommerce.app.data.model.order.OrderResponse
 import com.ecommerce.app.databinding.ItemOrderBinding
-import com.ecommerce.app.util.formatDate
+import com.ecommerce.app.util.formatDateTime
 import com.ecommerce.app.util.toCurrency
 
 class OrderAdapter(
@@ -23,7 +23,7 @@ class OrderAdapter(
         fun bind(order: OrderResponse) {
             binding.tvOrderId.text = "Pedido #${order.id}"
             binding.tvTotal.text = order.total.toCurrency()
-            binding.tvDate.text = order.createdAt.formatDate()
+            binding.tvDate.text = order.createdAt.formatDateTime()
             binding.tvItemCount.text = "${order.totalItems} ${if (order.totalItems == 1) "item" else "itens"}"
 
             val (labelRes, colorRes) = statusMeta(order.status)

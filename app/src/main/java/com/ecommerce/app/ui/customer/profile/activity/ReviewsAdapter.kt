@@ -12,7 +12,7 @@ import com.ecommerce.app.R
 import com.ecommerce.app.data.model.review.ReviewResponse
 import com.ecommerce.app.databinding.ItemActivityReviewBinding
 import com.ecommerce.app.util.DialogUtils
-import com.ecommerce.app.util.formatDate
+import com.ecommerce.app.util.formatDateTime
 import kotlin.text.isNullOrEmpty
 import kotlin.text.startsWith
 import kotlin.text.uppercase
@@ -29,7 +29,7 @@ class ReviewsAdapter(
         fun bind(review: ReviewResponse) {
             binding.tvProductName.text = review.productName?.uppercase() ?: "PRODUTO #${review.productId}"
             binding.rbRating.rating = review.rating.toFloat()
-            binding.tvDate.text = review.createdAt.formatDate()
+            binding.tvDate.text = review.createdAt.formatDateTime()
 
             val profileUrl = review.userProfilePictureUrl
             val finalUrl = if (profileUrl.isNullOrEmpty()) {

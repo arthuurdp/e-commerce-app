@@ -11,7 +11,7 @@ import com.ecommerce.app.BuildConfig
 import com.ecommerce.app.R
 import com.ecommerce.app.data.model.comment.CommentResponse
 import com.ecommerce.app.databinding.ItemCommentBinding
-import com.ecommerce.app.util.formatDate
+import com.ecommerce.app.util.formatDateTime
 
 class CommentAdapter(
     private val currentUserId: Long?,
@@ -24,7 +24,7 @@ class CommentAdapter(
         fun bind(comment: CommentResponse) {
             binding.tvUserName.text = comment.userName
             binding.tvContent.text = comment.content
-            binding.tvDate.text = comment.createdAt.formatDate()
+            binding.tvDate.text = comment.createdAt.formatDateTime()
 
             val rawUrl = comment.userProfilePicture
 

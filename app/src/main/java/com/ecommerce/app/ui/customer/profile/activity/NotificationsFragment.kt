@@ -211,7 +211,7 @@ class NotificationsFragment : Fragment() {
 
     private fun updateAdapterAndLoadData(checkedId: Int) {
         binding.rvActivities.adapter = null
-        binding.tvEmpty.hide()
+        binding.llEmptyNotifications.hide()
         when (checkedId) {
             R.id.chip_all -> {
                 binding.btnClearAll.show()
@@ -268,16 +268,17 @@ class NotificationsFragment : Fragment() {
         when (result) {
             is NetworkResult.Loading -> {
                 binding.progressBar.show()
-                binding.tvEmpty.hide()
+                binding.llEmptyNotifications.hide()
             }
             is NetworkResult.Success -> {
                 binding.progressBar.hide()
                 val data = result.data
                 if (data == null || (data is Collection<*> && data.isEmpty())) {
-                    binding.tvEmpty.show()
+                    binding.llEmptyNotifications.show()
                     binding.rvActivities.hide()
+                    binding.btnClearAll.hide()
                 } else {
-                    binding.tvEmpty.hide()
+                    binding.llEmptyNotifications.hide()
                     binding.rvActivities.show()
                     onSuccess(data)
                 }

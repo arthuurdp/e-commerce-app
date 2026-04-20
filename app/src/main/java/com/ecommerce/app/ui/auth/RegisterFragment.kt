@@ -19,6 +19,7 @@ import com.ecommerce.app.util.hideKeyboard
 import com.ecommerce.app.util.setFieldError
 import com.ecommerce.app.util.show
 import com.ecommerce.app.util.showToast
+import com.ecommerce.app.util.toApiDateOrNull
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -41,19 +42,29 @@ class RegisterFragment : Fragment() {
 
         binding.mainContainer.setOnClickListener { hideKeyboard() }
         binding.btnBack.setOnClickListener { findNavController().popBackStack() }
-
-        setupMasks()
-        setupErrorClearing()
-
-        val genders = listOf("Male", "Female", "Other")
-        binding.spinnerGender.adapter = ArrayAdapter(
-            requireContext(), android.R.layout.simple_spinner_dropdown_item, genders
-        )
-
         binding.btnRegister.setOnClickListener { attemptRegister() }
         binding.tvLogin.setOnClickListener { findNavController().navigateUp() }
 
+        setupMasks()
+        setupErrorClearing()
+        setupGenders()
+
         observeRegister()
+    }
+
+    private data class Gender(val label: String, val value: String)
+
+    private val genders = listOf(
+        Gender("Homem", "Male"),
+        Gender("Mulher", "Female"),
+        Gender("Prefiro não informar", "Other")
+    )
+
+    private fun setupGenders() {
+        val labels = genders.map { it.label }
+        binding.spinnerGender.adapter = ArrayAdapter(
+            requireContext(), android.R.layout.simple_spinner_dropdown_item, labels
+        )
     }
 
     private fun setupErrorClearing() {
@@ -69,7 +80,7 @@ class RegisterFragment : Fragment() {
     private fun setupMasks() {
         binding.etCpf.addTextChangedListener(MaskWatcher("###.###.###-##"))
         binding.etPhone.addTextChangedListener(MaskWatcher("(##) #####-####"))
-        binding.etBirthDate.addTextChangedListener(MaskWatcher("####-##-##"))
+        binding.etBirthDate.addTextChangedListener(MaskWatcher("##-##-####"))
     }
 
     private fun attemptRegister() {
@@ -80,7 +91,49 @@ class RegisterFragment : Fragment() {
         val cpf = binding.etCpf.text.toString().filter { it.isDigit() }
         val phone = binding.etPhone.text.toString().filter { it.isDigit() }
         val birthDate = binding.etBirthDate.text.toString().trim()
-        val gender = binding.spinnerGender.selectedItem.toString().uppercase()
+
+        val selectedPosition = binding.spinnerGender.selectedItemPosition
+        val gender = genders[selectedPosition].value.uppercase()
+
+        var isValid = true
+
+        if (firstName.isEmpty()) {
+            setFieldError(requireContext(), binding.tilFirstName, "Nome é obrigatório")
+            isValid = false
+        }
+
+        if (lastName.isEmpty()) {
+            setFieldError(requireContext(), binding.tilLastName, "Sobrenome é obrigatório")
+            isValid = false
+        }
+
+        if (email.isEmpty()) {
+            setFieldError(requireContext(), binding.tilEmail, "Email é obrigatório")
+            isValid = false
+        }
+
+        if (password.isEmpty()) {
+            setFieldError(requireContext(), binding.tilPassword, "Senha é obrigatória")
+            isValid = false
+        }
+
+        if (cpf.isEmpty()) {
+            setFieldError(requireContext(), binding.tilCpf, "CPF é obrigatório")
+            isValid = false
+        }
+
+        if (phone.isEmpty()) {
+            setFieldError(requireContext(), binding.tilPhone, "Telefone é obrigatório")
+            isValid = false
+        }
+
+        val formattedBirthDate = birthDate.toApiDateOrNull()
+        if (formattedBirthDate == null) {
+            setFieldError(requireContext(), binding.tilBirthDate, "Data inválida")
+            isValid = false
+        }
+
+        if (!isValid) return
 
         viewModel.register(
             RegisterRequest(
@@ -90,7 +143,7 @@ class RegisterFragment : Fragment() {
                 password = password,
                 cpf = cpf,
                 phone = phone,
-                birthDate = birthDate,
+                birthDate = formattedBirthDate!!,
                 gender = gender
             )
         )

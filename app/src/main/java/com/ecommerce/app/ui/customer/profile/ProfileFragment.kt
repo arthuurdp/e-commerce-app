@@ -48,8 +48,9 @@ class ProfileFragment : Fragment() {
 
         observeProfile()
         observeProfilePicture()
-        viewModel.loadProfile()
         setupRecyclerView()
+
+        viewModel.loadProfile()
 
         binding.ivAvatar.setOnClickListener {
             showImageOptions()

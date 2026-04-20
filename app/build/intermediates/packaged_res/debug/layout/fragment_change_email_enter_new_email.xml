@@ -44,17 +44,17 @@
 
             <TextView
                 style="@style/App.Text.PageTitle.Accent"
-                android:text="E-mail" />
+                android:text="Email" />
         </LinearLayout>
 
         <TextView
             style="@style/App.Text.Subtitle"
-            android:text="Informe um e-mail para receber o código de verificação." />
+            android:text="Informe um email para receber o código de verificação." />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_new_email"
             style="@style/App.TextInputLayout"
-            android:hint="Digite o novo e-mail"
+            android:hint="Digite o novo email"
             app:startIconDrawable="@drawable/ic_email_outline">
 
             <com.google.android.material.textfield.TextInputEditText

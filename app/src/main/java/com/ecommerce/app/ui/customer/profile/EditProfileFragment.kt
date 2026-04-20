@@ -4,16 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.ecommerce.app.R
+import com.ecommerce.app.data.model.auth.RegisterRequest
 import com.ecommerce.app.databinding.FragmentEditProfileBinding
+import com.ecommerce.app.util.MaskWatcher
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hide
+import com.ecommerce.app.util.hideKeyboard
+import com.ecommerce.app.util.setFieldError
 import com.ecommerce.app.util.show
 import com.ecommerce.app.util.showToast
+import com.ecommerce.app.util.toApiDateOrNull
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,25 +40,18 @@ class EditProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnBack.setOnClickListener { findNavController().popBackStack() }
+        binding.btnChangeEmail.setOnClickListener { findNavController().navigate(R.id.action_editProfileFragment_to_changeEmailFragment) }
+        binding.btnChangePassword.setOnClickListener { findNavController().navigate(R.id.action_editProfileFragment_to_changePasswordFragment) }
+
+        binding.btnSave.setOnClickListener {
+            attemptUpdate()
+            hideKeyboard()
+        }
 
         loadProfile()
         observeUpdate()
-
-        binding.btnSave.setOnClickListener {
-            viewModel.updateProfile(
-                firstName = binding.etFirstName.text.toString().trim().ifEmpty { null },
-                lastName = binding.etLastName.text.toString().trim().ifEmpty { null },
-                phone = binding.etPhone.text.toString().trim().ifEmpty { null }
-            )
-        }
-
-        binding.btnChangeEmail.setOnClickListener {
-            findNavController().navigate(R.id.action_editProfileFragment_to_changeEmailFragment)
-        }
-
-        binding.btnChangePassword.setOnClickListener {
-            findNavController().navigate(R.id.action_editProfileFragment_to_changePasswordFragment)
-        }
+        setupMasks()
+        setupErrorClearing()
     }
 
     private fun loadProfile() {
@@ -66,6 +65,53 @@ class EditProfileFragment : Fragment() {
                 binding.tvCurrentEmail.text = user.email
             }
         }
+    }
+
+    private fun attemptUpdate() {
+        val firstName = binding.etFirstName.text.toString().trim()
+        val lastName = binding.etLastName.text.toString().trim()
+        val phone = binding.etPhone.text.toString().filter { it.isDigit() }
+
+        var isValid = true
+
+        if (firstName.isEmpty()) {
+            setFieldError(requireContext(), binding.tilName, "Nome é obrigatório")
+            isValid = false
+        } else {
+            setFieldError(requireContext(), binding.tilName, null)
+        }
+
+        if (lastName.isEmpty()) {
+            setFieldError(requireContext(), binding.tilNickname, "Sobrenome é obrigatório")
+            isValid = false
+        } else {
+            setFieldError(requireContext(), binding.tilNickname, null)
+        }
+
+        if (phone.isEmpty()) {
+            setFieldError(requireContext(), binding.tilPhone, "Telefone é obrigatório")
+            isValid = false
+        } else {
+            setFieldError(requireContext(), binding.tilPhone, null)
+        }
+
+        if (!isValid) return
+
+        viewModel.updateProfile(
+            firstName = firstName,
+            lastName = lastName,
+            phone = phone
+        )
+    }
+
+    private fun setupMasks() {
+        binding.etPhone.addTextChangedListener(MaskWatcher("(##) #####-####"))
+    }
+
+    private fun setupErrorClearing() {
+        binding.etFirstName.doAfterTextChanged { setFieldError(requireContext(), binding.tilName, null) }
+        binding.etLastName.doAfterTextChanged { setFieldError(requireContext(), binding.tilNickname, null) }
+        binding.etPhone.doAfterTextChanged { setFieldError(requireContext(), binding.tilPhone, null) }
     }
 
     private fun observeUpdate() {

@@ -72,7 +72,7 @@
 
     <fragment
         android:id="@+id/checkoutFragment"
-        android:name="com.ecommerce.app.ui.customer.cart.CheckoutFragment"
+        android:name="com.ecommerce.app.ui.customer.cart.checkout.CheckoutFragment"
         android:label="Checkout"
         tools:layout="@layout/fragment_checkout">
 

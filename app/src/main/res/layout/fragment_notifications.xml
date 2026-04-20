@@ -104,15 +104,31 @@
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
                 android:padding="8dp"
-                tools:listitem="@layout/item_comment" />
+                tools:listitem="@layout/item_notification" />
 
-            <TextView
-                android:id="@+id/tv_empty"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Nenhuma atividade encontrada"
-                android:visibility="gone" />
+            <LinearLayout
+                android:id="@+id/ll_empty_notifications"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="175dp"
+                    android:layout_height="175dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/img_empty_notifications" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Nenhuma notificação foi encontrada"
+                    android:textColor="@color/gray"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
 
             <ProgressBar
                 android:id="@+id/progress_bar"

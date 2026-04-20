@@ -14,6 +14,7 @@ import com.ecommerce.app.data.model.address.CreateAddressRequest
 import com.ecommerce.app.databinding.FragmentAddAddressBinding
 import com.ecommerce.app.util.NetworkResult
 import com.ecommerce.app.util.hide
+import com.ecommerce.app.util.hideKeyboard
 import com.ecommerce.app.util.setFieldError
 import com.ecommerce.app.util.show
 import com.ecommerce.app.util.showToast
@@ -39,15 +40,16 @@ class AddAddressFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnBack.setOnClickListener {
-            findNavController().navigateUp()
+        binding.btnBack.setOnClickListener { findNavController().navigateUp() }
+        binding.btnSave.setOnClickListener {
+            attemptAddAddress()
+            hideKeyboard()
         }
 
         setupCepField()
-        setupTextWatchers()
+        setupErrorClearing()
         observeCepLookup()
         observeSaveState()
-        setupSaveButton()
     }
 
     private fun setupCepField() {
@@ -78,16 +80,13 @@ class AddAddressFragment : Fragment() {
         })
     }
 
-    private fun setupTextWatchers() {
-        binding.etPostalCode.doAfterTextChanged {
-            setFieldError(requireContext(), binding.tilPostalCode, null)
-        }
-        binding.etName.doAfterTextChanged {
-            setFieldError(requireContext(), binding.tilLabel, null)
-        }
-        binding.etNumber.doAfterTextChanged {
-            setFieldError(requireContext(), binding.tilNumber, null)
-        }
+    private fun setupErrorClearing() {
+        binding.etPostalCode.doAfterTextChanged { setFieldError(requireContext(), binding.tilPostalCode, null) }
+        binding.etName.doAfterTextChanged { setFieldError(requireContext(), binding.tilLabel, null) }
+        binding.etNumber.doAfterTextChanged { setFieldError(requireContext(), binding.tilNumber, null) }
+        binding.etStreet.doAfterTextChanged { setFieldError(requireContext(), binding.tilStreet, null) }
+        binding.etNeighborhood.doAfterTextChanged { setFieldError(requireContext(), binding.tilNeighborhood, null) }
+        binding.etComplement.doAfterTextChanged { setFieldError(requireContext(), binding.tilComplement, null) }
     }
 
     private fun observeCepLookup() {
@@ -139,50 +138,55 @@ class AddAddressFragment : Fragment() {
         }
     }
 
-    private fun setupSaveButton() {
-        binding.btnSave.setOnClickListener {
-            val name = binding.etName.text.toString().trim()
+    private fun attemptAddAddress() {
+            val name = binding.etName.text.toString().trim().ifEmpty { "Meu Endereço" }
             val postalCode = binding.etPostalCode.text.toString().replace("-", "").trim()
-            val city = binding.etCity.text.toString().trim()
-            val uf = binding.etUf.text.toString().trim()
-            val street = binding.etStreet.text.toString().trim().ifEmpty { null }
+            val street = binding.etStreet.text.toString().trim()
             val numberStr = binding.etNumber.text.toString().trim()
-            val complement = binding.etComplement.text.toString().trim().ifEmpty { null }
-            val neighborhood = binding.etNeighborhood.text.toString().trim().ifEmpty { null }
+            val complement = binding.etComplement.text.toString().trim()
+            val neighborhood = binding.etNeighborhood.text.toString().trim()
 
-            var hasError = false
+            var isValid = true
 
-            if (name.isEmpty()) {
-                setFieldError(requireContext(), binding.tilLabel, "Please enter a label for this address")
-                hasError = true
-            }
-            if (postalCode.length < 8) {
-                setFieldError(requireContext(), binding.tilPostalCode, "Please enter a valid 8-digit postal code")
-                hasError = true
-            }
-            if (city.isEmpty() || uf.isEmpty()) {
-                setFieldError(requireContext(), binding.tilPostalCode, "City and state are required — check the postal code")
-                hasError = true
-            }
-            if (numberStr.isEmpty()) {
-                setFieldError(requireContext(), binding.tilNumber, "Please enter a street number")
-                hasError = true
+            if (postalCode.length != 8) {
+                setFieldError(requireContext(), binding.tilPostalCode, "CEP inválido")
+                isValid = false
             }
 
-            if (hasError) return@setOnClickListener
+            if (street.isEmpty()) {
+                setFieldError(requireContext(), binding.tilStreet, "Rua é obrigatória")
+                isValid = false
+            }
+
+            val number = numberStr.toIntOrNull()
+            if (number == null) {
+                setFieldError(requireContext(), binding.tilNumber, "Número inválido")
+                isValid = false
+            }
+
+            if (neighborhood.isEmpty()) {
+                setFieldError(requireContext(), binding.tilNeighborhood, "Bairro é obrigatório")
+                isValid = false
+            }
+
+            if (complement.isEmpty()) {
+                setFieldError(requireContext(), binding.tilComplement, "Complemento é obrigatório")
+                isValid = false
+            }
+
+            if (!isValid) return
 
             viewModel.saveAddress(
                 CreateAddressRequest(
                     name = name,
                     street = street,
-                    number = numberStr.toInt(),
+                    number = number!!,
                     complement = complement,
                     neighborhood = neighborhood,
                     postalCode = postalCode,
                 )
             )
         }
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

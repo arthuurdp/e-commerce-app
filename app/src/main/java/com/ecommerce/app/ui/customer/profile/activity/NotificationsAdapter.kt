@@ -1,6 +1,5 @@
 package com.ecommerce.app.ui.customer.profile.activity
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ecommerce.app.R
 import com.ecommerce.app.data.model.notification.NotificationResponse
 import com.ecommerce.app.databinding.ItemNotificationBinding
-import com.ecommerce.app.util.formatDate
+import com.ecommerce.app.util.formatDateTime
 
 class NotificationsAdapter(
     private val onItemClick: (NotificationResponse) -> Unit
@@ -30,7 +29,7 @@ class NotificationsAdapter(
             }
             binding.ivNotificationImage.setImageResource(imageRes)
 
-            binding.tvNotificationDate.text = item.createdAt.formatDate()
+            binding.tvNotificationDate.text = item.createdAt.formatDateTime()
 
             val isUnread = item.read == false
             binding.viewUnreadDot.visibility = if (isUnread) View.VISIBLE else View.GONE

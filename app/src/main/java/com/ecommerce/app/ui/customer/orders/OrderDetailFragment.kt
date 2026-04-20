@@ -8,7 +8,6 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.ecommerce.app.R
 import com.ecommerce.app.databinding.FragmentOrderDetailBinding
 import com.ecommerce.app.util.*
@@ -53,7 +52,7 @@ class OrderDetailFragment : Fragment() {
 
                     binding.tvOrderId.text = "Pedido #${order.id}"
                     binding.tvTotal.text = order.total.toCurrency()
-                    binding.tvDate.text = order.createdAt.formatDate()
+                    binding.tvDate.text = order.createdAt.formatDateTime()
 
                     val (label, colorRes) = when (order.status) {
                         "PENDING" -> "PENDENTE" to R.color.status_pending

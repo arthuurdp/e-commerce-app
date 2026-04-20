@@ -47,7 +47,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/App.TextInputLayout"
-            android:hint="Apelido (ex: Casa, Trabalho"
+            android:hint="Apelido (ex: Casa, Trabalho)"
             android:id="@+id/til_label">
 
             <com.google.android.material.textfield.TextInputEditText
