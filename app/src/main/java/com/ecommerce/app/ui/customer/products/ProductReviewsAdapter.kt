@@ -8,9 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.signature.ObjectKey
+import com.ecommerce.app.BuildConfig
+import com.ecommerce.app.R
 import com.ecommerce.app.data.model.review.ReviewResponse
 import com.ecommerce.app.databinding.ItemReviewBinding
 import com.ecommerce.app.util.formatDateTime
+import kotlin.text.startsWith
 
 class ProductReviewsAdapter : ListAdapter<ReviewResponse, ProductReviewsAdapter.ReviewViewHolder>(DiffCallback) {
 
@@ -23,12 +26,22 @@ class ProductReviewsAdapter : ListAdapter<ReviewResponse, ProductReviewsAdapter.
             binding.tvComment.text = review.comment?.content
             binding.tvDate.text = review.createdAt.formatDateTime()
 
-            if (review.userProfilePictureUrl != null) {
-                Glide.with(binding.root.context)
-                    .load(review.userProfilePictureUrl)
-                    .signature(ObjectKey(System.currentTimeMillis() / (1000 * 60)))
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+            val rawUrl = review.userProfilePictureUrl
+
+            if (!rawUrl.isNullOrBlank()) {
+                val finalUrl = if (rawUrl.startsWith("http")) {
+                    rawUrl
+                } else {
+                    "${BuildConfig.BASE_URL}/uploads/$rawUrl"
+                }
+
+                Glide.with(binding.ivAvatar)
+                    .load(finalUrl)
+                    .placeholder(R.drawable.img_male)
+                    .error(R.drawable.img_male)
                     .into(binding.ivAvatar)
+            } else {
+                binding.ivAvatar.setImageResource(R.drawable.img_male)
             }
         }
     }

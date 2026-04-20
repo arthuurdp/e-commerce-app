@@ -177,9 +177,7 @@ class EnterCodeFragment : Fragment() {
 
                         showToast(message)
                         authViewModel.logout()
-                        findNavController().popBackStack(
-                            findNavController().graph.startDestinationId, false
-                        )
+                        findNavController().navigate(R.id.action_enterCodeFragment_to_loginFragment)
                     }
                     else -> findNavController().popBackStack()
                 }

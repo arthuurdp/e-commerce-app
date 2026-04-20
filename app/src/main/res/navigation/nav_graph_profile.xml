@@ -154,6 +154,11 @@
             android:name="email"
             android:defaultValue=""
             app:argType="string" />
+        <action
+            android:id="@+id/action_enterCodeFragment_to_loginFragment"
+            app:destination="@id/nav_graph_auth"
+            app:popUpTo="@id/nav_graph_profile"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
