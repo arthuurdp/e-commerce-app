@@ -1,27 +1,58 @@
-gitignore
-# IDE / Editor
-.idea/
+# ─── Android ───────────────────────────────────────────────────────────────────
 *.iml
-.vscode/
-
-# Build outputs
-**/build/
-captures/
-
-# Gradle
 .gradle/
 /local.properties
-/.bundle/
+/.idea/
+.DS_Store
+/build/
+/captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+*.ap_
+*.dex
 
-# Kotlin / Java
+# ─── Module build outputs ──────────────────────────────────────────────────────
+**/build/
+
+# ─── Kotlin / Java ─────────────────────────────────────────────────────────────
 *.class
+*.jar
+*.war
+*.ear
 *.pyc
 
-# System files
-.DS_Store
-Thumbs.db
-
-# Secrets
+# ─── Secrets & local config ────────────────────────────────────────────────────
 /google-services.json
+local.properties
 *.jks
 *.keystore
+*.p12
+.env
+.env.*
+
+# ─── Gradle ────────────────────────────────────────────────────────────────────
+.gradle/
+gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+
+# ─── IDE / Editor ──────────────────────────────────────────────────────────────
+.idea/
+*.iws
+*.ipr
+.vscode/
+*.swp
+*.swo
+*~
+
+# ─── System ────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── ProGuard ──────────────────────────────────────────────────────────────────
+/proguard/
+
+# ─── Test results ──────────────────────────────────────────────────────────────
+/test-results/
