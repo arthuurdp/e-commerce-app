@@ -1,58 +1,44 @@
-# ─── Android ───────────────────────────────────────────────────────────────────
-*.iml
+# ─── Android / Gradle ─────────────────────────────
 .gradle/
-/local.properties
-/.idea/
+build/
+**/build/
+local.properties
+
+# ─── IDE ──────────────────────────────────────────
+.idea/
+*.iml
+.vscode/
+
+# ─── OS ───────────────────────────────────────────
 .DS_Store
-/build/
-/captures/
-.externalNativeBuild/
-.cxx/
+Thumbs.db
+desktop.ini
+
+# ─── Kotlin / Java ────────────────────────────────
+*.class
+*.log
+
+# ─── APK / Builds ─────────────────────────────────
 *.apk
 *.aab
 *.ap_
 *.dex
 
-# ─── Module build outputs ──────────────────────────────────────────────────────
-**/build/
+# ─── Native ───────────────────────────────────────
+.externalNativeBuild/
+.cxx/
 
-# ─── Kotlin / Java ─────────────────────────────────────────────────────────────
-*.class
-*.jar
-*.war
-*.ear
-*.pyc
-
-# ─── Secrets & local config ────────────────────────────────────────────────────
-/google-services.json
-local.properties
+# ─── Secrets ──────────────────────────────────────
+.env
+.env.*
 *.jks
 *.keystore
 *.p12
-.env
-.env.*
+google-services.json
 
-# ─── Gradle ────────────────────────────────────────────────────────────────────
-.gradle/
-gradle/wrapper/gradle-wrapper.jar
-!gradle/wrapper/gradle-wrapper.properties
-
-# ─── IDE / Editor ──────────────────────────────────────────────────────────────
-.idea/
-*.iws
-*.ipr
-.vscode/
-*.swp
-*.swo
-*~
-
-# ─── System ────────────────────────────────────────────────────────────────────
-.DS_Store
-Thumbs.db
-desktop.ini
-
-# ─── ProGuard ──────────────────────────────────────────────────────────────────
-/proguard/
-
-# ─── Test results ──────────────────────────────────────────────────────────────
+# ─── Tests ────────────────────────────────────────
 /test-results/
+
+# ─── Gradle Wrapper (IMPORTANT) ───────────────────
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
