@@ -1,6 +1,6 @@
 # E-Commerce Android App
 
-A full-featured native Android e-commerce application built with **Kotlin**, consuming my **E-Commerce Java + Spring Boot** REST API backend. The app delivers a polished shopping experience with authentication, product discovery, cart management, checkout, order tracking, and user activity features.
+A full-featured native Android e-commerce application built with **Kotlin**, consuming my **[E-Commerce REST API](https://github.com/arthuurdp/e-commerce)** backend. The app delivers a polished shopping experience with authentication, product discovery, cart management, checkout, order tracking, and user activity features.
 
 ---
 
